@@ -1,0 +1,23 @@
+# IntelliJ
+.idea/
+*.iml
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# General
+dependency-reduced-pom.xml
+.DS_Store
+build/
+dist/
+target/
+.cache/
+.tmp/
+*.log
+
+# Database
+db.h2.db
+db.trace.db
+db.lock.db
