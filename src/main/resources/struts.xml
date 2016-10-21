@@ -2,6 +2,7 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
   "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
+  <constant name="struts.devMode" value="true" />
   <constant name="struts.action.excludePattern" value="/api/.*" />
   <package name="default" extends="tiles-default">
     <result-types>
@@ -45,6 +46,10 @@
     <action name="listLecturesPage" class="de.nordakademie.iaa_multiple_choice.web.ListLectureAction"
       method="listAll">
       <result type="tiles">listLecturesPage</result>
+    </action>
+
+    <action name="locale" class="de.nordakademie.iaa_multiple_choice.web.ChangeLanguageAction" method="changeLanguage">
+      <result name="success" type="tiles">listRoomsPage</result>
     </action>
   </package>
 </struts>
