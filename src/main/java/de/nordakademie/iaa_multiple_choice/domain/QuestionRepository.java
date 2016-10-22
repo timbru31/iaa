@@ -9,7 +9,7 @@ public class QuestionRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void createQuestion(final Answer question) {
+    public void createQuestion(final Question question) {
         entityManager.persist(question);
     }
 
