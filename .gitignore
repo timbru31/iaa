@@ -6,6 +6,8 @@
 .classpath
 .project
 .settings/
+.metadata/
+WebContent/
 
 # General
 dependency-reduced-pom.xml
