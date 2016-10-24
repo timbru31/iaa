@@ -11,18 +11,22 @@
     </result-types>
     
     <action name="">
-      <result type="tiles">welcomePage</result>
+      <result type="tiles">welcome</result>
     </action>
-    <action name="welcomePage">
-      <result type="tiles">welcomePage</result>
+    <action name="welcome">
+      <result type="tiles">welcome</result>
     </action>
     
     <action name="lecturer">
       <result type="tiles">lecturer</result>
     </action>
+    
+    <action name="mapping">
+      <result type="tiles">lecturer/mapping</result>
+    </action>
 
     <action name="locale" class="de.nordakademie.iaa_multiple_choice.web.ChangeLanguageAction" method="changeLanguage">
-      <result name="success" type="tiles">welcomePage</result>
+      <result name="success" type="tiles">welcome</result>
     </action>
   </package>
 </struts>
