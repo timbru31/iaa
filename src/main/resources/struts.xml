@@ -24,6 +24,11 @@
     <action name="create">
       <result type="tiles">exam/create</result>
     </action>
+    
+    <action name="show">
+      <result type="tiles">exam/show</result>
+    </action>
+    
     <action name="mapping">
       <result type="tiles">lecturer/mapping</result>
     </action>
