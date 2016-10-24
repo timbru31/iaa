@@ -15,9 +15,9 @@ import lombok.Setter;
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Basic
-    private boolean rightAnswer;
+    private Boolean rightAnswer;
 
 }

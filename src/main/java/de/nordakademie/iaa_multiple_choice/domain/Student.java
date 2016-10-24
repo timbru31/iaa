@@ -13,5 +13,5 @@ import lombok.Setter;
 @DiscriminatorValue("student")
 public class Student extends User {
     @Basic
-    private int studentNumber;
+    private Integer studentNumber;
 }

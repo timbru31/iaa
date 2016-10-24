@@ -17,7 +17,7 @@ import lombok.Setter;
 public class Exam {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Basic
     private HashMap<Integer, String> keyList;
@@ -26,21 +26,21 @@ public class Exam {
     private String name;
 
     @Basic
-    private double creditPoints;
+    private Double creditPoints;
 
     @Basic
-    private int examTime;
+    private Integer examTime;
 
     @Basic
-    private int examPeriod;
+    private Integer examPeriod;
 
     @Basic
-    private int minPoints;
+    private Integer minPoints;
 
     @Basic
-    private boolean passed;
+    private Boolean passed;
 
     @Basic
-    private boolean editable;
+    private Boolean editable;
 
 }

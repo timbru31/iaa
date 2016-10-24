@@ -15,10 +15,10 @@ import lombok.Setter;
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Basic
-    private double points;
+    private Double points;
 
     @Basic
     private QuestionType type;

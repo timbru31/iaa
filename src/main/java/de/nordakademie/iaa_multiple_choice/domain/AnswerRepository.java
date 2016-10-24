@@ -17,7 +17,7 @@ public class AnswerRepository {
         entityManager.persist(answer);
     }
 
-    public Answer find(final long id) {
+    public Answer find(final Long id) {
         return entityManager.createQuery("SELECT answer FROM Answer answer", Answer.class).setParameter("Id", id)
                 .getSingleResult();
     }

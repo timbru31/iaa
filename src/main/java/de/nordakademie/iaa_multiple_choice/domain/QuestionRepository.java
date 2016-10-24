@@ -13,7 +13,7 @@ public class QuestionRepository {
         entityManager.persist(question);
     }
 
-    public Question find(final long id) {
+    public Question find(final Long id) {
         return entityManager.createQuery("SELECT question FROM Question question", Question.class)
                 .setParameter("Id", id).getSingleResult();
 
