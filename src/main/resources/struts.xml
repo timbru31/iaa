@@ -4,12 +4,15 @@
 <struts>
   <constant name="struts.devMode" value="true" />
   <constant name="struts.action.excludePattern" value="/api/.*" />
-  <package name="default" extends="tiles-default">
+  <package name="default" namespace="/" extends="tiles-default">
     <result-types>
       <result-type name="tiles"
         class="org.apache.struts2.views.tiles.TilesResult" />
     </result-types>
     
+    <action name="">
+      <result type="tiles">welcomePage</result>
+    </action>
     <action name="welcomePage">
       <result type="tiles">welcomePage</result>
     </action>

@@ -16,6 +16,8 @@
       <tiles:insertAttribute name="header"/>
       <hr/>
       <tiles:insertAttribute name="content"/>
+      <hr/>
+      <tiles:insertAttribute name="footer"/>
     </div>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <!-- Latest compiled and minified JavaScript -->
