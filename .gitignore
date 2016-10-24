@@ -20,6 +20,7 @@ target/
 *.log
 
 # Database
-db.h2.db
-db.trace.db
-db.lock.db
+*.db
+
+# User properties
+src/main/resources/user.properties
