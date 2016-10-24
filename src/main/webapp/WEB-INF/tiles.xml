@@ -13,4 +13,7 @@
   <definition name="lecturer" extends="mainTemplate">
     <put-attribute name="content" value="/templates/lecturer.jsp"/>
   </definition>
+  <definition name="exam/create" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/createExam.jsp"/>
+  </definition>
 </tiles-definitions>

@@ -20,6 +20,10 @@
     <action name="lecturer">
       <result type="tiles">lecturer</result>
     </action>
+    
+    <action name="create">
+      <result type="tiles">exam/create</result>
+    </action>
 
     <action name="locale" class="de.nordakademie.iaa_multiple_choice.web.ChangeLanguageAction" method="changeLanguage">
       <result name="success" type="tiles">welcomePage</result>
