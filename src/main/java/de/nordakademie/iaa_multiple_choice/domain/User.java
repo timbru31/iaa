@@ -25,10 +25,10 @@ public abstract class User {
     private Long id;
 
     @Basic
-    private String firstname;
+    private String firstName;
 
     @Basic
-    private String lastname;
+    private String lastName;
 
     @NaturalId
     private String email;

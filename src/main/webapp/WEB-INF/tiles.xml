@@ -1,25 +1,34 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
   "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
   <definition name="mainTemplate" template="/templates/layout/pageFrame.jsp">
-    <put-attribute name="title" value="Nordakademie Multiple Choice"/>
-    <put-attribute name="header" value="/templates/layout/fragments/header.jsp"/>
-    <put-attribute name="footer" value="/templates/layout/fragments/footer.jsp"/>
+    <put-attribute name="title" value="Nordakademie Multiple Choice" />
+    <put-attribute name="header"
+      value="/templates/layout/fragments/header.jsp" />
+    <put-attribute name="footer"
+      value="/templates/layout/fragments/footer.jsp" />
   </definition>
   <definition name="welcome" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/welcome.jsp"/>
+    <put-attribute name="content" value="/templates/welcome.jsp" />
   </definition>
   <definition name="lecturer" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/lecturer.jsp"/>
+    <put-attribute name="content" value="/templates/lecturer.jsp" />
+  </definition>
+
+  <definition name="registration" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/registration.jsp" />
+  </definition>
+  <definition name="login" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/login.jsp" />
   </definition>
   <definition name="exam/create" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/createExam.jsp"/>
+    <put-attribute name="content" value="/templates/createExam.jsp" />
     </definition>
   <definition name="exam/show" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/showExam.jsp"/>
+    <put-attribute name="content" value="/templates/showExam.jsp" />
     </definition>
     <definition name="lecturer/mapping" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/mapping.jsp"/>
+    <put-attribute name="content" value="/templates/mapping.jsp" />
     </definition>
 </tiles-definitions>

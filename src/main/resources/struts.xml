@@ -9,14 +9,14 @@
       <result-type name="tiles"
         class="org.apache.struts2.views.tiles.TilesResult" />
     </result-types>
-    
+
     <action name="">
       <result type="tiles">welcome</result>
     </action>
     <action name="welcome">
       <result type="tiles">welcome</result>
     </action>
-    
+
     <action name="lecturer">
       <result type="tiles">lecturer</result>
     </action>
@@ -33,7 +33,31 @@
       <result type="tiles">lecturer/mapping</result>
     </action>
 
-    <action name="locale" class="de.nordakademie.iaa_multiple_choice.web.ChangeLanguageAction" method="changeLanguage">
+    <action name="registration">
+      <result type="tiles">registration</result>
+    </action>
+
+    <action name="registerLecturer"
+      class="de.nordakademie.iaa_multiple_choice.web.RegisterUserAction"
+      method="registerLecturer">
+      <result name="success" type="tiles">welcome</result>
+      <result name="input" type="tiles">registration</result>
+    </action>
+    
+    <action name="registerStudent"
+      class="de.nordakademie.iaa_multiple_choice.web.RegisterUserAction"
+      method="registerStudent">
+      <result name="success" type="tiles">welcome</result>
+      <result name="input" type="tiles">registration</result>
+    </action>
+
+    <action name="login">
+      <result type="tiles">login</result>
+    </action>
+
+    <action name="locale"
+      class="de.nordakademie.iaa_multiple_choice.web.ChangeLanguageAction"
+      method="changeLanguage">
       <result name="success" type="tiles">welcome</result>
     </action>
   </package>
