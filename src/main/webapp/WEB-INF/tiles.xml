@@ -7,13 +7,16 @@
     <put-attribute name="header" value="/templates/layout/fragments/header.jsp"/>
     <put-attribute name="footer" value="/templates/layout/fragments/footer.jsp"/>
   </definition>
-  <definition name="welcomePage" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/welcomePage.jsp"/>
+  <definition name="welcome" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/welcome.jsp"/>
   </definition>
   <definition name="lecturer" extends="mainTemplate">
     <put-attribute name="content" value="/templates/lecturer.jsp"/>
   </definition>
   <definition name="exam/create" extends="mainTemplate">
     <put-attribute name="content" value="/templates/createExam.jsp"/>
-  </definition>
+    </definition>
+    <definition name="lecturer/mapping" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/mapping.jsp"/>
+    </definition>
 </tiles-definitions>
