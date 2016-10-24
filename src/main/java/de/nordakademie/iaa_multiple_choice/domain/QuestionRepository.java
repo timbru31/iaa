@@ -22,4 +22,8 @@ public class QuestionRepository {
     public List<Question> findAll() {
         return entityManager.createQuery("SELECT question FROM Answer question", Question.class).getResultList();
     }
+
+    public Question updateQuestion(final Question updatedQuestion) {
+        return entityManager.merge(updatedQuestion);
+    }
 }

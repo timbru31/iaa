@@ -26,4 +26,9 @@ public class QuestionService {
     public List<Question> listAll() {
         return questionRepository.findAll();
     }
+
+    @Transactional
+    public Question updateQuestion(final Question question) {
+        return questionRepository.updateQuestion(question);
+    }
 }

@@ -22,4 +22,8 @@ public class UserRepository {
     public List<User> findAll() {
         return entityManager.createQuery("SELECT user FROM User user", User.class).getResultList();
     }
+
+    public User updateUser(final User updatedUser) {
+        return entityManager.merge(updatedUser);
+    }
 }

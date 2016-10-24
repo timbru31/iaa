@@ -23,4 +23,9 @@ public class ExamRepository {
     public List<Exam> findAll() {
         return entityManager.createQuery("SELECT question FROM Exam exam", Exam.class).getResultList();
     }
+
+    public final Exam updateExam(final Exam updatedExam) {
+        return entityManager.merge(updatedExam);
+    }
+
 }

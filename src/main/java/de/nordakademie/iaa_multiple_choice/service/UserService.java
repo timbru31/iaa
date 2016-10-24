@@ -10,20 +10,25 @@ import de.nordakademie.iaa_multiple_choice.domain.UserRepository;
 
 public class UserService {
 
-    private final UserRepository UserRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public UserService(final UserRepository userRepository) {
-        this.UserRepository = userRepository;
+        this.userRepository = userRepository;
     }
 
     @Transactional
     public void createUser(final User user) {
-        UserRepository.createUser(user);
+        userRepository.createUser(user);
     }
 
     @Transactional(readOnly = true)
     public List<User> listAll() {
-        return UserRepository.findAll();
+        return userRepository.findAll();
+    }
+
+    @Transactional
+    public User updateUser(final User user) {
+        return userRepository.updateUser(user);
     }
 }

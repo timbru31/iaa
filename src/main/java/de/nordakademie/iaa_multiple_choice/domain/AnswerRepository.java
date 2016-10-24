@@ -20,10 +20,13 @@ public class AnswerRepository {
     public Answer find(final long id) {
         return entityManager.createQuery("SELECT answer FROM Answer answer", Answer.class).setParameter("Id", id)
                 .getSingleResult();
-
     }
 
     public List<Answer> findAll() {
         return entityManager.createQuery("SELECT answer FROM Answer answer", Answer.class).getResultList();
+    }
+
+    public final Answer updateAnswer(final Answer updatedAnswer) {
+        return entityManager.merge(updatedAnswer);
     }
 }

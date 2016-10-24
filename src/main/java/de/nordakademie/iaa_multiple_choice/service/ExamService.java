@@ -26,4 +26,9 @@ public class ExamService {
     public List<Exam> listAll() {
         return examRepository.findAll();
     }
+
+    @Transactional
+    public Exam updateExam(final Exam exam) {
+        return examRepository.updateExam(exam);
+    }
 }

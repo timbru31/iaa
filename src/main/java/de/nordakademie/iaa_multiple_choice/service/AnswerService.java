@@ -26,4 +26,9 @@ public class AnswerService {
     public List<Answer> listAll() {
         return answerRepository.findAll();
     }
+
+    @Transactional
+    public Answer updateAnswer(final Answer answer) {
+        return answerRepository.updateAnswer(answer);
+    }
 }
