@@ -10,4 +10,7 @@
   <definition name="welcomePage" extends="mainTemplate">
     <put-attribute name="content" value="/templates/welcomePage.jsp"/>
   </definition>
+  <definition name="lecturer" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/lecturer.jsp"/>
+  </definition>
 </tiles-definitions>
