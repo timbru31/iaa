@@ -16,8 +16,8 @@
     <property name="driverClassName" value="org.h2.Driver" />
     <property name="url"
       value="jdbc:h2:./db;MV_STORE=FALSE;MVCC=FALSE" />
-    <property name="username" value="bene" />
-    <property name="password" value="bene" />
+    <property name="username" value="iaa-multiple-choice" />
+    <property name="password" value="iaa-multiple-choice" />
   </bean>
 
   <bean id="entityManagerFactory"
