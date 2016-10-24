@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class AnswerRepository {
-
     @PersistenceContext
     private EntityManager entityManager;
 

@@ -5,6 +5,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class QuestionRepository {
     @PersistenceContext
     private EntityManager entityManager;

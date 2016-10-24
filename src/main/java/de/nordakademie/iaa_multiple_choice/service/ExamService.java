@@ -3,11 +3,13 @@ package de.nordakademie.iaa_multiple_choice.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.nordakademie.iaa_multiple_choice.domain.Exam;
 import de.nordakademie.iaa_multiple_choice.domain.ExamRepository;
 
+@Service
 public class ExamService {
 
     private final ExamRepository examRepository;

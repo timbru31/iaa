@@ -5,8 +5,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-public class ExamRepository {
+import org.springframework.stereotype.Repository;
 
+@Repository
+public class ExamRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
