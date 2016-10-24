@@ -1,9 +1,8 @@
 package de.nordakademie.iaa_multiple_choice.domain;
 
+import javax.persistence.Basic;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
-import org.hibernate.annotations.NaturalId;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +12,6 @@ import lombok.Setter;
 @Entity
 @DiscriminatorValue("student")
 public class Student extends User {
-    @NaturalId
+    @Basic
     private int studentNumber;
 }

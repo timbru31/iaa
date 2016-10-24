@@ -6,24 +6,7 @@
     <put-attribute name="title" value="Room Management"/>
     <put-attribute name="header" value="/templates/layout/fragments/header.jsp"/>
   </definition>
-  <definition name="editRoomPage" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/editRoomPage.jsp"/>
-  </definition>
-  <definition name="listRoomsPage" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/listRoomsPage.jsp"/>
-  </definition>
-
-  <definition name="editCoursePage" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/editCoursePage.jsp"/>
-  </definition>
-  <definition name="listCoursesPage" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/listCoursesPage.jsp"/>
-  </definition>
-
-  <definition name="editLecturePage" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/editLecturePage.jsp"/>
-  </definition>
-  <definition name="listLecturesPage" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/listLecturesPage.jsp"/>
+  <definition name="welcomePage" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/welcomePage.jsp"/>
   </definition>
 </tiles-definitions>
