@@ -25,6 +25,11 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
+    public User find(final String email) {
+        return userRepository.find(email);
+    }
+
+    @Transactional(readOnly = true)
     public List<User> listAll() {
         return userRepository.findAll();
     }

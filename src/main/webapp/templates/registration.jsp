@@ -16,7 +16,7 @@
     <s:textfield name="lecturer.lastName" id="lastName" required="true" requiredLabel="true" class="form-control" placeholder="Mustermann" />
   </div>
   <div class="form-group ${fieldErrors.containsKey('email') ? 'has-error' : ''}">
-    <label class="control-label" for="email"><s:text name="user.email"/> <span class="label label-info"><s:text name="user.emailHint"/></span></label>
+    <label class="control-label" for="email"><s:text name="user.email"/> <span class="label label-warning"><s:text name="user.emailHint"/></span></label>
     <s:textfield name="lecturer.email" id="email" required="true" requiredLabel="true" class="form-control" pattern="[a-z0-9._%+-]+@nordakademie.de$" placeholder="user@nordakademie.de"/>
   </div>
   <div class="form-group ${fieldErrors.containsKey('password') ? 'has-error' : ''}">

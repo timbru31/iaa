@@ -12,7 +12,7 @@ import de.nordakademie.iaa_multiple_choice.service.UserService;
 import lombok.Getter;
 import lombok.Setter;
 
-public class RegisterUserAction extends ActionSupport {
+public class RegisterAction extends ActionSupport {
     private static final long serialVersionUID = -5785967910896850512L;
     @Getter
     @Setter
@@ -30,7 +30,7 @@ public class RegisterUserAction extends ActionSupport {
     private final PasswordAuthenticationService passwordAuthenticationService;
 
     @Autowired
-    public RegisterUserAction(final UserService userService,
+    public RegisterAction(final UserService userService,
             final PasswordAuthenticationService passwordAuthenticationService) {
         this.userService = userService;
         this.passwordAuthenticationService = passwordAuthenticationService;

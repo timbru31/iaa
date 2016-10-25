@@ -3,6 +3,7 @@ package de.nordakademie.iaa_multiple_choice.domain;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
@@ -17,9 +18,12 @@ public class UserRepository {
     }
 
     public User find(final String userNaturalId) {
-        return entityManager.createQuery("SELECT user FROM User user", User.class)
-                .setParameter("userNaturalId", userNaturalId).getSingleResult();
-
+        try {
+            return entityManager.createQuery("SELECT user FROM User user WHERE email = :email", User.class)
+                    .setParameter("email", userNaturalId).getSingleResult();
+        } catch (final NoResultException e) {
+            return null;
+        }
     }
 
     public List<User> findAll() {
