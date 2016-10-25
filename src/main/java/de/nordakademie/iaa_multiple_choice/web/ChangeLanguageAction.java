@@ -16,7 +16,7 @@ public class ChangeLanguageAction extends ActionSupport {
     private String lang;
 
     public String changeLanguage() {
-        Locale locale = new Locale(lang);
+        final Locale locale = new Locale(lang);
         ActionContext.getContext().setLocale(locale);
         return SUCCESS;
     }

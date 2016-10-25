@@ -11,16 +11,17 @@
     </result-types>
 
     <interceptors>
-        <interceptor name="login" class="de.nordakademie.iaa_multiple_choice.web.LoginInterceptor"/>
-        <interceptor-stack name="iaa-multiple-choice">
-            <interceptor-ref name="login"/>
-            <interceptor-ref name="defaultStack"/>
-        </interceptor-stack>
+      <interceptor name="login"
+        class="de.nordakademie.iaa_multiple_choice.web.LoginInterceptor" />
+      <interceptor-stack name="iaa-multiple-choice">
+        <interceptor-ref name="login" />
+        <interceptor-ref name="defaultStack" />
+      </interceptor-stack>
     </interceptors>
 
-    <default-interceptor-ref name="iaa-multiple-choice"/>
+    <default-interceptor-ref name="iaa-multiple-choice" />
     <global-results>
-        <result name="loginRedirect" type="tiles">login</result>
+      <result name="loginRedirect" type="tiles">login</result>
     </global-results>
 
     <action name="">
@@ -33,15 +34,15 @@
     <action name="lecturer">
       <result type="tiles">lecturer</result>
     </action>
-    
+
     <action name="create">
       <result type="tiles">exam/create</result>
     </action>
-    
+
     <action name="show">
       <result type="tiles">exam/show</result>
     </action>
-    
+
     <action name="mapping">
       <result type="tiles">lecturer/mapping</result>
     </action>
@@ -56,7 +57,7 @@
       <result name="success" type="tiles">welcome</result>
       <result name="input" type="tiles">registration</result>
     </action>
-    
+
     <action name="registerStudent"
       class="de.nordakademie.iaa_multiple_choice.web.RegisterAction"
       method="registerStudent">
@@ -66,6 +67,12 @@
 
     <action name="login">
       <result type="tiles">login</result>
+    </action>
+
+    <action name="logout"
+      class="de.nordakademie.iaa_multiple_choice.web.LogoutAction"
+      method="logout">
+      <result type="tiles">welcome</result>
     </action>
 
     <action name="loginUser"

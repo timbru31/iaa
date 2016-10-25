@@ -38,7 +38,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
     }
 
     public String login() {
-        session.put("user", email);
+        session.put("email", email);
+        session.put("name", user.getFirstName() + " " + user.getLastName());
         return SUCCESS;
     }
 
