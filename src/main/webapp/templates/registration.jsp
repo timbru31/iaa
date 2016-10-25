@@ -21,7 +21,11 @@
   </div>
   <div class="form-group ${fieldErrors.containsKey('password') ? 'has-error' : ''}">
     <label class="control-label" for="password"><s:text name="user.password"/></label>
-    <s:textfield name="lecturer.password" id="password" required="true" requiredLabel="true" type="password" class="form-control" />
+    <s:textfield name="password" id="password" required="true" requiredLabel="true" type="password" class="form-control" />
+  </div>
+  <div class="form-group ${fieldErrors.containsKey('password') ? 'has-error' : ''}">
+    <label class="control-label" for="passwordRepeat"><s:text name="user.passwordRepeat"/></label>
+    <s:textfield name="passwordRepeat" id="passwordRepeat" required="true" requiredLabel="true" type="password" class="form-control" />
   </div>
   <div class="form-group">
     <label class="control-label" for="role"><s:text name="user.role" /></label>

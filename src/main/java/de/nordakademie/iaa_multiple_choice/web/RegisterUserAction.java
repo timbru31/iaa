@@ -7,26 +7,33 @@ import com.opensymphony.xwork2.ActionSupport;
 import de.nordakademie.iaa_multiple_choice.domain.Lecturer;
 import de.nordakademie.iaa_multiple_choice.domain.Student;
 import de.nordakademie.iaa_multiple_choice.domain.User;
+import de.nordakademie.iaa_multiple_choice.service.PasswordAuthenticationService;
 import de.nordakademie.iaa_multiple_choice.service.UserService;
 import lombok.Getter;
 import lombok.Setter;
 
 public class RegisterUserAction extends ActionSupport {
     private static final long serialVersionUID = -5785967910896850512L;
-
     @Getter
     @Setter
     private Student student;
-
     @Getter
     @Setter
     private Lecturer lecturer;
-
+    @Getter
+    @Setter
+    private String password;
+    @Getter
+    @Setter
+    private String passwordRepeat;
     private final UserService userService;
+    private final PasswordAuthenticationService passwordAuthenticationService;
 
     @Autowired
-    public RegisterUserAction(final UserService userService) {
+    public RegisterUserAction(final UserService userService,
+            final PasswordAuthenticationService passwordAuthenticationService) {
         this.userService = userService;
+        this.passwordAuthenticationService = passwordAuthenticationService;
     }
 
     public String registerLecturer() {
@@ -41,6 +48,7 @@ public class RegisterUserAction extends ActionSupport {
 
     public void validateRegisterLecturer() {
         baseValidator(lecturer);
+        hashPassword(lecturer);
     }
 
     public void validateRegisterStudent() {
@@ -48,6 +56,13 @@ public class RegisterUserAction extends ActionSupport {
         Integer studentNumber = student.getStudentNumber();
         if (studentNumber == null || studentNumber.intValue() <= 0 || studentNumber.intValue() > 10000) {
             addFieldError("studentNumber", getText("validation.studentNumber"));
+        }
+        hashPassword(student);
+    }
+
+    private void hashPassword(final User user) {
+        if (!hasFieldErrors()) {
+            user.setPassword(passwordAuthenticationService.hash(password.toCharArray()));
         }
     }
 
@@ -61,6 +76,11 @@ public class RegisterUserAction extends ActionSupport {
         if (user.getEmail() == null || user.getEmail().isEmpty() || !user.getEmail().endsWith("@nordakademie.de")) {
             addFieldError("email", getText("validation.email"));
         }
-        // TODO password, check, repeat, store hashed
+        if (password == null || password.isEmpty() || password.length() < 9) {
+            addFieldError("password", getText("validation.password"));
+        }
+        if (password == null || passwordRepeat == null || !password.equals(passwordRepeat)) {
+            addFieldError("password", getText("validation.passwordRepeat"));
+        }
     }
 }

@@ -8,7 +8,7 @@
     </div>
    </s:if>
   <div class="form-group ${fieldErrors.containsKey('email') ? 'has-error' : ''}">
-    <label class="control-label" for="user.email"><s:text name="user.email" /></label>
+    <label class="control-label" for="user.email"><s:text name="user.email" /> <span class="label label-info"><s:text name="user.emailHint"/></span></label>
     <s:textfield name="user.email" id="user.email" required="true" requiredLabel="true" type="email" pattern="[a-z0-9._%+-]+@nordakademie.de$" class="form-control" placeholder="user@nordakademie.de" />
   </div>
   <div class="form-group ${fieldErrors.containsKey('password') ? 'has-error' : ''}">
