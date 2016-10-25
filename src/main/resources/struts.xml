@@ -51,18 +51,21 @@
     </action>
 
     <action name="registration">
-      <result type="tiles">registration</result>
+      <result name="input" type="tiles">registration</result>
+      <result name="success" type="tiles">registration</result>
+      <result name="successLecturer" type="tiles">lecturer</result>
+      <result name="successStudent" type="tiles">student</result>
     </action>
 
     <action name="registerLecturer" class="de.nordakademie.iaa_multiple_choice.web.RegisterAction"
       method="registerLecturer">
-      <result name="success" type="tiles">welcome</result>
+      <result name="success" type="tiles">lecturer</result>
       <result name="input" type="tiles">registration</result>
     </action>
 
     <action name="registerStudent" class="de.nordakademie.iaa_multiple_choice.web.RegisterAction"
       method="registerStudent">
-      <result name="success" type="tiles">welcome</result>
+      <result name="success" type="tiles">student</result>
       <result name="input" type="tiles">registration</result>
     </action>
 

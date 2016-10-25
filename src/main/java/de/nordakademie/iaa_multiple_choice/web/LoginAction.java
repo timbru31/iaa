@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import de.nordakademie.iaa_multiple_choice.domain.Lecturer;
+import de.nordakademie.iaa_multiple_choice.domain.Student;
 import de.nordakademie.iaa_multiple_choice.domain.User;
 import de.nordakademie.iaa_multiple_choice.service.PasswordAuthenticationService;
 import de.nordakademie.iaa_multiple_choice.service.UserService;
@@ -39,7 +41,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
     public String login() {
         session.put("email", email);
-        session.put("name", user.getFirstName() + " " + user.getLastName());
+        session.put("name", user.getFullName());
+        if (user instanceof Student) {
+            return "successStudent";
+        } else if (user instanceof Lecturer) {
+            return "successLecturer";
+        }
         return SUCCESS;
     }
 

@@ -35,4 +35,8 @@ public abstract class User {
 
     @Basic
     private String password;
+
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 }

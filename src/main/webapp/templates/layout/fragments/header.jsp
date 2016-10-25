@@ -10,7 +10,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><s:text name="header.title"/></a>
+      <a class="navbar-brand" href="/iaa-multiple-choice/"><s:text name="header.title"/></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -21,28 +21,28 @@
           <ul class="dropdown-menu">
             <li><a href="#">Show</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Create (Lecturer Only)</a></li>
+            <li><a href="/iaa-multiple-choice/exam/create">Create (Lecturer Only)</a></li>
           </ul>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <s:if test="%{#session.email == null}">
           <li>
-            <s:form>
-              <s:submit action="login" key="login.button" class="btn btn-primary navbar-btn" />
+            <s:form action="login">
+              <s:submit key="login.button" class="btn btn-primary navbar-btn" />
             </s:form>
           </li>
           <li>
-            <s:form>
-              <s:submit action="registration" key="registration.button" class="btn btn-primary navbar-btn btn-margin-left" />
+            <s:form action="registration">
+              <s:submit key="registration.button" class="btn btn-primary navbar-btn btn-margin-left" />
             </s:form>
           </li>
         </s:if>
         <s:else>
           <li><p class="navbar-text"><s:text name="header.signedInAs" /> <s:property value="#session.name"/></p></li>
           <li>
-            <s:form>
-              <s:submit action="logout" key="logout.button" class="btn btn-primary navbar-btn" />
+            <s:form action="logout">
+              <s:submit key="logout.button" class="btn btn-primary navbar-btn" />
             </s:form>
           </li>
         </s:else>

@@ -7,4 +7,13 @@ import javax.persistence.Entity;
 @DiscriminatorValue("lecturer")
 public class Lecturer extends User {
 
+    public Lecturer() {
+    }
+
+    public Lecturer(String firstName, String lastName, String email, String hashedPassword) {
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+        setPassword(hashedPassword);
+    }
 }

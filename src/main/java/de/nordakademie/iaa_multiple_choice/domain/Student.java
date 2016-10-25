@@ -14,4 +14,15 @@ import lombok.Setter;
 public class Student extends User {
     @Basic
     private Integer studentNumber;
+
+    public Student() {
+    }
+
+    public Student(String firstName, String lastName, String email, String hashedPassword, Integer studentNumber) {
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+        setPassword(hashedPassword);
+        setStudentNumber(studentNumber);
+    }
 }
