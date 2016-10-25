@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
-<h1><s:text name="show.title"/></h1>
+<center><h1><s:text name="show.title"/></h1></center>
 <table class="table">
 <tr> <td><b><s:text name="create.examName"/></b></td>
 <td> <s:text name="Platzhalter Exam Name"/> </td>
