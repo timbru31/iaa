@@ -76,7 +76,7 @@ public class RegisterUserAction extends ActionSupport {
         if (user.getEmail() == null || user.getEmail().isEmpty() || !user.getEmail().endsWith("@nordakademie.de")) {
             addFieldError("email", getText("validation.email"));
         }
-        if (password == null || password.isEmpty() || password.length() < 9) {
+        if (password == null || password.isEmpty() || password.length() < 8) {
             addFieldError("password", getText("validation.password"));
         }
         if (password == null || passwordRepeat == null || !password.equals(passwordRepeat)) {
