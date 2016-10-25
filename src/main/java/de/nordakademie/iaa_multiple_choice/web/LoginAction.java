@@ -47,10 +47,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
         if (email == null || email.isEmpty() || !email.endsWith("@nordakademie.de") || password == null
                 || password.isEmpty() || password.length() < 8) {
             addFieldError("loginFailed", getText("validation.wrongEmailOrUser"));
-        }
-        user = userService.find(email);
-        if (user == null || !passwordAuthenticationService.authenticate(password.toCharArray(), user.getPassword())) {
-            addFieldError("loginFailed", getText("validation.wrongEmailOrUser"));
+        } else {
+            user = userService.find(email);
+            if (user == null
+                    || !passwordAuthenticationService.authenticate(password.toCharArray(), user.getPassword())) {
+                addFieldError("loginFailed", getText("validation.wrongEmailOrUser"));
+            }
         }
     }
 }
