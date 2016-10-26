@@ -30,8 +30,14 @@
     </definition>
   <definition name="exam/show" extends="mainTemplate">
     <put-attribute name="content" value="/templates/showExam.jsp" />
-    </definition>
-    <definition name="lecturer/mapping" extends="mainTemplate">
+  </definition>
+  <definition name="lecturer/mapping" extends="mainTemplate">
     <put-attribute name="content" value="/templates/mapping.jsp" />
-    </definition>
+  </definition>
+  <definition name="notFound" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/notFound.jsp" />
+  </definition>
+  <definition name="error" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/error.jsp" />
+  </definition>
 </tiles-definitions>

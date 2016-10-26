@@ -2,8 +2,18 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
   "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-  <constant name="struts.devMode" value="true" />
   <constant name="struts.action.excludePattern" value="/api/.*" />
+
+  <!-- catch 404 errors -->
+  <package name="serveAll" namespace="" extends="struts-default">
+      <result-types>
+        <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+      </result-types>
+      <action name="*">
+          <result type="tiles">notFound</result>
+      </action>
+  </package>
+
   <package name="default" namespace="/" extends="tiles-default">
     <result-types>
       <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
@@ -21,7 +31,12 @@
     <default-interceptor-ref name="iaa-multiple-choice" />
     <global-results>
       <result name="loginRedirect" type="tiles">login</result>
+      <result name="error" type="tiles">error</result>
     </global-results>
+
+    <global-exception-mappings>
+      <exception-mapping exception="java.lang.Exception" result="error" />
+    </global-exception-mappings>
 
     <action name="">
       <result type="tiles">welcome</result>
