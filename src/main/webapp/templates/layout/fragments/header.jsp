@@ -29,12 +29,12 @@
         <s:if test="%{#session.email == null}">
           <li>
             <s:form action="login">
-              <s:submit key="login.button" class="btn btn-primary navbar-btn" />
+              <s:submit name="submit" key="login.button" class="btn btn-primary navbar-btn" />
             </s:form>
           </li>
           <li>
             <s:form action="registration">
-              <s:submit key="registration.button" class="btn btn-primary navbar-btn btn-margin-left" />
+              <s:submit name="submit" key="registration.button" class="btn btn-primary navbar-btn btn-margin-left" />
             </s:form>
           </li>
         </s:if>
@@ -42,7 +42,7 @@
           <li><p class="navbar-text"><s:text name="header.signedInAs" /> <s:property value="#session.name"/></p></li>
           <li>
             <s:form action="logout">
-              <s:submit key="logout.button" class="btn btn-primary navbar-btn" />
+              <s:submit name="submit" key="logout.button" class="btn btn-primary navbar-btn" />
             </s:form>
           </li>
         </s:else>
