@@ -38,9 +38,6 @@ public class Exam {
     private Integer minPoints;
 
     @Basic
-    private Boolean passed;
-
-    @Basic
     private Boolean editable;
 
 }
