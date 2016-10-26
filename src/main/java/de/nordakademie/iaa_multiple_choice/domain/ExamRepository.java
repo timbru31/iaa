@@ -17,13 +17,13 @@ public class ExamRepository {
     }
 
     public Exam find(final Long id) {
-        return entityManager.createQuery("SELECT exam FROM Exam exam", Exam.class).setParameter("Id", id)
+        return entityManager.createQuery("SELECT exam FROM Exam exam WHERE id = :id", Exam.class).setParameter("id", id)
                 .getSingleResult();
 
     }
 
     public List<Exam> findAll() {
-        return entityManager.createQuery("SELECT question FROM Exam exam", Exam.class).getResultList();
+        return entityManager.createQuery("SELECT exam FROM Exam exam", Exam.class).getResultList();
     }
 
     public final Exam updateExam(final Exam updatedExam) {

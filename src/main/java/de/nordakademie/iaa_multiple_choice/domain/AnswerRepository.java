@@ -17,8 +17,8 @@ public class AnswerRepository {
     }
 
     public Answer find(final Long id) {
-        return entityManager.createQuery("SELECT answer FROM Answer answer", Answer.class).setParameter("Id", id)
-                .getSingleResult();
+        return entityManager.createQuery("SELECT answer FROM Answer answer WHERE id = :id", Answer.class)
+                .setParameter("id", id).getSingleResult();
     }
 
     public List<Answer> findAll() {

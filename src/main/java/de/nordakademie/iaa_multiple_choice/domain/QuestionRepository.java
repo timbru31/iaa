@@ -17,13 +17,13 @@ public class QuestionRepository {
     }
 
     public Question find(final Long id) {
-        return entityManager.createQuery("SELECT question FROM Question question", Question.class)
-                .setParameter("Id", id).getSingleResult();
+        return entityManager.createQuery("SELECT question FROM Question question WHERE id = :id", Question.class)
+                .setParameter("id", id).getSingleResult();
 
     }
 
     public List<Question> findAll() {
-        return entityManager.createQuery("SELECT question FROM Answer question", Question.class).getResultList();
+        return entityManager.createQuery("SELECT question FROM Question question", Question.class).getResultList();
     }
 
     public Question updateQuestion(final Question updatedQuestion) {
