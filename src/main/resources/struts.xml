@@ -70,6 +70,10 @@
     <action name="mapping">
       <result type="tiles">lecturer/mapping</result>
     </action>
+    
+    <action name="question">
+      <result type="tiles">exam/create/question</result>
+    </action>
 
     <action name="registration">
       <result name="input" type="tiles">registration</result>

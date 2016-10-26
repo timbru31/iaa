@@ -4,10 +4,8 @@
 <tiles-definitions>
   <definition name="mainTemplate" template="/templates/layout/pageFrame.jsp">
     <put-attribute name="title" value="Nordakademie Multiple Choice" />
-    <put-attribute name="header"
-      value="/templates/layout/fragments/header.jsp" />
-    <put-attribute name="footer"
-      value="/templates/layout/fragments/footer.jsp" />
+    <put-attribute name="header" value="/templates/layout/fragments/header.jsp" />
+    <put-attribute name="footer" value="/templates/layout/fragments/footer.jsp" />
   </definition>
   <definition name="welcome" extends="mainTemplate">
     <put-attribute name="content" value="/templates/welcome.jsp" />
@@ -23,11 +21,11 @@
     <put-attribute name="content" value="/templates/login.jsp" />
   </definition>
   <definition name="student" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/student.jsp"/>
+    <put-attribute name="content" value="/templates/student.jsp" />
   </definition>
   <definition name="exam/create" extends="mainTemplate">
     <put-attribute name="content" value="/templates/createExam.jsp" />
-    </definition>
+  </definition>
   <definition name="exam/show" extends="mainTemplate">
     <put-attribute name="content" value="/templates/showExam.jsp" />
   </definition>
@@ -39,5 +37,8 @@
   </definition>
   <definition name="error" extends="mainTemplate">
     <put-attribute name="content" value="/templates/error.jsp" />
+  </definition>
+  <definition name="exam/create/question" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/createQuestion.jsp" />
   </definition>
 </tiles-definitions>
