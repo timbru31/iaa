@@ -40,15 +40,10 @@ public class RegisterAction extends ActionSupport implements SessionAware {
     @Getter
     @Setter
     private String role;
-    private final UserService userService;
-    private final PasswordAuthenticationService passwordAuthenticationService;
-
     @Autowired
-    public RegisterAction(final UserService userService,
-            final PasswordAuthenticationService passwordAuthenticationService) {
-        this.userService = userService;
-        this.passwordAuthenticationService = passwordAuthenticationService;
-    }
+    private UserService userService;
+    @Autowired
+    private PasswordAuthenticationService passwordAuthenticationService;
 
     public void baseValidator() {
         if (firstName == null || firstName.isEmpty() || firstName.length() < 3) {
