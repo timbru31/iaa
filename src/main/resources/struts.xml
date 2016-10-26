@@ -26,6 +26,7 @@
     <action name="">
       <result type="tiles">welcome</result>
     </action>
+
     <action name="welcome">
       <result type="tiles">welcome</result>
     </action>
@@ -40,6 +41,11 @@
 
     <action name="create">
       <result type="tiles">exam/create</result>
+    </action>
+
+    <action name="createExam"
+      class="de.nordakademie.iaa_multiple_choice.web.CreateExamAction" method="createExam">
+      <result name="success" type="tiles">exam/create/question</result>
     </action>
 
     <action name="show">
