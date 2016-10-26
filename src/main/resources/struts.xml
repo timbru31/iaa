@@ -2,28 +2,37 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
   "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-  <constant name="struts.action.excludePattern" value="/api/.*" />
+  <constant name="struts.action.excludePattern" value="/api/.*, /static/.*"/>
+  <constant name="struts.action.extension" value=""/>
 
   <!-- catch 404 errors -->
   <package name="serveAll" namespace="" extends="struts-default">
-      <result-types>
-        <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
-      </result-types>
-      <action name="*">
-          <result type="tiles">notFound</result>
-      </action>
+    <result-types>
+      <result-type name="tiles"
+        class="org.apache.struts2.views.tiles.TilesResult" />
+    </result-types>
+    <action name="*">
+      <result type="tiles">notFoundError</result>
+    </action>
   </package>
 
   <package name="default" namespace="/" extends="tiles-default">
     <result-types>
-      <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+      <result-type name="tiles"
+        class="org.apache.struts2.views.tiles.TilesResult" />
     </result-types>
 
     <interceptors>
       <interceptor name="login"
-        class="de.nordakademie.iaa_multiple_choice.web.LoginInterceptor" />
+        class="de.nordakademie.iaa_multiple_choice.web.interceptor.LoginInterceptor" />
+      <interceptor name="lecturer"
+        class="de.nordakademie.iaa_multiple_choice.web.interceptor.LecturerInterceptor" />
+      <interceptor name="student"
+        class="de.nordakademie.iaa_multiple_choice.web.interceptor.StudentInterceptor" />
       <interceptor-stack name="iaa-multiple-choice">
         <interceptor-ref name="login" />
+        <interceptor-ref name="lecturer" />
+        <interceptor-ref name="student" />
         <interceptor-ref name="defaultStack" />
       </interceptor-stack>
     </interceptors>
@@ -31,11 +40,13 @@
     <default-interceptor-ref name="iaa-multiple-choice" />
     <global-results>
       <result name="loginRedirect" type="tiles">login</result>
-      <result name="error" type="tiles">error</result>
+      <result name="genericError" type="tiles">genericError</result>
+      <result name="forbidden" type="tiles">forbiddenError</result>
     </global-results>
 
     <global-exception-mappings>
-      <exception-mapping exception="java.lang.Exception" result="error" />
+      <exception-mapping exception="java.lang.Exception"
+        result="genericError" />
     </global-exception-mappings>
 
     <action name="">
@@ -54,12 +65,15 @@
       <result type="tiles">student</result>
     </action>
 
-    <action name="create">
+    <action name="create"
+      class="de.nordakademie.iaa_multiple_choice.web.CreateExamAction"
+      method="display">
       <result type="tiles">exam/create</result>
     </action>
 
     <action name="createExam"
-      class="de.nordakademie.iaa_multiple_choice.web.CreateExamAction" method="createExam">
+      class="de.nordakademie.iaa_multiple_choice.web.CreateExamAction"
+      method="createExam">
       <result name="success" type="tiles">exam/create/question</result>
     </action>
 
@@ -70,7 +84,7 @@
     <action name="mapping">
       <result type="tiles">lecturer/mapping</result>
     </action>
-    
+
     <action name="question">
       <result type="tiles">exam/create/question</result>
     </action>
@@ -82,13 +96,15 @@
       <result name="successStudent" type="tiles">student</result>
     </action>
 
-    <action name="registerLecturer" class="de.nordakademie.iaa_multiple_choice.web.RegisterAction"
+    <action name="registerLecturer"
+      class="de.nordakademie.iaa_multiple_choice.web.RegisterAction"
       method="registerLecturer">
       <result name="success" type="tiles">lecturer</result>
       <result name="input" type="tiles">registration</result>
     </action>
 
-    <action name="registerStudent" class="de.nordakademie.iaa_multiple_choice.web.RegisterAction"
+    <action name="registerStudent"
+      class="de.nordakademie.iaa_multiple_choice.web.RegisterAction"
       method="registerStudent">
       <result name="success" type="tiles">student</result>
       <result name="input" type="tiles">registration</result>
@@ -98,12 +114,14 @@
       <result type="tiles">login</result>
     </action>
 
-    <action name="logout" class="de.nordakademie.iaa_multiple_choice.web.LogoutAction"
+    <action name="logout"
+      class="de.nordakademie.iaa_multiple_choice.web.LogoutAction"
       method="logout">
       <result type="tiles">welcome</result>
     </action>
 
-    <action name="loginUser" class="de.nordakademie.iaa_multiple_choice.web.LoginAction"
+    <action name="loginUser"
+      class="de.nordakademie.iaa_multiple_choice.web.LoginAction"
       method="login">
       <result name="successLecturer" type="tiles">lecturer</result>
       <result name="successStudent" type="tiles">student</result>

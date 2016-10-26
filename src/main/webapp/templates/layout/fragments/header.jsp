@@ -26,7 +26,7 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <s:if test="%{#session.email == null}">
+        <s:if test="%{#session.userEmail == null}">
           <li>
             <s:form action="login">
               <s:submit name="submit" key="login.button" class="btn btn-primary navbar-btn" />
@@ -39,7 +39,7 @@
           </li>
         </s:if>
         <s:else>
-          <li><p class="navbar-text"><s:text name="header.signedInAs" /> <s:property value="#session.name"/></p></li>
+          <li><p class="navbar-text"><s:text name="header.signedInAs" /> <s:property value="#session.userName"/></p></li>
           <li>
             <s:form action="logout">
               <s:submit name="submit" key="logout.button" class="btn btn-primary navbar-btn" />

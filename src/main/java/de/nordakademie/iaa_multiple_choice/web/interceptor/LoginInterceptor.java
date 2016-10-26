@@ -1,4 +1,4 @@
-package de.nordakademie.iaa_multiple_choice.web;
+package de.nordakademie.iaa_multiple_choice.web.interceptor;
 
 import java.util.Map;
 
@@ -6,13 +6,15 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
+import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
+
 public class LoginInterceptor extends AbstractInterceptor {
     private static final long serialVersionUID = 4518828269270091937L;
 
     @Override
     public String intercept(final ActionInvocation invocation) throws Exception {
         final Map<String, Object> session = ActionContext.getContext().getSession();
-        final String user = (String) session.get("user");
+        final String user = (String) session.get("userEmail");
         if (user != null) {
             return invocation.invoke();
         }

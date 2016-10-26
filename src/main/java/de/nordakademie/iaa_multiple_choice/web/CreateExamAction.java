@@ -6,10 +6,13 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import de.nordakademie.iaa_multiple_choice.domain.Exam;
 import de.nordakademie.iaa_multiple_choice.service.ExamService;
+import de.nordakademie.iaa_multiple_choice.web.util.LecturerRequired;
+import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 import lombok.Getter;
 import lombok.Setter;
 
 @LoginRequired
+@LecturerRequired
 public class CreateExamAction extends ActionSupport {
 
     private static final long serialVersionUID = -3297218344316923487L;
@@ -19,7 +22,7 @@ public class CreateExamAction extends ActionSupport {
     private final ExamService examService;
 
     @Autowired
-    public CreateExamAction(ExamService examService) {
+    public CreateExamAction(final ExamService examService) {
         this.examService = examService;
     }
 
@@ -28,4 +31,7 @@ public class CreateExamAction extends ActionSupport {
         return SUCCESS;
     }
 
+    public String display() {
+        return SUCCESS;
+    }
 }
