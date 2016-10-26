@@ -80,7 +80,8 @@
 
     <action name="loginUser" class="de.nordakademie.iaa_multiple_choice.web.LoginAction"
       method="login">
-      <result name="success" type="tiles">welcome</result>
+      <result name="successLecturer" type="tiles">lecturer</result>
+      <result name="successStudent" type="tiles">student</result>
       <result name="input" type="tiles">login</result>
     </action>
 
