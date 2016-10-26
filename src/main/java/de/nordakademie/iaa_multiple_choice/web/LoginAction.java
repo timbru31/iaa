@@ -20,8 +20,10 @@ public class LoginAction extends ActionSupport implements SessionAware {
     @Getter
     @Setter
     private Map<String, Object> session;
-    private final UserService userService;
-    private final PasswordAuthenticationService passwordAuthenticationService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private PasswordAuthenticationService passwordAuthenticationService;
     @Getter
     @Setter
     private String email;
@@ -31,13 +33,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
     @Getter
     @Setter
     private User user;
-
-    @Autowired
-    public LoginAction(final UserService userService,
-            final PasswordAuthenticationService passwordAuthenticationService) {
-        this.userService = userService;
-        this.passwordAuthenticationService = passwordAuthenticationService;
-    }
 
     public String login() {
         session.put("email", email);
