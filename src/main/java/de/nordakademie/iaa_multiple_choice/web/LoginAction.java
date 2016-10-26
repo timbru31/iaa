@@ -35,8 +35,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
     private User user;
 
     public String login() {
-        session.put("email", email);
-        session.put("name", user.getFullName());
+        session.put("userEmail", email);
+        session.put("userName", user.getFullName());
         if (user instanceof Student) {
             return "successStudent";
         } else if (user instanceof Lecturer) {

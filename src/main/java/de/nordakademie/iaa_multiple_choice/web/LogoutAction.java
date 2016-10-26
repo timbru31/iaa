@@ -16,11 +16,11 @@ public class LogoutAction extends ActionSupport implements SessionAware {
     private Map<String, Object> session;
 
     public String logout() {
-        if (session.containsKey("email")) {
-            session.remove("email");
+        if (session.containsKey("userEmail")) {
+            session.remove("userEmail");
         }
-        if (session.containsKey("name")) {
-            session.remove("name");
+        if (session.containsKey("userName")) {
+            session.remove("userName");
         }
         return SUCCESS;
     }

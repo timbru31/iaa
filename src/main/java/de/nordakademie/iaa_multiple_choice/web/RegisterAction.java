@@ -74,8 +74,8 @@ public class RegisterAction extends ActionSupport implements SessionAware {
         final String hashedPassword = hashPassword();
         final Lecturer lecturer = new Lecturer(firstName, lastName, email, hashedPassword);
         userService.createUser(lecturer);
-        session.put("email", lecturer.getEmail());
-        session.put("name", lecturer.getFullName());
+        session.put("userEmail", lecturer.getEmail());
+        session.put("userName", lecturer.getFullName());
         return SUCCESS;
     }
 
@@ -83,8 +83,8 @@ public class RegisterAction extends ActionSupport implements SessionAware {
         final String hashedPassword = hashPassword();
         final Student student = new Student(firstName, lastName, email, hashedPassword, studentNumber);
         userService.createUser(student);
-        session.put("email", student.getEmail());
-        session.put("name", student.getFullName());
+        session.put("userEmail", student.getEmail());
+        session.put("userName", student.getFullName());
         return SUCCESS;
     }
 
