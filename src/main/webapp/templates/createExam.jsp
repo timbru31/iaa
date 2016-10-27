@@ -6,7 +6,7 @@
   </h1>
 </center>
 
-<s:form action="createExam">
+<s:form action="saveExam">
   <div class="form-group">
     <label for="create.examName"><s:text name="create.examName"/></label>
     <s:textfield name="exam.name" id="create.examName" type="text" required="true" class="form-control" placeholder="%{getText('create.examName')}" />

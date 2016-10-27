@@ -2,8 +2,8 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
   "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-  <constant name="struts.action.excludePattern" value="/api/.*, /static/.*"/>
-  <constant name="struts.action.extension" value=""/>
+  <constant name="struts.action.excludePattern" value="/api/.*, /static/.*" />
+  <constant name="struts.action.extension" value="" />
 
   <!-- catch 404 errors -->
   <package name="serveAll" namespace="" extends="struts-default">
@@ -49,57 +49,63 @@
         result="genericError" />
     </global-exception-mappings>
 
-    <action name="" class="de.nordakademie.iaa_multiple_choice.web.HomeAction">
+    <action name=""
+      class="de.nordakademie.iaa_multiple_choice.web.HomeAction">
       <result name="welcome" type="tiles">home</result>
       <result name="lecturer" type="tiles">lecturer</result>
       <result name="student" type="tiles">student</result>
     </action>
 
-    <action name="home" class="de.nordakademie.iaa_multiple_choice.web.HomeAction">
+    <action name="home"
+      class="de.nordakademie.iaa_multiple_choice.web.HomeAction">
       <result name="welcome" type="tiles">home</result>
       <result name="lecturer" type="tiles">lecturer</result>
       <result name="student" type="tiles">student</result>
     </action>
 
-    <action name="lecturer" class="de.nordakademie.iaa_multiple_choice.web.LecturerAction">
+    <action name="lecturer"
+      class="de.nordakademie.iaa_multiple_choice.web.LecturerAction">
       <result type="tiles">lecturer</result>
     </action>
 
-    <action name="student" class="de.nordakademie.iaa_multiple_choice.web.StudentAction">
+    <action name="student"
+      class="de.nordakademie.iaa_multiple_choice.web.StudentAction">
       <result type="tiles">student</result>
     </action>
 
-    <action name="create"
-      class="de.nordakademie.iaa_multiple_choice.web.ExamAction"
-      method="display">
+    <action name="createExam"
+      class="de.nordakademie.iaa_multiple_choice.web.ExamAction">
       <result type="tiles">exam/create</result>
     </action>
 
-    <action name="createExam"
-      class="de.nordakademie.iaa_multiple_choice.web.ExamAction"
-      method="createExam">
+    <action name="saveExam"
+      class="de.nordakademie.iaa_multiple_choice.web.ExamAction" method="saveExam">
       <result name="success" type="redirectAction">
-      <param name="actionName">exam/create/question</param>
-      <param name="examId">${exam.id}</param>
+        <param name="actionName">createQuestion</param>
+        <param name="examId">${exam.id}</param>
       </result>
     </action>
-    
+
     <action name="createQuestion"
-      class="de.nordakademie.iaa_multiple_choice.web.QuestionAction"
-      method="createQuestion">
+      class="de.nordakademie.iaa_multiple_choice.web.QuestionAction">
       <result name="success" type="tiles">exam/create/question</result>
     </action>
 
-    <action name="show">
+    <action name="saveQuestion"
+      class="de.nordakademie.iaa_multiple_choice.web.QuestionAction"
+      method="saveQuestion">
+      <result name="success" type="redirectAction">
+        <param name="examId">${examId}</param>
+        <param name="actionName">createQuestion</param>
+      </result>
+    </action>
+
+    <action name="showExam">
       <result type="tiles">exam/show</result>
     </action>
 
     <action name="mapping">
       <result type="tiles">lecturer/mapping</result>
-    </action>
-
-    <action name="question">
-      <result type="tiles">exam/create/question</result>
     </action>
 
     <action name="registration">

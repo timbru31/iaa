@@ -24,7 +24,7 @@ public class QuestionAction extends ActionSupport {
     @Setter
     private Long examId;
 
-    public String createQuestion() {
+    public String saveQuestion() {
         System.out.println(examId);
         questionService.createQuestion(question);
         return SUCCESS;

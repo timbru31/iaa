@@ -26,12 +26,8 @@ public class ExamAction extends ActionSupport {
         this.examService = examService;
     }
 
-    public String createExam() {
+    public String saveExam() {
         examService.createExam(exam);
-        return SUCCESS;
-    }
-
-    public String display() {
         return SUCCESS;
     }
 
