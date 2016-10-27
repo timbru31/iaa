@@ -1,5 +1,6 @@
 package de.nordakademie.iaa_multiple_choice.web;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -15,6 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.opensymphony.xwork2.ActionProxy;
+import com.opensymphony.xwork2.ActionSupport;
 
 import de.nordakademie.iaa_multiple_choice.domain.Lecturer;
 import de.nordakademie.iaa_multiple_choice.service.PasswordAuthenticationService;
@@ -51,13 +53,15 @@ public class LoginActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {
         proxy.getInvocation().getInvocationContext().setSession(sessionMap);
         LoginAction loginAction = (LoginAction) proxy.getAction();
         proxy.setExecuteResult(false);
+        String result = "";
         try {
-            proxy.execute();
+            result = proxy.execute();
         } catch (Exception e) {
             e.printStackTrace();
             fail("Test failed due to exception");
         }
-        assertTrue("Expected to have no fieldErrors", loginAction.getFieldErrors().size() == 0);
+        assertEquals("Expected to have no fieldErrors", 0, loginAction.getFieldErrors().size());
+        assertEquals("Expected to have result name successLecturer", "successLecturer", result);
     }
 
     @Test
@@ -69,15 +73,17 @@ public class LoginActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {
         proxy.getInvocation().getInvocationContext().setSession(sessionMap);
         LoginAction loginAction = (LoginAction) proxy.getAction();
         proxy.setExecuteResult(false);
+        String result = "";
         try {
-            proxy.execute();
+            result = proxy.execute();
         } catch (Exception e) {
             e.printStackTrace();
             fail("Test failed due to exception");
         }
-        assertTrue("Expected to have one fieldError", loginAction.getFieldErrors().size() == 1);
+        assertEquals("Expected to have one fieldError", 1, loginAction.getFieldErrors().size());
         assertTrue("Expected to have fieldError with key loginFailed",
                 loginAction.getFieldErrors().containsKey("loginFailed"));
+        assertEquals("Expected to have result name INPUT", ActionSupport.INPUT, result);
     }
 
     @Test
@@ -89,15 +95,17 @@ public class LoginActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {
         proxy.getInvocation().getInvocationContext().setSession(sessionMap);
         LoginAction loginAction = (LoginAction) proxy.getAction();
         proxy.setExecuteResult(false);
+        String result = "";
         try {
-            proxy.execute();
+            result = proxy.execute();
         } catch (Exception e) {
             e.printStackTrace();
             fail("Test failed due to exception");
         }
-        assertTrue("Expected to have one fieldError", loginAction.getFieldErrors().size() == 1);
+        assertEquals("Expected to have one fieldError", 1, loginAction.getFieldErrors().size());
         assertTrue("Expected to have fieldError with key loginFailed",
                 loginAction.getFieldErrors().containsKey("loginFailed"));
+        assertEquals("Expected to have result name INPUT", ActionSupport.INPUT, result);
     }
 
 }
