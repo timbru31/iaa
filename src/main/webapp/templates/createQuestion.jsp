@@ -17,58 +17,58 @@
     </div>
 
     <div class="btn-group">
-
       <button type="button" class="btn btn-primary">
         <s:text name="create.Question2" />
       </button>
     </div>
-    <div class="btn-group">
 
+    <div class="btn-group">
       <button type="button" class="btn btn-primary">
         <s:text name="create.Question3" />
       </button>
     </div>
+
   </div>
 
   <script type="text/javascript">
-      $(function() {
-        $(document).ready(
-            function() {
-              $("#registrationForm").attr("action",
-                  "register" + $("#role").find("option:selected").val());
-            });
-        $("#role").on("change", function() {
-          var selected = $(this).find("option:selected").val();
-          if (selected === 'Student') {
-            $("#studentNumberForm").collapse("show");
-            $("#studentNumber").attr("required", true);
-            $("#registrationForm").attr("action", "registerStudent");
-          } else {
-            $("#studentNumberForm").collapse("hide");
-            $("#studentNumber").attr("required", false);
-            $("#registrationForm").attr("action", "registerLecturer");
-          }
-        });
-      });
+      function activeTab(tab) {
+        $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+      };
+
+      activeTab('aaa');
     </script>
 
   <!-- Tab panes -->
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="SingleChoice">
-      <s:textfield name="question.text" id="simpleChoice" class="form-control"
-        placeholder="%{getText('create.enterQuestion')}" />
-      <div>
-        <input type="radio" name="answer" /> <input type="text">
-      </div>
 
-      <input type="radio" name="answer" /> <input type="text">
-      <button type="button" class="btn btn-default navbar-btn">
-        <span class="glyphicon glyphicon-plus"></span>
-      </button>
+    <div class="tab-pane active">
+      <s:textfield name="question.text" class="form-control"
+        placeholder="%{getText('create.enterQuestion')}" />
     </div>
 
-    <div role="tabpanel" class="tab-pane" id="MultipleChoice">
-      <s:textfield name="question.text" id="multipleChoice" class="form-control"
+    <div class="tab-pane active">
+
+      <div class="radio">
+        <label> <input type="radio" checked> <input type="text">
+        </label>
+      </div>
+      <div class="radio">
+        <label> <input type="radio"> <input type="text">
+        </label>
+      </div>
+      <div class="radio">
+        <label> <input type="radio"> <input type="text">
+        </label>
+      </div>
+
+      <button type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+
+    </div>
+
+    <div role="tabpanel" class="tab-pane">
+      <s:textfield name="question.text" class="form-control"
         placeholder="%{getText('create.enterQuestion')}" />
       <div>
         <input type="checkbox" name="answer" /> <input type="text">
@@ -88,19 +88,38 @@
     </div>
   </div>
 
-  <s:textfield name="question.points" id="points" class="form-control"
-    placeholder="Anzahl Punkte" />
+  <div class="row">
+    <div class="col-md-1">
+      <button type="button" class="btn btn-default">
+        <s:text name="create.deleteQuestion" />
+      </button>
+    </div>
+    <div class="col-md-11">
+      <s:textfield name="question.points" id="points" class="form-control"
+        placeholder="Anzahl Punkte" />
+    </div>
+  </div>
 
-  <button type="button" class="btn btn-default navbar-btn">
-    <s:text name="create.deleteQuestion" />
-  </button>
-  <nav>
-    <ul class="pagination">
-      <li class="disabled"><a href="#" aria-label="Previous"><span
-          aria-hidden="true">&laquo;</span></a></li>
-      <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-    </ul>
-  </nav>
+  <center>
+    <nav>
+      <ul class="pagination">
+        <li class="disabled"><a href="#" aria-label="Previous"><span
+            aria-hidden="true">&laquo;</span></a></li>
+        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="#">2 <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="#">3 <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="#">4 <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="#">5 <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="#">6 <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="#">7 <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="#">8 <span class="sr-only">(current)</span></a></li>
+
+        <li class="disabled"><a href="#" aria-label="Next"><span
+            aria-hidden="true">&raquo;</span></a></li>
+      </ul>
+    </nav>
+  </center>
+
   <center>
     <s:submit key="createQuestion.submit" class="btn btn-primary" />
   </center>
