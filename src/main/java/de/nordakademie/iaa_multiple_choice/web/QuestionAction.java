@@ -20,8 +20,12 @@ public class QuestionAction extends ActionSupport {
     private Question question;
     @Autowired
     private QuestionService questionService;
+    @Getter
+    @Setter
+    private Long examId;
 
     public String createQuestion() {
+        System.out.println(examId);
         questionService.createQuestion(question);
         return SUCCESS;
     }

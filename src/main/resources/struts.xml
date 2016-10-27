@@ -78,6 +78,15 @@
     <action name="createExam"
       class="de.nordakademie.iaa_multiple_choice.web.ExamAction"
       method="createExam">
+      <result name="success" type="redirectAction">
+      <param name="actionName">exam/create/question</param>
+      <param name="examId">${exam.id}</param>
+      </result>
+    </action>
+    
+    <action name="createQuestion"
+      class="de.nordakademie.iaa_multiple_choice.web.QuestionAction"
+      method="createQuestion">
       <result name="success" type="tiles">exam/create/question</result>
     </action>
 

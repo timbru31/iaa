@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
-<s:form>
+<s:form action ="createQuestion">
+<s:hidden name="examId" value="%{#attr.examId}" />
 <div class="panel panel-default">
   <div class="panel-body">
     <s:text name="create.rightanswer" />
@@ -54,22 +55,19 @@
 <!-- Tab panes -->
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active" id="SingleChoice">
-    <form>
-      <s:textfield id="simpleChoice" class="form-control"
+      <s:textfield name="question.text" id="simpleChoice" class="form-control"
         placeholder="%{getText('create.enterQuestion')}" />
       <div>
-        <input type="Radio" name="answer" /> <input type="text">
+        <input type="radio" name="answer" /> <input type="text">
       </div>
-      <input type="Radio" name="answer" /> <input type="text">
+      <input type="radio" name="answer" /> <input type="text">
       <button type="button" class="btn btn-default navbar-btn">
         <span class="glyphicon glyphicon-plus"></span>
       </button>
-    </form>
   </div>
 
   <div role="tabpanel" class="tab-pane" id="MultipleChoice">
-    <form>
-      <s:textfield id="multipleChoice" class="form-control"
+      <s:textfield name="question.text" id="multipleChoice" class="form-control"
         placeholder="%{getText('create.enterQuestion')}" />
       <div>
         <input type="checkbox" name="answer" /> <input>
@@ -79,16 +77,16 @@
       <button type="button" class="btn btn-default navbar-btn">
         <s:text name="create.nextAnswer" />
       </button>
-    </form>
   </div>
 
   <div role="tabpanel" class="tab-pane" id="Fitb">
-    <form>
-      <s:textfield id="fitb" class="form-control"
+      <s:textfield name="question.text" id="fitb" class="form-control"
         placeholder="%{getText('create.enterGapQuestion')}" />
-    </form>
   </div>
 </div>
+
+<s:textfield name="question.points" id="points" class="form-control"
+        placeholder="Anzahl Punkte" />
 
 <button type="button" class="btn btn-default navbar-btn">
   <s:text name="create.deleteQuestion" />
@@ -101,8 +99,6 @@
   </ul>
 </nav>
 <center>
-  <button type="button" class="btn btn-primary">
-    <s:text name="createQuestion.submit" />
-  </button>
+  <s:submit key="createQuestion.submit" class="btn btn-primary" />
 </center>
 </s:form>

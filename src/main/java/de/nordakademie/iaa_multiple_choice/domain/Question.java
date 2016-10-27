@@ -23,4 +23,7 @@ public class Question {
     @Basic
     private QuestionType type;
 
+    @Basic
+    private String text;
+
 }
