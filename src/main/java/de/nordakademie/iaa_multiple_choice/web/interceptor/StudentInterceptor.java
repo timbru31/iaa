@@ -11,7 +11,7 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import de.nordakademie.iaa_multiple_choice.domain.Student;
 import de.nordakademie.iaa_multiple_choice.domain.User;
 import de.nordakademie.iaa_multiple_choice.service.UserService;
-import de.nordakademie.iaa_multiple_choice.web.util.LecturerRequired;
+import de.nordakademie.iaa_multiple_choice.web.util.StudentRequired;
 
 public class StudentInterceptor extends AbstractInterceptor {
     private static final long serialVersionUID = 6756324184319715740L;
@@ -21,7 +21,7 @@ public class StudentInterceptor extends AbstractInterceptor {
     @Override
     public String intercept(final ActionInvocation invocation) throws Exception {
         final Object action = invocation.getAction();
-        if (!action.getClass().isAnnotationPresent(LecturerRequired.class)) {
+        if (!action.getClass().isAnnotationPresent(StudentRequired.class)) {
             return invocation.invoke();
         }
 
