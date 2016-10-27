@@ -60,6 +60,7 @@
       <div>
         <input type="radio" name="answer" /> <input type="text">
       </div>
+
       <input type="radio" name="answer" /> <input type="text">
       <button type="button" class="btn btn-default navbar-btn">
         <span class="glyphicon glyphicon-plus"></span>
@@ -70,9 +71,11 @@
       <s:textfield name="question.text" id="multipleChoice" class="form-control"
         placeholder="%{getText('create.enterQuestion')}" />
       <div>
-        <input type="checkbox" name="answer" /> <input>
+        <input type="checkbox" name="answer" /> <input type="text">
       </div>
-      <input type="checkbox" name="answer" /> <input type="text">
+      <div>
+        <input type="checkbox" name="answer" /> <input type="text">
+      </div>
 
       <button type="button" class="btn btn-default navbar-btn">
         <s:text name="create.nextAnswer" />
@@ -85,14 +88,16 @@
     </div>
   </div>
 
-  <s:textfield name="question.points" id="points" class="form-control" placeholder="Anzahl Punkte" />
+  <s:textfield name="question.points" id="points" class="form-control"
+    placeholder="Anzahl Punkte" />
 
   <button type="button" class="btn btn-default navbar-btn">
     <s:text name="create.deleteQuestion" />
   </button>
   <nav>
     <ul class="pagination">
-      <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+      <li class="disabled"><a href="#" aria-label="Previous"><span
+          aria-hidden="true">&laquo;</span></a></li>
       <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
     </ul>
   </nav>

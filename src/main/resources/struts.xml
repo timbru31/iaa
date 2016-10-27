@@ -116,6 +116,14 @@
       <result type="tiles">lecturer/mapping</result>
     </action>
 
+    <action name="question">
+      <result type="tiles">exam/create/question</result>
+    </action>
+    
+    <action name="create">
+      <result type="tiles">exam/create</result>
+    </action>
+    
     <action name="registration">
       <result name="input" type="tiles">registration</result>
       <result name="success" type="tiles">registration</result>
