@@ -8,8 +8,8 @@
         <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
           class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/iaa-multiple-choice/">
-        <span class="glyphicon glyphicon-home" aria-hidden="true"></span> <s:text name="header.title" />
+      <a class="navbar-brand" href="/iaa-multiple-choice/"> <span class="glyphicon glyphicon-home"
+        aria-hidden="true"></span> <s:text name="header.title" />
       </a>
     </div>
 

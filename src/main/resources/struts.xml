@@ -61,11 +61,11 @@
       <result name="student" type="tiles">student</result>
     </action>
 
-    <action name="lecturer">
+    <action name="lecturer" class="de.nordakademie.iaa_multiple_choice.web.LecturerAction">
       <result type="tiles">lecturer</result>
     </action>
 
-    <action name="student">
+    <action name="student" class="de.nordakademie.iaa_multiple_choice.web.StudentAction">
       <result type="tiles">student</result>
     </action>
 
