@@ -66,13 +66,13 @@
     </action>
 
     <action name="create"
-      class="de.nordakademie.iaa_multiple_choice.web.CreateExamAction"
+      class="de.nordakademie.iaa_multiple_choice.web.ExamAction"
       method="display">
       <result type="tiles">exam/create</result>
     </action>
 
     <action name="createExam"
-      class="de.nordakademie.iaa_multiple_choice.web.CreateExamAction"
+      class="de.nordakademie.iaa_multiple_choice.web.ExamAction"
       method="createExam">
       <result name="success" type="tiles">exam/create/question</result>
     </action>

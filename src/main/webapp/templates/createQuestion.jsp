@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
-
+<s:form>
 <div class="panel panel-default">
   <div class="panel-body">
     <s:text name="create.rightanswer" />
@@ -105,3 +105,4 @@
     <s:text name="createQuestion.submit" />
   </button>
 </center>
+</s:form>

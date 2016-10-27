@@ -24,6 +24,11 @@ public class QuestionService {
         questionRepository.createQuestion(question);
     }
 
+    @Transactional
+    public void deleteQuestion(final Long id) {
+        questionRepository.deleteQuestion(id);
+    }
+
     @Transactional(readOnly = true)
     public List<Question> listAll() {
         return questionRepository.findAll();

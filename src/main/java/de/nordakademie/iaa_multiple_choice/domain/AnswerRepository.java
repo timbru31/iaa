@@ -16,6 +16,11 @@ public class AnswerRepository {
         entityManager.persist(answer);
     }
 
+    public void deleteAnswer(final Long id) {
+        entityManager.createQuery("DELETE anser FROM Answer answer WHERE id = :id", Answer.class).setParameter("id", id)
+                .executeUpdate();
+    }
+
     public Answer find(final Long id) {
         return entityManager.createQuery("SELECT answer FROM Answer answer WHERE id = :id", Answer.class)
                 .setParameter("id", id).getSingleResult();

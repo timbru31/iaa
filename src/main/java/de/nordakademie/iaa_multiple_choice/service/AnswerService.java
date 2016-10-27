@@ -24,6 +24,11 @@ public class AnswerService {
         answerRepository.createAnswer(answer);
     }
 
+    @Transactional
+    public void deleteAnswer(final Long id) {
+        answerRepository.deleteAnswer(id);
+    }
+
     @Transactional(readOnly = true)
     public List<Answer> listAll() {
         return answerRepository.findAll();

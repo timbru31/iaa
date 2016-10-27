@@ -13,16 +13,28 @@ import lombok.Setter;
 
 @LoginRequired
 @LecturerRequired
-public class CreateAnswerAction extends ActionSupport {
+public class AnswerAction extends ActionSupport {
     private static final long serialVersionUID = -6868369501706506064L;
     @Getter
     @Setter
     private Answer answer;
+
     @Autowired
     private AnswerService answerService;
 
     public String createAnswer() {
         answerService.createAnswer(answer);
+        return SUCCESS;
+    }
+
+    public String deleteAnswer() {
+        answerService.deleteAnswer(answer.getId());
+        return SUCCESS;
+
+    }
+
+    public String updateAnswer() {
+        answerService.updateAnswer(answer);
         return SUCCESS;
     }
 }

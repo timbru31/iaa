@@ -13,7 +13,6 @@
   <definition name="lecturer" extends="mainTemplate">
     <put-attribute name="content" value="/templates/lecturer.jsp" />
   </definition>
-
   <definition name="registration" extends="mainTemplate">
     <put-attribute name="content" value="/templates/registration.jsp" />
   </definition>
@@ -43,5 +42,8 @@
   </definition>
   <definition name="forbiddenError" extends="mainTemplate">
     <put-attribute name="content" value="/templates/error/forbiddenError.jsp" />
+  </definition>
+  <definition name="error" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/error.jsp" />
   </definition>
 </tiles-definitions>

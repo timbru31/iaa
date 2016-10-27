@@ -6,26 +6,26 @@
   </h1>
 </center>
 
-<s:form>
+<s:form action="createExam">
   <div class="form-group">
     <label for="create.examName"><s:text name="create.examName"/></label>
-    <input type="examName" class="form-control" id="create.examName" placeholder="<s:text name="create.examName"/>">
+    <s:textfield name="exam.name" id="create.examName" class="form-control" placeholder="%{getText('create.examName')}" />
   </div>
   <div class="form-group">
     <label for="create.examTime"><s:text name="create.examTime"/></label>
-    <input type="examTime" class="form-control" id="create.examTime" placeholder="<s:text name="create.examTime"/>">
+    <s:textfield name="exam.examTime" id="create.examTime" class="form-control" placeholder="%{getText('create.examTime')}" />
   </div>
   <div class="form-group">
     <label for="create.minPoints"><s:text name="create.minPoints"/></label>
-    <input type="minPoints" class="form-control" id="create.minPoints" placeholder="<s:text name="create.minPoints"/>">
+    <s:textfield name="exam.minPoints" id="create.minPoints" class="form-control" placeholder="%{getText('create.minPoints')}" />
   </div>
   <div class="form-group">
     <label for="create.examCP"><s:text name="create.examCP"/></label>
-    <input type="examCP" class="form-control" id="create.examCP" placeholder="<s:text name="create.examCP"/>">
+    <s:textfield name="exam.creditPoints" id="create.examCP" class="form-control" placeholder="%{getText('create.examCP')}" />
   </div>
   <div class="form-group">
     <label for="create.examPeriod"><s:text name="create.examPeriod"/></label>
-    <input type="examPeriod" class="form-control" id="create.examPeriod" placeholder="<s:text name="create.examPeriod"/>">
+    <s:textfield name="exam.examPeriod" id="create.examPeriod" class="form-control" placeholder="%{getText('create.examPeriod')}" />
   </div>
 
   <center>

@@ -13,7 +13,7 @@ import lombok.Setter;
 
 @LoginRequired
 @LecturerRequired
-public class CreateQuestionAction extends ActionSupport {
+public class QuestionAction extends ActionSupport {
     private static final long serialVersionUID = 6954059649443931989L;
     @Getter
     @Setter
@@ -26,4 +26,13 @@ public class CreateQuestionAction extends ActionSupport {
         return SUCCESS;
     }
 
+    public String deleteQuestion() {
+        questionService.deleteQuestion(question.getId());
+        return SUCCESS;
+    }
+
+    public String updateAnswer() {
+        questionService.updateQuestion(question);
+        return SUCCESS;
+    }
 }

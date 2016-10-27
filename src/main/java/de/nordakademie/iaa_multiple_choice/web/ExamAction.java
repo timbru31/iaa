@@ -13,7 +13,7 @@ import lombok.Setter;
 
 @LoginRequired
 @LecturerRequired
-public class CreateExamAction extends ActionSupport {
+public class ExamAction extends ActionSupport {
 
     private static final long serialVersionUID = -3297218344316923487L;
     @Getter
@@ -22,7 +22,7 @@ public class CreateExamAction extends ActionSupport {
     private final ExamService examService;
 
     @Autowired
-    public CreateExamAction(final ExamService examService) {
+    public ExamAction(final ExamService examService) {
         this.examService = examService;
     }
 
@@ -32,6 +32,11 @@ public class CreateExamAction extends ActionSupport {
     }
 
     public String display() {
+        return SUCCESS;
+    }
+
+    public String updateExam() {
+        examService.updateExam(exam);
         return SUCCESS;
     }
 }
