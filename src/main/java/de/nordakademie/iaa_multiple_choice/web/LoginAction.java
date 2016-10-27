@@ -1,11 +1,6 @@
 package de.nordakademie.iaa_multiple_choice.web;
 
-import java.util.Map;
-
-import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.opensymphony.xwork2.ActionSupport;
 
 import de.nordakademie.iaa_multiple_choice.domain.Lecturer;
 import de.nordakademie.iaa_multiple_choice.domain.Student;
@@ -15,11 +10,8 @@ import de.nordakademie.iaa_multiple_choice.service.UserService;
 import lombok.Getter;
 import lombok.Setter;
 
-public class LoginAction extends ActionSupport implements SessionAware {
+public class LoginAction extends BaseSessionAction {
     private static final long serialVersionUID = 2712837519650991068L;
-    @Getter
-    @Setter
-    private Map<String, Object> session;
     @Autowired
     private UserService userService;
     @Autowired
@@ -35,8 +27,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
     private User user;
 
     public String login() {
-        session.put("userEmail", email);
-        session.put("userName", user.getFullName());
+        getSession().put("userEmail", email);
+        getSession().put("userName", user.getFullName());
         if (user instanceof Student) {
             return "successStudent";
         } else if (user instanceof Lecturer) {

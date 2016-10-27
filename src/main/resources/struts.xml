@@ -49,12 +49,16 @@
         result="genericError" />
     </global-exception-mappings>
 
-    <action name="">
-      <result type="tiles">welcome</result>
+    <action name="" class="de.nordakademie.iaa_multiple_choice.web.HomeAction">
+      <result name="welcome" type="tiles">home</result>
+      <result name="lecturer" type="tiles">lecturer</result>
+      <result name="student" type="tiles">student</result>
     </action>
 
-    <action name="welcome">
-      <result type="tiles">welcome</result>
+    <action name="home" class="de.nordakademie.iaa_multiple_choice.web.HomeAction">
+      <result name="welcome" type="tiles">home</result>
+      <result name="lecturer" type="tiles">lecturer</result>
+      <result name="student" type="tiles">student</result>
     </action>
 
     <action name="lecturer">
@@ -117,7 +121,7 @@
     <action name="logout"
       class="de.nordakademie.iaa_multiple_choice.web.LogoutAction"
       method="logout">
-      <result type="tiles">welcome</result>
+      <result type="tiles">home</result>
     </action>
 
     <action name="loginUser"
@@ -131,7 +135,7 @@
     <action name="locale"
       class="de.nordakademie.iaa_multiple_choice.web.ChangeLanguageAction"
       method="changeLanguage">
-      <result name="success" type="tiles">welcome</result>
+      <result name="success" type="tiles">home</result>
     </action>
   </package>
 </struts>
