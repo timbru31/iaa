@@ -1,8 +1,14 @@
-# IAA Hausarbeit - Multiple Choice
-
+# 🎓 📝 IAA Hausarbeit - Multiple Choice
 ### Authors
 
 Jens Gottwald, Hannes Peterson, Yannick Rump, Tim Brust
+
+## Info
+
+This application provides a multiple choice test for seminars of the NORDAKADEMIE. It allows lecturers to create new exams with either a single choice question, a multiple choice question or a gap text.  
+It's possible to add students to the exam via their e-mail address. The students can login into the web frontend and take the exam. They are not able to repeat it, if they fail.  
+The system is restricted to NORDAKADEMIE enrolled students and lecturers only.  
+Technologies used are Hibernate, Spring and Struts2.
 
 ## Prerequisites
 
