@@ -21,7 +21,7 @@
           <ul class="dropdown-menu">
             <li><a href="#">Show</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="/iaa-multiple-choice/exam/create">Create (Lecturer Only)</a></li>
+            <li><a href="/iaa-multiple-choice/createExam">Create (Lecturer Only)</a></li>
           </ul></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

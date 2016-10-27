@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
-<center>
+<div class="page-header">
   <h1>
     <s:text name="create.title" />
   </h1>
-</center>
+</div>
 
 <s:form action="saveExam">
   <div class="form-group">
@@ -32,6 +32,4 @@
     <s:submit key="create.finalSubmit" class="btn btn-primary">
     </s:submit>
   </center>
-
 </s:form>
-

@@ -24,4 +24,9 @@
   <p></p>
   <s:text name="Platzhalter Exam 3"></s:text>
 </div>
+<div>
+<s:iterator value="lecturer.exams">
+  <p><s:property value="name"/></p>
+</s:iterator>
+</div>
 <s:text name="lecturer.editableExam" />

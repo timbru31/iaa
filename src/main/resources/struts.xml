@@ -52,15 +52,23 @@
     <action name=""
       class="de.nordakademie.iaa_multiple_choice.web.HomeAction">
       <result name="welcome" type="tiles">home</result>
-      <result name="lecturer" type="tiles">lecturer</result>
-      <result name="student" type="tiles">student</result>
+      <result name="lecturer" type="redirectAction">
+        <param name="actionName">lecturer</param>
+      </result>
+      <result name="student" type="redirectAction">
+        <param name="actionName">student</param>
+      </result>
     </action>
 
     <action name="home"
       class="de.nordakademie.iaa_multiple_choice.web.HomeAction">
       <result name="welcome" type="tiles">home</result>
-      <result name="lecturer" type="tiles">lecturer</result>
-      <result name="student" type="tiles">student</result>
+      <result name="lecturer" type="redirectAction">
+        <param name="actionName">lecturer</param>
+      </result>
+      <result name="student" type="redirectAction">
+        <param name="actionName">student</param>
+      </result>
     </action>
 
     <action name="lecturer"
