@@ -1,11 +1,6 @@
 package de.nordakademie.iaa_multiple_choice.web;
 
-import java.util.Map;
-
-import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.opensymphony.xwork2.ActionSupport;
 
 import de.nordakademie.iaa_multiple_choice.domain.Lecturer;
 import de.nordakademie.iaa_multiple_choice.domain.Student;
@@ -14,11 +9,8 @@ import de.nordakademie.iaa_multiple_choice.service.UserService;
 import lombok.Getter;
 import lombok.Setter;
 
-public class RegisterAction extends ActionSupport implements SessionAware {
+public class RegisterAction extends BaseSessionAction {
     private static final long serialVersionUID = -5785967910896850512L;
-    @Getter
-    @Setter
-    private Map<String, Object> session;
     @Getter
     @Setter
     private String firstName;
@@ -74,8 +66,8 @@ public class RegisterAction extends ActionSupport implements SessionAware {
         final String hashedPassword = hashPassword();
         final Lecturer lecturer = new Lecturer(firstName, lastName, email, hashedPassword);
         userService.createUser(lecturer);
-        session.put("userEmail", lecturer.getEmail());
-        session.put("userName", lecturer.getFullName());
+        getSession().put("userEmail", lecturer.getEmail());
+        getSession().put("userName", lecturer.getFullName());
         return SUCCESS;
     }
 
@@ -83,8 +75,8 @@ public class RegisterAction extends ActionSupport implements SessionAware {
         final String hashedPassword = hashPassword();
         final Student student = new Student(firstName, lastName, email, hashedPassword, studentNumber);
         userService.createUser(student);
-        session.put("userEmail", student.getEmail());
-        session.put("userName", student.getFullName());
+        getSession().put("userEmail", student.getEmail());
+        getSession().put("userName", student.getFullName());
         return SUCCESS;
     }
 

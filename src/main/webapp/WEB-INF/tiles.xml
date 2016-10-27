@@ -7,8 +7,8 @@
     <put-attribute name="header" value="/templates/layout/fragments/header.jsp" />
     <put-attribute name="footer" value="/templates/layout/fragments/footer.jsp" />
   </definition>
-  <definition name="welcome" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/welcome.jsp" />
+  <definition name="home" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/home.jsp" />
   </definition>
   <definition name="lecturer" extends="mainTemplate">
     <put-attribute name="content" value="/templates/lecturer.jsp" />
