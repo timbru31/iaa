@@ -29,7 +29,7 @@
     <div class="col-md-6"><s:textfield name="exam.finalSubmitDate" id="create.examPeriod" required="true" class="form-control" pattern="^(31|30|0[1-9]|[12][0-9]|[1-9])\.(0[1-9]|1[012]|[1-9])\.((18|19|20)\d{2}|\d{2})$" placeholder="%{getText('create.submitDate')}" /></div>
   </div></div>
   <center>
-    <s:submit key="create.finalSubmit" class="btn btn-primary">
+    <s:submit key="create.finalSubmit" class="btn btn-success">
     </s:submit>
   </center>
 </s:form>

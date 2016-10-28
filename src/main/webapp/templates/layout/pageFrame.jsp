@@ -19,7 +19,6 @@
     <div class="container">
       <tiles:insertAttribute name="header"/>
       <tiles:insertAttribute name="content"/>
-      <hr/>
       <tiles:insertAttribute name="footer"/>
     </div>
   </body>
