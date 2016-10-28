@@ -112,10 +112,11 @@
       <result type="tiles">exam/show</result>
     </action>
 
-    <action name="mapping">
+    <action name="mapping"
+    class="de.nordakademie.iaa_multiple_choice.web.LecturerAction">
       <result type="tiles">lecturer/mapping</result>
     </action>
-
+    
     <action name="registration">
       <result name="input" type="tiles">registration</result>
       <result name="success" type="tiles">registration</result>
