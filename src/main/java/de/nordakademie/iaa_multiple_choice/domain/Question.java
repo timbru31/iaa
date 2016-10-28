@@ -1,6 +1,7 @@
 package de.nordakademie.iaa_multiple_choice.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -38,5 +39,9 @@ public class Question {
 
     public void addAnswer(Answer answer) {
         answers.add(answer);
+    }
+
+    public List<Answer> getCorrectAnswers() {
+        return answers.stream().filter(Answer::isRightAnswer).collect(Collectors.toList());
     }
 }
