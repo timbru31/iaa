@@ -149,8 +149,12 @@
 
     <action name="loginUser" class="de.nordakademie.iaa_multiple_choice.web.LoginAction"
       method="login">
-      <result name="successLecturer" type="tiles">lecturer</result>
-      <result name="successStudent" type="tiles">student</result>
+      <result name="successLecturer" type="redirectAction">
+        <param name="actionName">lecturer</param>
+      </result>
+      <result name="successStudent" type="redirectAction">
+        <param name="actionName">student</param>
+      </result>
       <result name="input" type="tiles">login</result>
     </action>
 
