@@ -173,7 +173,9 @@
     <action name="locale"
       class="de.nordakademie.iaa_multiple_choice.web.ChangeLanguageAction"
       method="changeLanguage">
-      <result name="success" type="tiles">home</result>
+      <result name="success" type="redirect">
+        <param name="location">${prevUrl}</param>
+      </result>
     </action>
   </package>
 </struts>
