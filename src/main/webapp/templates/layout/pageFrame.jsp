@@ -7,7 +7,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><tiles:insertAttribute name="title"/></title>
+    <tiles:importAttribute name="title" />
+    <title><s:text name="%{#attr['title']}"/></title>
+    <link rel="icon" type="image/png" sizes="16x16 32x32 96x96 192x192" href="/iaa-multiple-choice/static/img/favicon.png">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="/iaa-multiple-choice/static/css/iaa-multiple-choice.css">

@@ -3,47 +3,56 @@
   "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
   <definition name="mainTemplate" template="/templates/layout/pageFrame.jsp">
-    <put-attribute name="title" value="Nordakademie Multiple Choice" />
+    <put-attribute name="title" value="pageTitle.home" />
     <put-attribute name="header" value="/templates/layout/fragments/header.jsp" />
     <put-attribute name="footer" value="/templates/layout/fragments/footer.jsp" />
   </definition>
   <definition name="home" extends="mainTemplate">
     <put-attribute name="content" value="/templates/home.jsp" />
+    <put-attribute name="title" value="pageTitle.home" />
   </definition>
   <definition name="lecturer" extends="mainTemplate">
     <put-attribute name="content" value="/templates/lecturer.jsp" />
+    <put-attribute name="title" value="pageTitle.lecturer" />
   </definition>
   <definition name="registration" extends="mainTemplate">
     <put-attribute name="content" value="/templates/registration.jsp" />
+    <put-attribute name="title" value="pageTitle.register" />
   </definition>
   <definition name="login" extends="mainTemplate">
     <put-attribute name="content" value="/templates/login.jsp" />
+    <put-attribute name="title" value="pageTitle.login" />
   </definition>
   <definition name="student" extends="mainTemplate">
     <put-attribute name="content" value="/templates/student.jsp" />
+    <put-attribute name="title" value="pageTitle.student" />
   </definition>
   <definition name="exam/create" extends="mainTemplate">
     <put-attribute name="content" value="/templates/createExam.jsp" />
+    <put-attribute name="title" value="pageTitle.createExam" />
   </definition>
   <definition name="exam/show" extends="mainTemplate">
     <put-attribute name="content" value="/templates/showExam.jsp" />
+    <put-attribute name="title" value="pageTitle.showExam" />
   </definition>
   <definition name="exam/create/question" extends="mainTemplate">
     <put-attribute name="content" value="/templates/createQuestion.jsp" />
+    <put-attribute name="title" value="pageTitle.createQuestion" />
   </definition>
   <definition name="lecturer/mapping" extends="mainTemplate">
     <put-attribute name="content" value="/templates/mapping.jsp" />
+    <put-attribute name="title" value="pageTitle.mapping" />
   </definition>
   <definition name="notFoundError" extends="mainTemplate">
     <put-attribute name="content" value="/templates/error/notFoundError.jsp" />
+    <put-attribute name="title" value="pageTitle.notFound" />
   </definition>
   <definition name="genericError" extends="mainTemplate">
     <put-attribute name="content" value="/templates/error/genericError.jsp" />
+    <put-attribute name="title" value="pageTitle.error" />
   </definition>
   <definition name="forbiddenError" extends="mainTemplate">
     <put-attribute name="content" value="/templates/error/forbiddenError.jsp" />
-  </definition>
-  <definition name="error" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/error.jsp" />
+    <put-attribute name="title" value="pageTitle.forbidden" />
   </definition>
 </tiles-definitions>
