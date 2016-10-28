@@ -34,6 +34,15 @@ public class LoginAction extends BaseSessionAction {
     @Setter
     private String prevUrl;
 
+    public String display() {
+        // Important to call super, otherwise we get the local user object!
+        final User alreadyLoggedInUser = super.getUser();
+        if (alreadyLoggedInUser == null) {
+            return SUCCESS;
+        }
+        return "redirectHome";
+    }
+
     public String login() {
         final HttpServletRequest request = (HttpServletRequest) ActionContext.getContext()
                 .get(ServletActionContext.HTTP_REQUEST);
@@ -52,8 +61,7 @@ public class LoginAction extends BaseSessionAction {
         return SUCCESS;
     }
 
-    @Override
-    public void validate() {
+    public void validateLogin() {
         if (email == null || email.isEmpty() || !email.endsWith("@nordakademie.de") || password == null
                 || password.isEmpty() || password.length() < 8) {
             addFieldError("loginFailed", getText("validation.wrongEmailOrUser"));

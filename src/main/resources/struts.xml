@@ -142,14 +142,17 @@
       <result name="input" type="tiles">registration</result>
     </action>
 
-    <action name="login">
-      <result type="tiles">login</result>
+    <action name="login"  class="de.nordakademie.iaa_multiple_choice.web.LoginAction" method="display">
+      <result name="success" type="tiles">login</result>
+      <result name="redirectHome" type="redirectAction">
+        <param name="actionName">home</param>
+      </result>
     </action>
 
     <action name="logout" class="de.nordakademie.iaa_multiple_choice.web.LogoutAction"
       method="logout">
       <result name="success" type="redirectAction">
-        <param name="actioName">home</param>
+        <param name="actionName">home</param>
       </result>
     </action>
 
