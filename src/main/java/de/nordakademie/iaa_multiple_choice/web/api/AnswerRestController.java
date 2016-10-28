@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.nordakademie.iaa_multiple_choice.domain.Question;
-import de.nordakademie.iaa_multiple_choice.service.QuestionService;
+import de.nordakademie.iaa_multiple_choice.domain.Answer;
+import de.nordakademie.iaa_multiple_choice.service.AnswerService;
 
 @RestController
-@RequestMapping("/questions")
-public class QuestionRestController {
+@RequestMapping("/answers")
+public class AnswerRestController {
 
     @Autowired
-    private QuestionService questionService;
+    private AnswerService answerService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<Question>> getAllQuestions() {
-        return new ResponseEntity<>(questionService.listAll(), HttpStatus.OK);
+    public ResponseEntity<List<Answer>> getAllAnswers() {
+        return new ResponseEntity<>(answerService.listAll(), HttpStatus.OK);
     }
 }

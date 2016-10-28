@@ -1,13 +1,16 @@
 package de.nordakademie.iaa_multiple_choice.domain;
 
+import java.util.List;
+
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.NaturalId;
+import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +21,7 @@ import lombok.Setter;
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "question_id")
     private Long id;
 
     @Basic
@@ -29,7 +33,10 @@ public class Question {
     @Basic
     private String text;
 
-    @ManyToOne(optional = false)
-    @NaturalId
-    private Exam exam;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Answer> answers;
+
+    public void addAnswer(Answer answer) {
+        answers.add(answer);
+    }
 }
