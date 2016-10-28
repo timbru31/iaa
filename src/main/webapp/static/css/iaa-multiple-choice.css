@@ -1,17 +1,16 @@
 .btn-margin-left {
   margin-left: 5px;
 }
+
 .btn-margin-right {
   margin-right: 5px;
 }
 
 .navbar-right {
-	margin-right: 0;
+  margin-right: 0;
 }
 
 footer {
-    position: fixed;
-    height: 100px;
-    bottom: 0;
-    width: inherit;
+  height: 100px;
+  width: inherit;
 }
