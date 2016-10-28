@@ -25,6 +25,6 @@ public class Answer {
 
     @ManyToOne(optional = false)
     @NaturalId
-    private Question question;
+    private Question questionId;
 
 }

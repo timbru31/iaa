@@ -21,13 +21,19 @@ public class AnswerRepository {
                 .executeUpdate();
     }
 
-    public Answer find(final Long id) {
+    public List<Answer> find(final Long id) {
         return entityManager.createQuery("SELECT answer FROM Answer answer WHERE id = :id", Answer.class)
-                .setParameter("id", id).getSingleResult();
+                .setParameter("id", id).getResultList();
     }
 
     public List<Answer> findAll() {
         return entityManager.createQuery("SELECT answer FROM Answer answer", Answer.class).getResultList();
+    }
+
+    public List<Answer> findRightAnswers(final Long id) {
+        return entityManager
+                .createQuery("SELECT answer FROM Answer answer WHERE id = :id AND rightAnswer = true", Answer.class)
+                .setParameter("questionId", id).getResultList();
     }
 
     public final Answer updateAnswer(final Answer updatedAnswer) {
