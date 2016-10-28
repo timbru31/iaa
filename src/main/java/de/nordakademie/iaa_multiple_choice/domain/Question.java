@@ -28,6 +28,6 @@ public class Question {
 
     @ManyToOne(optional = false)
     @NaturalId
-    private Exam exam;
+    private Exam examId;
 
 }
