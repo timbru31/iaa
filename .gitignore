@@ -24,3 +24,6 @@ target/
 
 # User properties
 src/main/resources/user.properties
+
+#Spring xml
+src/main/resources/spring.xml
