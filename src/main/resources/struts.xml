@@ -8,8 +8,7 @@
   <!-- catch 404 errors -->
   <package name="serveAll" namespace="" extends="struts-default">
     <result-types>
-      <result-type name="tiles"
-        class="org.apache.struts2.views.tiles.TilesResult" />
+      <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
     </result-types>
     <action name="*">
       <result type="tiles">notFoundError</result>
@@ -18,8 +17,7 @@
 
   <package name="default" namespace="/" extends="tiles-default">
     <result-types>
-      <result-type name="tiles"
-        class="org.apache.struts2.views.tiles.TilesResult" />
+      <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
     </result-types>
 
     <interceptors>
@@ -49,8 +47,7 @@
         result="genericError" />
     </global-exception-mappings>
 
-    <action name=""
-      class="de.nordakademie.iaa_multiple_choice.web.HomeAction">
+    <action name="" class="de.nordakademie.iaa_multiple_choice.web.HomeAction">
       <result name="welcome" type="tiles">home</result>
       <result name="lecturer" type="redirectAction">
         <param name="actionName">lecturer</param>
@@ -60,8 +57,7 @@
       </result>
     </action>
 
-    <action name="home"
-      class="de.nordakademie.iaa_multiple_choice.web.HomeAction">
+    <action name="home" class="de.nordakademie.iaa_multiple_choice.web.HomeAction">
       <result name="welcome" type="tiles">home</result>
       <result name="lecturer" type="redirectAction">
         <param name="actionName">lecturer</param>
@@ -71,36 +67,31 @@
       </result>
     </action>
 
-    <action name="lecturer"
-      class="de.nordakademie.iaa_multiple_choice.web.LecturerAction">
+    <action name="lecturer" class="de.nordakademie.iaa_multiple_choice.web.LecturerAction">
       <result type="tiles">lecturer</result>
     </action>
 
-    <action name="student"
-      class="de.nordakademie.iaa_multiple_choice.web.StudentAction">
+    <action name="student" class="de.nordakademie.iaa_multiple_choice.web.StudentAction">
       <result type="tiles">student</result>
     </action>
 
-    <action name="createExam"
-      class="de.nordakademie.iaa_multiple_choice.web.ExamAction">
+    <action name="createExam" class="de.nordakademie.iaa_multiple_choice.web.ExamAction">
       <result type="tiles">exam/create</result>
     </action>
 
-    <action name="saveExam"
-      class="de.nordakademie.iaa_multiple_choice.web.ExamAction" method="saveExam">
+    <action name="saveExam" class="de.nordakademie.iaa_multiple_choice.web.ExamAction"
+      method="saveExam">
       <result name="success" type="redirectAction">
         <param name="actionName">createQuestion</param>
         <param name="examId">${exam.id}</param>
       </result>
     </action>
 
-    <action name="createQuestion"
-      class="de.nordakademie.iaa_multiple_choice.web.QuestionAction">
+    <action name="createQuestion" class="de.nordakademie.iaa_multiple_choice.web.QuestionAction">
       <result name="success" type="tiles">exam/create/question</result>
     </action>
 
-    <action name="saveQuestion"
-      class="de.nordakademie.iaa_multiple_choice.web.QuestionAction"
+    <action name="saveQuestion" class="de.nordakademie.iaa_multiple_choice.web.QuestionAction"
       method="saveQuestion">
       <result name="success" type="redirectAction">
         <param name="examId">${examId}</param>
@@ -111,23 +102,23 @@
     <action name="showExam">
       <result type="tiles">exam/show</result>
     </action>
-    
-        <action name="show">
+
+    <action name="show">
       <result type="tiles">exam/show</result>
     </action>
 
-    <action name="mapping">
+    <action name="mapping" class="de.nordakademie.iaa_multiple_choice.web.LecturerAction">
       <result type="tiles">lecturer/mapping</result>
     </action>
-
+    <!-- FOR TESTING / REMOVE LATER -->
     <action name="question">
       <result type="tiles">exam/create/question</result>
     </action>
-    
+
     <action name="create">
       <result type="tiles">exam/create</result>
     </action>
-    
+
     <action name="registration">
       <result name="input" type="tiles">registration</result>
       <result name="success" type="tiles">registration</result>
@@ -135,15 +126,13 @@
       <result name="successStudent" type="tiles">student</result>
     </action>
 
-    <action name="registerLecturer"
-      class="de.nordakademie.iaa_multiple_choice.web.RegisterAction"
+    <action name="registerLecturer" class="de.nordakademie.iaa_multiple_choice.web.RegisterAction"
       method="registerLecturer">
       <result name="success" type="tiles">lecturer</result>
       <result name="input" type="tiles">registration</result>
     </action>
 
-    <action name="registerStudent"
-      class="de.nordakademie.iaa_multiple_choice.web.RegisterAction"
+    <action name="registerStudent" class="de.nordakademie.iaa_multiple_choice.web.RegisterAction"
       method="registerStudent">
       <result name="success" type="tiles">student</result>
       <result name="input" type="tiles">registration</result>
@@ -153,14 +142,12 @@
       <result type="tiles">login</result>
     </action>
 
-    <action name="logout"
-      class="de.nordakademie.iaa_multiple_choice.web.LogoutAction"
+    <action name="logout" class="de.nordakademie.iaa_multiple_choice.web.LogoutAction"
       method="logout">
       <result type="tiles">home</result>
     </action>
 
-    <action name="loginUser"
-      class="de.nordakademie.iaa_multiple_choice.web.LoginAction"
+    <action name="loginUser" class="de.nordakademie.iaa_multiple_choice.web.LoginAction"
       method="login">
       <result name="successLecturer" type="tiles">lecturer</result>
       <result name="successStudent" type="tiles">student</result>

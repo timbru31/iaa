@@ -51,7 +51,7 @@
     <s:textfield name="studentNumber" id="studentNumber" type="text" inputmode="numeric" requiredLabel="true"
       class="form-control" maxlength="4" pattern="^[0-9]{4}$" placeholder="1234" />
   </div>
-  <s:submit key="registration.button" class="btn btn-primary" />
+  <s:submit key="registration.button" class="btn btn-success" />
 </s:form>
 
 <script type="text/javascript">

@@ -1,158 +1,43 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
+<s:form action="lecturer">
 
+  <h1>
+    <s:text name="mapping.title" />
+  </h1>
+  <br />
+  <p>
+    <s:text name="mapping.map" />
+  </p>
 
-<h1>
-  <s:text name="mapping.title" />
-</h1>
-<br />
-<p>
-  <s:text name="mapping.map" />
-</p>
+  <br />
+  <div class="panel panel-default">
+    <table class="table table-hover">
+      <tr>
+        <th><s:text name="create.examName" /></th>
+        <th>Student</th>
+      </tr>
+      <s:iterator value="lecturer.exams">
+        <tr>
+          <th><s:property value="name" /></th>
+          <td>
+            <div class="input-group">
+              <input type="text" class="form-control"
+                placeholder="Student wählen..."> <span
+                class="input-group-btn"> <s:submit
+                  class="btn btn-default" type="button" key="mapping.link"></s:submit>
+              </span>
+            </div>
+          </td>
+        </tr>
+      </s:iterator>
+    </table>
+  </div>
 
-<br />
+  <s:text name="mapping.hint" />
 
-<div class="panel panel-default">
-  <div class="panel-heading">Zuweisung</div>
+  <div>
+    <s:submit name="back" key="create.back" class="btn btn-primary navbar-btn" />
+  </div>
 
-  <table class="table">
-
-    <tr>
-      <th>Fach</th>
-      <th>Student</th>
-    </tr>
-
-    <tr>
-      <td><s:text name="mapping.dummysubject1" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control"
-            placeholder="Student wählen..."> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Zuweisen</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-
-    <tr>
-      <td><s:text name="mapping.dummysubject2" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control"
-            placeholder="Student wählen..."> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Zuweisen</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-
-    <tr>
-      <td><s:text name="mapping.dummysubject3" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control"
-            placeholder="Student wählen..."> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Zuweisen</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-
-    <tr>
-      <td><s:text name="mapping.dummysubject4" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control"
-            placeholder="Student wählen..."> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Zuweisen</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-
-    <tr>
-      <td><s:text name="mapping.dummysubject5" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control"
-            placeholder="Student wählen..."> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Zuweisen</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-
-    <tr>
-      <td><s:text name="mapping.dummysubject6" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control"
-            placeholder="Student wählen..."> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Zuweisen</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-
-    <tr>
-      <td><s:text name="mapping.dummysubject7" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control"
-            placeholder="Student wählen..."> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Zuweisen</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-
-    <tr>
-      <td><s:text name="mapping.dummysubject8" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control"
-            placeholder="Student wählen..."> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Zuweisen</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-
-    <tr>
-      <td><s:text name="mapping.dummysubject9" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control"
-            placeholder="Student wählen..."> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Zuweisen</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-
-    <tr>
-      <td><s:text name="mapping.dummysubject10" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control"
-            placeholder="Student wählen..."> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Zuweisen</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-
-  </table>
-</div>
-
-<s:text name="mapping.hint" />
+</s:form>

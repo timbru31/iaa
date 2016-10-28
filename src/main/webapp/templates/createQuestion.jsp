@@ -17,21 +17,21 @@
 
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-        <button href="#sc" data-toggle="tab" type="button"
-          class="btn btn-default navbar-btn">
-          <s:text name="create.Question1" />
-        </button>
-        <button href="#mc" data-toggle="tab" type="button"
-          class="btn btn-default navbar-btn">
-          <s:text name="create.Question2" />
-        </button>
-        <button href="#fitbt" data-toggle="tab" type="button"
-          class="btn btn-default navbar-btn">
-          <s:text name="create.Question3" />
-        </button>
-        
-        <s:submit key="createQuestion.submit"
-          class="btn btn-success navbar-btn navbar-right" />
+      <button href="#sc" data-toggle="tab" type="button"
+        class="btn btn-default navbar-btn">
+        <s:text name="create.Question1" />
+      </button>
+      <button href="#mc" data-toggle="tab" type="button"
+        class="btn btn-default navbar-btn">
+        <s:text name="create.Question2" />
+      </button>
+      <button href="#fitbt" data-toggle="tab" type="button"
+        class="btn btn-default navbar-btn">
+        <s:text name="create.Question3" />
+      </button>
+
+      <s:submit key="createQuestion.submit"
+        class="btn btn-success navbar-btn navbar-right" />
     </div>
   </nav>
 

@@ -32,5 +32,5 @@
         class="form-control" />
     </div>
   </div>
-  <s:submit name="submit" key="login.button" class="btn btn-primary" />
+  <s:submit name="submit" key="login.button" class="btn btn-success" />
 </s:form>
