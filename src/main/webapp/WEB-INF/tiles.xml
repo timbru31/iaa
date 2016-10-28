@@ -17,7 +17,7 @@
   </definition>
   <definition name="registration" extends="mainTemplate">
     <put-attribute name="content" value="/templates/registration.jsp" />
-    <put-attribute name="title" value="pageTitle.register" />
+    <put-attribute name="title" value="pageTitle.registration" />
   </definition>
   <definition name="login" extends="mainTemplate">
     <put-attribute name="content" value="/templates/login.jsp" />
