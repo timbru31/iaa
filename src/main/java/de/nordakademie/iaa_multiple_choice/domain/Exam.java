@@ -40,10 +40,10 @@ public class Exam {
     @Basic
     private Integer examTime;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date startDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date finalSubmitDate;
 
     @Basic

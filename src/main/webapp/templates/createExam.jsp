@@ -14,32 +14,25 @@
   </div>
   <div class="form-group">
     <label for="create.examTime"><s:text name="create.examTime" /></label>
-    <s:textfield name="exam.examTime" id="create.examTime" type="number" min="1" required="true" class="form-control"
+    <s:textfield name="exam.examTime" id="create.examTime" type="number" inputmode="numeric" min="1" pattern="[0-9]*" required="true" class="form-control"
       placeholder="%{getText('create.examTime')}" />
   </div>
   <div class="form-group">
     <label for="create.minPoints"><s:text name="create.minPoints" /></label>
-    <s:textfield name="exam.minPoints" id="create.minPoints" type="number" min="1" required="true" class="form-control"
+    <s:textfield name="exam.minPoints" id="create.minPoints" type="number" inputmode="numeric" min="1" max="100" pattern="[0-9]*" required="true" class="form-control"
       placeholder="%{getText('create.minPoints')}" />
   </div>
   <div class="form-group">
     <label for="create.examCP"><s:text name="create.examCP" /></label>
-    <s:textfield name="exam.creditPoints" id="create.examCP" type="number" min="0" step="0.5" required="true"
+    <s:textfield name="exam.creditPoints" id="create.examCP" type="number" inputmode="numeric" min="0" step="0.5" required="true"
       class="form-control" placeholder="%{getText('create.examCP')}" />
   </div>
   <div class="form-group">
-    <label for="create.examPeriod"><s:text name="create.examPeriod" /></label>
-    <div class="row">
-      <div class="col-md-6">
-        <s:textfield name="exam.startDate" id="create.examPeriod" required="true" class="form-control"
-          pattern="^(31|30|0[1-9]|[12][0-9]|[1-9])\.(0[1-9]|1[012]|[1-9])\.((18|19|20)\d{2}|\d{2})$"
-          placeholder="%{getText('create.startDate')}" />
-      </div>
-      <div class="col-md-6">
-        <s:textfield name="exam.finalSubmitDate" id="create.examPeriod" required="true" class="form-control"
-          pattern="^(31|30|0[1-9]|[12][0-9]|[1-9])\.(0[1-9]|1[012]|[1-9])\.((18|19|20)\d{2}|\d{2})$"
-          placeholder="%{getText('create.submitDate')}" />
-      </div>
+    <label for="examStart"><s:text name="create.examPeriod" /></label>
+    <div class="input-daterange input-group" id="datepicker">
+      <s:textfield type="text" class="input-sm form-control" name="exam.startDate" id="examStart" required="true" />
+      <span class="input-group-addon"><s:text name="create.examPeriodTo" /></span>
+      <s:textfield type="text" class="input-sm form-control" name="exam.finalSubmitDate" id="examEnd" required="true" />
     </div>
   </div>
   <center>
@@ -52,3 +45,20 @@
   <s:submit name="back" key="create.back" class="btn btn-primary navbar-btn" />
 </s:form>
 
+<script>
+$('#datepicker').datepicker({
+  todayHighlight: true,
+  calendarWeeks: true,
+  startDate: "today",
+  maxViewMode: 1,
+  clearBtn: true,
+  <s:if test="#request.locale.language=='de'">
+    language: "de",
+    format: "dd.mm.yyyy"
+  </s:if>
+  <s:else>
+    language: "en"
+  </s:else>
+});
+
+</script>

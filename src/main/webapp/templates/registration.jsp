@@ -48,8 +48,8 @@
     class="form-group ${fieldErrors.containsKey('studentNumber') ? 'has-error' : ''} collapse ${role == 'Student' ? 'in' : ''}"
     id="studentNumberForm">
     <label class="control-label" for="studentNumber"><s:text name="user.studentNumber" /></label>
-    <s:textfield name="studentNumber" id="studentNumber" type="text" inputmode="numeric" requiredLabel="true"
-      class="form-control" maxlength="4" pattern="^[0-9]{4}$" placeholder="1234" />
+    <s:textfield name="studentNumber" id="studentNumber" type="number" inputmode="numeric" requiredLabel="true"
+      class="form-control" min="1" max="9999" pattern="[0-9]*" placeholder="1234" />
   </div>
   <s:submit key="registration.button" class="btn btn-success" />
 </s:form>
