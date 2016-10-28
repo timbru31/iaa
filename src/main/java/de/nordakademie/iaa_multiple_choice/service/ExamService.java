@@ -8,20 +8,29 @@ import org.springframework.transaction.annotation.Transactional;
 
 import de.nordakademie.iaa_multiple_choice.domain.Exam;
 import de.nordakademie.iaa_multiple_choice.domain.ExamRepository;
+import de.nordakademie.iaa_multiple_choice.domain.Question;
+import de.nordakademie.iaa_multiple_choice.domain.QuestionRepository;
 
 @Service
 public class ExamService {
 
     private final ExamRepository examRepository;
+    private final QuestionRepository questionRepository;
 
     @Autowired
-    public ExamService(final ExamRepository examRepository) {
+    public ExamService(final ExamRepository examRepository, final QuestionRepository questionRepository) {
         this.examRepository = examRepository;
+        this.questionRepository = questionRepository;
     }
 
     @Transactional
     public void createExam(final Exam exam) {
         examRepository.createExam(exam);
+    }
+
+    @Transactional
+    public List<Question> getQuestions(final Exam exam) {
+        return questionRepository.findQuestions(exam);
     }
 
     @Transactional(readOnly = true)

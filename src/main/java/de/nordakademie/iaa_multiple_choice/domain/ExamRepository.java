@@ -26,6 +26,13 @@ public class ExamRepository {
         return entityManager.createQuery("SELECT exam FROM Exam exam", Exam.class).getResultList();
     }
 
+    /* Muss das in Question oder Exam? */
+    public List<Question> findQuestions(Exam exam) {
+        return entityManager
+                .createQuery("SELECT question FROM Question question WHERE examId = :examId", Question.class)
+                .setParameter("examId", exam.getId()).getResultList();
+    }
+
     public final Exam updateExam(final Exam updatedExam) {
         return entityManager.merge(updatedExam);
     }
