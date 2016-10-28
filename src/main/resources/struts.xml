@@ -128,13 +128,17 @@
 
     <action name="registerLecturer" class="de.nordakademie.iaa_multiple_choice.web.RegisterAction"
       method="registerLecturer">
-      <result name="success" type="tiles">lecturer</result>
+      <result name="success" type="redirectAction">
+        <param name="actionName">lecturer</param>
+      </result>
       <result name="input" type="tiles">registration</result>
     </action>
 
     <action name="registerStudent" class="de.nordakademie.iaa_multiple_choice.web.RegisterAction"
       method="registerStudent">
-      <result name="success" type="tiles">student</result>
+      <result name="success" type="redirectAction">
+        <param name="actionName">student</param>
+      </result>
       <result name="input" type="tiles">registration</result>
     </action>
 
@@ -144,7 +148,9 @@
 
     <action name="logout" class="de.nordakademie.iaa_multiple_choice.web.LogoutAction"
       method="logout">
-      <result type="tiles">home</result>
+      <result name="success" type="redirectAction">
+        <param name="actioName">home</param>
+      </result>
     </action>
 
     <action name="loginUser" class="de.nordakademie.iaa_multiple_choice.web.LoginAction"
@@ -156,6 +162,9 @@
         <param name="actionName">student</param>
       </result>
       <result name="input" type="tiles">login</result>
+      <result name="redirect" type="redirect">
+        <param name="location">${prevUrl}</param>
+      </result>
     </action>
 
     <action name="locale"
