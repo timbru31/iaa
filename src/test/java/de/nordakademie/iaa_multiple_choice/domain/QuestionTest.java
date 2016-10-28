@@ -27,6 +27,6 @@ public class QuestionTest {
 
     @Test
     public void testCorrectAnswers() {
-        assertEquals("Expected to habe two correct answers", 2, question.getCorrectAnswers().size());
+        assertEquals("Expected to have two correct answers", 2, question.getCorrectAnswers().size());
     }
 }
