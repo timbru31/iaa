@@ -26,13 +26,13 @@
     class="form-group ${fieldErrors.containsKey('exam.name') ? 'has-error' : ''}">
     <label for="create.examName"><s:text name="create.examName" /></label>
     <s:textfield name="exam.name" id="create.examName" type="text"
-      class="form-control" placeholder="%{getText('create.examName')}" />
+      class="form-control" required="true" placeholder="%{getText('create.examName')}" />
   </div>
   <div
     class="form-group ${fieldErrors.containsKey('exam.examTime') ? 'has-error' : ''}">
     <label for="create.examTime"><s:text name="create.examTime" /></label>
     <s:textfield name="exam.examTime" id="create.examTime" type="number"
-      inputmode="numeric" min="1" pattern="[0-9]*" class="form-control"
+      inputmode="numeric" min="1" pattern="[0-9]*" class="form-control" required="true"
       placeholder="%{getText('create.examTime')}" />
   </div>
   <div
@@ -41,7 +41,7 @@
         name="create.minPoints" /></label>
     <s:textfield name="exam.minPoints" id="create.minPoints"
       type="number" inputmode="numeric" min="1" max="100"
-      pattern="[0-9]*" class="form-control"
+      pattern="[0-9]*" class="form-control" required="true"
       placeholder="%{getText('create.minPoints')}" />
   </div>
   <div
@@ -49,7 +49,7 @@
     <label for="create.examCP"><s:text name="create.examCP" /></label>
     <s:textfield name="exam.creditPoints" id="create.examCP"
       type="number" inputmode="numeric" min="0.5" max="1" step="0.25"
-      class="form-control" placeholder="%{getText('create.examCP')}" />
+      class="form-control" required="true" placeholder="%{getText('create.examCP')}" />
   </div>
   <div class="form-group ${fieldErrors.containsKey('exam.finalSubmitDate') ? 'has-error' : ''}">
     <label for="examStart"><s:text name="create.examPeriod" /></label>
