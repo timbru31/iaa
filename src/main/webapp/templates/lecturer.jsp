@@ -35,7 +35,14 @@
       <td><s:property value="minPoints"/></td>
       <td><s:property value="startDate"/></td>
       <td><s:property value="finalSubmitDate"/></td>
-      <td><s:property value="editable"/></td>
+      <td>
+        <s:if test="editable">
+          <button class="btn btn-success"><s:text name="yes" /></button>
+        </s:if>
+        <s:else>
+          <button class="btn btn-danger disabled "><s:text name="no" /></button>
+        </s:else>
+      </td>
     </tr>
   </s:iterator>
 </table>

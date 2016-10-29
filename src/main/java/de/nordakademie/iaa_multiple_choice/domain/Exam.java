@@ -50,7 +50,7 @@ public class Exam {
     private Integer minPoints;
 
     @Basic
-    private Boolean editable;
+    private boolean editable;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Question> questions;
