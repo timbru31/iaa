@@ -46,4 +46,3 @@
     </tr>
   </s:iterator>
 </table>
-<s:text name="lecturer.editableExam" />
