@@ -14,3 +14,20 @@ footer {
   height: 100px;
   width: inherit;
 }
+
+.mapping-table tr th:first-child {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.bootstrap-tagsinput .tag {
+  display: inline-block;
+  font-size: 100%;
+  font-weight: 400;
+  margin: 2px 2px 2px 0;
+}
+
+.mapping-table .bootstrap-tagsinput {
+  width: 98%;
+  max-width: 98%;
+}

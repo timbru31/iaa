@@ -45,6 +45,9 @@
   <s:submit name="back" key="create.back" class="btn btn-primary navbar-btn" />
 </s:form>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js" integrity="sha256-urCxMaTtyuE8UK5XeVYuQbm/MhnXflqZ/B9AOkyTguo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.de.min.js" integrity="sha256-MRg0FdDDqvQkQ3VIUMZCZ39M6O40kpoIYqCGU2rRyxE=" crossorigin="anonymous"></script>
+
 <script>
 $('#datepicker').datepicker({
   todayHighlight: true,
@@ -60,5 +63,4 @@ $('#datepicker').datepicker({
     language: "en"
   </s:else>
 });
-
 </script>
