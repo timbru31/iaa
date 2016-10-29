@@ -45,4 +45,23 @@ public class ExamAction extends BaseSessionAction {
             return "updated";
         }
     }
+
+    public void validateSaveExam() {
+        if (exam.getName() == null || exam.getName().isEmpty()) {
+            addFieldError("exam.name", getText("validation.examName"));
+        }
+        if (exam.getExamTime() == null) {
+            addFieldError("exam.examTime", getText("validation.examTime"));
+        }
+        if (exam.getMinPoints() == null) {
+            addFieldError("exam.minPoints", getText("validation.minPoints"));
+        }
+        // if (exam.getCreditPoints() == null || !(exam.getCreditPoints().equals(0.5))
+        // || !(exam.getCreditPoints().equals(0.75)) || !(exam.getCreditPoints().equals(1))) {
+        // addFieldError("exam.creditPoints", getText("validation.creditPoints"));
+        // }
+        if (exam.getFinalSubmitDate().before(exam.getStartDate())) {
+            addFieldError("exam.finalSubmitDate", getText("validation.finalSubmitDate"));
+        }
+    }
 }
