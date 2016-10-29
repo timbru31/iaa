@@ -31,3 +31,7 @@ footer {
   width: 98%;
   max-width: 98%;
 }
+
+.red {
+  font-color: red;
+}
