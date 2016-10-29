@@ -40,11 +40,14 @@
       <result name="loginRedirect" type="tiles">login</result>
       <result name="genericError" type="tiles">genericError</result>
       <result name="forbidden" type="tiles">forbiddenError</result>
+      <result name="examNotFound" type="tiles">examNotFoundError</result>
     </global-results>
 
     <global-exception-mappings>
       <exception-mapping exception="java.lang.Exception"
         result="genericError" />
+      <exception-mapping exception="de.nordakademie.iaa_multiple_choice.domain.ExamNotFoundException"
+        result="examNotFound" />
     </global-exception-mappings>
 
     <action name="" class="de.nordakademie.iaa_multiple_choice.web.HomeAction">
@@ -79,11 +82,18 @@
       <result type="tiles">exam/create</result>
     </action>
 
+    <action name="editExam" class="de.nordakademie.iaa_multiple_choice.web.ExamAction" method="editExam">
+      <result type="tiles">exam/edit</result>
+    </action>
+
     <action name="saveExam" class="de.nordakademie.iaa_multiple_choice.web.ExamAction"
       method="saveExam">
-      <result name="success" type="redirectAction">
+      <result name="created" type="redirectAction">
         <param name="actionName">createQuestion</param>
         <param name="examId">${exam.id}</param>
+      </result>
+      <result name="updated" type="redirectAction">
+        <param name="actionName">lecturer</param>
       </result>
     </action>
 

@@ -18,21 +18,31 @@ public class ExamAction extends BaseSessionAction {
     @Getter
     @Setter
     private Exam exam;
+    @Getter
+    @Setter
+    private Long examId;
     @Autowired
     private ExamService examService;
     @Autowired
     private UserService userService;
 
-    public String saveExam() {
-        final Lecturer lecturer = (Lecturer) getUser();
-        lecturer.addExam(exam);
-        examService.createExam(exam);
-        userService.updateUser(lecturer);
+    public String editExam() {
+        exam = examService.find(examId);
         return SUCCESS;
     }
 
-    public String updateExam() {
-        examService.updateExam(exam);
-        return SUCCESS;
+    public String saveExam() {
+        if (examId == null) {
+            final Lecturer lecturer = (Lecturer) getUser();
+            lecturer.addExam(exam);
+            examService.createExam(exam);
+            userService.updateUser(lecturer);
+            return "created";
+        } else {
+            exam.setId(examId);
+            exam.setEditable(true);
+            examService.updateExam(exam);
+            return "updated";
+        }
     }
 }

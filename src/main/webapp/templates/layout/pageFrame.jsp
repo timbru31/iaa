@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <tiles:importAttribute name="title" />
     <title><s:text name="%{#attr['title']}"/></title>
     <link rel="icon" type="image/png" sizes="16x16 32x32 96x96 192x192" href="/iaa-multiple-choice/static/img/favicon.png">

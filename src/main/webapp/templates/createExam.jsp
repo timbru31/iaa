@@ -2,11 +2,17 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <div class="page-header">
   <h1>
-    <s:text name="create.title" />
+    <s:if test="examId == null">
+      <s:text name="create.title" />
+    </s:if>
+    <s:else>
+      <s:text name="edit.title" />
+    </s:else>
   </h1>
 </div>
 
 <s:form action="saveExam">
+  <s:hidden name="examId" value="%{#attr.examId}" />
   <div class="form-group">
     <label for="create.examName"><s:text name="create.examName" /></label>
     <s:textfield name="exam.name" id="create.examName" type="text" required="true" class="form-control"
@@ -36,8 +42,12 @@
     </div>
   </div>
   <center>
-    <s:submit key="create.finalSubmit" class="btn btn-success">
-    </s:submit>
+    <s:if test="examId == null">
+      <s:submit key="create.finalSubmit" class="btn btn-success" />
+    </s:if>
+    <s:else>
+      <s:submit key="edit.finalSubmit" class="btn btn-success" />
+    </s:else>
   </center>
 </s:form>
 

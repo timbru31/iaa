@@ -22,7 +22,7 @@ public class ExamRepository {
             return entityManager.createQuery("SELECT exam FROM Exam exam WHERE exam_id = :exam_id", Exam.class)
                     .setParameter("exam_id", examId).getSingleResult();
         } catch (final NoResultException e) {
-            return null;
+            throw new ExamNotFoundException();
         }
     }
 

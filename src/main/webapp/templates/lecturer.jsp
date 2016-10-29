@@ -37,7 +37,10 @@
       <td><s:property value="finalSubmitDate"/></td>
       <td>
         <s:if test="editable">
-          <button class="btn btn-success"><s:text name="yes" /></button>
+          <s:url var="editExam" namespace="/" action="editExam">
+            <s:param name="examId">${id}</s:param>
+          </s:url>
+          <s:a href="%{editExam}" class="btn btn-success"><s:text name="yes" /></s:a>
         </s:if>
         <s:else>
           <button class="btn btn-danger disabled "><s:text name="no" /></button>

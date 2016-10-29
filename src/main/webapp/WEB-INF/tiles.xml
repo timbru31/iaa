@@ -31,6 +31,10 @@
     <put-attribute name="content" value="/templates/createExam.jsp" />
     <put-attribute name="title" value="pageTitle.createExam" />
   </definition>
+  <definition name="exam/edit" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/createExam.jsp" />
+    <put-attribute name="title" value="pageTitle.editExam" />
+  </definition>
   <definition name="exam/show" extends="mainTemplate">
     <put-attribute name="content" value="/templates/showExam.jsp" />
     <put-attribute name="title" value="pageTitle.showExam" />
@@ -46,6 +50,10 @@
   <definition name="notFoundError" extends="mainTemplate">
     <put-attribute name="content" value="/templates/error/notFoundError.jsp" />
     <put-attribute name="title" value="pageTitle.notFound" />
+  </definition>
+  <definition name="examNotFoundError" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/error/examNotFoundError.jsp" />
+    <put-attribute name="title" value="pageTitle.examNotFound" />
   </definition>
   <definition name="genericError" extends="mainTemplate">
     <put-attribute name="content" value="/templates/error/genericError.jsp" />
