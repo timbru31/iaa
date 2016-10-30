@@ -28,6 +28,11 @@ public class ExamService {
         examRepository.createExam(exam);
     }
 
+    @Transactional(readOnly = true)
+    public Exam find(Long examId) {
+        return examRepository.find(examId);
+    }
+
     @Transactional
     public List<Question> getQuestions(final Exam exam) {
         return questionRepository.findQuestions(exam);

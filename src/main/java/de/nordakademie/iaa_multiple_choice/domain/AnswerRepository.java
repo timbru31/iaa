@@ -16,15 +16,20 @@ public class AnswerRepository {
         entityManager.persist(answer);
     }
 
-    public void deleteAnswer(final Long id) {
-        entityManager.createQuery("DELETE anser FROM Answer answer WHERE id = :id", Answer.class).setParameter("id", id)
-                .executeUpdate();
+    public void deleteAnswer(final Long answerId) {
+        entityManager.createQuery("DELETE anser FROM Answer answer WHERE answer_id = :answer_id", Answer.class)
+                .setParameter("answer_id", answerId).executeUpdate();
     }
 
     public List<Answer> find(final Long id) {
         return entityManager.createQuery("SELECT answer FROM Answer answer WHERE id = :id", Answer.class)
                 .setParameter("id", id).getResultList();
     }
+    //
+    // public Answer find(final Long id) {
+    // return entityManager.createQuery("SELECT answer FROM Answer answer WHERE answer_id = :answer_id", Answer.class)
+    // .setParameter("answer_id", id).getSingleResult();
+    // }
 
     public List<Answer> findAll() {
         return entityManager.createQuery("SELECT answer FROM Answer answer", Answer.class).getResultList();

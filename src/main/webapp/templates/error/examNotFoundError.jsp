@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
-<h1>
-  <s:text name="welcome.title" />
-</h1>
+<div class="jumbotron">
+  <h2>OOPS!</h2>
+  <p>
+    <s:text name="error.examNotFound" />
+  </p>
+</div>

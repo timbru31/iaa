@@ -3,6 +3,7 @@ package de.nordakademie.iaa_multiple_choice.domain;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
@@ -16,10 +17,13 @@ public class ExamRepository {
         entityManager.persist(exam);
     }
 
-    public Exam find(final Long id) {
-        return entityManager.createQuery("SELECT exam FROM Exam exam WHERE id = :id", Exam.class).setParameter("id", id)
-                .getSingleResult();
-
+    public Exam find(final Long examId) {
+        try {
+            return entityManager.createQuery("SELECT exam FROM Exam exam WHERE exam_id = :exam_id", Exam.class)
+                    .setParameter("exam_id", examId).getSingleResult();
+        } catch (final NoResultException e) {
+            throw new ExamNotFoundException();
+        }
     }
 
     public List<Exam> findAll() {

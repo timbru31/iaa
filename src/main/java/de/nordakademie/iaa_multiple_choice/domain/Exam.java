@@ -1,12 +1,20 @@
 package de.nordakademie.iaa_multiple_choice.domain;
 
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +25,7 @@ import lombok.Setter;
 public class Exam {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "exam_id")
     private Long id;
 
     @Basic
@@ -31,13 +40,22 @@ public class Exam {
     @Basic
     private Integer examTime;
 
-    @Basic
-    private Integer examPeriod;
+    @Temporal(TemporalType.DATE)
+    private Date startDate;
+
+    @Temporal(TemporalType.DATE)
+    private Date finalSubmitDate;
 
     @Basic
     private Integer minPoints;
 
     @Basic
-    private Boolean editable;
+    private boolean editable;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Question> questions;
+
+    public void addQuestion(Question question) {
+        questions.add(question);
+    }
 }

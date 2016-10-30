@@ -1,108 +1,133 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
-<s:form>
-<div class="panel panel-default">
-  <div class="panel-body">
-    <s:text name="create.rightanswer" />
-  </div>
+<div class="page-header">
+  <h1>
+    <s:text name="create.question" />
+  </h1>
 </div>
 
-<div class="btn-group btn-group-justified" role="group">
+<s:form action="saveQuestion">
+  <s:hidden name="examId" value="%{#attr.examId}" />
 
-  <div class="btn-group">
-    <button type="button" class="btn btn-primary">
-      <s:text name="create.Question1" />
-    </button>
+  <script type="text/javascript">
+      function activeTab(tab) {
+        $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+      };
+    </script>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <button href="#sc" data-toggle="tab" type="button"
+        class="btn btn-default navbar-btn">
+        <s:text name="create.Question1" />
+      </button>
+      <button href="#mc" data-toggle="tab" type="button"
+        class="btn btn-default navbar-btn">
+        <s:text name="create.Question2" />
+      </button>
+      <button href="#fitbt" data-toggle="tab" type="button"
+        class="btn btn-default navbar-btn">
+        <s:text name="create.Question3" />
+      </button>
+
+      <s:submit key="createQuestion.submit"
+        class="btn btn-success navbar-btn navbar-right" />
+    </div>
+  </nav>
+
+  <!-- 
+  <ul class="nav nav-pills">
+    <li><a href="#sc" data-toggle="tab"><s:text name="create.Question1" /></a></li>
+    <li><a href="#mc" data-toggle="tab"><s:text name="create.Question2" /></a></li>
+    <li><a href="#fitbt" data-toggle="tab"><s:text
+          name="create.Question3" /></a></li>
+          
+    <li><s:submit key="createQuestion.submit" class="btn btn-primary navbar-btn" /></li>
+  </ul> 
+-->
+
+  <div class="tab-pane">
+    <s:textfield name="question.text" class="form-control"
+      placeholder="%{getText('create.enterQuestion')}" />
   </div>
 
-  <div class="btn-group">
+  <div class="tab-content" id="tabs">
 
-    <button type="button" class="btn btn-primary">
-      <s:text name="create.Question2" />
-    </button>
-  </div>
-  <div class="btn-group">
-
-    <button type="button" class="btn btn-primary">
-      <s:text name="create.Question3" />
-    </button>
-  </div>
-</div>
-
-<script type="text/javascript">
-  $(function() {
-    $(document).ready(
-        function() {
-          $("#registrationForm").attr("action",
-              "register" + $("#role").find("option:selected").val());
-        });
-    $("#role").on("change", function() {
-      var selected = $(this).find("option:selected").val();
-      if (selected === 'Student') {
-        $("#studentNumberForm").collapse("show");
-        $("#studentNumber").attr("required", true);
-        $("#registrationForm").attr("action", "registerStudent");
-      } else {
-        $("#studentNumberForm").collapse("hide");
-        $("#studentNumber").attr("required", false);
-        $("#registrationForm").attr("action", "registerLecturer");
-      }
-    });
-  });
-</script>
-
-<!-- Tab panes -->
-<div class="tab-content">
-  <div role="tabpanel" class="tab-pane active" id="SingleChoice">
-    <form>
-      <s:textfield id="simpleChoice" class="form-control"
-        placeholder="%{getText('create.enterQuestion')}" />
-      <div>
-        <input type="Radio" name="answer" /> <input type="text">
+    <div class="tab-pane" id="sc">
+      <div class="input-group">
+        <span class="input-group-addon"> <input type="radio"
+          aria-label="...">
+        </span> <input type="text" class="form-control">
       </div>
-      <input type="Radio" name="answer" /> <input type="text">
-      <button type="button" class="btn btn-default navbar-btn">
+      <div class="input-group">
+        <span class="input-group-addon"> <input type="radio"
+          aria-label="...">
+        </span> <input type="text" class="form-control">
+      </div>
+
+      <button type="button" class="btn btn-default">
         <span class="glyphicon glyphicon-plus"></span>
       </button>
-    </form>
-  </div>
+    </div>
 
-  <div role="tabpanel" class="tab-pane" id="MultipleChoice">
-    <form>
-      <s:textfield id="multipleChoice" class="form-control"
-        placeholder="%{getText('create.enterQuestion')}" />
-      <div>
-        <input type="checkbox" name="answer" /> <input>
+    <div class="tab-pane" id="mc">
+      <div class="input-group">
+        <span class="input-group-addon"> <input type="checkbox">
+        </span> <input type="text" class="form-control" />
       </div>
-      <input type="checkbox" name="answer" /> <input type="text">
+      <div class="input-group">
+        <span class="input-group-addon"> <input type="checkbox">
+        </span> <input type="text" class="form-control" />
+      </div>
 
-      <button type="button" class="btn btn-default navbar-btn">
-        <s:text name="create.nextAnswer" />
+      <button type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-plus"></span>
       </button>
-    </form>
-  </div>
+    </div>
 
-  <div role="tabpanel" class="tab-pane" id="Fitb">
-    <form>
-      <s:textfield id="fitb" class="form-control"
+    <div class="tab-pane" id="fitbt">
+      <s:textfield name="question.text" id="fitb" class="form-control"
         placeholder="%{getText('create.enterGapQuestion')}" />
-    </form>
-  </div>
-</div>
+    </div>
 
-<button type="button" class="btn btn-default navbar-btn">
-  <s:text name="create.deleteQuestion" />
-</button>
-<nav>
-  <ul class="pagination">
-    <li class="disabled"><a href="#" aria-label="Previous"><span
-        aria-hidden="true">&laquo;</span></a></li>
-    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-  </ul>
-</nav>
-<center>
-  <button type="button" class="btn btn-primary">
-    <s:text name="createQuestion.submit" />
-  </button>
-</center>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <button type="button" class="btn btn-default">
+        <s:text name="create.deleteQuestion" />
+      </button>
+    </div>
+    <div class="col-md-10">
+      <s:textfield name="question.points" id="points" class="form-control"
+        placeholder="Anzahl Punkte" />
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <s:text name="create.rightanswer" />
+    </div>
+  </div>
+
+  <center>
+    <nav>
+      <ul class="pagination">
+        <li class="disabled"><a href="#" aria-label="Previous"><span
+            aria-hidden="true">&laquo;</span></a></li>
+        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="#">2 <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="#">3 <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="#">4 <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="#">5 <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="#">6 <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="#">7 <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="#">8 <span class="sr-only">(current)</span></a></li>
+
+        <li class="disabled"><a href="#" aria-label="Next"><span
+            aria-hidden="true">&raquo;</span></a></li>
+      </ul>
+    </nav>
+
+  </center>
 </s:form>

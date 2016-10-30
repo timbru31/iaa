@@ -29,8 +29,13 @@ public class QuestionService {
     }
 
     @Transactional
-    public void deleteQuestion(final Long id) {
-        questionRepository.deleteQuestion(id);
+    public void deleteQuestion(final Long questionId) {
+        questionRepository.deleteQuestion(questionId);
+    }
+
+    @Transactional
+    public Question find(Long questionId) {
+        return questionRepository.find(questionId);
     }
 
     @Transactional(readOnly = true)

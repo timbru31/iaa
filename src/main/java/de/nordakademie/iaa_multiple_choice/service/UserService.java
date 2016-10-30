@@ -11,13 +11,8 @@ import de.nordakademie.iaa_multiple_choice.domain.UserRepository;
 
 @Service
 public class UserService {
-
-    private final UserRepository userRepository;
-
     @Autowired
-    public UserService(final UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private UserRepository userRepository;
 
     @Transactional
     public void createUser(final User user) {

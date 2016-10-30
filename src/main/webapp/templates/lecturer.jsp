@@ -4,7 +4,7 @@
   <s:text name="lecturer.title" />
 </h1>
 <div>
-  <a href="/iaa-multiple-choice/exam/create"> <img
+  <a href="/iaa-multiple-choice/createExam"> <img
     src="/iaa-multiple-choice/static/img/ExamIcon.png" alt="ExamIcon" /></a>
   <s:text name="lecturer.newExam" />
 </div>
@@ -17,11 +17,35 @@
 <h1>
   <s:text name="lecturer.title2" />
 </h1>
-<div>
-  <s:text name="Platzhalter Exam 1"></s:text>
-  <p></p>
-  <s:text name="Platzhalter Exam 2"></s:text>
-  <p></p>
-  <s:text name="Platzhalter Exam 3"></s:text>
-</div>
-<s:text name="lecturer.editableExam" />
+<table class="table table-hover">
+  <tr>
+    <th><s:text name="create.examName"/></th>
+    <th><s:text name="create.examCP"/></th>
+    <th><s:text name="create.examTime"/></th>
+    <th><s:text name="create.minPoints"/></th>
+    <th><s:text name="create.startDate"/></th>
+    <th><s:text name="create.submitDate"/></th>
+    <th><s:text name="lecturer.editable"/></th>
+  </tr>
+  <s:iterator value="lecturer.exams">
+    <tr>
+      <th><s:property value="name"/></th>
+      <td><s:property value="creditPoints"/></td>
+      <td><s:property value="examTime"/></td>
+      <td><s:property value="minPoints"/></td>
+      <td><s:property value="startDate"/></td>
+      <td><s:property value="finalSubmitDate"/></td>
+      <td>
+        <s:if test="editable">
+          <s:url var="editExam" namespace="/" action="editExam">
+            <s:param name="examId">${id}</s:param>
+          </s:url>
+          <s:a href="%{editExam}" class="btn btn-success"><s:text name="yes" /></s:a>
+        </s:if>
+        <s:else>
+          <button class="btn btn-danger disabled "><s:text name="no" /></button>
+        </s:else>
+      </td>
+    </tr>
+  </s:iterator>
+</table>

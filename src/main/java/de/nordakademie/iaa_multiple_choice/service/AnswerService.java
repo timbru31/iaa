@@ -11,13 +11,8 @@ import de.nordakademie.iaa_multiple_choice.domain.AnswerRepository;
 
 @Service
 public class AnswerService {
-
-    private final AnswerRepository answerRepository;
-
     @Autowired
-    public AnswerService(final AnswerRepository answerRepository) {
-        this.answerRepository = answerRepository;
-    }
+    private AnswerRepository answerRepository;
 
     @Transactional
     public void createAnswer(final Answer answer) {
