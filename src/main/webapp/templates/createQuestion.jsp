@@ -74,10 +74,6 @@
             value="1">
           </span> <input name="rawAnswerTextsSc" type="text" class="form-control">
         </div>
-
-        <button type="button" class="btn btn-default">
-          <span class="glyphicon glyphicon-plus"></span>
-        </button>
       </div>
 
       <button onclick="addRadioButton('div[id=addRadio]')" type="button"
