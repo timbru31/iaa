@@ -6,34 +6,36 @@
     <small><s:text name="mapping.subtitle" /></small>
   </h1>
 </div>
-<s:form action="lecturer">
-  <div class="panel panel-default">
-    <table class="table table-hover mapping-table">
+<div class="panel panel-default">
+  <table class="table table-hover mapping-table">
+    <tr>
+      <th><s:text name="create.examName" /></th>
+      <th><s:text name="mapping.students" /></th>
+    </tr>
+    <s:iterator value="lecturer.exams">
       <tr>
-        <th><s:text name="create.examName" /></th>
-        <th><s:text name="mapping.students" /></th>
-      </tr>
-      <s:iterator value="lecturer.exams">
-        <tr>
-          <th><s:property value="name" /></th>
-          <td>
-            <div class="input-group">
-              <%-- placeholder attribute is invalid, but bootstrap-taginput checks for this attribute when transforming to a input field --%>
-              <select multiple id="mapping" data-role="tagsinput" class="form-control"
+        <th><s:property value="name" /></th>
+        <td>
+        <s:form action="examMappingAction">
+          <s:fielderror></s:fielderror>
+          <s:hidden name="examId" value="%{id}"/>
+          <div class="input-group">
+            <%-- placeholder attribute is invalid, but bootstrap-taginput checks for this attribute when transforming to a input field --%>
+            <select name="studentEmails" multiple id="mapping" data-role="tagsinput" class="form-control"
                 placeholder="user@nordakademie.de"></select> <span class="input-group-btn"> <s:submit
-                  class="btn btn-default" type="button" key="mapping.link"></s:submit>
+                class="btn btn-default" type="button" key="mapping.link"></s:submit>
               </span>
             </div>
-          </td>
-        </tr>
-      </s:iterator>
-    </table>
-  </div>
-  <s:text name="mapping.hint" />
-  <div>
-    <s:submit name="back" key="create.back" class="btn btn-primary navbar-btn" />
-  </div>
-</s:form>
+          </s:form>
+        </td>
+      </tr>
+    </s:iterator>
+  </table>
+</div>
+<s:text name="mapping.hint" />
+<div>
+  <s:a action="lecturer" class="btn btn-primary navbar-btn"><s:text name="create.back" /></s:a>
+</div>
 
 <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"
   integrity="sha256-tQ3x4V2JW+L0ew/P3v2xzL46XDjEWUExFkCDY0Rflqc=" crossorigin="anonymous"></script>
@@ -44,3 +46,4 @@ $('#mapping').tagsinput({
   trimValue: true
 });
 </script>
+

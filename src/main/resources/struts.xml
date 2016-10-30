@@ -38,17 +38,18 @@
     <default-interceptor-ref name="iaa-multiple-choice" />
     <global-results>
       <result name="loginRedirect" type="tiles">login</result>
-      <result name="genericError" type="tiles">genericError</result>
+    <!--   <result name="genericError" type="tiles">genericError</result> -->
       <result name="forbidden" type="tiles">forbiddenError</result>
       <result name="examNotFound" type="tiles">examNotFoundError</result>
     </global-results>
 
-    <global-exception-mappings>
+<!--     <global-exception-mappings>
       <exception-mapping exception="java.lang.Exception"
         result="genericError" />
-      <exception-mapping exception="de.nordakademie.iaa_multiple_choice.domain.ExamNotFoundException"
+      <exception-mapping
+        exception="de.nordakademie.iaa_multiple_choice.domain.ExamNotFoundException"
         result="examNotFound" />
-    </global-exception-mappings>
+    </global-exception-mappings> -->
 
     <action name="" class="de.nordakademie.iaa_multiple_choice.web.HomeAction">
       <result name="welcome" type="tiles">home</result>
@@ -70,10 +71,11 @@
       </result>
     </action>
 
-    <action name="lecturer" class="de.nordakademie.iaa_multiple_choice.web.LecturerAction">
+    <action name="lecturer" class="de.nordakademie.iaa_multiple_choice.web.LecturerAction"
+      method="execute">
       <result type="tiles">lecturer</result>
     </action>
-
+    
     <action name="student" class="de.nordakademie.iaa_multiple_choice.web.StudentAction">
       <result type="tiles">student</result>
     </action>
@@ -82,7 +84,8 @@
       <result type="tiles">exam/create</result>
     </action>
 
-    <action name="editExam" class="de.nordakademie.iaa_multiple_choice.web.ExamAction" method="editExam">
+    <action name="editExam" class="de.nordakademie.iaa_multiple_choice.web.ExamAction"
+      method="editExam">
       <result type="tiles">exam/edit</result>
     </action>
 
@@ -117,10 +120,17 @@
     <action name="show">
       <result type="tiles">exam/show</result>
     </action>
-
+    
     <action name="mapping" class="de.nordakademie.iaa_multiple_choice.web.LecturerAction">
       <result type="tiles">lecturer/mapping</result>
     </action>
+    
+    <action name="examMappingAction" class="de.nordakademie.iaa_multiple_choice.web.ExamMappingAction"
+    method="mappingStudent">
+      <result type="tiles">lecturer/mapping</result>
+      <result type="tiles" name="input">lecturer/mapping</result>
+    </action>
+
     <!-- FOR TESTING / REMOVE LATER -->
     <action name="question">
       <result type="tiles">exam/create/question</result>
@@ -153,7 +163,8 @@
       <result name="input" type="tiles">registration</result>
     </action>
 
-    <action name="login"  class="de.nordakademie.iaa_multiple_choice.web.LoginAction" method="display">
+    <action name="login" class="de.nordakademie.iaa_multiple_choice.web.LoginAction"
+      method="display">
       <result name="success" type="tiles">login</result>
       <result name="redirectHome" type="redirectAction">
         <param name="actionName">home</param>
