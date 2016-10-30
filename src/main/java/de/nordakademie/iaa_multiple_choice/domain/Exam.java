@@ -1,17 +1,21 @@
 package de.nordakademie.iaa_multiple_choice.domain;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,8 +33,11 @@ public class Exam {
     @Column(name = "exam_id")
     private Long id;
 
-    @Basic
-    private HashMap<Student, String> keyList;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @MapKeyColumn(name = "student")
+    @Column(name = "token")
+    @CollectionTable(name = "student_exam_token_list", joinColumns = @JoinColumn(name = "id"))
+    private Map<Student, String> tokenList;
 
     @Basic
     private String name;
@@ -60,8 +67,8 @@ public class Exam {
         questions.add(question);
     }
 
-    public void addStudent(Student student, String generatedKey) {
-        keyList.put(student, generatedKey);
+    public void addStudent(Student student, String generatedToken) {
+        tokenList.put(student, generatedToken);
     }
 
 }
