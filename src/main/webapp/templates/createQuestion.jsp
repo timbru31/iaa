@@ -43,25 +43,19 @@
   <div class="tab-content" id="tabs">
 
     <div class="tab-pane" id="sc">
-
-      <!--        <s:radio name="Parametername" list="answers" listKey="Key-Property"
-        listValue="Value-Property" /> -->
-
-      <div class="input-group">
-        <span class="input-group-addon"> <input type="radio"
-          aria-label="...">
-        </span> <input type="text" class="form-control">
+        <div class="input-group">
+          <span class="input-group-addon"> <input type="radio" name="sc" value="0">
+          </span> <input name="rawAnswerTextsSc" type="text" class="form-control">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon"> <input type="radio" name="sc" value="1">
+          </span> <input name="rawAnswerTextsSc" type="text" class="form-control">
+        </div>
+  
+        <button type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-plus"></span>
+        </button>
       </div>
-      <div class="input-group">
-        <span class="input-group-addon"> <input type="radio"
-          aria-label="...">
-        </span> <input type="text" class="form-control">
-      </div>
-
-      <button type="button" class="btn btn-default">
-        <span class="glyphicon glyphicon-plus"></span>
-      </button>
-    </div>
 
     <div class="tab-pane" id="mc">
       <div class="input-group">

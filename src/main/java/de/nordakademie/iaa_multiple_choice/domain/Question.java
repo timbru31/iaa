@@ -34,7 +34,7 @@ public class Question {
     @Basic
     private String text;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Set<Answer> answers;
 
     public void addAnswer(Answer answer) {

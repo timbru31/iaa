@@ -21,7 +21,14 @@ public class Answer {
 
     @Basic
     private boolean rightAnswer;
-
     @Basic
     private String text;
+
+    public Answer() {
+    }
+
+    public Answer(String text, boolean rightAnswer) {
+        this.text = text;
+        this.rightAnswer = rightAnswer;
+    }
 }
