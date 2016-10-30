@@ -23,13 +23,14 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Exam {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "exam_id")
     private Long id;
 
     @Basic
-    private HashMap<Integer, String> keyList;
+    private HashMap<Student, String> keyList;
 
     @Basic
     private String name;
@@ -58,4 +59,9 @@ public class Exam {
     public void addQuestion(Question question) {
         questions.add(question);
     }
+
+    public void addStudent(Student student, String generatedKey) {
+        keyList.put(student, generatedKey);
+    }
+
 }

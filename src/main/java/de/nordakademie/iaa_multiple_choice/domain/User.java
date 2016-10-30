@@ -20,6 +20,7 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "role")
 public abstract class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
