@@ -12,16 +12,16 @@
       <th><s:text name="create.examName" /></th>
       <th><s:text name="mapping.students" /></th>
     </tr>
-    <s:iterator value="lecturer.exams">
+    <s:iterator value="lecturer.exams" status="it">
       <tr>
         <th><s:property value="name" /></th>
         <td>
-        <s:form action="examMappingAction">
+        <s:form action="examMappingAction" id="examMapping-%{#it.index}">
           <s:fielderror></s:fielderror>
           <s:hidden name="examId" value="%{id}"/>
           <div class="input-group">
             <%-- placeholder attribute is invalid, but bootstrap-taginput checks for this attribute when transforming to a input field --%>
-            <select name="studentEmails" multiple data-role="tagsinput" class="mapping form-control"
+            <select id="test-${it.index}" name="studentEmails" multiple data-role="tagsinput" class="mapping form-control"
                 placeholder="user@nordakademie.de"></select> <span class="input-group-btn"> <s:submit
                 class="btn btn-default" type="button" key="mapping.link"></s:submit>
               </span>
@@ -29,6 +29,14 @@
           </s:form>
         </td>
       </tr>
+      <!-- Add existing participants to the list -->
+      <s:iterator value="tokenList" var="tokenListElement">
+        <script>
+          $(document).ready(function() {
+            $('#examMapping-${it.index} select').tagsinput('add', '${tokenListElement.key.email}');
+          });
+        </script>
+      </s:iterator>
     </s:iterator>
   </table>
 </div>
