@@ -1,6 +1,6 @@
 package de.nordakademie.iaa_multiple_choice.domain;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.Basic;
@@ -42,13 +42,13 @@ public class Question {
     private String text;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Answer> answers;
+    private Set<Answer> answers;
 
     public void addAnswer(Answer answer) {
         answers.add(answer);
     }
 
-    public List<Answer> getCorrectAnswers() {
-        return answers.stream().filter(Answer::isRightAnswer).collect(Collectors.toList());
+    public Set<Answer> getCorrectAnswers() {
+        return answers.stream().filter(Answer::isRightAnswer).collect(Collectors.toSet());
     }
 }

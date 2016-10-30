@@ -2,7 +2,7 @@ package de.nordakademie.iaa_multiple_choice.domain;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +19,7 @@ public class QuestionTest {
         final Answer wrong = new Answer();
 
         question = new Question();
-        question.setAnswers(new ArrayList<Answer>());
+        question.setAnswers(new HashSet<Answer>());
         question.addAnswer(wrong);
         question.addAnswer(correctTwo);
         question.addAnswer(correct);
