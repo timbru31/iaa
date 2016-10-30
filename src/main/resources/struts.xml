@@ -53,22 +53,14 @@
 
     <action name="" class="de.nordakademie.iaa_multiple_choice.web.HomeAction">
       <result name="welcome" type="tiles">home</result>
-      <result name="lecturer" type="redirectAction">
-        <param name="actionName">lecturer</param>
-      </result>
-      <result name="student" type="redirectAction">
-        <param name="actionName">student</param>
-      </result>
+      <result name="lecturer" type="redirectAction">lecturer</result>
+      <result name="student" type="redirectAction">student</result>
     </action>
 
     <action name="home" class="de.nordakademie.iaa_multiple_choice.web.HomeAction">
       <result name="welcome" type="tiles">home</result>
-      <result name="lecturer" type="redirectAction">
-        <param name="actionName">lecturer</param>
-      </result>
-      <result name="student" type="redirectAction">
-        <param name="actionName">student</param>
-      </result>
+      <result name="lecturer" type="redirectAction">lecturer</result>
+      <result name="student" type="redirectAction">student</result>
     </action>
 
     <action name="lecturer" class="de.nordakademie.iaa_multiple_choice.web.LecturerAction"
@@ -95,9 +87,7 @@
         <param name="actionName">createQuestion</param>
         <param name="examId">${exam.id}</param>
       </result>
-      <result name="updated" type="redirectAction">
-        <param name="actionName">lecturer</param>
-      </result>
+      <result name="updated" type="redirectAction">lecturer</result>
       <result name="input" type="tiles">exam/create</result>
     </action>
 
@@ -121,13 +111,12 @@
       <result type="tiles">exam/show</result>
     </action>
     
-    <action name="mapping" class="de.nordakademie.iaa_multiple_choice.web.LecturerAction">
+    <action name="mapping" class="de.nordakademie.iaa_multiple_choice.web.ExamMappingAction">
       <result type="tiles">lecturer/mapping</result>
     </action>
     
-    <action name="examMappingAction" class="de.nordakademie.iaa_multiple_choice.web.ExamMappingAction"
-    method="mappingStudent">
-      <result type="tiles">lecturer/mapping</result>
+    <action name="examMappingAction" class="de.nordakademie.iaa_multiple_choice.web.ExamMappingAction" method="mappingStudent">
+      <result type="redirectAction">lecturer/mapping</result>
       <result type="tiles" name="input">lecturer/mapping</result>
     </action>
 
@@ -149,43 +138,31 @@
 
     <action name="registerLecturer" class="de.nordakademie.iaa_multiple_choice.web.RegisterAction"
       method="registerLecturer">
-      <result name="success" type="redirectAction">
-        <param name="actionName">lecturer</param>
-      </result>
+      <result name="success" type="redirectAction">lecturer</result>
       <result name="input" type="tiles">registration</result>
     </action>
 
     <action name="registerStudent" class="de.nordakademie.iaa_multiple_choice.web.RegisterAction"
       method="registerStudent">
-      <result name="success" type="redirectAction">
-        <param name="actionName">student</param>
-      </result>
+      <result name="success" type="redirectAction">student</result>
       <result name="input" type="tiles">registration</result>
     </action>
 
     <action name="login" class="de.nordakademie.iaa_multiple_choice.web.LoginAction"
       method="display">
       <result name="success" type="tiles">login</result>
-      <result name="redirectHome" type="redirectAction">
-        <param name="actionName">home</param>
-      </result>
+      <result name="redirectHome" type="redirectAction">>home</result>
     </action>
 
     <action name="logout" class="de.nordakademie.iaa_multiple_choice.web.LogoutAction"
       method="logout">
-      <result name="success" type="redirectAction">
-        <param name="actionName">home</param>
-      </result>
+      <result name="success" type="redirectAction">home</result>
     </action>
 
     <action name="loginUser" class="de.nordakademie.iaa_multiple_choice.web.LoginAction"
       method="login">
-      <result name="successLecturer" type="redirectAction">
-        <param name="actionName">lecturer</param>
-      </result>
-      <result name="successStudent" type="redirectAction">
-        <param name="actionName">student</param>
-      </result>
+      <result name="successLecturer" type="redirectAction">lecturer</result>
+      <result name="successStudent" type="redirectAction">student</result>
       <result name="input" type="tiles">login</result>
       <result name="redirect" type="redirect">
         <param name="location">${prevUrl}</param>

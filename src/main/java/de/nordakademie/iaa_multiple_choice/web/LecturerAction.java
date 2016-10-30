@@ -15,7 +15,7 @@ public class LecturerAction extends BaseSessionAction {
     private Lecturer lecturer;
 
     @Override
-    public String execute() throws Exception {
+    public String execute() {
         lecturer = (Lecturer) getUser();
         return SUCCESS;
     }

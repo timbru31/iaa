@@ -21,7 +21,7 @@
           <s:hidden name="examId" value="%{id}"/>
           <div class="input-group">
             <%-- placeholder attribute is invalid, but bootstrap-taginput checks for this attribute when transforming to a input field --%>
-            <select name="studentEmails" multiple id="mapping" data-role="tagsinput" class="form-control"
+            <select name="studentEmails" multiple data-role="tagsinput" class="mapping form-control"
                 placeholder="user@nordakademie.de"></select> <span class="input-group-btn"> <s:submit
                 class="btn btn-default" type="button" key="mapping.link"></s:submit>
               </span>
@@ -41,9 +41,8 @@
   integrity="sha256-tQ3x4V2JW+L0ew/P3v2xzL46XDjEWUExFkCDY0Rflqc=" crossorigin="anonymous"></script>
 
 <script>
-$('#mapping').tagsinput({
+$('.mapping').tagsinput({
   tagClass: 'label label-primary',
   trimValue: true
 });
 </script>
-
