@@ -35,18 +35,7 @@
     </div>
   </nav>
 
-  <!-- 
-  <ul class="nav nav-pills">
-    <li><a href="#sc" data-toggle="tab"><s:text name="create.Question1" /></a></li>
-    <li><a href="#mc" data-toggle="tab"><s:text name="create.Question2" /></a></li>
-    <li><a href="#fitbt" data-toggle="tab"><s:text
-          name="create.Question3" /></a></li>
-          
-    <li><s:submit key="createQuestion.submit" class="btn btn-primary navbar-btn" /></li>
-  </ul> 
--->
-
-  <div class="tab-pane">
+  <div>
     <s:textfield name="question.text" class="form-control"
       placeholder="%{getText('create.enterQuestion')}" />
   </div>
@@ -54,6 +43,10 @@
   <div class="tab-content" id="tabs">
 
     <div class="tab-pane" id="sc">
+
+      <!--        <s:radio name="Parametername" list="answers" listKey="Key-Property"
+        listValue="Value-Property" /> -->
+
       <div class="input-group">
         <span class="input-group-addon"> <input type="radio"
           aria-label="...">
@@ -85,10 +78,7 @@
       </button>
     </div>
 
-    <div class="tab-pane" id="fitbt">
-      <s:textfield name="question.text" id="fitb" class="form-control"
-        placeholder="%{getText('create.enterGapQuestion')}" />
-    </div>
+    <div class="tab-pane" id="fitbt"></div>
 
   </div>
 
