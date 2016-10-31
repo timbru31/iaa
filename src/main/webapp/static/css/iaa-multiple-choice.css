@@ -82,3 +82,8 @@ footer {
   color: rgb(128, 128, 128);
   background-color: rgb(128, 128, 128);
 }
+
+.home-header {
+  padding-bottom: 9px;
+  margin: 40px 0 20px;
+}
