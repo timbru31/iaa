@@ -86,6 +86,7 @@ public class RegisterAction extends BaseSessionAction {
         final String hashedPassword = hashPassword();
         final String activationToken = tokenGeneratorService.generateToken();
         final Lecturer lecturer = new Lecturer(firstName, lastName, email, hashedPassword, activationToken);
+        lecturer.setActivated(mailerDisabled);
         userService.createUser(lecturer);
         sendRegistrationMail(lecturer);
         if (mailerDisabled) {
@@ -100,6 +101,7 @@ public class RegisterAction extends BaseSessionAction {
         final String hashedPassword = hashPassword();
         final String activationToken = tokenGeneratorService.generateToken();
         final Student student = new Student(firstName, lastName, email, hashedPassword, activationToken, studentNumber);
+        student.setActivated(mailerDisabled);
         userService.createUser(student);
         sendRegistrationMail(student);
         if (mailerDisabled) {
