@@ -71,4 +71,12 @@ public class Exam {
         tokenList.put(student, generatedToken);
     }
 
+    public void clearParticipents() {
+        tokenList.clear();
+    }
+
+    public void removeParticipent(Student student) {
+        tokenList.remove(student);
+    }
+
 }

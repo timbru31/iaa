@@ -48,7 +48,7 @@ public class QuestionAction extends ActionSupport {
     private Integer sc;
     @Getter
     @Setter
-    private ArrayList<Integer> mc = new ArrayList();
+    private ArrayList<Integer> mc = new ArrayList<>();
 
     @Getter
     @Setter
