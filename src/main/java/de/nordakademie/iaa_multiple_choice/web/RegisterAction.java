@@ -1,10 +1,20 @@
 package de.nordakademie.iaa_multiple_choice.web;
 
+import java.io.UnsupportedEncodingException;
+
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import de.nordakademie.iaa_multiple_choice.domain.Lecturer;
 import de.nordakademie.iaa_multiple_choice.domain.Student;
+import de.nordakademie.iaa_multiple_choice.domain.User;
+import de.nordakademie.iaa_multiple_choice.service.MailSenderService;
 import de.nordakademie.iaa_multiple_choice.service.PasswordAuthenticationService;
+import de.nordakademie.iaa_multiple_choice.service.TokenGeneratorService;
 import de.nordakademie.iaa_multiple_choice.service.UserService;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,10 +45,16 @@ public class RegisterAction extends BaseSessionAction {
     @Getter
     @Setter
     private String role;
+    @Value("${mail.disabled}")
+    private boolean mailerDisabled;
     @Autowired
     private UserService userService;
     @Autowired
     private PasswordAuthenticationService passwordAuthenticationService;
+    @Autowired
+    private MailSenderService mailSenderService;
+    @Autowired
+    private TokenGeneratorService tokenGeneratorService;
 
     public void baseValidator() {
         if (firstName == null || firstName.isEmpty() || firstName.length() < 3) {
@@ -57,7 +73,7 @@ public class RegisterAction extends BaseSessionAction {
         if (password == null || passwordRepeat == null || !password.equals(passwordRepeat)) {
             addFieldError("password", getText("validation.passwordRepeat"));
         }
-        if (userService.find(getEmail()) != null) {
+        if (userService.findByMail(getEmail()) != null) {
             addFieldError("email", getText("validation.emailExists"));
         }
     }
@@ -68,20 +84,46 @@ public class RegisterAction extends BaseSessionAction {
 
     public String registerLecturer() {
         final String hashedPassword = hashPassword();
-        final Lecturer lecturer = new Lecturer(firstName, lastName, email, hashedPassword);
+        final String activationToken = tokenGeneratorService.generateToken();
+        final Lecturer lecturer = new Lecturer(firstName, lastName, email, hashedPassword, activationToken);
         userService.createUser(lecturer);
-        getSession().put("userEmail", lecturer.getEmail());
-        getSession().put("userName", lecturer.getFullName());
-        return SUCCESS;
+        sendRegistrationMail(lecturer);
+        if (mailerDisabled) {
+            getSession().put("userEmail", lecturer.getEmail());
+            getSession().put("userName", lecturer.getFullName());
+            return SUCCESS;
+        }
+        return "activationPending";
     }
 
     public String registerStudent() {
         final String hashedPassword = hashPassword();
-        final Student student = new Student(firstName, lastName, email, hashedPassword, studentNumber);
+        final String activationToken = tokenGeneratorService.generateToken();
+        final Student student = new Student(firstName, lastName, email, hashedPassword, activationToken, studentNumber);
         userService.createUser(student);
-        getSession().put("userEmail", student.getEmail());
-        getSession().put("userName", student.getFullName());
-        return SUCCESS;
+        sendRegistrationMail(student);
+        if (mailerDisabled) {
+            getSession().put("userEmail", student.getEmail());
+            getSession().put("userName", student.getFullName());
+            return SUCCESS;
+        }
+        return "activationPending";
+    }
+
+    private void sendRegistrationMail(User user) {
+        final HttpServletRequest request = ServletActionContext.getRequest();
+        try {
+            final String url = request.getRequestURL().toString();
+            final String baseURL = url.substring(0, url.length() - request.getRequestURI().length())
+                    + request.getContextPath() + "/";
+            final String activateURL = baseURL + "activate?token=" + user.getActivationToken();
+            final String[] args = { user.getFullName(), activateURL };
+            mailSenderService.sendMail(user.getEmail(), getText("registration.mailSubject"),
+                    getText("registration.mailText", args));
+        } catch (UnsupportedEncodingException | MessagingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public void validateRegisterLecturer() {

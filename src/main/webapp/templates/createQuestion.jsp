@@ -8,27 +8,47 @@
 
 <s:form action="saveQuestion">
   <s:hidden name="examId" value="%{#attr.examId}" />
+  <s:hidden name="questionType" id="questionType" value="" />
+
 
   <script type="text/javascript">
-      function activeTab(tab) {
-        $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+      let
+      value = 2;
+
+      $(document).ready(function() {
+        $('.navbar-btn').on('show.bs.tab', function(event) {
+          $('#questionType').val(event.target.hash.substr(1));
+        });
+      })
+
+      function addRadioButton(divName) {
+        let
+        newdiv = document.createElement('div');
+        newdiv.className = "input-group";
+        newdiv.innerHTML = "<span class='input-group-addon'><input type='radio' name='sc' value='" + value + "'></span><input name='rawAnswerTextsSc' type='text' class='form-control'>";
+        document.querySelector(divName).appendChild(newdiv);
+        value++;
+      };
+
+      function addCheckbox(divName) {
+        let
+        newdiv = document.createElement('div');
+        newdiv.className = "input-group";
+        newdiv.innerHTML = "<span class='input-group-addon'><input type='checkbox' name='mc' value='" + value + "'></span><input name='rawAnswerTextsMc' type='text' class='form-control'>";
+        document.querySelector(divName).appendChild(newdiv);
+        value++;
       };
     </script>
 
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-      <button href="#sc" data-toggle="tab" type="button"
-        class="btn btn-default navbar-btn">
-        <s:text name="create.Question1" />
-      </button>
-      <button href="#mc" data-toggle="tab" type="button"
-        class="btn btn-default navbar-btn">
-        <s:text name="create.Question2" />
-      </button>
-      <button href="#fitbt" data-toggle="tab" type="button"
-        class="btn btn-default navbar-btn">
-        <s:text name="create.Question3" />
-      </button>
+      <a href="#sc" data-toggle="tab" type="button"
+        class="btn btn-default navbar-btn"> <s:text name="create.Question1" />
+      </a> <a href="#mc" data-toggle="tab" type="button"
+        class="btn btn-default navbar-btn"> <s:text name="create.Question2" />
+      </a> <a href="#fitbt" data-toggle="tab" type="button"
+        class="btn btn-default navbar-btn"> <s:text name="create.Question3" />
+      </a>
 
       <s:submit key="createQuestion.submit"
         class="btn btn-success navbar-btn navbar-right" />
@@ -43,37 +63,41 @@
   <div class="tab-content" id="tabs">
 
     <div class="tab-pane" id="sc">
-
-      <!--        <s:radio name="Parametername" list="answers" listKey="Key-Property"
-        listValue="Value-Property" /> -->
-
-      <div class="input-group">
-        <span class="input-group-addon"> <input type="radio"
-          aria-label="...">
-        </span> <input type="text" class="form-control">
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon"> <input type="radio"
-          aria-label="...">
-        </span> <input type="text" class="form-control">
+      <div id="addRadio">
+        <div class="input-group">
+          <span class="input-group-addon"> <input type="radio" name="sc"
+            value="0">
+          </span> <input name="rawAnswerTextsSc" type="text" class="form-control">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon"> <input type="radio" name="sc"
+            value="1">
+          </span> <input name="rawAnswerTextsSc" type="text" class="form-control">
+        </div>
       </div>
 
-      <button type="button" class="btn btn-default">
+      <button onclick="addRadioButton('div[id=addRadio]')" type="button"
+        class="btn btn-default">
         <span class="glyphicon glyphicon-plus"></span>
       </button>
     </div>
 
     <div class="tab-pane" id="mc">
-      <div class="input-group">
-        <span class="input-group-addon"> <input type="checkbox">
-        </span> <input type="text" class="form-control" />
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon"> <input type="checkbox">
-        </span> <input type="text" class="form-control" />
+      <div id="addCheckbox">
+        <div class="input-group">
+          <span class="input-group-addon"> <input type="checkbox"
+            name="mc" value="0">
+          </span> <input name="rawAnswerTextsMc" type="text" class="form-control">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon"> <input type="checkbox"
+            name="mc" value="1">
+          </span> <input name="rawAnswerTextsMc" type="text" class="form-control">
+        </div>
       </div>
 
-      <button type="button" class="btn btn-default">
+      <button onclick="addCheckbox('div[id=addCheckbox]')" type="button"
+        class="btn btn-default">
         <span class="glyphicon glyphicon-plus"></span>
       </button>
     </div>

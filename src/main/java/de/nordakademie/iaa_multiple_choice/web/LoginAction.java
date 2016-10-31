@@ -66,10 +66,12 @@ public class LoginAction extends BaseSessionAction {
                 || password.isEmpty() || password.length() < 8) {
             addFieldError("loginFailed", getText("validation.wrongEmailOrUser"));
         } else {
-            user = userService.find(email);
+            user = userService.findByMail(email);
             if (user == null
                     || !passwordAuthenticationService.authenticate(password.toCharArray(), user.getPassword())) {
                 addFieldError("loginFailed", getText("validation.wrongEmailOrUser"));
+            } else if (!user.isActivated()) {
+                addFieldError("notActivated", getText("validation.notActivated"));
             }
         }
     }

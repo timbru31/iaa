@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
-public final class UserTokenGeneratorService {
+public final class TokenGeneratorService {
     private final SecureRandom random = new SecureRandom();
 
     public String generateToken() {

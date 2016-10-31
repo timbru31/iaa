@@ -27,27 +27,30 @@ public class RegisterActionTest extends StrutsSpringJUnit4TestCase<RegisterActio
     private UserService userService;
 
     @Test
-    public void testValidRegistration() {
-        request.setParameter("firstName", "Max");
+    public void testDuplicateRegistration() {
+        userService.createUser(
+                new Lecturer("Erika", "Mustermann", "erika.mustermann@nordakademie.de", "password", "token"));
+        request.setParameter("firstName", "Erika");
         request.setParameter("lastName", "Mustermann");
-        request.setParameter("email", "max.mustermann@nordakademie.de");
+        request.setParameter("email", "erika.mustermann@gmail.com");
         request.setParameter("password", "12345678");
         request.setParameter("passwordRepeat", "12345678");
-        request.setParameter("studentNumber", "1234");
-        ActionProxy proxy = getActionProxy("/registerStudent");
-        Map<String, Object> sessionMap = new HashMap<String, Object>();
+        final ActionProxy proxy = getActionProxy("/registerLecturer");
+        final Map<String, Object> sessionMap = new HashMap<>();
         proxy.getInvocation().getInvocationContext().setSession(sessionMap);
-        RegisterAction registerAction = (RegisterAction) proxy.getAction();
+        final RegisterAction registerAction = (RegisterAction) proxy.getAction();
         proxy.setExecuteResult(false);
         String result = "";
         try {
             result = proxy.execute();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             e.printStackTrace();
             fail("Test failed due to exception");
         }
-        assertEquals("Expected to have no fieldErrors", 0, registerAction.getFieldErrors().size());
-        assertEquals("Expected to have result name SUCCESS", ActionSupport.SUCCESS, result);
+        assertEquals("Expected to have no fieldErrors", 1, registerAction.getFieldErrors().size());
+        assertTrue("Expected to have fieldError with key emailExists",
+                registerAction.getFieldErrors().containsKey("email"));
+        assertEquals("Expected to have result name INPUT", ActionSupport.INPUT, result);
     }
 
     @Test
@@ -57,15 +60,15 @@ public class RegisterActionTest extends StrutsSpringJUnit4TestCase<RegisterActio
         request.setParameter("email", "max.mustermann@gmail.com");
         request.setParameter("password", "123456");
         request.setParameter("passwordRepeat", "123456789");
-        ActionProxy proxy = getActionProxy("/registerLecturer");
-        Map<String, Object> sessionMap = new HashMap<String, Object>();
+        final ActionProxy proxy = getActionProxy("/registerLecturer");
+        final Map<String, Object> sessionMap = new HashMap<>();
         proxy.getInvocation().getInvocationContext().setSession(sessionMap);
-        RegisterAction registerAction = (RegisterAction) proxy.getAction();
+        final RegisterAction registerAction = (RegisterAction) proxy.getAction();
         proxy.setExecuteResult(false);
         String result = "";
         try {
             result = proxy.execute();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             e.printStackTrace();
             fail("Test failed due to exception");
         }
@@ -81,28 +84,26 @@ public class RegisterActionTest extends StrutsSpringJUnit4TestCase<RegisterActio
     }
 
     @Test
-    public void testDuplicateRegistration() {
-        userService.createUser(new Lecturer("Erika", "Mustermann", "erika.mustermann@nordakademie.de", "password"));
-        request.setParameter("firstName", "Erika");
+    public void testValidRegistration() {
+        request.setParameter("firstName", "Max");
         request.setParameter("lastName", "Mustermann");
-        request.setParameter("email", "erika.mustermann@gmail.com");
+        request.setParameter("email", "max.mustermann@nordakademie.de");
         request.setParameter("password", "12345678");
         request.setParameter("passwordRepeat", "12345678");
-        ActionProxy proxy = getActionProxy("/registerLecturer");
-        Map<String, Object> sessionMap = new HashMap<String, Object>();
+        request.setParameter("studentNumber", "1234");
+        final ActionProxy proxy = getActionProxy("/registerStudent");
+        final Map<String, Object> sessionMap = new HashMap<>();
         proxy.getInvocation().getInvocationContext().setSession(sessionMap);
-        RegisterAction registerAction = (RegisterAction) proxy.getAction();
+        final RegisterAction registerAction = (RegisterAction) proxy.getAction();
         proxy.setExecuteResult(false);
         String result = "";
         try {
             result = proxy.execute();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             e.printStackTrace();
             fail("Test failed due to exception");
         }
-        assertEquals("Expected to have no fieldErrors", 1, registerAction.getFieldErrors().size());
-        assertTrue("Expected to have fieldError with key emailExists",
-                registerAction.getFieldErrors().containsKey("email"));
-        assertEquals("Expected to have result name INPUT", ActionSupport.INPUT, result);
+        assertEquals("Expected to have no fieldErrors", 0, registerAction.getFieldErrors().size());
+        assertEquals("Expected to have result name SUCCESS", ActionSupport.SUCCESS, result);
     }
 }

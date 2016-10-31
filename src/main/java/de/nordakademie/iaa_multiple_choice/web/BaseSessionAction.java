@@ -29,6 +29,6 @@ public class BaseSessionAction extends ActionSupport implements SessionAware {
             return null;
         }
 
-        return userService.find(email);
+        return userService.findByMail(email);
     }
 }

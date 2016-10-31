@@ -35,3 +35,15 @@ footer {
 .red {
   font-color: red;
 }
+
+.nak {
+	position: relative;
+	align: left;
+	}
+	
+.nakgs {
+	position: relative;
+	align: right;
+	}	
+	
+}

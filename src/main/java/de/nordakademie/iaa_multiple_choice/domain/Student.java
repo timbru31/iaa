@@ -25,11 +25,13 @@ public class Student extends User {
     public Student() {
     }
 
-    public Student(String firstName, String lastName, String email, String hashedPassword, Integer studentNumber) {
+    public Student(String firstName, String lastName, String email, String hashedPassword, String activationToken,
+            Integer studentNumber) {
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
         setPassword(hashedPassword);
+        setActivationToken(activationToken);
         setStudentNumber(studentNumber);
     }
 

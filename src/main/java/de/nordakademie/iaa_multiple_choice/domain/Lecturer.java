@@ -21,11 +21,12 @@ public class Lecturer extends User {
     public Lecturer() {
     }
 
-    public Lecturer(String firstName, String lastName, String email, String hashedPassword) {
+    public Lecturer(String firstName, String lastName, String email, String hashedPassword, String activationToken) {
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
         setPassword(hashedPassword);
+        setActivationToken(activationToken);
     }
 
     public void addExam(Exam exam) {

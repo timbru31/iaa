@@ -27,7 +27,7 @@ public class StudentInterceptor extends AbstractInterceptor {
 
         final Map<String, Object> session = ActionContext.getContext().getSession();
         final String email = (String) session.get("userEmail");
-        User user = userService.find(email);
+        User user = userService.findByMail(email);
         if (user == null) {
             return "loginRedirect";
         }
