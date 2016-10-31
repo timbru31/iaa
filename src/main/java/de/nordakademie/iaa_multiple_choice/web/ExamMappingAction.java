@@ -102,10 +102,11 @@ public class ExamMappingAction extends BaseSessionAction {
         for (final String email : studentEmails) {
             final User user = userService.findByMail(email);
             if (user == null || user instanceof Lecturer) {
-                addFieldError("test", "test");
-                break;
+                final String[] args = { email };
+                addActionMessage(getText("mapping.userInvalidOrNotFound", args));
+            } else {
+                students.add((Student) user);
             }
-            students.add((Student) user);
         }
     }
 

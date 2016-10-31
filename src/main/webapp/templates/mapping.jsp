@@ -17,7 +17,13 @@
         <th class="examName"><s:property value="name" /></th>
         <td><s:form action="examMappingAction"
             id="examMapping-%{#it.index}">
-            <s:fielderror></s:fielderror>
+            <s:if test="%{hasActionMessages() && id == examId}">
+              <div class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span class="sr-only"><s:text name="validation.error" /></span>
+                <strong><s:text name="validation.errorIntro" /></strong>
+                <s:actionmessage />
+              </div>
+            </s:if>
             <s:hidden name="examId" value="%{id}" />
             <div class="input-group">
               <%-- placeholder attribute is invalid, but bootstrap-taginput checks for this attribute when transforming to a input field --%>
@@ -25,7 +31,7 @@
                 data-role="tagsinput" class="mapping form-control"
                 placeholder="user@nordakademie.de"></select> <span
                 class="input-group-btn"> <s:submit
-                  class="btn btn-default" type="button" key="mapping.link"></s:submit>
+                  class="btn btn-default" type="button"><s:text name="mapping.link" /></s:submit>
               </span>
             </div>
           </s:form></td>

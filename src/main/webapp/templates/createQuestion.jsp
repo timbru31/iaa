@@ -7,7 +7,7 @@
 </div>
 
 <s:form action="saveQuestion">
-  <s:hidden name="examId" value="%{#attr.examId}" />
+  <s:hidden name="examId" value="%{examId}" />
   <s:hidden name="questionType" id="questionType" value="" />
 
 
