@@ -4,7 +4,7 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.StrutsStatics;
 import org.apache.struts2.interceptor.I18nInterceptor;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -23,7 +23,7 @@ public class ChangeLanguageAction extends BaseSessionAction {
 
     public String changeLanguage() {
         final HttpServletRequest request = (HttpServletRequest) ActionContext.getContext()
-                .get(ServletActionContext.HTTP_REQUEST);
+                .get(StrutsStatics.HTTP_REQUEST);
         prevUrl = request.getHeader("referer");
         final Locale locale = new Locale(lang);
         ActionContext.getContext().setLocale(locale);

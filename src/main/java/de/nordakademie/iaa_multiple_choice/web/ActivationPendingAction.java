@@ -2,7 +2,7 @@ package de.nordakademie.iaa_multiple_choice.web;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.StrutsStatics;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -16,7 +16,7 @@ public class ActivationPendingAction extends ActionSupport {
     @Override
     public String execute() {
         final HttpServletRequest request = (HttpServletRequest) ActionContext.getContext()
-                .get(ServletActionContext.HTTP_REQUEST);
+                .get(StrutsStatics.HTTP_REQUEST);
         final String referer = request.getHeader("referer");
         if (referer == null || referer.isEmpty() || !referer.contains("registration") || mailerDisabled) {
             return "redirectHome";

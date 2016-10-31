@@ -2,7 +2,7 @@ package de.nordakademie.iaa_multiple_choice.web;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.StrutsStatics;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -45,7 +45,7 @@ public class LoginAction extends BaseSessionAction {
 
     public String login() {
         final HttpServletRequest request = (HttpServletRequest) ActionContext.getContext()
-                .get(ServletActionContext.HTTP_REQUEST);
+                .get(StrutsStatics.HTTP_REQUEST);
         final String referer = request.getHeader("referer");
         getSession().put("userEmail", email);
         getSession().put("userName", user.getFullName());

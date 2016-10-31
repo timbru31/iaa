@@ -17,11 +17,17 @@
         <th class="examName"><s:property value="name" /></th>
         <td><s:form action="examMappingAction"
             id="examMapping-%{#it.index}">
-            <s:if test="%{hasActionMessages() && id == examId}">
+            <s:if test="%{hasActionErrors() && id == examId}">
               <div class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span class="sr-only"><s:text name="validation.error" /></span>
                 <strong><s:text name="validation.errorIntro" /></strong>
-                <s:actionmessage />
+                <s:actionerror />
+              </div>
+            </s:if>
+            <s:if test="%{hasActionMessages() && id == examId}">
+              <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                <s:actionmessage escape="false" />
               </div>
             </s:if>
             <s:hidden name="examId" value="%{id}" />

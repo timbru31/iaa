@@ -36,14 +36,14 @@
     <default-interceptor-ref name="iaa-multiple-choice" />
     <global-results>
       <result name="loginRedirect" type="tiles">login</result>
-      <result name="genericError" type="tiles">genericError</result>
+      <!-- <result name="genericError" type="tiles">genericError</result> -->
       <result name="forbidden" type="tiles">forbiddenError</result>
       <result name="examNotFound" type="tiles">examNotFoundError</result>
       <result name="examNotEditable" type="tiles">examNotEditable</result>
     </global-results>
 
     <global-exception-mappings>
-      <exception-mapping exception="java.lang.Exception" result="genericError" />
+      <!-- <exception-mapping exception="java.lang.Exception" result="genericError" /> -->
       <exception-mapping exception="de.nordakademie.iaa_multiple_choice.domain.exceptions.ExamNotFoundException"
         result="examNotFound" />
       <exception-mapping exception="de.nordakademie.iaa_multiple_choice.domain.exceptions.ExamNotEditableException"
@@ -114,6 +114,14 @@
       <result name="success" type="tiles">lecturer/mapping</result>
     </action>
 
+    <action name="mappingInput" class="de.nordakademie.iaa_multiple_choice.web.ExamMappingAction" method="input">
+      <interceptor-ref name="store">
+        <param name="operationMode">RETRIEVE</param>
+      </interceptor-ref>
+      <interceptor-ref name="iaa-multiple-choice" />
+      <result name="input" type="tiles">lecturer/mapping</result>
+    </action>
+
     <action name="examMappingAction" class="de.nordakademie.iaa_multiple_choice.web.ExamMappingAction" method="mapStudents">
       <interceptor-ref name="store">
         <param name="operationMode">STORE</param>
@@ -121,6 +129,10 @@
       <interceptor-ref name="iaa-multiple-choice" />
       <result type="redirectAction">
         <param name="actionName">mapping</param>
+        <param name="examId">${examId}</param>
+      </result>
+      <result name="input" type="redirectAction">
+        <param name="actionName">mappingInput</param>
         <param name="examId">${examId}</param>
       </result>
     </action>

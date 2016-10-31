@@ -33,11 +33,11 @@ public class MailSenderService {
             return;
         }
         final MimeMessage mimeMessage = mailSender.createMimeMessage();
-        final MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+        final MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
         final String recipient = recipientOverride != null && !recipientOverride.isEmpty() ? recipientOverride : to;
         mimeMessageHelper.setTo(recipient);
         mimeMessageHelper.setSubject(subject);
-        mimeMessageHelper.setText(body);
+        mimeMessageHelper.setText(body, true);
         mimeMessageHelper.setFrom("noreply@nordakademie.de", "NORDAKADEMIE Multiple Choice");
         mailSender.send(mimeMessage);
         logger.info("Sent mail to " + recipient);
