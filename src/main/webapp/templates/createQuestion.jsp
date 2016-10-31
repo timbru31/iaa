@@ -138,8 +138,7 @@
         <li class=""><a href="#">7 <span class="sr-only">(current)</span></a></li>
         <li class=""><a href="#">8 <span class="sr-only">(current)</span></a></li>
 
-        <li class="disabled"><a href="#"><span
-            aria-hidden="true">&raquo;</span></a></li>
+        <li class="disabled"><a href="#"><span aria-hidden="true">&raquo;</span></a></li>
       </ul>
     </nav>
 

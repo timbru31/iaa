@@ -10,45 +10,46 @@
   </p>
   <p>
     <a class="btn btn-default btn-lg" href="/iaa-multiple-choice/createExam"
-      role="button"><span class="glyphicon glyphicon-education"></span><s:text name="lecturer.newExam" /></a> 
-    <a class="btn btn-default btn-lg" href="/iaa-multiple-choice/lecturer/mapping" 
-      role="button"><span class="glyphicon glyphicon-list-alt"></span><s:text name="lecturer.mapStudent" /></a>
+      role="button"><span class="glyphicon glyphicon-education"></span> <s:text
+        name="lecturer.newExam" /></a> <a class="btn btn-default btn-lg"
+      href="/iaa-multiple-choice/lecturer/mapping" role="button"><span
+      class="glyphicon glyphicon-list-alt"></span> <s:text
+        name="lecturer.mapStudent" /></a>
   </p>
 </div>
 
-<h3>
-  <s:text name="lecturer.tableTitle" />
-</h3>
-<table class="table table-hover">
-  <tr>
-    <th><s:text name="create.examName" /></th>
-    <th><s:text name="create.examCP" /></th>
-    <th><s:text name="create.examTime" /></th>
-    <th><s:text name="create.minPoints" /></th>
-    <th><s:text name="create.startDate" /></th>
-    <th><s:text name="create.submitDate" /></th>
-    <th><span class="glyphicon glyphicon-edit"></span></th>
-  </tr>
-  <s:iterator value="lecturer.exams">
+<div class="panel panel-default">
+  <table class="table table-hover">
     <tr>
-      <th><s:property value="name" /></th>
-      <td><s:property value="creditPoints" /></td>
-      <td><s:property value="examTime" /></td>
-      <td><s:property value="minPoints" /></td>
-      <td><s:property value="startDate" /></td>
-      <td><s:property value="finalSubmitDate" /></td>
-      <td><s:if test="editable">
-          <s:url var="editExam" namespace="/" action="editExam">
-            <s:param name="examId">${id}</s:param>
-          </s:url>
-          <s:a href="%{editExam}" class="btn btn-success">
-            <s:text name="yes" />
-          </s:a>
-        </s:if> <s:else>
-          <button class="btn btn-danger disabled ">
-            <s:text name="no" />
-          </button>
-        </s:else></td>
+      <th><s:text name="create.examName" /></th>
+      <th><s:text name="create.examCP" /></th>
+      <th><s:text name="create.examTime" /></th>
+      <th><s:text name="create.minPoints" /></th>
+      <th><s:text name="create.startDate" /></th>
+      <th><s:text name="create.submitDate" /></th>
+      <th><span class="glyphicon glyphicon-edit"></span></th>
     </tr>
-  </s:iterator>
-</table>
+    <s:iterator value="lecturer.exams">
+      <tr>
+        <th><s:property value="name" /></th>
+        <td><s:property value="creditPoints" /></td>
+        <td><s:property value="examTime" /></td>
+        <td><s:property value="minPoints" /></td>
+        <td><s:property value="startDate" /></td>
+        <td><s:property value="finalSubmitDate" /></td>
+        <td><s:if test="editable">
+            <s:url var="editExam" namespace="/" action="editExam">
+              <s:param name="examId">${id}</s:param>
+            </s:url>
+            <s:a href="%{editExam}" class="btn btn-success">
+              <s:text name="yes" />
+            </s:a>
+          </s:if> <s:else>
+            <button class="btn btn-danger disabled ">
+              <s:text name="no" />
+            </button>
+          </s:else></td>
+      </tr>
+    </s:iterator>
+  </table>
+</div>
