@@ -2,9 +2,9 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <div class="jumbotron">
   <h2>
-    <s:text name="activationPending.headline" />
+    <s:text name="error" />
   </h2>
   <p>
-    <s:text name="activationPending.text" />
+    <s:text name="error.examNotEditable" />
   </p>
 </div>

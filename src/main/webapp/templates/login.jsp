@@ -5,7 +5,7 @@
     <s:text name="login.title" />
   </h1>
 </div>
-<s:form action="loginUser" validate="true">
+<s:form action="loginUser">
   <s:if test="hasFieldErrors()">
     <div class="alert alert-danger" role="alert">
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span class="sr-only"><s:text name="validation.error" /></span>
@@ -32,5 +32,5 @@
         class="form-control" />
     </div>
   </div>
-  <s:submit name="submit" key="login.button" class="btn btn-success" />
+  <s:submit class="btn btn-success" value="%{getText('login.button')}"/>
 </s:form>

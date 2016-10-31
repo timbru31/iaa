@@ -7,8 +7,8 @@
 </div>
 
 <s:form action="saveQuestion">
-  <s:hidden name="examId" value="%{#attr.examId}" />
-  <s:hidden name="questionType" id="questionType" value="" />
+  <s:hidden name="examId" value="%{examId}" />
+  <s:hidden name="questionType" id="questionType" />
 
 
   <script type="text/javascript">
@@ -24,7 +24,7 @@
       function addRadioButton(divName) {
         let
         newdiv = document.createElement('div');
-        newdiv.className = "input-group";
+        newdiv.className = "input-group choice";
         newdiv.innerHTML = "<span class='input-group-addon'><input type='radio' name='sc' value='" + value + "'></span><input name='rawAnswerTextsSc' type='text' class='form-control'>";
         document.querySelector(divName).appendChild(newdiv);
         value++;
@@ -33,7 +33,7 @@
       function addCheckbox(divName) {
         let
         newdiv = document.createElement('div');
-        newdiv.className = "input-group";
+        newdiv.className = "input-group choice";
         newdiv.innerHTML = "<span class='input-group-addon'><input type='checkbox' name='mc' value='" + value + "'></span><input name='rawAnswerTextsMc' type='text' class='form-control'>";
         document.querySelector(divName).appendChild(newdiv);
         value++;
@@ -50,12 +50,11 @@
         class="btn btn-default navbar-btn"> <s:text name="create.Question3" />
       </a>
 
-      <s:submit key="createQuestion.submit"
-        class="btn btn-success navbar-btn navbar-right" />
+      <s:submit class="btn btn-success navbar-btn navbar-right" value="%{getText('createQuestion.submit')}" />
     </div>
   </nav>
 
-  <div>
+  <div class="question">
     <s:textfield name="question.text" class="form-control"
       placeholder="%{getText('create.enterQuestion')}" />
   </div>
@@ -64,12 +63,12 @@
 
     <div class="tab-pane" id="sc">
       <div id="addRadio">
-        <div class="input-group">
+        <div class="input-group choice">
           <span class="input-group-addon"> <input type="radio" name="sc"
             value="0">
           </span> <input name="rawAnswerTextsSc" type="text" class="form-control">
         </div>
-        <div class="input-group">
+        <div class="input-group choice">
           <span class="input-group-addon"> <input type="radio" name="sc"
             value="1">
           </span> <input name="rawAnswerTextsSc" type="text" class="form-control">
@@ -84,12 +83,12 @@
 
     <div class="tab-pane" id="mc">
       <div id="addCheckbox">
-        <div class="input-group">
+        <div class="input-group choice">
           <span class="input-group-addon"> <input type="checkbox"
             name="mc" value="0">
           </span> <input name="rawAnswerTextsMc" type="text" class="form-control">
         </div>
-        <div class="input-group">
+        <div class="input-group choice">
           <span class="input-group-addon"> <input type="checkbox"
             name="mc" value="1">
           </span> <input name="rawAnswerTextsMc" type="text" class="form-control">
@@ -106,7 +105,7 @@
 
   </div>
 
-  <div class="row">
+  <div class="row question">
     <div class="col-md-2">
       <button type="button" class="btn btn-default">
         <s:text name="create.deleteQuestion" />
@@ -138,8 +137,7 @@
         <li class=""><a href="#">7 <span class="sr-only">(current)</span></a></li>
         <li class=""><a href="#">8 <span class="sr-only">(current)</span></a></li>
 
-        <li class="disabled"><a href="#" aria-label="Next"><span
-            aria-hidden="true">&raquo;</span></a></li>
+        <li class="disabled"><a href="#"><span aria-hidden="true">&raquo;</span></a></li>
       </ul>
     </nav>
 

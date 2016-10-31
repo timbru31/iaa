@@ -1,6 +1,10 @@
 package de.nordakademie.iaa_multiple_choice.web;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,8 +13,8 @@ import de.nordakademie.iaa_multiple_choice.domain.Lecturer;
 import de.nordakademie.iaa_multiple_choice.domain.Student;
 import de.nordakademie.iaa_multiple_choice.domain.User;
 import de.nordakademie.iaa_multiple_choice.service.ExamService;
-import de.nordakademie.iaa_multiple_choice.service.UserService;
 import de.nordakademie.iaa_multiple_choice.service.TokenGeneratorService;
+import de.nordakademie.iaa_multiple_choice.service.UserService;
 import de.nordakademie.iaa_multiple_choice.web.util.LecturerRequired;
 import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 import lombok.Getter;
@@ -35,10 +39,11 @@ public class ExamMappingAction extends BaseSessionAction {
     private String[] studentEmails;
     @Getter
     @Setter
-    private ArrayList<Student> students = new ArrayList<>();
+    private Set<Student> students = new HashSet<>();
     @Getter
     @Setter
     private Lecturer lecturer;
+    private boolean deleteAll;
 
     @Override
     public String execute() {
@@ -46,30 +51,62 @@ public class ExamMappingAction extends BaseSessionAction {
         return SUCCESS;
     }
 
-    public String mappingStudent() {
+    public String mapStudents() {
         final Exam exam = examService.find(examId);
-        for (final Student student : students) {
-            final String generatedToken = userTokenGeneratorService.generateToken();
-            exam.addStudent(student, generatedToken);
-            student.addExam(exam);
-            userService.updateUser(student);
+        if (deleteAll) {
+            removeAllStudents(exam);
+        } else {
+            updateStudentMapping(exam);
         }
-        examService.updateExam(exam);
         return SUCCESS;
     }
 
-    public void validateMappingStudent() {
+    private void removeAllStudents(final Exam exam) {
+        final Map<Student, String> tokenList = exam.getTokenList();
+        for (final Student student : tokenList.keySet()) {
+            student.removeExam(exam);
+            userService.updateUser(student);
+        }
+        exam.clearParticipants();
+        examService.updateExam(exam);
+    }
+
+    private void updateStudentMapping(final Exam exam) {
+        // Important: make a copy of the Map
+        final Map<Student, String> enrolledStudents = new HashMap<>(exam.getTokenList());
+        for (final Student student : students) {
+            if (!enrolledStudents.containsKey(student)) {
+                final String generatedToken = userTokenGeneratorService.generateToken();
+                exam.addParticipant(student, generatedToken);
+                student.addExam(exam);
+                userService.updateUser(student);
+                // sendInvitationMail();
+            }
+        }
+        enrolledStudents.keySet().removeAll(students);
+        for (final Entry<Student, String> entry : enrolledStudents.entrySet()) {
+            final Student student = entry.getKey();
+            student.removeExam(exam);
+            exam.removeParticipant(student);
+            userService.updateUser(student);
+            // sendRevokeMail();
+        }
+        examService.updateExam(exam);
+    }
+
+    public void validateMapStudents() {
         if (studentEmails == null) {
-            addFieldError("test", "test");
+            deleteAll = true;
             return;
         }
         for (final String email : studentEmails) {
             final User user = userService.findByMail(email);
             if (user == null || user instanceof Lecturer) {
-                addFieldError("test", "test");
-                break;
+                final String[] args = { email };
+                addActionMessage(getText("mapping.userInvalidOrNotFound", args));
+            } else {
+                students.add((Student) user);
             }
-            students.add((Student) user);
         }
     }
 

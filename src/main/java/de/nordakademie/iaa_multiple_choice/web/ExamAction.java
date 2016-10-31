@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import de.nordakademie.iaa_multiple_choice.domain.Exam;
 import de.nordakademie.iaa_multiple_choice.domain.Lecturer;
+import de.nordakademie.iaa_multiple_choice.domain.exceptions.ExamNotEditableException;
 import de.nordakademie.iaa_multiple_choice.service.ExamService;
 import de.nordakademie.iaa_multiple_choice.service.UserService;
 import de.nordakademie.iaa_multiple_choice.web.util.LecturerRequired;
@@ -28,6 +29,9 @@ public class ExamAction extends BaseSessionAction {
 
     public String editExam() {
         exam = examService.find(examId);
+        if (!exam.isEditable()) {
+            throw new ExamNotEditableException();
+        }
         return SUCCESS;
     }
 

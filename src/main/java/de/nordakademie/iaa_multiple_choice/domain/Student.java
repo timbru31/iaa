@@ -6,7 +6,7 @@ import javax.persistence.Basic;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +19,7 @@ public class Student extends User {
     @Basic
     private Integer studentNumber;
     @Basic
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Exam> registeredExams;
 
     public Student() {
@@ -37,5 +37,29 @@ public class Student extends User {
 
     public void addExam(Exam exam) {
         registeredExams.add(exam);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) {
+            return false;
+        }
+        final Student student = (Student) obj;
+        if (student.studentNumber == null && studentNumber != null
+                || studentNumber.intValue() != student.studentNumber.intValue()) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (studentNumber == null ? 0 : studentNumber.hashCode());
+        return result;
+    }
+
+    public void removeExam(Exam exam) {
+        registeredExams.remove(exam);
     }
 }

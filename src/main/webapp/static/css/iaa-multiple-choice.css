@@ -52,3 +52,35 @@ footer {
 	text-align: center;
 }
 }
+=======
+  color: red;
+}
+
+.glyphicon-list-alt {
+  top: 2px;
+  margin-right: 15px;
+}
+
+.glyphicon-education {
+  top: 2px;
+  margin-right: 15px;
+}
+
+.examName {
+  vertical-align: inherit !important;
+}
+
+.backoffice {
+  background-color: #f8f8f8;
+  border: 1px solid #e7e7e7;
+}
+
+.question {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.choice {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}

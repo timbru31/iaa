@@ -67,8 +67,16 @@ public class Exam {
         questions.add(question);
     }
 
-    public void addStudent(Student student, String generatedToken) {
+    public void addParticipant(Student student, String generatedToken) {
         tokenList.put(student, generatedToken);
+    }
+
+    public void clearParticipants() {
+        tokenList.clear();
+    }
+
+    public void removeParticipant(Student student) {
+        tokenList.remove(student);
     }
 
 }

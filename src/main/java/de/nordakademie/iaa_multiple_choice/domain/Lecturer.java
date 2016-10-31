@@ -1,6 +1,6 @@
 package de.nordakademie.iaa_multiple_choice.domain;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ import lombok.Setter;
 @DiscriminatorValue("lecturer")
 public class Lecturer extends User {
     @OneToMany(fetch = FetchType.EAGER)
-    private Set<Exam> exams;
+    private List<Exam> exams;
 
     public Lecturer() {
     }

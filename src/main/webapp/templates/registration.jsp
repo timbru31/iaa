@@ -5,7 +5,7 @@
     <s:text name="registration.title" />
   </h1>
 </div>
-<s:form action="registerLecturer" validate="true" id="registrationForm">
+<s:form action="registerLecturer" id="registrationForm">
   <s:if test="hasFieldErrors()">
     <div class="alert alert-danger" role="alert">
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span class="sr-only"><s:text name="validation.error" /></span>
@@ -51,7 +51,7 @@
     <s:textfield name="studentNumber" id="studentNumber" type="number" inputmode="numeric" requiredLabel="true"
       class="form-control" min="1" max="9999" pattern="[0-9]*" placeholder="1234" />
   </div>
-  <s:submit key="registration.button" class="btn btn-success" />
+  <s:submit class="btn btn-success" value="%{getText('registration.button')}" />
 </s:form>
 
 <script type="text/javascript">

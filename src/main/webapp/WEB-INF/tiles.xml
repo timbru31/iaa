@@ -67,6 +67,10 @@
     <put-attribute name="content" value="/templates/error/examNotFoundError.jsp" />
     <put-attribute name="title" value="pageTitle.examNotFound" />
   </definition>
+  <definition name="examNotEditable" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/error/examNotEditableError.jsp" />
+    <put-attribute name="title" value="pageTitle.examNotEditable" />
+  </definition>
   <definition name="genericError" extends="mainTemplate">
     <put-attribute name="content" value="/templates/error/genericError.jsp" />
     <put-attribute name="title" value="pageTitle.error" />
