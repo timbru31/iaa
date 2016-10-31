@@ -1,37 +1,66 @@
 .btn-margin-left {
-  margin-left: 5px;
+	margin-left: 5px;
 }
 
 .btn-margin-right {
-  margin-right: 5px;
+	margin-right: 5px;
 }
 
 .navbar-right {
-  margin-right: 0;
+	margin-right: 0;
 }
 
 footer {
-  height: 100px;
-  width: inherit;
+	height: 100px;
+	width: inherit;
 }
 
 .mapping-table tr th:first-child {
-  width: 1%;
-  white-space: nowrap;
+	width: 1%;
+	white-space: nowrap;
 }
 
 .bootstrap-tagsinput .tag {
-  display: inline-block;
-  font-size: 100%;
-  font-weight: 400;
-  margin: 2px 2px 2px 0;
+	display: inline-block;
+	font-size: 100%;
+	font-weight: 400;
+	margin: 2px 2px 2px 0;
 }
 
 .mapping-table .bootstrap-tagsinput {
-  width: 98%;
-  max-width: 98%;
+	width: 98%;
+	max-width: 98%;
 }
 
 .red {
-  font-color: red;
+	font-color: red;
+}
+
+.glyphicon-list-alt {
+	top: 2px;
+	margin-right: 15px;
+}
+
+.glyphicon-education {
+	top: 2px;
+	margin-right: 15px;
+}
+
+.examName {
+	vertical-align: inherit !important;
+}
+
+.backoffice {
+	background-color: #f8f8f8;
+	border: 1px solid #e7e7e7;
+}
+
+.question {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.choice {
+	margin-top: 2px;
+	margin-bottom: 2px;
 }
