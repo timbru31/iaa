@@ -67,15 +67,15 @@ public class Exam {
         questions.add(question);
     }
 
-    public void addStudent(Student student, String generatedToken) {
+    public void addParticipant(Student student, String generatedToken) {
         tokenList.put(student, generatedToken);
     }
 
-    public void clearParticipents() {
+    public void clearParticipants() {
         tokenList.clear();
     }
 
-    public void removeParticipent(Student student) {
+    public void removeParticipant(Student student) {
         tokenList.remove(student);
     }
 

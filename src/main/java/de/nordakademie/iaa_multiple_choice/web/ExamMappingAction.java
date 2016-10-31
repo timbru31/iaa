@@ -67,7 +67,7 @@ public class ExamMappingAction extends BaseSessionAction {
             student.removeExam(exam);
             userService.updateUser(student);
         }
-        exam.clearParticipents();
+        exam.clearParticipants();
         examService.updateExam(exam);
     }
 
@@ -77,7 +77,7 @@ public class ExamMappingAction extends BaseSessionAction {
         for (final Student student : students) {
             if (!enrolledStudents.containsKey(student)) {
                 final String generatedToken = userTokenGeneratorService.generateToken();
-                exam.addStudent(student, generatedToken);
+                exam.addParticipant(student, generatedToken);
                 student.addExam(exam);
                 userService.updateUser(student);
                 // sendInvitationMail();
@@ -87,7 +87,7 @@ public class ExamMappingAction extends BaseSessionAction {
         for (final Entry<Student, String> entry : enrolledStudents.entrySet()) {
             final Student student = entry.getKey();
             student.removeExam(exam);
-            exam.removeParticipent(student);
+            exam.removeParticipant(student);
             userService.updateUser(student);
             // sendRevokeMail();
         }
