@@ -8,7 +8,7 @@
 
 <s:form action="saveQuestion">
   <s:hidden name="examId" value="%{examId}" />
-  <s:hidden name="questionType" id="questionType" value="" />
+  <s:hidden name="questionType" id="questionType" />
 
 
   <script type="text/javascript">
@@ -50,8 +50,7 @@
         class="btn btn-default navbar-btn"> <s:text name="create.Question3" />
       </a>
 
-      <s:submit key="createQuestion.submit"
-        class="btn btn-success navbar-btn navbar-right" />
+      <s:submit class="btn btn-success navbar-btn navbar-right" value="%{getText('createQuestion.submit')}" />
     </div>
   </nav>
 

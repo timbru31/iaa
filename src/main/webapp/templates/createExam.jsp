@@ -63,17 +63,16 @@
   </div>
   <center>
     <s:if test="examId == null">
-      <s:submit key="create.finalSubmit" class="btn btn-success" />
+      <s:submit class="btn btn-success" value="%{getText('create.finalSubmit')}" />
     </s:if>
     <s:else>
-      <s:submit key="edit.finalSubmit" class="btn btn-success" />
+      <s:submit class="btn btn-success" value="%{getText('edit.finalSubmit')}" />
     </s:else>
   </center>
 </s:form>
 
-<s:form action="lecturer">
-  <s:submit name="back" key="create.back" class="btn btn-primary navbar-btn" />
-</s:form>
+<s:url var="back" namespace="/" action="lecturer" />
+<s:a href="%{back}" class="btn btn-primary navbar-btn"><s:text name="create.back" /></s:a>
 
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"

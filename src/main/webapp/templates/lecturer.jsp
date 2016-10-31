@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
-
 <div class="jumbotron backoffice">
   <h1>
     <s:text name="lecturer.title" />
@@ -9,12 +8,16 @@
     <s:text name="lecturer.subtitle" />
   </p>
   <p>
-    <a class="btn btn-default btn-lg" href="/iaa-multiple-choice/createExam"
-      role="button"><span class="glyphicon glyphicon-education"></span> <s:text
-        name="lecturer.newExam" /></a> <a class="btn btn-default btn-lg"
-      href="/iaa-multiple-choice/lecturer/mapping" role="button"><span
-      class="glyphicon glyphicon-list-alt"></span> <s:text
-        name="lecturer.mapStudent" /></a>
+    <s:url var="createExam" namespace="/" action="createExam" />
+    <s:url var="mapping" namespace="/" action="mapping" />
+    <s:a class="btn btn-default btn-lg" href="%{createExam}" role="button">
+      <span class="glyphicon glyphicon-education"></span>
+      <s:text name="lecturer.newExam" />
+    </s:a>
+    <s:a class="btn btn-default btn-lg" href="%{mapping}" role="button">
+      <span class="glyphicon glyphicon-list-alt"></span>
+      <s:text name="lecturer.mapStudent" />
+    </s:a>
   </p>
 </div>
 

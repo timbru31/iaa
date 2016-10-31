@@ -64,12 +64,12 @@
         <s:if test="%{#session.userEmail == null}">
           <li>
             <s:form action="login">
-              <s:submit name="submit" key="login.button" class="btn btn-primary navbar-btn btn-margin-left" />
+              <s:submit class="btn btn-primary navbar-btn btn-margin-left" value="%{getText('login.button')}" />
             </s:form>
           </li>
           <li>
             <s:form action="registration">
-              <s:submit name="submit" key="registration.button" class="btn btn-primary navbar-btn btn-margin-left" />
+              <s:submit class="btn btn-primary navbar-btn btn-margin-left" value="%{getText('registration.button')}" />
             </s:form>
           </li>
         </s:if>
@@ -82,7 +82,7 @@
           </li>
           <li>
             <s:form action="logout">
-              <s:submit name="submit" key="logout.button" class="btn btn-primary navbar-btn" />
+              <s:submit class="btn btn-primary navbar-btn" value="%{getText('logout.button')}" />
             </s:form>
           </li>
         </s:else>

@@ -8,6 +8,8 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
+import de.nordakademie.iaa_multiple_choice.domain.exceptions.ExamNotFoundException;
+
 @Repository
 public class ExamRepository {
     @PersistenceContext
