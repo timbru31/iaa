@@ -10,7 +10,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 import org.hibernate.annotations.NaturalId;
-import org.springframework.beans.factory.annotation.Value;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -39,13 +38,40 @@ public abstract class User {
     private String password;
 
     @Basic
-    @Value("${mail.disabled}")
     private boolean activated;
 
     @Basic
     private String activationToken;
 
+    @Override
+    public boolean equals(Object obj) {
+        if ((obj == null) || (obj.getClass() != this.getClass())) {
+            return false;
+        }
+        final User user = (User) obj;
+        if (!id.equals(user.id) || !firstName.equals(user.firstName) || !lastName.equals(user.lastName)
+                || !email.equals(user.email) || !password.equals(user.password) || activated != user.activated
+                || !activationToken.equals(user.activationToken)) {
+            return false;
+        }
+        return true;
+    }
+
     public String getFullName() {
-        return firstName + " " + lastName;
+        return this.firstName + " " + this.lastName;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + (id == null ? 0 : id.hashCode());
+        result = 31 * result + (firstName == null ? 0 : firstName.hashCode());
+        result = 31 * result + (lastName == null ? 0 : lastName.hashCode());
+        result = 31 * result + (email == null ? 0 : email.hashCode());
+        result = 31 * result + (password == null ? 0 : password.hashCode());
+        result = 31 * result + (lastName == null ? 0 : lastName.hashCode());
+        result = 31 * result + (activationToken == null ? 0 : activationToken.hashCode());
+        result = 31 * result + (activated ? 1 : 0);
+        return result;
     }
 }
