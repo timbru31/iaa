@@ -19,6 +19,18 @@
     <put-attribute name="content" value="/templates/registration.jsp" />
     <put-attribute name="title" value="pageTitle.registration" />
   </definition>
+  <definition name="activationPending" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/activationPending.jsp" />
+    <put-attribute name="title" value="pageTitle.activationPending" />
+  </definition>
+  <definition name="activationError" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/activationError.jsp" />
+    <put-attribute name="title" value="pageTitle.activationError" />
+  </definition>
+  <definition name="activationSuccess" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/activationSuccess.jsp" />
+    <put-attribute name="title" value="pageTitle.activationSuccess" />
+  </definition>
   <definition name="login" extends="mainTemplate">
     <put-attribute name="content" value="/templates/login.jsp" />
     <put-attribute name="title" value="pageTitle.login" />

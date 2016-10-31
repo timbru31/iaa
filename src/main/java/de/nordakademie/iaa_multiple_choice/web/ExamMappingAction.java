@@ -10,7 +10,7 @@ import de.nordakademie.iaa_multiple_choice.domain.Student;
 import de.nordakademie.iaa_multiple_choice.domain.User;
 import de.nordakademie.iaa_multiple_choice.service.ExamService;
 import de.nordakademie.iaa_multiple_choice.service.UserService;
-import de.nordakademie.iaa_multiple_choice.service.UserTokenGeneratorService;
+import de.nordakademie.iaa_multiple_choice.service.TokenGeneratorService;
 import de.nordakademie.iaa_multiple_choice.web.util.LecturerRequired;
 import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 import lombok.Getter;
@@ -26,7 +26,7 @@ public class ExamMappingAction extends BaseSessionAction {
     @Autowired
     private UserService userService;
     @Autowired
-    private UserTokenGeneratorService userTokenGeneratorService;
+    private TokenGeneratorService userTokenGeneratorService;
     @Getter
     @Setter
     private Long examId;
@@ -64,7 +64,7 @@ public class ExamMappingAction extends BaseSessionAction {
             return;
         }
         for (final String email : studentEmails) {
-            final User user = userService.find(email);
+            final User user = userService.findByMail(email);
             if (user == null || user instanceof Lecturer) {
                 addFieldError("test", "test");
                 break;

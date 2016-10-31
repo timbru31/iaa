@@ -1,4 +1,4 @@
-# 🎓 📝 IAA Hausarbeit - Multiple Choice
+# 🎓  IAA Hausarbeit - Multiple Choice 📝
 ### Authors
 
 Jens Gottwald, Hannes Peterson, Yannick Rump, Tim Brust
@@ -23,4 +23,9 @@ Technologies used are Hibernate, Spring and Struts2.
 
 1. Clone the project
 2. Create a `user.properties` in `src/main/resources/` and add a correct `database.url` for the H2 database
-3. Run the project. Visit http://localhost:8080/iaa-multiple-choice
+3. Run the project. Visit [http://localhost:8080/iaa-multiple-choice](http://localhost:8080/iaa-multiple-choice)
+
+## Configuration
+
+You can enable mailing by adding the flag `mail.disabled=false` to your `user.properties`. You need to configure both `mail.username` and `mail.password` with valid Gmail credentials or use your own mail server. This will enable the need of activation of user accounts and mailing of tokens for exams!  
+Besides that you can force to override the recipient by adding `mail.overrideRecipient=your@email` to your `user.properties`.

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:context="http://www.springframework.org/schema/context"
-  xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:mvc="http://www.springframework.org/schema/mvc"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
@@ -21,22 +19,18 @@
     </property>
   </bean>
 
-  <bean id="dataSource"
-    class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <property name="driverClassName" value="org.h2.Driver" />
-    <property name="url"
-      value="jdbc:h2:${database.url};MV_STORE=FALSE;MVCC=FALSE" />
+    <property name="url" value="jdbc:h2:${database.url};MV_STORE=FALSE;MVCC=FALSE" />
     <property name="username" value="${database.username}" />
     <property name="password" value="${database.password}" />
   </bean>
 
-  <bean id="entityManagerFactory"
-    class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+  <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
     <property name="dataSource" ref="dataSource" />
     <property name="packagesToScan" value="de.nordakademie.iaa_multiple_choice.domain" />
     <property name="jpaVendorAdapter">
-      <bean
-        class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+      <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
     </property>
     <property name="jpaProperties">
       <props>
@@ -50,6 +44,20 @@
 
   <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
     <property name="entityManagerFactory" ref="entityManagerFactory" />
+  </bean>
+
+  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="${mail.host}" />
+    <property name="port" value="${mail.port}" />
+    <property name="username" value="${mail.username}" />
+    <property name="password" value="${mail.password}" />
+    <property name="javaMailProperties">
+      <props>
+        <prop key="mail.transport.protocol">${mail.protocol}</prop>
+        <prop key="mail.smtp.auth">${mail.auth}</prop>
+        <prop key="mail.smtp.starttls.enable">${mail.startTLS}</prop>
+      </props>
+    </property>
   </bean>
 
   <tx:annotation-driven transaction-manager="transactionManager" />

@@ -39,7 +39,8 @@ public class LoginActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {
             return;
         }
         final Lecturer lecturer = new Lecturer("John", "Doe", "john.doe@nordakademie.de",
-                passwordAuthenticationService.hash("12345678".toCharArray()));
+                passwordAuthenticationService.hash("12345678".toCharArray()), "token");
+        lecturer.setActivated(true);
         userService.createUser(lecturer);
         setUpIsDone = true;
     }

@@ -141,12 +141,25 @@
       method="registerLecturer">
       <result name="success" type="redirectAction">lecturer</result>
       <result name="input" type="tiles">registration</result>
+      <result name="activationPending" type="redirectAction">activationPending</result>
     </action>
 
     <action name="registerStudent" class="de.nordakademie.iaa_multiple_choice.web.RegisterAction"
       method="registerStudent">
       <result name="success" type="redirectAction">student</result>
       <result name="input" type="tiles">registration</result>
+      <result name="activationPending" type="redirectAction">activationPending</result>
+    </action>
+
+    <action name="activationPending" class="de.nordakademie.iaa_multiple_choice.web.ActivationPendingAction">
+      <result name="redirectHome" type="redirectAction">home</result>
+      <result name="success" type="tiles">activationPending</result>
+    </action>
+
+    <action name="activate" class="de.nordakademie.iaa_multiple_choice.web.ActivateAction">
+      <result name="redirectHome" type="redirectAction">home</result>
+      <result name="error" type="tiles">activationError</result>
+      <result name="success" type="tiles">activationSuccess</result>
     </action>
 
     <action name="login" class="de.nordakademie.iaa_multiple_choice.web.LoginAction"

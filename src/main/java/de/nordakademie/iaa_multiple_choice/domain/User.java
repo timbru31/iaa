@@ -10,6 +10,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 import org.hibernate.annotations.NaturalId;
+import org.springframework.beans.factory.annotation.Value;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -36,6 +37,13 @@ public abstract class User {
 
     @Basic
     private String password;
+
+    @Basic
+    @Value("${mail.disabled}")
+    private boolean activated;
+
+    @Basic
+    private String activationToken;
 
     public String getFullName() {
         return firstName + " " + lastName;

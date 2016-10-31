@@ -15,7 +15,7 @@ public class HomeAction extends BaseSessionAction {
     @Override
     public String execute() {
         if (getSession().containsKey("userEmail")) {
-            User user = userService.find((String) getSession().get("userEmail"));
+            User user = userService.findByMail((String) getSession().get("userEmail"));
             if (user == null) {
                 return "welcome";
             }

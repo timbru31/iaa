@@ -20,8 +20,13 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public User find(final String email) {
-        return userRepository.find(email);
+    public User findByMail(final String email) {
+        return userRepository.findbyMail(email);
+    }
+
+    @Transactional(readOnly = true)
+    public User findByToken(final String token) {
+        return userRepository.findByToken(token);
     }
 
     @Transactional(readOnly = true)

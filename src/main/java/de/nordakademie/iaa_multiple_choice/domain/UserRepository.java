@@ -17,7 +17,11 @@ public class UserRepository {
         entityManager.persist(user);
     }
 
-    public User find(final String userNaturalId) {
+    public List<User> findAll() {
+        return entityManager.createQuery("SELECT user FROM User user", User.class).getResultList();
+    }
+
+    public User findbyMail(final String userNaturalId) {
         try {
             return entityManager.createQuery("SELECT user FROM User user WHERE email = :email", User.class)
                     .setParameter("email", userNaturalId).getSingleResult();
@@ -26,8 +30,14 @@ public class UserRepository {
         }
     }
 
-    public List<User> findAll() {
-        return entityManager.createQuery("SELECT user FROM User user", User.class).getResultList();
+    public User findByToken(final String activationToken) {
+        try {
+            return entityManager
+                    .createQuery("SELECT user FROM User user WHERE activationToken = :activationToken", User.class)
+                    .setParameter("activationToken", activationToken).getSingleResult();
+        } catch (final NoResultException e) {
+            return null;
+        }
     }
 
     public User updateUser(final User updatedUser) {
