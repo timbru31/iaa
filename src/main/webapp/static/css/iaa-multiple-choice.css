@@ -1,59 +1,51 @@
 .btn-margin-left {
-	margin-left: 5px;
+  margin-left: 5px;
 }
 
 .btn-margin-right {
-	margin-right: 5px;
+  margin-right: 5px;
 }
 
 .navbar-right {
-	margin-right: 0;
+  margin-right: 0;
 }
 
-footer {	
-	height: 100px;
-	width: inherit;
+footer {
+  height: 100px;
+  width: inherit;
 }
 
 .mapping-table tr th:first-child {
-	width: 1%;
-	white-space: nowrap;
+  width: 1%;
+  white-space: nowrap;
 }
 
 .bootstrap-tagsinput .tag {
-	display: inline-block;
-	font-size: 100%;
-	font-weight: 400;
-	margin: 2px 2px 2px 0;
+  display: inline-block;
+  font-size: 100%;
+  font-weight: 400;
+  margin: 2px 2px 2px 0;
 }
 
 .mapping-table .bootstrap-tagsinput {
-	width: 98%;
-	max-width: 98%;
+  width: 98%;
+  max-width: 98%;
 }
 
 .red {
-	font-color: red;
+  color: red;
 }
 
 .nak {
-	position: relative;
-	float: left;
+  float: left;
 }
 
 .nakgs {
-	position: relative;
-	float: right;
+  float: right;
 }
 
-.headline {
-	position: relative;
-	float: center;
-	text-align: center;
-}
-}
-=======
-  color: red;
+.center {
+  text-align: center;
 }
 
 .glyphicon-list-alt {
@@ -83,4 +75,10 @@ footer {
 .choice {
   margin-top: 2px;
   margin-bottom: 2px;
+}
+
+.bigHr {
+  height: 1px;
+  color: rgb(128, 128, 128);
+  background-color: rgb(128, 128, 128);
 }

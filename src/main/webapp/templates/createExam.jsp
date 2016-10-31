@@ -61,14 +61,14 @@
         name="exam.finalSubmitDate" id="examEnd" required="true" />
     </div>
   </div>
-  <center>
+  <div class="center">
     <s:if test="examId == null">
       <s:submit class="btn btn-success" value="%{getText('create.finalSubmit')}" />
     </s:if>
     <s:else>
       <s:submit class="btn btn-success" value="%{getText('edit.finalSubmit')}" />
     </s:else>
-  </center>
+  </div>
 </s:form>
 
 <s:url var="back" namespace="/" action="lecturer" />

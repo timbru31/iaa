@@ -123,7 +123,7 @@
     </div>
   </div>
 
-  <center>
+  <div class="center">
     <nav>
       <ul class="pagination">
         <li class="disabled"><a href="#" aria-label="Previous"><span
@@ -136,10 +136,8 @@
         <li class=""><a href="#">6 <span class="sr-only">(current)</span></a></li>
         <li class=""><a href="#">7 <span class="sr-only">(current)</span></a></li>
         <li class=""><a href="#">8 <span class="sr-only">(current)</span></a></li>
-
         <li class="disabled"><a href="#"><span aria-hidden="true">&raquo;</span></a></li>
       </ul>
     </nav>
-
-  </center>
+  </div>
 </s:form>

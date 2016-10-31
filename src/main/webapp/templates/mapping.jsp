@@ -32,7 +32,7 @@
             </s:if>
             <s:hidden name="examId" value="%{id}" />
             <div class="input-group">
-              <%-- placeholder attribute is invalid, but bootstrap-taginput checks for this attribute when transforming to a input field --%>
+              <%-- placeholder attribute is invalid, but bootstrap-taginput checks for this attribute when transforming to an input field --%>
               <select id="test-${it.index}" name="studentEmails" multiple
                 data-role="tagsinput" class="mapping form-control"
                 placeholder="user@nordakademie.de"></select> <span
@@ -45,12 +45,12 @@
       <!-- Add existing participants to the list -->
       <s:iterator value="tokenList" var="tokenListElement">
         <script>
-                  $(document).ready(
-                      function() {
-                        $('#examMapping-${it.index} select').tagsinput('add',
-                            '${tokenListElement.key.email}');
-                      });
-                </script>
+          $(document).ready(
+              function() {
+                $('#examMapping-${it.index} select').tagsinput('add',
+                    '${tokenListElement.key.email}');
+              });
+        </script>
       </s:iterator>
     </s:iterator>
   </table>
