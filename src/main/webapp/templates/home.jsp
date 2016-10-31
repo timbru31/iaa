@@ -9,13 +9,15 @@
   <div class="nakgs">
     <a href="nordakademie-gs.de"> <img
       src="/iaa-multiple-choice/static/img/NA-Dockland-Logo.png"
-      width=200px height=auto /></a>
+      width=300px height=auto /></a>
   </div>
-</div>
+
 <div>
-  <h1>
+  <h1 class=headline>
     <s:text name="welcome.title" />
   </h1>
-<p><s:text name="welcome.text"></s:text></p>
-
-</div>
+  </div>
+  </div>
+  <hr noshade size="1"/>
+<p><s:text name="welcome.general"></s:text></p>
+<p><s:text name="welcome.info"></s:text></p>
