@@ -37,7 +37,7 @@ public class Question {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Set<Answer> answers;
 
-    public void addAnswer(Answer answer) {
+    public void addAnswer(final Answer answer) {
         answers.add(answer);
     }
 

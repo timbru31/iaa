@@ -1,5 +1,8 @@
 package de.nordakademie.iaa_multiple_choice.web;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import de.nordakademie.iaa_multiple_choice.domain.Exam;
@@ -22,6 +25,18 @@ public class ExamAction extends BaseSessionAction {
     @Getter
     @Setter
     private Long examId;
+    @Getter
+    @Setter
+    private Date rawStartDate;
+    @Getter
+    @Setter
+    private Date rawEndDate;
+    @Getter
+    @Setter
+    private LocalDate startDate;
+    @Getter
+    @Setter
+    private LocalDate endDate;
     @Autowired
     private ExamService examService;
     @Autowired
@@ -32,21 +47,24 @@ public class ExamAction extends BaseSessionAction {
         if (!exam.isEditable()) {
             throw new ExamNotEditableException();
         }
+        rawStartDate = Date.valueOf(exam.getStartDate());
+        rawEndDate = Date.valueOf(exam.getEndDate());
         return SUCCESS;
     }
 
     public String saveExam() {
+        exam.setStartDate(startDate);
+        exam.setEndDate(endDate);
         if (examId == null) {
             final Lecturer lecturer = (Lecturer) getUser();
             lecturer.addExam(exam);
             examService.createExam(exam);
             userService.updateUser(lecturer);
             return "created";
-        } else {
-            exam.setId(examId);
-            examService.updateExam(exam);
-            return "updated";
         }
+        exam.setId(examId);
+        examService.updateExam(exam);
+        return "updated";
     }
 
     public void validateSaveExam() {
@@ -67,9 +85,10 @@ public class ExamAction extends BaseSessionAction {
         // || !(exam.getCreditPoints().equals(0.75)) || !(exam.getCreditPoints().equals(1))) {
         // addFieldError("exam.creditPoints", getText("validation.creditPoints"));
         // }
-        if (exam.getFinalSubmitDate() != null && exam.getStartDate() != null
-                && exam.getFinalSubmitDate().before(exam.getStartDate())) {
-            addFieldError("exam.finalSubmitDate", getText("validation.finalSubmitDate"));
+        startDate = rawStartDate.toLocalDate();
+        endDate = rawEndDate.toLocalDate();
+        if (endDate.isBefore(startDate)) {
+            addFieldError("exam.endDate", getText("validation.endDate"));
         }
     }
 }

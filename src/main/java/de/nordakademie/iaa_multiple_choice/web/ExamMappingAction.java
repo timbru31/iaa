@@ -110,7 +110,7 @@ public class ExamMappingAction extends BaseSessionAction {
         }
     }
 
-    private void sendInvitationMail(Student student, Exam exam, String generatedToken) {
+    private void sendInvitationMail(final Student student, final Exam exam, final String generatedToken) {
         final String[] args = { student.getFullName(), exam.getName(), generatedToken };
         final String messageMailArgs[] = { student.getEmail() };
         try {
@@ -124,7 +124,7 @@ public class ExamMappingAction extends BaseSessionAction {
         }
     }
 
-    private void sendRevokeEmail(Student student, Exam exam) {
+    private void sendRevokeEmail(final Student student, final Exam exam) {
         final String[] args = { student.getFullName(), exam.getName() };
         try {
             mailSenderService.sendMail(student.getEmail(), getText("mapping.mailSubjectRevoke", args),

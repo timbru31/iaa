@@ -22,7 +22,6 @@
   </p>
 </div>
 
-<%-- <s:if test="%{lecturer.exams != null && #lecturer.exams != ''}"> --%>
 <s:if test="%{lecturer.exams.isEmpty()}">
   <div class="panel panel-default">
     <div class="panel-body">
@@ -39,7 +38,7 @@
         <th><s:text name="create.examTime" /></th>
         <th><s:text name="create.minPoints" /></th>
         <th><s:text name="create.startDate" /></th>
-        <th><s:text name="create.submitDate" /></th>
+        <th><s:text name="create.endDate" /></th>
         <th><span class="glyphicon glyphicon-edit"></span></th>
       </tr>
       <s:iterator value="lecturer.exams">
@@ -48,23 +47,25 @@
           <td><s:property value="creditPoints" /></td>
           <td><s:property value="examTime" /></td>
           <td><s:property value="minPoints" /></td>
-          <td><s:property value="startDate" /></td>
-          <td><s:property value="finalSubmitDate" /></td>
-          <td><s:if test="isEditable()">
+          <td><s:property value="formatStartDate()" /></td>
+          <td><s:property value="formatEndDate()" /></td>
+          <td>
+            <s:if test="isEditable()">
               <s:url var="editExam" namespace="/" action="editExam">
                 <s:param name="examId">${id}</s:param>
               </s:url>
               <s:a href="%{editExam}" class="btn btn-success">
                 <s:text name="yes" />
               </s:a>
-            </s:if> <s:else>
+            </s:if>
+            <s:else>
               <button class="btn btn-danger disabled ">
                 <s:text name="no" />
               </button>
-            </s:else></td>
+            </s:else>
+          </td>
         </tr>
       </s:iterator>
     </table>
   </div>
-
 </s:else>

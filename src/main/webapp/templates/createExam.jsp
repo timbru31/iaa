@@ -53,26 +53,22 @@
       class="form-control" required="true"
       placeholder="%{getText('create.examCP')}" />
   </div>
-  <div
-    class="form-group ${fieldErrors.containsKey('exam.finalSubmitDate') ? 'has-error' : ''}">
+  <div class="form-group ${fieldErrors.containsKey('exam.endDate') ? 'has-error' : ''}">
     <label for="examStart"><s:text name="create.examPeriod" /></label>
     <div class="input-daterange input-group" id="datepicker">
       <s:textfield type="text" class="input-sm form-control"
-        name="exam.startDate" id="examStart" required="true" />
-      <span class="input-group-addon"><s:text
-          name="create.examPeriodTo" /></span>
+        name="rawStartDate" id="examStart" required="true" />
+      <span class="input-group-addon"><s:text name="create.examPeriodTo" /></span>
       <s:textfield type="text" class="input-sm form-control"
-        name="exam.finalSubmitDate" id="examEnd" required="true" />
+        name="rawEndDate" id="examEnd" required="true" />
     </div>
   </div>
   <div class="center">
     <s:if test="examId == null">
-      <s:submit class="btn btn-success"
-        value="%{getText('create.finalSubmit')}" />
+      <s:submit class="btn btn-success" value="%{getText('create.submit')}" />
     </s:if>
     <s:else>
-      <s:submit class="btn btn-success"
-        value="%{getText('edit.finalSubmit')}" />
+      <s:submit class="btn btn-success" value="%{getText('edit.submit')}" />
     </s:else>
   </div>
 </s:form>

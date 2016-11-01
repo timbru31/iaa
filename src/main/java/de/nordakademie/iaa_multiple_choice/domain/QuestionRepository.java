@@ -32,12 +32,6 @@ public class QuestionRepository {
         return entityManager.createQuery("SELECT question FROM Question question", Question.class).getResultList();
     }
 
-    public List<Question> findQuestions(Exam exam) {
-        return entityManager
-                .createQuery("SELECT question FROM Question question WHERE examId = :examId", Question.class)
-                .setParameter("examId", exam.getId()).getResultList();
-    }
-
     public Question updateQuestion(final Question updatedQuestion) {
         return entityManager.merge(updatedQuestion);
     }

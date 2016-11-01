@@ -7,6 +7,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OrderBy;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,13 +21,14 @@ public class Student extends User {
     private Integer studentNumber;
     @Basic
     @ManyToMany(fetch = FetchType.EAGER)
+    @OrderBy("startDate ASC")
     private Set<Exam> registeredExams;
 
     public Student() {
     }
 
-    public Student(String firstName, String lastName, String email, String hashedPassword, String activationToken,
-            Integer studentNumber) {
+    public Student(final String firstName, final String lastName, final String email, final String hashedPassword,
+            final String activationToken, final Integer studentNumber) {
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
@@ -35,12 +37,12 @@ public class Student extends User {
         setStudentNumber(studentNumber);
     }
 
-    public void addExam(Exam exam) {
+    public void addExam(final Exam exam) {
         registeredExams.add(exam);
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (!super.equals(obj)) {
             return false;
         }
@@ -59,7 +61,7 @@ public class Student extends User {
         return result;
     }
 
-    public void removeExam(Exam exam) {
+    public void removeExam(final Exam exam) {
         registeredExams.remove(exam);
     }
 }

@@ -1,8 +1,9 @@
 package de.nordakademie.iaa_multiple_choice.domain;
 
-import java.util.Date;
-import java.util.List;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -17,8 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.OrderBy;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -48,23 +48,24 @@ public class Exam {
     @Basic
     private Integer examTime;
 
-    @Temporal(TemporalType.DATE)
-    private Date startDate;
+    @Basic
+    private LocalDate startDate;
 
-    @Temporal(TemporalType.DATE)
-    private Date finalSubmitDate;
+    @Basic
+    private LocalDate endDate;
 
     @Basic
     private Integer minPoints;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Question> questions;
+    @OrderBy("id ASC")
+    private Set<Question> questions;
 
-    public void addParticipant(Student student, String generatedToken) {
+    public void addParticipant(final Student student, final String generatedToken) {
         tokenList.put(student, generatedToken);
     }
 
-    public void addQuestion(Question question) {
+    public void addQuestion(final Question question) {
         questions.add(question);
     }
 
@@ -73,11 +74,23 @@ public class Exam {
     }
 
     public boolean isEditable() {
-        return startDate.after(new Date());
+        return startDate.isAfter(LocalDate.now());
     }
 
-    public void removeParticipant(Student student) {
+    public boolean isDueDated() {
+        LocalDate today = LocalDate.now();
+        return !(today.isBefore(startDate) || today.isAfter(endDate));
+    }
+
+    public void removeParticipant(final Student student) {
         tokenList.remove(student);
     }
 
+    public Date formatStartDate() {
+        return Date.valueOf(startDate);
+    }
+
+    public Date formatEndDate() {
+        return Date.valueOf(endDate);
+    }
 }

@@ -1,11 +1,12 @@
 package de.nordakademie.iaa_multiple_choice.domain;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,12 +17,14 @@ import lombok.Setter;
 @DiscriminatorValue("lecturer")
 public class Lecturer extends User {
     @OneToMany(fetch = FetchType.EAGER)
-    private List<Exam> exams;
+    @OrderBy("startDate ASC")
+    private Set<Exam> exams;
 
     public Lecturer() {
     }
 
-    public Lecturer(String firstName, String lastName, String email, String hashedPassword, String activationToken) {
+    public Lecturer(final String firstName, final String lastName, final String email, final String hashedPassword,
+            final String activationToken) {
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
@@ -29,7 +32,7 @@ public class Lecturer extends User {
         setActivationToken(activationToken);
     }
 
-    public void addExam(Exam exam) {
+    public void addExam(final Exam exam) {
         exams.add(exam);
     }
 }

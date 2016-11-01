@@ -7,124 +7,48 @@
   </h1>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">Zuweisung</div>
-  <table class="table">
+<s:if test="%{student.registeredExams.isEmpty()}">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <s:text name="student.noExams" />
+    </div>
+  </div>
+</s:if>
+<s:else>
+  <table class="table table-hover">
     <tr>
-      <th>Fach</th>
-      <th>Student</th>
+      <th><s:text name="create.examName" /></th>
+      <th><s:text name="create.examCP" /></th>
+      <th><s:text name="create.examTime" /></th>
+      <th><s:text name="create.minPoints" /></th>
+      <th><s:text name="create.startDate" /></th>
+      <th><s:text name="create.endDate" /></th>
+      <th><s:text name="student.status" /></th>
     </tr>
-    <tr>
-      <td><s:text name="mapping.dummysubject1" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Einschreibeschlüssel eingeben"> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Einschreiben</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td><s:text name="mapping.dummysubject2" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Einschreibeschlüssel eingeben"> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Einschreiben</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td><s:text name="mapping.dummysubject3" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Einschreibeschlüssel eingeben"> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Einschreiben</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td><s:text name="mapping.dummysubject4" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Einschreibeschlüssel eingeben"> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Einschreiben</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td><s:text name="mapping.dummysubject5" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Einschreibeschlüssel eingeben"> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Einschreiben</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td><s:text name="mapping.dummysubject6" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Einschreibeschlüssel eingeben"> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Einschreiben</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td><s:text name="mapping.dummysubject7" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Einschreibeschlüssel eingeben"> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Einschreiben</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td><s:text name="mapping.dummysubject8" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Einschreibeschlüssel eingeben"> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Einschreiben</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td><s:text name="mapping.dummysubject9" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Einschreibeschlüssel eingeben"> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Einschreiben</button>
-          </span>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td><s:text name="mapping.dummysubject10" /></td>
-      <td>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Einschreibeschlüssel eingeben"> <span
-            class="input-group-btn">
-            <button class="btn btn-default" type="button">Einschreiben</button>
-          </span>
-        </div>
-      </td>
-    </tr>
+    <s:iterator value="student.registeredExams">
+      <tr>
+        <th><s:property value="name" /></th>
+        <td><s:property value="creditPoints" /></td>
+        <td><s:property value="examTime" /></td>
+        <td><s:property value="minPoints" /></td>
+        <td><s:property value="formatStartDate()" /></td>
+        <td><s:property value="formatEndDate()" /></td>
+        <td>
+          <s:if test="isDueDated()">
+            <div class="input-group">
+              <s:textfield type="text" class="form-control" placeholder="%{getText('student.enrollPlaceholder')}" />
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><s:text name="student.enroll" /></button>
+              </span>
+            </div>
+          </s:if>
+          <s:else>
+            <button class="btn btn-danger disabled ">
+              <s:text name="student.enrollForbidden" />
+            </button>
+          </s:else>
+        </td>
+      </tr>
+    </s:iterator>
   </table>
-</div>
-
-<s:text name="mapping.hint" />
+  </s:else>
