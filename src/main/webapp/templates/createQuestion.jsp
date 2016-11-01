@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <div class="page-header">
-    <s:if test="hasFieldErrors()">
+  <s:if test="hasFieldErrors()">
     <div class="alert alert-danger" role="alert">
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
       <span class="sr-only"><s:text name="validation.error" /></span> <strong><s:text
@@ -18,42 +18,6 @@
   <s:hidden name="examId" value="%{examId}" />
   <s:hidden name="questionType" id="questionType" />
 
-
-  <script type="text/javascript">
-      let
-      value = 2;
-
-      $(document).ready(function() {
-        $('.navbar-btn').on('show.bs.tab', function(event) {
-          $('#questionType').val(event.target.hash.substr(1));
-        });
-      })
-
-      function addRadio(divName) {
-        let
-        newdiv = document.createElement('div');
-        newdiv.className = "input-group rd";
-        newdiv.innerHTML = "<span class='input-group-addon'><input type='radio' name='sc' value='" + value + "'></span><input name='rawAnswerTextsSc' type='text' class='form-control'>";
-        document.querySelector(divName).appendChild(newdiv);
-        value++;
-      };
-      function removeRadio(divName) {
-        $("div.rd").last().remove();
-      };
-
-      function addCheckbox(divName) {
-        let
-        newdiv = document.createElement('div');
-        newdiv.className = "input-group cb";
-        newdiv.innerHTML = "<span class='input-group-addon'><input type='checkbox' name='mc' value='" + value + "'></span><input name='rawAnswerTextsMc' type='text' class='form-control'>";
-        document.querySelector(divName).appendChild(newdiv);
-        value++;
-      };
-      function removeCheckbox(divName) {
-        $("div.cb").last().remove();
-      };
-    </script>
-
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <a href="#sc" data-toggle="tab" type="button"
@@ -64,12 +28,14 @@
         class="btn btn-default navbar-btn"> <s:text name="create.Question3" />
       </a>
 
-      <s:submit class="btn btn-success navbar-btn navbar-right"
+      <s:submit onclick="addPage('.pagination li')"
+        class="btn btn-success navbar-btn navbar-right"
         value="%{getText('createQuestion.submit')}" />
     </div>
   </nav>
 
-  <div class="question ${fieldErrors.containsKey('question.text') ? 'has-error' : ''}">
+  <div
+    class="question ${fieldErrors.containsKey('question.text') ? 'has-error' : ''}">
     <s:textfield name="question.text" class="form-control"
       placeholder="%{getText('create.enterQuestion')}" />
   </div>
@@ -134,7 +100,8 @@
         <s:text name="create.deleteQuestion" />
       </button>
     </div>
-    <div class="col-md-10 ${fieldErrors.containsKey('question.points') ? 'has-error' : ''}">
+    <div
+      class="col-md-10 ${fieldErrors.containsKey('question.points') ? 'has-error' : ''}">
       <s:textfield name="question.points" id="points" class="form-control"
         placeholder="Anzahl Punkte" />
     </div>
@@ -149,17 +116,9 @@
   <div class="center">
     <nav>
       <ul class="pagination">
-        <li class="disabled"><a href="#"><span
-            aria-hidden="true">&laquo;</span></a></li>
-        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-        <li class=""><a href="#">2 <span class="sr-only">(current)</span></a></li>
-        <li class=""><a href="#">3 <span class="sr-only">(current)</span></a></li>
-        <li class=""><a href="#">4 <span class="sr-only">(current)</span></a></li>
-        <li class=""><a href="#">5 <span class="sr-only">(current)</span></a></li>
-        <li class=""><a href="#">6 <span class="sr-only">(current)</span></a></li>
-        <li class=""><a href="#">7 <span class="sr-only">(current)</span></a></li>
-        <li class=""><a href="#">8 <span class="sr-only">(current)</span></a></li>
-        <li class="disabled"><a href="#"><span aria-hidden="true">&raquo;</span></a></li>
+        <li class="prev"><a href="#"><span>&laquo;</span></a></li>
+        <li class="active"><a href="#">1</a></li>
+        <li class="next"><a href="#"><span>&raquo;</span></a></li>
       </ul>
     </nav>
   </div>
