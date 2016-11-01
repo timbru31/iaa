@@ -3,6 +3,7 @@ package de.nordakademie.iaa_multiple_choice.domain;
 import java.util.Set;
 
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +18,7 @@ import lombok.Setter;
 @Entity
 @DiscriminatorValue("student")
 public class Student extends User {
-    @Basic
+    @Column(unique = true, nullable = false)
     private Integer studentNumber;
     @Basic
     @ManyToMany(fetch = FetchType.EAGER)

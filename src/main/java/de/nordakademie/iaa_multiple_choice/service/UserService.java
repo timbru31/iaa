@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import de.nordakademie.iaa_multiple_choice.domain.Student;
 import de.nordakademie.iaa_multiple_choice.domain.User;
 import de.nordakademie.iaa_multiple_choice.domain.UserRepository;
 
@@ -21,12 +22,17 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User findByMail(final String email) {
-        return userRepository.findbyMail(email);
+        return userRepository.findByMail(email);
     }
 
     @Transactional(readOnly = true)
     public User findByToken(final String token) {
         return userRepository.findByToken(token);
+    }
+
+    @Transactional(readOnly = true)
+    public Student findByStudentNumber(final Integer studentNumber) {
+        return userRepository.findByStudentNumber(studentNumber);
     }
 
     @Transactional(readOnly = true)

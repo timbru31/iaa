@@ -87,8 +87,11 @@ public class RegisterAction extends BaseSessionAction {
         final String activationToken = tokenGeneratorService.generateToken();
         final Lecturer lecturer = new Lecturer(firstName, lastName, email, hashedPassword, activationToken);
         lecturer.setActivated(mailerDisabled);
-        userService.createUser(lecturer);
         sendRegistrationMail(lecturer);
+        if (hasActionErrors()) {
+            return INPUT;
+        }
+        userService.createUser(lecturer);
         if (mailerDisabled) {
             getSession().put("userEmail", lecturer.getEmail());
             getSession().put("userName", lecturer.getFullName());
@@ -102,8 +105,11 @@ public class RegisterAction extends BaseSessionAction {
         final String activationToken = tokenGeneratorService.generateToken();
         final Student student = new Student(firstName, lastName, email, hashedPassword, activationToken, studentNumber);
         student.setActivated(mailerDisabled);
-        userService.createUser(student);
         sendRegistrationMail(student);
+        if (hasActionErrors()) {
+            return INPUT;
+        }
+        userService.createUser(student);
         if (mailerDisabled) {
             getSession().put("userEmail", student.getEmail());
             getSession().put("userName", student.getFullName());
@@ -112,7 +118,7 @@ public class RegisterAction extends BaseSessionAction {
         return "activationPending";
     }
 
-    private void sendRegistrationMail(User user) {
+    private void sendRegistrationMail(final User user) {
         final HttpServletRequest request = ServletActionContext.getRequest();
         try {
             final String url = request.getRequestURL().toString();
@@ -123,8 +129,7 @@ public class RegisterAction extends BaseSessionAction {
             mailSenderService.sendMail(user.getEmail(), getText("registration.mailSubject"),
                     getText("registration.mailText", args));
         } catch (UnsupportedEncodingException | MessagingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            addActionError("registration.mailFailed");
         }
     }
 
@@ -136,6 +141,9 @@ public class RegisterAction extends BaseSessionAction {
         baseValidator();
         if (studentNumber == null || studentNumber.intValue() <= 0 || studentNumber.intValue() > 10000) {
             addFieldError("studentNumber", getText("validation.studentNumber"));
+        }
+        if (userService.findByStudentNumber(studentNumber) != null) {
+            addFieldError("studentNumber", getText("validation.studentNumberExists"));
         }
     }
 }

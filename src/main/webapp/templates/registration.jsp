@@ -6,11 +6,12 @@
   </h1>
 </div>
 <s:form action="registerLecturer" id="registrationForm">
-  <s:if test="hasFieldErrors()">
+  <s:if test="hasErrors()">
     <div class="alert alert-danger" role="alert">
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span class="sr-only"><s:text name="validation.error" /></span>
       <strong><s:text name="validation.errorIntro" /></strong>
       <s:fielderror />
+      <s:actionerror />
     </div>
   </s:if>
   <div class="form-group ${fieldErrors.containsKey('firstName') ? 'has-error' : ''}">
@@ -42,7 +43,7 @@
     <label class="control-label" for="roles"><s:text name="user.role" /></label>
     <s:set var="roleLecturer" value="getText('user.roleLecturer')" />
     <s:set var="roleStudent" value="getText('user.roleStudent')" />
-    <s:select class="form-control" id="role" name="role" list="#{'Lecturer': #roleLecturer, 'Student': #roleStudent}" />
+    <s:select class="form-control" name="role" id="role" list="#{'Lecturer': #roleLecturer, 'Student': #roleStudent}" />
   </div>
   <div
     class="form-group ${fieldErrors.containsKey('studentNumber') ? 'has-error' : ''} collapse ${role == 'Student' ? 'in' : ''}"
