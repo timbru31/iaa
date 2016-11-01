@@ -7,4 +7,11 @@
   <p>
     <s:text name="activationSuccess.text" />
   </p>
+  <p>
+  <s:url var="home" namespace="/" action="home" />
+    <s:a class="btn btn-default btn-lg" href="%{home}" role="button">
+      <span class="glyphicon glyphicon-home glyph-btn"></span>
+      <s:text name="home.goTo" />
+    </s:a>
+  </p>
 </div>
