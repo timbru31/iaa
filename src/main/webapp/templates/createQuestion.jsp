@@ -1,6 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <div class="page-header">
+    <s:if test="hasFieldErrors()">
+    <div class="alert alert-danger" role="alert">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only"><s:text name="validation.error" /></span> <strong><s:text
+          name="validation.errorIntro" /></strong>
+      <s:fielderror />
+    </div>
+  </s:if>
   <h1>
     <s:text name="create.question" />
   </h1>
@@ -54,7 +62,7 @@
     </div>
   </nav>
 
-  <div class="question">
+  <div class="question ${fieldErrors.containsKey('question.text') ? 'has-error' : ''}">
     <s:textfield name="question.text" class="form-control"
       placeholder="%{getText('create.enterQuestion')}" />
   </div>
@@ -111,7 +119,7 @@
         <s:text name="create.deleteQuestion" />
       </button>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-10 ${fieldErrors.containsKey('question.points') ? 'has-error' : ''}">
       <s:textfield name="question.points" id="points" class="form-control"
         placeholder="Anzahl Punkte" />
     </div>

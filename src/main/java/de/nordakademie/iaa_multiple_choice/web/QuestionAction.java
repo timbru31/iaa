@@ -10,6 +10,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import de.nordakademie.iaa_multiple_choice.domain.Answer;
 import de.nordakademie.iaa_multiple_choice.domain.Exam;
 import de.nordakademie.iaa_multiple_choice.domain.Question;
+import de.nordakademie.iaa_multiple_choice.domain.exceptions.ExamNotFoundException;
 import de.nordakademie.iaa_multiple_choice.service.AnswerService;
 import de.nordakademie.iaa_multiple_choice.service.ExamService;
 import de.nordakademie.iaa_multiple_choice.service.QuestionService;
@@ -54,6 +55,14 @@ public class QuestionAction extends ActionSupport {
     @Setter
     private String questionType;
 
+    public String createQuestion() {
+        final Exam exam = examService.find(examId);
+        if (exam.getId() == null) {
+            throw new ExamNotFoundException();
+        }
+        return SUCCESS;
+    }
+
     public String deleteQuestion() {
         questionService.deleteQuestion(question.getId());
         return SUCCESS;
@@ -88,10 +97,12 @@ public class QuestionAction extends ActionSupport {
         return SUCCESS;
     }
 
-    @Override
-    public void validate() {
-        if (examId == null) {
-            addFieldError("examId", getText("error.examId"));
+    public void validateSaveQuestion() {
+        if (question.getText() == "") {
+            addFieldError("question.text", getText("validation.questionMissing"));
+        }
+        if (question.getPoints() == null) {
+            addFieldError("question.points", getText("validation.pointsMissing"));
         }
     }
 }
