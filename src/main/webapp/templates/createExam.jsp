@@ -1,14 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <div class="page-header">
-  <s:if test="hasFieldErrors()">
-    <div class="alert alert-danger" role="alert">
-      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-      <span class="sr-only"><s:text name="validation.error" /></span> <strong><s:text
-          name="validation.errorIntro" /></strong>
-      <s:fielderror />
-    </div>
-  </s:if>
   <h1>
     <s:if test="examId == null">
       <s:text name="create.title" />
@@ -20,6 +12,14 @@
 </div>
 
 <s:form action="saveExam">
+  <s:if test="hasFieldErrors()">
+    <div class="alert alert-danger" role="alert">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only"><s:text name="validation.error" /></span> <strong><s:text
+          name="validation.errorIntro" /></strong>
+      <s:fielderror />
+    </div>
+  </s:if>
   <s:hidden name="examId" value="%{#attr.examId}" />
   <div
     class="form-group ${fieldErrors.containsKey('exam.name') ? 'has-error' : ''}">

@@ -57,22 +57,23 @@ public class Exam {
     @Basic
     private Integer minPoints;
 
-    @Basic
-    private boolean editable;
-
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Question> questions;
-
-    public void addQuestion(Question question) {
-        questions.add(question);
-    }
 
     public void addParticipant(Student student, String generatedToken) {
         tokenList.put(student, generatedToken);
     }
 
+    public void addQuestion(Question question) {
+        questions.add(question);
+    }
+
     public void clearParticipants() {
         tokenList.clear();
+    }
+
+    public boolean isEditable() {
+        return startDate.after(new Date());
     }
 
     public void removeParticipant(Student student) {

@@ -75,6 +75,7 @@
     </action>
 
     <action name="editExam" class="de.nordakademie.iaa_multiple_choice.web.ExamAction" method="editExam">
+      <result name="input" type="tiles">examNotFoundError</result>
       <result type="tiles">exam/edit</result>
     </action>
 

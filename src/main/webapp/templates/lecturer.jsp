@@ -40,7 +40,7 @@
         <td><s:property value="minPoints" /></td>
         <td><s:property value="startDate" /></td>
         <td><s:property value="finalSubmitDate" /></td>
-        <td><s:if test="editable">
+        <td><s:if test="isEditable()">
             <s:url var="editExam" namespace="/" action="editExam">
               <s:param name="examId">${id}</s:param>
             </s:url>

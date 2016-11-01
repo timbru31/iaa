@@ -44,13 +44,16 @@ public class ExamAction extends BaseSessionAction {
             return "created";
         } else {
             exam.setId(examId);
-            exam.setEditable(true);
             examService.updateExam(exam);
             return "updated";
         }
     }
 
     public void validateSaveExam() {
+        if (exam == null) {
+            addFieldError("exam", getText("validation.exam"));
+            return;
+        }
         if (exam.getName() == null || exam.getName().isEmpty()) {
             addFieldError("exam.name", getText("validation.examName"));
         }
@@ -64,7 +67,8 @@ public class ExamAction extends BaseSessionAction {
         // || !(exam.getCreditPoints().equals(0.75)) || !(exam.getCreditPoints().equals(1))) {
         // addFieldError("exam.creditPoints", getText("validation.creditPoints"));
         // }
-        if (exam.getFinalSubmitDate().before(exam.getStartDate())) {
+        if (exam.getFinalSubmitDate() != null && exam.getStartDate() != null
+                && exam.getFinalSubmitDate().before(exam.getStartDate())) {
             addFieldError("exam.finalSubmitDate", getText("validation.finalSubmitDate"));
         }
     }
