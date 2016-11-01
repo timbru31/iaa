@@ -2,6 +2,8 @@ package de.nordakademie.iaa_multiple_choice.web;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -50,6 +52,9 @@ public class QuestionAction extends ActionSupport {
     @Getter
     @Setter
     private ArrayList<Integer> mc = new ArrayList<>();
+    @Getter
+    @Setter
+    private String fitb;
 
     @Getter
     @Setter
@@ -82,6 +87,15 @@ public class QuestionAction extends ActionSupport {
             for (int i = 0; i < rawAnswerTextsMc.length; i++) {
                 final String rawAnswerText = rawAnswerTextsMc[i];
                 final Answer answer = new Answer(rawAnswerText, mc.contains(i));
+                question.addAnswer(answer);
+                answerService.createAnswer(answer);
+            }
+        } else if (question.getType() == null) {
+            final Pattern p = Pattern.compile("\\[(.*?)\\]");
+            final Matcher m = p.matcher(question.getText());
+            while (m.find()) {
+                final String rawAnswerText = m.group(1);
+                final Answer answer = new Answer(rawAnswerText, true);
                 question.addAnswer(answer);
                 answerService.createAnswer(answer);
             }
