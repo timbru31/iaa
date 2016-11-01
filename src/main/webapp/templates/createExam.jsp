@@ -14,8 +14,9 @@
 <s:form action="saveExam">
   <s:if test="hasFieldErrors()">
     <div class="alert alert-danger" role="alert">
-      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-      <span class="sr-only"><s:text name="validation.error" /></span> <strong><s:text
+      <span class="glyphicon glyphicon-exclamation-sign"
+        aria-hidden="true"></span> <span class="sr-only"><s:text
+          name="validation.error" /></span> <strong><s:text
           name="validation.errorIntro" /></strong>
       <s:fielderror />
     </div>
@@ -37,18 +38,20 @@
   </div>
   <div
     class="form-group ${fieldErrors.containsKey('exam.minPoints') ? 'has-error' : ''}">
-    <label for="create.minPoints"><s:text name="create.minPoints" /></label>
-    <s:textfield name="exam.minPoints" id="create.minPoints" type="number"
-      inputmode="numeric" min="1" max="100" pattern="[0-9]*"
-      class="form-control" required="true"
+    <label for="create.minPoints"><s:text
+        name="create.minPoints" /></label>
+    <s:textfield name="exam.minPoints" id="create.minPoints"
+      type="number" inputmode="numeric" min="1" max="100"
+      pattern="[0-9]*" class="form-control" required="true"
       placeholder="%{getText('create.minPoints')}" />
   </div>
   <div
     class="form-group ${fieldErrors.containsKey('exam.creditPoints') ? 'has-error' : ''}">
     <label for="create.examCP"><s:text name="create.examCP" /></label>
-    <s:textfield name="exam.creditPoints" id="create.examCP" type="number"
-      inputmode="numeric" min="0.5" max="1" step="0.25" class="form-control"
-      required="true" placeholder="%{getText('create.examCP')}" />
+    <s:textfield name="exam.creditPoints" id="create.examCP"
+      type="number" inputmode="numeric" min="0.5" max="1" step="0.25"
+      class="form-control" required="true"
+      placeholder="%{getText('create.examCP')}" />
   </div>
   <div
     class="form-group ${fieldErrors.containsKey('exam.finalSubmitDate') ? 'has-error' : ''}">
@@ -56,23 +59,28 @@
     <div class="input-daterange input-group" id="datepicker">
       <s:textfield type="text" class="input-sm form-control"
         name="exam.startDate" id="examStart" required="true" />
-      <span class="input-group-addon"><s:text name="create.examPeriodTo" /></span>
+      <span class="input-group-addon"><s:text
+          name="create.examPeriodTo" /></span>
       <s:textfield type="text" class="input-sm form-control"
         name="exam.finalSubmitDate" id="examEnd" required="true" />
     </div>
   </div>
   <div class="center">
     <s:if test="examId == null">
-      <s:submit class="btn btn-success" value="%{getText('create.finalSubmit')}" />
+      <s:submit class="btn btn-success"
+        value="%{getText('create.finalSubmit')}" />
     </s:if>
     <s:else>
-      <s:submit class="btn btn-success" value="%{getText('edit.finalSubmit')}" />
+      <s:submit class="btn btn-success"
+        value="%{getText('edit.finalSubmit')}" />
     </s:else>
   </div>
 </s:form>
 
 <s:url var="back" namespace="/" action="lecturer" />
-<s:a href="%{back}" class="btn btn-primary navbar-btn"><s:text name="create.back" /></s:a>
+<s:a href="%{back}" class="btn btn-primary navbar-btn">
+  <s:text name="create.back" />
+</s:a>
 
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"
