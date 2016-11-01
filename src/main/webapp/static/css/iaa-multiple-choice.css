@@ -67,7 +67,12 @@ footer {
   margin-bottom: 10px;
 }
 
-.choice {
+.rd {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.cb {
   margin-top: 2px;
   margin-bottom: 2px;
 }

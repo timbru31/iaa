@@ -29,22 +29,28 @@
         });
       })
 
-      function addRadioButton(divName) {
+      function addRadio(divName) {
         let
         newdiv = document.createElement('div');
-        newdiv.className = "input-group choice";
+        newdiv.className = "input-group rd";
         newdiv.innerHTML = "<span class='input-group-addon'><input type='radio' name='sc' value='" + value + "'></span><input name='rawAnswerTextsSc' type='text' class='form-control'>";
         document.querySelector(divName).appendChild(newdiv);
         value++;
+      };
+      function removeRadio(divName) {
+        $("div.rd").last().remove();
       };
 
       function addCheckbox(divName) {
         let
         newdiv = document.createElement('div');
-        newdiv.className = "input-group choice";
+        newdiv.className = "input-group cb";
         newdiv.innerHTML = "<span class='input-group-addon'><input type='checkbox' name='mc' value='" + value + "'></span><input name='rawAnswerTextsMc' type='text' class='form-control'>";
         document.querySelector(divName).appendChild(newdiv);
         value++;
+      };
+      function removeCheckbox(divName) {
+        $("div.cb").last().remove();
       };
     </script>
 
@@ -58,7 +64,8 @@
         class="btn btn-default navbar-btn"> <s:text name="create.Question3" />
       </a>
 
-      <s:submit class="btn btn-success navbar-btn navbar-right" value="%{getText('createQuestion.submit')}" />
+      <s:submit class="btn btn-success navbar-btn navbar-right"
+        value="%{getText('createQuestion.submit')}" />
     </div>
   </nav>
 
@@ -71,32 +78,36 @@
 
     <div class="tab-pane" id="sc">
       <div id="addRadio">
-        <div class="input-group choice">
+        <div class="input-group rd">
           <span class="input-group-addon"> <input type="radio" name="sc"
             value="0">
           </span> <input name="rawAnswerTextsSc" type="text" class="form-control">
         </div>
-        <div class="input-group choice">
+        <div class="input-group rd">
           <span class="input-group-addon"> <input type="radio" name="sc"
             value="1">
           </span> <input name="rawAnswerTextsSc" type="text" class="form-control">
         </div>
       </div>
 
-      <button onclick="addRadioButton('div[id=addRadio]')" type="button"
+      <button onclick="addRadio('div[id=addRadio]')" type="button"
         class="btn btn-default">
         <span class="glyphicon glyphicon-plus"></span>
+      </button>
+      <button onclick="removeRadio('div[id=removeRadio]')" type="button"
+        class="btn btn-default">
+        <span class="glyphicon glyphicon-minus"></span>
       </button>
     </div>
 
     <div class="tab-pane" id="mc">
       <div id="addCheckbox">
-        <div class="input-group choice">
+        <div class="input-group cb">
           <span class="input-group-addon"> <input type="checkbox"
             name="mc" value="0">
           </span> <input name="rawAnswerTextsMc" type="text" class="form-control">
         </div>
-        <div class="input-group choice">
+        <div class="input-group cb">
           <span class="input-group-addon"> <input type="checkbox"
             name="mc" value="1">
           </span> <input name="rawAnswerTextsMc" type="text" class="form-control">
@@ -106,6 +117,10 @@
       <button onclick="addCheckbox('div[id=addCheckbox]')" type="button"
         class="btn btn-default">
         <span class="glyphicon glyphicon-plus"></span>
+      </button>
+      <button onclick="removeCheckbox('div[id=removeCheckbox]')" type="button"
+        class="btn btn-default">
+        <span class="glyphicon glyphicon-minus"></span>
       </button>
     </div>
 
@@ -134,7 +149,7 @@
   <div class="center">
     <nav>
       <ul class="pagination">
-        <li class="disabled"><a href="#" aria-label="Previous"><span
+        <li class="disabled"><a href="#"><span
             aria-hidden="true">&laquo;</span></a></li>
         <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
         <li class=""><a href="#">2 <span class="sr-only">(current)</span></a></li>
