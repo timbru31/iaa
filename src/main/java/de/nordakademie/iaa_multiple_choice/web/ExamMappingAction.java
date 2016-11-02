@@ -16,6 +16,7 @@ import de.nordakademie.iaa_multiple_choice.domain.Exam;
 import de.nordakademie.iaa_multiple_choice.domain.Lecturer;
 import de.nordakademie.iaa_multiple_choice.domain.Student;
 import de.nordakademie.iaa_multiple_choice.domain.User;
+import de.nordakademie.iaa_multiple_choice.domain.exceptions.ExamNotEditableException;
 import de.nordakademie.iaa_multiple_choice.service.ExamService;
 import de.nordakademie.iaa_multiple_choice.service.MailSenderService;
 import de.nordakademie.iaa_multiple_choice.service.TokenGeneratorService;
@@ -85,8 +86,7 @@ public class ExamMappingAction extends BaseSessionAction {
     public String mapStudents() {
         final Exam exam = examService.find(examId);
         if (!exam.isEditable()) {
-            addActionError(getText("validation.examNotEditable"));
-            return INPUT;
+            throw new ExamNotEditableException();
         }
         manualValidateMapStudents();
         if (deleteAll) {
