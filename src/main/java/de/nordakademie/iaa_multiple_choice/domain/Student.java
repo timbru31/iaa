@@ -12,11 +12,13 @@ import javax.persistence.OrderBy;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
 @DiscriminatorValue("student")
+@ToString
 public class Student extends User {
     @Column(unique = true, nullable = false)
     private Integer studentNumber;

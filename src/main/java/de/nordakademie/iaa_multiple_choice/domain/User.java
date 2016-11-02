@@ -13,12 +13,14 @@ import org.hibernate.annotations.NaturalId;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "role")
+@ToString
 public abstract class User {
 
     @Id
@@ -44,7 +46,7 @@ public abstract class User {
     private String activationToken;
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if ((obj == null) || (obj.getClass() != this.getClass())) {
             return false;
         }

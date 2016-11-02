@@ -9,10 +9,12 @@ import javax.persistence.Id;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
+@ToString
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +30,7 @@ public class Answer {
     public Answer() {
     }
 
-    public Answer(String text, boolean rightAnswer) {
+    public Answer(final String text, final boolean rightAnswer) {
         this.text = text;
         this.rightAnswer = rightAnswer;
     }

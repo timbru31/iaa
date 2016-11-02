@@ -10,11 +10,13 @@ import javax.persistence.OrderBy;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
 @DiscriminatorValue("lecturer")
+@ToString
 public class Lecturer extends User {
     @OneToMany(fetch = FetchType.EAGER)
     @OrderBy("startDate ASC")

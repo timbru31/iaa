@@ -22,10 +22,12 @@ import javax.persistence.OrderBy;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
+@ToString
 public class Exam {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
