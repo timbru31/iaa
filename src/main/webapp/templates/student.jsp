@@ -54,7 +54,7 @@
                 </s:if>
                 <s:hidden name="examId" value="%{id}" />
                 <div class="input-group">
-                  <s:textfield name="token" type="text" class="form-control" placeholder="%{getText('student.enrollPlaceholder')}" required="true" />
+                  <s:textfield name="token" type="text" class="form-control" placeholder="%{getText('student.enrollPlaceholder')}" required />
                   <span class="input-group-btn">
                     <s:submit class="btn btn-default" type="button"><s:text name="student.enroll" /></s:submit>
                   </span>

@@ -16,27 +16,27 @@
   </s:if>
   <div class="form-group ${fieldErrors.containsKey('firstName') ? 'has-error' : ''}">
     <label class="control-label" for="firstName"><s:text name="user.firstName" /></label>
-    <s:textfield name="firstName" id="firstName" required="true" requiredLabel="true" class="form-control"
+    <s:textfield name="firstName" id="firstName" required requiredLabel="true" class="form-control"
       placeholder="Max" />
   </div>
   <div class="form-group ${fieldErrors.containsKey('lastName') ? 'has-error' : ''}">
     <label class="control-label" for="lastName"><s:text name="user.lastName" /></label>
-    <s:textfield name="lastName" id="lastName" required="true" requiredLabel="true" class="form-control"
+    <s:textfield name="lastName" id="lastName" required requiredLabel="true" class="form-control"
       placeholder="Mustermann" />
   </div>
   <div class="form-group ${fieldErrors.containsKey('email') ? 'has-error' : ''}">
     <label class="control-label" for="email"><s:text name="user.email" /> <span class="label label-warning"><s:text
           name="user.emailHint" /></span></label>
-    <s:textfield name="email" id="email" required="true" requiredLabel="true" class="form-control"
+    <s:textfield name="email" id="email" required requiredLabel="true" class="form-control"
       pattern="[a-z0-9._%+-]+@nordakademie.de$" placeholder="user@nordakademie.de" />
   </div>
   <div class="form-group ${fieldErrors.containsKey('password') ? 'has-error' : ''}">
     <label class="control-label" for="password"><s:text name="user.password" /></label>
-    <s:textfield name="password" id="password" required="true" requiredLabel="true" type="password" class="form-control" />
+    <s:textfield name="password" id="password" required requiredLabel="true" type="password" class="form-control" />
   </div>
   <div class="form-group ${fieldErrors.containsKey('password') ? 'has-error' : ''}">
     <label class="control-label" for="passwordRepeat"><s:text name="user.passwordRepeat" /></label>
-    <s:textfield name="passwordRepeat" id="passwordRepeat" required="true" requiredLabel="true" type="password"
+    <s:textfield name="passwordRepeat" id="passwordRepeat" required requiredLabel="true" type="password"
       class="form-control" />
   </div>
   <div class="form-group">
