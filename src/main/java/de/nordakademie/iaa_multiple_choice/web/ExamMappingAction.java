@@ -83,8 +83,12 @@ public class ExamMappingAction extends BaseSessionAction {
     }
 
     public String mapStudents() {
-        manualValidateMapStudents();
         final Exam exam = examService.find(examId);
+        if (!exam.isEditable()) {
+            addActionError(getText("validation.examNotEditable"));
+            return INPUT;
+        }
+        manualValidateMapStudents();
         if (deleteAll) {
             removeAllStudents(exam);
         } else {

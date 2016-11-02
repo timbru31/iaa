@@ -97,7 +97,6 @@
       <result name="input" type="tiles">student</result>
     </action>
 
-
     <action name="createExam" class="de.nordakademie.iaa_multiple_choice.web.ExamAction">
       <result type="tiles">exam/create</result>
     </action>
@@ -116,8 +115,7 @@
       <result name="input" type="tiles">exam/create</result>
     </action>
 
-    <action name="createQuestion" class="de.nordakademie.iaa_multiple_choice.web.QuestionAction"
-    method = "createQuestion">
+    <action name="createQuestion" class="de.nordakademie.iaa_multiple_choice.web.QuestionAction" method = "createQuestion">
       <interceptor-ref name="store">
         <param name="operationMode">RETRIEVE</param>
       </interceptor-ref>
@@ -155,7 +153,9 @@
       </interceptor-ref>
       <interceptor-ref name="iaa-multiple-choice" />
       <result name="success" type="tiles">lecturer/mapping</result>
+      <result name="input" type="tiles">lecturer/mapping</result>
     </action>
+    
 
     <action name="mappingInput" class="de.nordakademie.iaa_multiple_choice.web.ExamMappingAction" method="input">
       <interceptor-ref name="store">

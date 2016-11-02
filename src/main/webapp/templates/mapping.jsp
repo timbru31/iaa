@@ -7,16 +7,16 @@
 </div>
 
 <div class="panel panel-default">
-  <table class="table table-hover mapping-table">
-    <tr>
-      <th><s:text name="create.examName" /></th>
-      <th><s:text name="mapping.students" /></th>
-    </tr>
-    <s:iterator value="lecturer.exams" status="it">
+  <div class="table-responsive">
+    <table class="table table-hover mapping-table">
       <tr>
-        <th class="examName"><s:property value="name" /></th>
-        <td><s:form action="examMappingAction"
-            id="examMapping-%{#it.index}">
+        <th><s:text name="create.examName" /></th>
+        <th><s:text name="mapping.students" /></th>
+      </tr>
+      <s:iterator value="lecturer.exams" status="it">
+        <tr>
+          <th class="examName"><s:property value="name" /></th>
+          <td>
             <s:if test="%{hasActionErrors() && id == examId}">
               <div class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span class="sr-only"><s:text name="validation.error" /></span>
@@ -30,32 +30,40 @@
                 <s:actionmessage escape="false" />
               </div>
             </s:if>
-            <s:hidden name="examId" value="%{id}" />
-            <div class="input-group">
-              <%-- placeholder attribute is invalid, but bootstrap-taginput checks for this attribute when transforming to an input field --%>
-              <select id="test-${it.index}" name="studentEmails" multiple
-                data-role="tagsinput" class="mapping form-control"
-                placeholder="user@nordakademie.de"></select> <span
-                class="input-group-btn"> <s:submit
-                  class="btn btn-default" type="button"><s:text name="mapping.link" /></s:submit>
-              </span>
-            </div>
-          </s:form></td>
-      </tr>
-      <!-- Add existing participants to the list -->
-      <s:iterator value="tokenList" var="tokenListElement">
-        <script>
-          $(document).ready(
-              function() {
-                $('#examMapping-${it.index} select').tagsinput('add',
-                    '${tokenListElement.key.email}');
-              });
-        </script>
+              <s:if test="!isEditable()">
+                <div class="input-group disabled">
+                  <select id="taginput-${it.index}" disabled multiple data-role="tagsinput" class="mapping disabled form-control"></select>
+                  <span class="input-group-btn">
+                    <button class="btn btn-danger disabled "><s:text name="mapping.linkDisabled" /></button>
+                  </span>
+                </div>
+              </s:if>
+              <s:else>
+                <div class="input-group">
+                  <s:form action="examMappingAction" id="examMapping-%{#it.index}" class="exam-mapping">
+                    <s:hidden name="examId" value="%{id}" />
+                    <%-- placeholder attribute is invalid, but bootstrap-taginput checks for this attribute when transforming to an input field --%>
+                    <select id="taginput-${it.index}" name="studentEmails" multiple data-role="tagsinput" class="mapping form-control" placeholder="user@nordakademie.de"></select>
+                    <span class="input-group-btn"><s:submit class="btn btn-default" type="button" value="%{getText('mapping.link')}" /></span>
+                  </s:form>
+                </div>
+              </s:else>
+          </td>
+        </tr>
+        <%-- Add existing participants to the list --%>
+        <s:iterator value="tokenList" var="tokenListElement">
+          <script type="text/javascript">
+            $(document).ready(
+                function() {
+                  $('#taginput-${it.index}').tagsinput('add',
+                      '${tokenListElement.key.email}');
+                });
+          </script>
+        </s:iterator>
       </s:iterator>
-    </s:iterator>
-  </table>
+    </table>
+  </div>
 </div>
-
 <div class="panel panel-default">
   <div class="panel-body">
     <s:text name="mapping.hint" />
@@ -74,7 +82,7 @@
   integrity="sha256-tQ3x4V2JW+L0ew/P3v2xzL46XDjEWUExFkCDY0Rflqc="
   crossorigin="anonymous"></script>
 
-<script>
+<script type="text/javascript">
   $('.mapping').tagsinput({
     tagClass : 'label label-primary',
     trimValue : true

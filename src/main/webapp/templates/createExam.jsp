@@ -87,14 +87,14 @@
   integrity="sha256-MRg0FdDDqvQkQ3VIUMZCZ39M6O40kpoIYqCGU2rRyxE="
   crossorigin="anonymous"></script>
 
-<script>
-$('#datepicker').datepicker({
+<script type="text/javascript">
+$("#datepicker").datepicker({
   todayHighlight: true,
   calendarWeeks: true,
-  startDate: "today",
+  startDate: "tomorrow",
   maxViewMode: 1,
   clearBtn: true,
-  <s:if test="#request.locale.language=='de'">
+  <s:if test="#request.locale.language == 'de'">
     language: "de",
     format: "dd.mm.yyyy"
   </s:if>
