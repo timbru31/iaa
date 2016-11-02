@@ -67,8 +67,36 @@
     </action>
 
     <action name="student" class="de.nordakademie.iaa_multiple_choice.web.StudentAction">
+      <interceptor-ref name="store">
+        <param name="operationMode">RETRIEVE</param>
+      </interceptor-ref>
+      <interceptor-ref name="iaa-multiple-choice" />
       <result type="tiles">student</result>
     </action>
+
+    <action name="enroll" class="de.nordakademie.iaa_multiple_choice.web.EnrollAction" method="enrollStudent">
+      <interceptor-ref name="store">
+        <param name="operationMode">STORE</param>
+      </interceptor-ref>
+      <interceptor-ref name="iaa-multiple-choice" />
+      <result type="redirectAction">
+        <param name="actionName">showExam</param>
+        <param name="examId">${examId}</param>
+      </result>
+      <result name="input" type="redirectAction">
+        <param name="actionName">enrollInput</param>
+        <param name="examId">${examId}</param>
+      </result>
+    </action>
+
+    <action name="enrollInput" class="de.nordakademie.iaa_multiple_choice.web.EnrollAction" method="input">
+      <interceptor-ref name="store">
+        <param name="operationMode">RETRIEVE</param>
+      </interceptor-ref>
+      <interceptor-ref name="iaa-multiple-choice" />
+      <result name="input" type="tiles">student</result>
+    </action>
+
 
     <action name="createExam" class="de.nordakademie.iaa_multiple_choice.web.ExamAction">
       <result type="tiles">exam/create</result>

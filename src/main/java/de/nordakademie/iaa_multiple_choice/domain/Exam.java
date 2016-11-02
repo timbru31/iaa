@@ -80,6 +80,14 @@ public class Exam {
         return Date.valueOf(startDate);
     }
 
+    public String getToken(final Student student) {
+        return tokenList.get(student);
+    }
+
+    public boolean hasParticipant(final Student student) {
+        return tokenList.containsKey(student);
+    }
+
     public boolean isDueDated() {
         final LocalDate today = LocalDate.now();
         return !(today.isBefore(startDate) || today.isAfter(endDate));

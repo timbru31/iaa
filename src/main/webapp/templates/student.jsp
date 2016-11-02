@@ -7,6 +7,14 @@
   </h1>
 </div>
 
+<s:if test="%{hasActionErrors()}">
+  <div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span class="sr-only"><s:text name="validation.error" /></span>
+    <strong><s:text name="validation.errorIntro" /></strong>
+    <s:actionerror />
+  </div>
+</s:if>
+
 <s:if test="%{student.registeredExams.isEmpty()}">
   <div class="panel panel-default">
     <div class="panel-body">
@@ -25,7 +33,7 @@
       <th><s:text name="create.endDate" /></th>
       <th><s:text name="student.status" /></th>
     </tr>
-    <s:iterator value="student.registeredExams">
+    <s:iterator value="student.registeredExams" status="it">
       <tr>
         <th><s:property value="name" /></th>
         <td><s:property value="creditPoints" /></td>
@@ -35,12 +43,22 @@
         <td><s:property value="formatEndDate()" /></td>
         <td>
           <s:if test="isDueDated()">
-            <div class="input-group">
-              <s:textfield type="text" class="form-control" placeholder="%{getText('student.enrollPlaceholder')}" />
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button"><s:text name="student.enroll" /></button>
-              </span>
-            </div>
+            <s:form action="enroll" id="exam-%{#it.index}">
+              <s:if test="%{hasFieldErrors() && id == examId}">
+                <div class="alert alert-danger" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span class="sr-only"><s:text name="validation.error" /></span>
+                  <strong><s:text name="validation.errorIntro" /></strong>
+                  <s:fielderror />
+                </div>
+              </s:if>
+              <s:hidden name="examId" value="%{id}" />
+              <div class="input-group">
+                <s:textfield name="token" type="text" class="form-control" placeholder="%{getText('student.enrollPlaceholder')}" required="true" />
+                <span class="input-group-btn">
+                  <s:submit class="btn btn-default" type="button"><s:text name="student.enroll" /></s:submit>
+                </span>
+              </div>
+            </s:form>
           </s:if>
           <s:else>
             <button class="btn btn-danger disabled ">
