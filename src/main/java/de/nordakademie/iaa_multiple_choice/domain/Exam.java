@@ -27,7 +27,6 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Exam {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "exam_id")
@@ -73,24 +72,24 @@ public class Exam {
         tokenList.clear();
     }
 
-    public boolean isEditable() {
-        return startDate.isAfter(LocalDate.now());
-    }
-
-    public boolean isDueDated() {
-        LocalDate today = LocalDate.now();
-        return !(today.isBefore(startDate) || today.isAfter(endDate));
-    }
-
-    public void removeParticipant(final Student student) {
-        tokenList.remove(student);
+    public Date formatEndDate() {
+        return Date.valueOf(endDate);
     }
 
     public Date formatStartDate() {
         return Date.valueOf(startDate);
     }
 
-    public Date formatEndDate() {
-        return Date.valueOf(endDate);
+    public boolean isDueDated() {
+        final LocalDate today = LocalDate.now();
+        return !(today.isBefore(startDate) || today.isAfter(endDate));
+    }
+
+    public boolean isEditable() {
+        return startDate.isAfter(LocalDate.now());
+    }
+
+    public void removeParticipant(final Student student) {
+        tokenList.remove(student);
     }
 }

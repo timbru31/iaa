@@ -29,4 +29,12 @@ public class QuestionTest {
     public void testCorrectAnswers() {
         assertEquals("Expected to have two correct answers", 2, question.getCorrectAnswers().size());
     }
+
+    @Test
+    public void testDuplicateAnswers() {
+        final Answer answer = new Answer();
+        question.addAnswer(answer);
+        question.addAnswer(answer);
+        assertEquals("Expected to have four answers", 4, question.getAnswers().size());
+    }
 }

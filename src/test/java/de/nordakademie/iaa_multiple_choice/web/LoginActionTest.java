@@ -15,8 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionProxy;
-import com.opensymphony.xwork2.ActionSupport;
 
 import de.nordakademie.iaa_multiple_choice.domain.Lecturer;
 import de.nordakademie.iaa_multiple_choice.service.PasswordAuthenticationService;
@@ -64,7 +64,7 @@ public class LoginActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {
         assertEquals("Expected to have one fieldError", 1, loginAction.getFieldErrors().size());
         assertTrue("Expected to have fieldError with key loginFailed",
                 loginAction.getFieldErrors().containsKey("loginFailed"));
-        assertEquals("Expected to have result name INPUT", ActionSupport.INPUT, result);
+        assertEquals("Expected to have result name INPUT", Action.INPUT, result);
     }
 
     @Test
@@ -86,7 +86,7 @@ public class LoginActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {
         assertEquals("Expected to have one fieldError", 1, loginAction.getFieldErrors().size());
         assertTrue("Expected to have fieldError with key loginFailed",
                 loginAction.getFieldErrors().containsKey("loginFailed"));
-        assertEquals("Expected to have result name INPUT", ActionSupport.INPUT, result);
+        assertEquals("Expected to have result name INPUT", Action.INPUT, result);
     }
 
     @Test

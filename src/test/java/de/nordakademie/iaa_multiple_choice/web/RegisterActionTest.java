@@ -14,8 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionProxy;
-import com.opensymphony.xwork2.ActionSupport;
 
 import de.nordakademie.iaa_multiple_choice.domain.Lecturer;
 import de.nordakademie.iaa_multiple_choice.service.UserService;
@@ -50,7 +50,7 @@ public class RegisterActionTest extends StrutsSpringJUnit4TestCase<RegisterActio
         assertEquals("Expected to have no fieldErrors", 1, registerAction.getFieldErrors().size());
         assertTrue("Expected to have fieldError with key emailExists",
                 registerAction.getFieldErrors().containsKey("email"));
-        assertEquals("Expected to have result name INPUT", ActionSupport.INPUT, result);
+        assertEquals("Expected to have result name INPUT", Action.INPUT, result);
     }
 
     @Test
@@ -80,7 +80,7 @@ public class RegisterActionTest extends StrutsSpringJUnit4TestCase<RegisterActio
         assertTrue("Expected to have fieldError with key email", registerAction.getFieldErrors().containsKey("email"));
         assertTrue("Expected to have fieldError with key password",
                 registerAction.getFieldErrors().containsKey("password"));
-        assertEquals("Expected to have result name INPUT", ActionSupport.INPUT, result);
+        assertEquals("Expected to have result name INPUT", Action.INPUT, result);
     }
 
     @Test
@@ -104,6 +104,6 @@ public class RegisterActionTest extends StrutsSpringJUnit4TestCase<RegisterActio
             fail("Test failed due to exception");
         }
         assertEquals("Expected to have no fieldErrors", 0, registerAction.getFieldErrors().size());
-        assertEquals("Expected to have result name SUCCESS", ActionSupport.SUCCESS, result);
+        assertEquals("Expected to have result name SUCCESS", Action.SUCCESS, result);
     }
 }
