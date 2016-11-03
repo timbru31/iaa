@@ -19,7 +19,7 @@
     <div class="input-group">
       <span class="input-group-addon"> <i class="glyphicon glyphicon-user"></i>
       </span>
-      <s:textfield name="email" id="user.email" required requiredLabel="true" type="email"
+      <s:textfield name="email" id="user.email" required="true" requiredLabel="true" type="email"
         pattern="[a-z0-9._%+-]+@nordakademie.de$" class="form-control" placeholder="user@nordakademie.de" />
     </div>
   </div>
@@ -28,7 +28,7 @@
     <div class="input-group">
       <span class="input-group-addon"> <i class="glyphicon glyphicon-lock"></i>
       </span>
-      <s:textfield name="password" id="user.password" required requiredLabel="true" type="password"
+      <s:textfield name="password" id="user.password" required="true" requiredLabel="true" type="password"
         class="form-control" />
     </div>
   </div>
