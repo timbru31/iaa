@@ -48,10 +48,12 @@
   <div
     class="form-group ${fieldErrors.containsKey('exam.creditPoints') ? 'has-error' : ''}">
     <label for="create.examCP"><s:text name="create.examCP" /></label>
-    <s:textfield name="exam.creditPoints" id="create.examCP"
-      type="number" inputmode="numeric" min="0.5" max="1" step="0.25"
-      class="form-control" required="true"
-      placeholder="%{getText('create.examCP')}" />
+    <s:select required="true" class="form-control" id="create.examCP" headerKey='' headerValue="" listValue="value" name="exam.creditPoints" list="@de.nordakademie.iaa_multiple_choice.domain.CreditPointType@values()" />
+  </div>
+  <div
+    class="form-group ${fieldErrors.containsKey('exam.evaluationMethod') ? 'has-error' : ''}">
+    <label for="create.evaluationMethod"><s:text name="create.evaluationMethod" /></label>
+    <s:select required="true" class="form-control" id="create.evaluationMethod" headerKey='' headerValue="" listValue="%{getText(text)}" name="exam.evaluationMethod" list="@de.nordakademie.iaa_multiple_choice.domain.WrongAnswerEvaluationMethod@values()" />
   </div>
   <div class="form-group ${fieldErrors.containsKey('exam.endDate') ? 'has-error' : ''}">
     <label for="examStart"><s:text name="create.examPeriod" /></label>

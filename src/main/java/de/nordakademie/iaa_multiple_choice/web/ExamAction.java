@@ -62,6 +62,7 @@ public class ExamAction extends BaseSessionAction {
             userService.updateUser(lecturer);
             return "created";
         }
+        exam.setTokenList(examService.find(examId).getTokenList());
         exam.setId(examId);
         examService.updateExam(exam);
         return "updated";
@@ -78,13 +79,16 @@ public class ExamAction extends BaseSessionAction {
         if (exam.getExamTime() == null) {
             addFieldError("exam.examTime", getText("validation.examTime"));
         }
-        if (exam.getMinPoints() == null) {
+        if (exam.getMinPoints() == null || exam.getMinPoints().intValue() <= 0
+                || exam.getMinPoints().intValue() > 100) {
             addFieldError("exam.minPoints", getText("validation.minPoints"));
         }
-        // if (exam.getCreditPoints() == null || !(exam.getCreditPoints().equals(0.5))
-        // || !(exam.getCreditPoints().equals(0.75)) || !(exam.getCreditPoints().equals(1))) {
-        // addFieldError("exam.creditPoints", getText("validation.creditPoints"));
-        // }
+        if (exam.getCreditPoints() == null) {
+            addFieldError("exam.creditPoints", getText("validation.creditPoints"));
+        }
+        if (exam.getEvaluationMethod() == null) {
+            addFieldError("exam.evaluationMethod", getText("validation.evaluationMethod"));
+        }
         startDate = rawStartDate.toLocalDate();
         endDate = rawEndDate.toLocalDate();
         if (endDate.isBefore(startDate)) {

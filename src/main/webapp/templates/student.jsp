@@ -29,7 +29,8 @@
         <th><s:text name="create.examName" /></th>
         <th><s:text name="create.examCP" /></th>
         <th><s:text name="create.examTime" /></th>
-        <th><s:text name="create.minPoints" /></th>
+        <th><s:text name="create.minPointsShort" /></th>
+        <th><s:text name="create.evaluationMethodShort" /></th>
         <th><s:text name="create.startDate" /></th>
         <th><s:text name="create.endDate" /></th>
         <th><s:text name="student.status" /></th>
@@ -37,9 +38,10 @@
       <s:iterator value="student.registeredExams" status="it">
         <tr>
           <th><s:property value="name" /></th>
-          <td><s:property value="creditPoints" /></td>
+          <td><s:property value="creditPoints.getValue()" /></td>
           <td><s:property value="examTime" /></td>
           <td><s:property value="minPoints" /></td>
+          <td><s:property value="%{getText(evaluationMethod.getShortText())}" /></td>
           <td><s:property value="formatStartDate()" /></td>
           <td><s:property value="formatEndDate()" /></td>
           <td>

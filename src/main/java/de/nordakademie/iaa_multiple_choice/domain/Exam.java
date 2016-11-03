@@ -11,6 +11,8 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,7 +29,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @Entity
-@ToString
+@ToString(exclude = "tokenList")
 public class Exam {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,8 +45,8 @@ public class Exam {
     @Basic
     private String name;
 
-    @Basic
-    private Double creditPoints;
+    @Enumerated(EnumType.STRING)
+    private CreditPointType creditPoints;
 
     @Basic
     private Integer examTime;
@@ -57,6 +59,9 @@ public class Exam {
 
     @Basic
     private Integer minPoints;
+
+    @Enumerated(EnumType.STRING)
+    private WrongAnswerEvaluationMethod evaluationMethod;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @OrderBy("id ASC")

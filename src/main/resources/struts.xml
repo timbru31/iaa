@@ -4,6 +4,7 @@
 <struts>
   <constant name="struts.action.excludePattern" value="/api/.*, /static/.*" />
   <constant name="struts.action.extension" value="" />
+  <constant name="struts.ognl.allowStaticMethodAccess" value="true" />
   <constant name="struts.devMode" value="true"></constant>
 
   <!-- catch 404 errors -->
