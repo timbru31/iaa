@@ -36,6 +36,14 @@
   </tr>
 </table>
 
+<s:if test="%{exam.isDueDated()}">
+  <div class="alert alert-warning" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span class="sr-only"><s:text name="warning" /></span>
+    <strong><s:text name="warning" /></strong>
+    <s:text name="show.hint" />
+  </div>
+</s:if>
+
 <s:if test="%{hasFieldErrors()}">
   <div class="alert alert-danger" role="alert">
     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span class="sr-only"><s:text name="validation.error" /></span>
