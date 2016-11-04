@@ -45,29 +45,10 @@
           <td><s:property value="formatStartDate()" /></td>
           <td><s:property value="formatEndDate()" /></td>
           <td>
-            <s:if test="isDueDated()">
-              <s:form action="enroll" id="exam-%{#it.index}">
-                <s:if test="%{hasFieldErrors() && id == examId}">
-                  <div class="alert alert-danger" role="alert">
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span class="sr-only"><s:text name="validation.error" /></span>
-                    <strong><s:text name="validation.errorIntro" /></strong>
-                    <s:fielderror />
-                  </div>
-                </s:if>
-                <s:hidden name="examId" value="%{id}" />
-                <div class="input-group">
-                  <s:textfield name="token" type="text" class="form-control" placeholder="%{getText('student.enrollPlaceholder')}" required="true" />
-                  <span class="input-group-btn">
-                    <s:submit class="btn btn-default" type="button"><s:text name="student.enroll" /></s:submit>
-                  </span>
-                </div>
-              </s:form>
-            </s:if>
-            <s:else>
-              <button class="btn btn-danger disabled ">
-                <s:text name="student.enrollForbidden" />
-              </button>
-            </s:else>
+          <s:url var="detailExam" namespace="/" action="showExam">
+  <s:param name="examId">${id}</s:param>
+</s:url>
+              <s:a class="btn btn-primary" href="%{detailExam}"><s:text name="details"></s:text></s:a>
           </td>
         </tr>
       </s:iterator>

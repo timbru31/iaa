@@ -51,6 +51,10 @@ footer {
   display: none;
 }
 
+.enroll-form {
+  max-width: 40%;
+  margin: 0 auto;
+}
 
 .red {
   color: red;
