@@ -67,6 +67,10 @@
     <put-attribute name="content" value="/templates/createQuestion.jsp" />
     <put-attribute name="title" value="pageTitle.createQuestion" />
   </definition>
+  <definition name="exam/edit/question" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/editQuestion.jsp" />
+    <put-attribute name="title" value="pageTitle.editQuestion" />
+  </definition>
   <definition name="lecturer/mapping" extends="mainTemplate">
     <put-attribute name="content" value="/templates/mapping.jsp" />
     <put-attribute name="title" value="pageTitle.mapping" />
@@ -84,7 +88,8 @@
     <put-attribute name="title" value="pageTitle.examNotFound" />
   </definition>
   <definition name="examNotEditable" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/error/examNotEditableError.jsp" />
+    <put-attribute name="content"
+      value="/templates/error/examNotEditableError.jsp" />
     <put-attribute name="title" value="pageTitle.examNotEditable" />
   </definition>
   <definition name="genericError" extends="mainTemplate">
