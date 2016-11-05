@@ -2,6 +2,8 @@ $(document).ready(function() {
   $('.navbar-btn').on('show.bs.tab', function(event) {
     $('#questionType').val(event.target.hash.substr(1));
   });
+  
+  $()
 
   var pageItem = $(".pagination li").not(".prev,.next");
   var prev = $(".pagination li.prev");

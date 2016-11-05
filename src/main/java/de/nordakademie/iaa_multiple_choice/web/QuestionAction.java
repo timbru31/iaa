@@ -30,12 +30,18 @@ public class QuestionAction extends BaseAction {
     private ExamService examService;
     @Autowired
     private AnswerService answerService;
+
     @Getter
     @Setter
     private Question question;
+
     @Getter
     @Setter
     private Long examId;
+
+    @Getter
+    @Setter
+    private Long questionId;
 
     @Getter
     @Setter
@@ -72,6 +78,11 @@ public class QuestionAction extends BaseAction {
         return SUCCESS;
     }
 
+    public String editQuestion() {
+        question = questionService.find(questionId);
+        return SUCCESS;
+    }
+
     public String saveQuestion() {
         questionService.createQuestion(question);
         question.setAnswers(new HashSet<>());
@@ -96,6 +107,7 @@ public class QuestionAction extends BaseAction {
             question.setType(QuestionType.FILL_IN_THE_BLANK);
             final Pattern p = Pattern.compile("\\[(.*?)\\]");
             final Matcher m = p.matcher(question.getText());
+            question.setType(QuestionType.FillInTheBlank);
             while (m.find()) {
                 final String rawAnswerText = m.group(1);
                 final Answer answer = new Answer(rawAnswerText, true);
@@ -103,10 +115,17 @@ public class QuestionAction extends BaseAction {
                 answerService.createAnswer(answer);
             }
             question.setText(question.getText().replaceAll("\\[(.*?)\\]", "[]"));
+            exam.addQuestion(question);
+            examService.updateExam(exam);
         }
-        exam.addQuestion(question);
-        examService.updateExam(exam);
-        return SUCCESS;
+        if (questionId == null) {
+            questionService.createQuestion(question);
+            return SUCCESS;
+        } else {
+            question.setId(questionId);
+            questionService.updateQuestion(question);
+            return "updated";
+        }
     }
 
     public String updateAnswer() {
