@@ -144,7 +144,6 @@
       <result name="success" type="tiles">lecturer/mapping</result>
       <result name="input" type="tiles">lecturer/mapping</result>
     </action>
-    
 
     <action name="mappingInput" class="de.nordakademie.iaa_multiple_choice.web.ExamMappingAction" method="input">
       <interceptor-ref name="store">
@@ -167,6 +166,12 @@
         <param name="actionName">mappingInput</param>
         <param name="examId">${examId}</param>
       </result>
+    </action>
+
+    <action name="tokenList" class="de.nordakademie.iaa_multiple_choice.web.TokenListAction">
+      <result name="input" type="tiles">examNotFoundError</result>
+      <result name="redirectHome" type="redirectAction">home</result>
+      <result type="tiles">lecturer/tokenList</result>
     </action>
 
     <!-- FOR TESTING / REMOVE LATER -->

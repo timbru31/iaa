@@ -37,10 +37,13 @@
         <th><s:text name="create.examCP" /></th>
         <th><s:text name="create.examTime" /></th>
         <th><s:text name="create.minPoints" /></th>
-        <th><s:text name="create.evaluationMethod" /></th>
+        <th><s:text name="create.evaluationMethodShort" /></th>
         <th><s:text name="create.startDate" /></th>
         <th><s:text name="create.endDate" /></th>
         <th><span class="glyphicon glyphicon-edit"></span></th>
+        <s:if test="%{mailerDisabled}">
+          <th><s:text name="lecturer.tokenList" /></th>
+        </s:if>
       </tr>
       <s:iterator value="lecturer.exams">
         <tr>
@@ -48,7 +51,7 @@
           <td><s:property value="creditPoints.getValue()" /></td>
           <td><s:property value="examTime" /></td>
           <td><s:property value="minPoints" /></td>
-          <td><s:property value="%{getText(evaluationMethod.getText())}" /></td>
+          <td><s:property value="%{getText(evaluationMethod.getShortText())}" /></td>
           <td><s:property value="formatStartDate()" /></td>
           <td><s:property value="formatEndDate()" /></td>
           <td>
@@ -66,6 +69,16 @@
               </button>
             </s:else>
           </td>
+          <s:if test="%{mailerDisabled}">
+            <td>
+              <s:url var="editExam" namespace="/" action="tokenList">
+                <s:param name="examId">${id}</s:param>
+              </s:url>
+              <s:a href="%{editExam}" class="btn btn-primary">
+                <s:text name="lecturer.tokenList" />
+              </s:a>
+            </td>
+          </s:if>
         </tr>
       </s:iterator>
     </table>

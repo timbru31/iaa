@@ -59,6 +59,10 @@
     <put-attribute name="content" value="/templates/mapping.jsp" />
     <put-attribute name="title" value="pageTitle.mapping" />
   </definition>
+  <definition name="lecturer/tokenList" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/tokenList.jsp" />
+    <put-attribute name="title" value="pageTitle.tokenList" />
+  </definition>
   <definition name="notFoundError" extends="mainTemplate">
     <put-attribute name="content" value="/templates/error/notFoundError.jsp" />
     <put-attribute name="title" value="pageTitle.notFound" />
