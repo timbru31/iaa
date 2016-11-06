@@ -2,8 +2,6 @@ package de.nordakademie.iaa_multiple_choice.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.opensymphony.xwork2.ActionSupport;
-
 import de.nordakademie.iaa_multiple_choice.domain.Answer;
 import de.nordakademie.iaa_multiple_choice.service.AnswerService;
 import de.nordakademie.iaa_multiple_choice.web.util.LecturerRequired;
@@ -13,7 +11,7 @@ import lombok.Setter;
 
 @LoginRequired
 @LecturerRequired
-public class AnswerAction extends ActionSupport {
+public class AnswerAction extends BaseAction {
     private static final long serialVersionUID = -6868369501706506064L;
     @Getter
     @Setter

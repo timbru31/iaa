@@ -5,14 +5,12 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.opensymphony.xwork2.ActionSupport;
-
 import de.nordakademie.iaa_multiple_choice.domain.User;
 import de.nordakademie.iaa_multiple_choice.service.UserService;
 import lombok.Getter;
 import lombok.Setter;
 
-public class BaseSessionAction extends ActionSupport implements SessionAware {
+public class BaseSessionAction extends BaseAction implements SessionAware {
     private static final long serialVersionUID = -6535887821833885360L;
     @Getter
     @Setter

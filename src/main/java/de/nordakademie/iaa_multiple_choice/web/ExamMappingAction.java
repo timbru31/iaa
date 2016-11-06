@@ -10,7 +10,6 @@ import java.util.Set;
 import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 
 import de.nordakademie.iaa_multiple_choice.domain.Exam;
 import de.nordakademie.iaa_multiple_choice.domain.Lecturer;
@@ -50,8 +49,6 @@ public class ExamMappingAction extends BaseSessionAction {
     @Getter
     @Setter
     private Lecturer lecturer;
-    @Value("${mail.disabled}")
-    private boolean mailerDisabled;
 
     private boolean deleteAll;
 
@@ -102,14 +99,14 @@ public class ExamMappingAction extends BaseSessionAction {
         for (final Student student : tokenList.keySet()) {
             student.removeExam(exam);
             userService.updateUser(student);
-            if (!mailerDisabled) {
+            if (!isMailerDisabled()) {
                 sendRevokeEmail(student, exam);
 
             }
         }
         exam.clearParticipants();
         examService.updateExam(exam);
-        if (mailerDisabled) {
+        if (isMailerDisabled()) {
             addActionMessage(getText("mapping.manual"));
         }
     }
@@ -151,7 +148,7 @@ public class ExamMappingAction extends BaseSessionAction {
                 exam.addParticipant(student, generatedToken);
                 student.addExam(exam);
                 userService.updateUser(student);
-                if (!mailerDisabled) {
+                if (!isMailerDisabled()) {
                     sendInvitationMail(student, exam, generatedToken);
                 } else {
                     final String[] args = { student.getFullName(), generatedToken };
@@ -166,7 +163,7 @@ public class ExamMappingAction extends BaseSessionAction {
             student.removeExam(exam);
             exam.removeParticipant(student);
             userService.updateUser(student);
-            if (!mailerDisabled) {
+            if (!isMailerDisabled()) {
                 sendRevokeEmail(student, exam);
             } else if (!notificationAdded) {
                 addActionMessage(getText("mapping.manual"));

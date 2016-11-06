@@ -1,7 +1,6 @@
 package de.nordakademie.iaa_multiple_choice.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 
 import de.nordakademie.iaa_multiple_choice.domain.User;
 import de.nordakademie.iaa_multiple_choice.service.UserService;
@@ -10,8 +9,6 @@ import lombok.Setter;
 
 public class ActivateAction extends BaseSessionAction {
     private static final long serialVersionUID = -2646095881961031216L;
-    @Value("${mail.disabled}")
-    private boolean mailerDisabled;
     @Getter
     @Setter
     private String token;
@@ -20,7 +17,7 @@ public class ActivateAction extends BaseSessionAction {
 
     @Override
     public String execute() {
-        if (mailerDisabled) {
+        if (isMailerDisabled()) {
             return "redirectHome";
         }
 

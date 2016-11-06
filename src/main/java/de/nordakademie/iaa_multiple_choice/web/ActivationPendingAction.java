@@ -3,22 +3,18 @@ package de.nordakademie.iaa_multiple_choice.web;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.StrutsStatics;
-import org.springframework.beans.factory.annotation.Value;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class ActivationPendingAction extends ActionSupport {
+public class ActivationPendingAction extends BaseAction {
     private static final long serialVersionUID = -2646095881961031216L;
-    @Value("${mail.disabled}")
-    private boolean mailerDisabled;
 
     @Override
     public String execute() {
         final HttpServletRequest request = (HttpServletRequest) ActionContext.getContext()
                 .get(StrutsStatics.HTTP_REQUEST);
         final String referer = request.getHeader("referer");
-        if (referer == null || referer.isEmpty() || !referer.contains("registration") || mailerDisabled) {
+        if (referer == null || referer.isEmpty() || !referer.contains("registration") || isMailerDisabled()) {
             return "redirectHome";
         }
         return SUCCESS;

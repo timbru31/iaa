@@ -79,4 +79,8 @@
     <put-attribute name="content" value="/templates/error/forbiddenError.jsp" />
     <put-attribute name="title" value="pageTitle.forbidden" />
   </definition>
+  <definition name="registrationDisabledError" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/error/registrationDisabledError.jsp" />
+    <put-attribute name="title" value="pageTitle.registrationDisabled" />
+  </definition>
 </tiles-definitions>

@@ -18,7 +18,6 @@ import lombok.Setter;
 public class EnrollAction extends BaseSessionAction {
     private static final long serialVersionUID = -2887663909719799155L;
     private static final Logger logger = LogManager.getLogger(EnrollAction.class.getName());
-
     @Autowired
     private ExamService examService;
     @Getter

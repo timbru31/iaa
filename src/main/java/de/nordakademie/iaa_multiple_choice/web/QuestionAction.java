@@ -7,8 +7,6 @@ import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.opensymphony.xwork2.ActionSupport;
-
 import de.nordakademie.iaa_multiple_choice.domain.Answer;
 import de.nordakademie.iaa_multiple_choice.domain.Exam;
 import de.nordakademie.iaa_multiple_choice.domain.Question;
@@ -23,7 +21,7 @@ import lombok.Setter;
 
 @LoginRequired
 @LecturerRequired
-public class QuestionAction extends ActionSupport {
+public class QuestionAction extends BaseAction {
     private static final long serialVersionUID = 6954059649443931989L;
     @Autowired
     private QuestionService questionService;

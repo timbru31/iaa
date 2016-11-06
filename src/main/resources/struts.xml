@@ -41,6 +41,7 @@
       <result name="forbidden" type="tiles">forbiddenError</result>
       <result name="examNotFound" type="tiles">examNotFoundError</result>
       <result name="examNotEditable" type="tiles">examNotEditable</result>
+      <result name="registrationDisabled" type="tiles">registrationDisabledError</result>
     </global-results>
 
     <global-exception-mappings>
@@ -51,6 +52,8 @@
         result="examNotEditable" />
       <exception-mapping exception="de.nordakademie.iaa_multiple_choice.domain.exceptions.StudentNotEnrolledException"
         result="forbidden" />
+      <exception-mapping exception="de.nordakademie.iaa_multiple_choice.web.exception.RegistrationDisabledException"
+        result="registrationDisabled" />
     </global-exception-mappings>
 
     <action name="" class="de.nordakademie.iaa_multiple_choice.web.HomeAction">
@@ -175,7 +178,7 @@
       <result type="tiles">exam/create</result>
     </action>
 
-    <action name="registration">
+    <action name="registration" class="de.nordakademie.iaa_multiple_choice.web.RegisterAction" method="display">
       <result name="input" type="tiles">registration</result>
       <result name="success" type="tiles">registration</result>
       <result name="successLecturer" type="tiles">lecturer</result>

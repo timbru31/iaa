@@ -67,11 +67,13 @@
               <s:submit class="btn btn-primary navbar-btn btn-margin-left" value="%{getText('login.button')}" />
             </s:form>
           </li>
-          <li>
-            <s:form action="registration">
-              <s:submit class="btn btn-primary navbar-btn btn-margin-left" value="%{getText('registration.button')}" />
-            </s:form>
-          </li>
+          <s:if test="%{registrationEnabled}">
+            <li>
+              <s:form action="registration">
+                <s:submit class="btn btn-primary navbar-btn btn-margin-left" value="%{getText('registration.button')}" />
+              </s:form>
+            </li>
+          </s:if>
         </s:if>
         <s:else>
           <li>

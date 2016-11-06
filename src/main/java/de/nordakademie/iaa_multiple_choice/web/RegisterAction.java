@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 
 import de.nordakademie.iaa_multiple_choice.domain.Lecturer;
 import de.nordakademie.iaa_multiple_choice.domain.Student;
@@ -16,6 +15,7 @@ import de.nordakademie.iaa_multiple_choice.service.MailSenderService;
 import de.nordakademie.iaa_multiple_choice.service.PasswordAuthenticationService;
 import de.nordakademie.iaa_multiple_choice.service.TokenGeneratorService;
 import de.nordakademie.iaa_multiple_choice.service.UserService;
+import de.nordakademie.iaa_multiple_choice.web.exception.RegistrationDisabledException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -45,8 +45,6 @@ public class RegisterAction extends BaseSessionAction {
     @Getter
     @Setter
     private String role;
-    @Value("${mail.disabled}")
-    private boolean mailerDisabled;
     @Autowired
     private UserService userService;
     @Autowired
@@ -57,6 +55,9 @@ public class RegisterAction extends BaseSessionAction {
     private TokenGeneratorService tokenGeneratorService;
 
     public void baseValidator() {
+        if (!isRegistrationEnabled()) {
+            throw new RegistrationDisabledException();
+        }
         if (firstName == null || firstName.isEmpty() || firstName.length() < 3) {
             addFieldError("firstName", getText("validation.firstName"));
         }
@@ -78,6 +79,13 @@ public class RegisterAction extends BaseSessionAction {
         }
     }
 
+    public String display() {
+        if (!isRegistrationEnabled()) {
+            throw new RegistrationDisabledException();
+        }
+        return SUCCESS;
+    }
+
     private String hashPassword() {
         return passwordAuthenticationService.hash(password.toCharArray());
     }
@@ -86,13 +94,13 @@ public class RegisterAction extends BaseSessionAction {
         final String hashedPassword = hashPassword();
         final String activationToken = tokenGeneratorService.generateToken();
         final Lecturer lecturer = new Lecturer(firstName, lastName, email, hashedPassword, activationToken);
-        lecturer.setActivated(mailerDisabled);
+        lecturer.setActivated(isMailerDisabled());
         sendRegistrationMail(lecturer);
         if (hasActionErrors()) {
             return INPUT;
         }
         userService.createUser(lecturer);
-        if (mailerDisabled) {
+        if (isMailerDisabled()) {
             getSession().put("userEmail", lecturer.getEmail());
             getSession().put("userName", lecturer.getFullName());
             return SUCCESS;
@@ -104,13 +112,13 @@ public class RegisterAction extends BaseSessionAction {
         final String hashedPassword = hashPassword();
         final String activationToken = tokenGeneratorService.generateToken();
         final Student student = new Student(firstName, lastName, email, hashedPassword, activationToken, studentNumber);
-        student.setActivated(mailerDisabled);
+        student.setActivated(isMailerDisabled());
         sendRegistrationMail(student);
         if (hasActionErrors()) {
             return INPUT;
         }
         userService.createUser(student);
-        if (mailerDisabled) {
+        if (isMailerDisabled()) {
             getSession().put("userEmail", student.getEmail());
             getSession().put("userName", student.getFullName());
             return SUCCESS;
