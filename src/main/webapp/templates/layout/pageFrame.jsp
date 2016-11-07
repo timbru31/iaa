@@ -31,6 +31,7 @@
       crossorigin="anonymous"></script>
     <!-- JS -->
     <script src="/iaa-multiple-choice/static/js/addQuestion.js"></script>
+    
   </head>
   <body>
     <div class="container">

@@ -27,6 +27,10 @@ public class Student extends User {
     @OrderBy("startDate ASC")
     private Set<Exam> registeredExams;
 
+    @Basic
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<TestResult> testResults;
+
     public Student() {
     }
 
@@ -42,6 +46,10 @@ public class Student extends User {
 
     public void addExam(final Exam exam) {
         registeredExams.add(exam);
+    }
+
+    public void addTestResult(final TestResult testResult) {
+        testResults.add(testResult);
     }
 
     @Override

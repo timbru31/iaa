@@ -111,3 +111,16 @@ footer {
   padding-bottom: 9px;
   margin: 40px 0 20px;
 }
+
+.countdown {
+  border: 1px solid;
+  border-radius: 6px;
+  color: red;
+  font-weight: bold;
+  padding: 6px;
+}
+
+.countdown-header h1 {
+  display: flex;
+  justify-content: space-between;
+}

@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @LoginRequired
 @LecturerRequired
-public class TokenListAction extends BaseSessionAction {
+public class TokenListAction extends BaseAction {
     private static final long serialVersionUID = -8623838284788636915L;
     @Autowired
     private ExamService examService;

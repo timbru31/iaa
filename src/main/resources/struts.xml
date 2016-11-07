@@ -85,6 +85,11 @@
       <result name="input" type="tiles">exam/show</result>
     </action>
 
+    <action name="takeExam" class="de.nordakademie.iaa_multiple_choice.web.TakeExamAction" method="display">
+      <result type="tiles">exam/take</result>
+      <result name="input" type="tiles">examNotFoundError</result>
+    </action>
+
     <action name="createExam" class="de.nordakademie.iaa_multiple_choice.web.ExamAction">
       <result type="tiles">exam/create</result>
     </action>

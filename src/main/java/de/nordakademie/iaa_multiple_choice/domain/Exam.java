@@ -18,6 +18,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
@@ -67,12 +68,20 @@ public class Exam {
     @OrderBy("id ASC")
     private Set<Question> questions;
 
+    @Basic
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<TestResult> testResults;
+
     public void addParticipant(final Student student, final String generatedToken) {
         tokenList.put(student, generatedToken);
     }
 
     public void addQuestion(final Question question) {
         questions.add(question);
+    }
+
+    public void addTestResult(final TestResult testResult) {
+        testResults.add(testResult);
     }
 
     public void clearParticipants() {

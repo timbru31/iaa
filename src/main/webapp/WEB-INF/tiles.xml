@@ -51,6 +51,10 @@
     <put-attribute name="content" value="/templates/showExam.jsp" />
     <put-attribute name="title" value="pageTitle.showExam" />
   </definition>
+  <definition name="exam/take" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/takeExam.jsp" />
+    <put-attribute name="title" value="pageTitle.takeExam" />
+  </definition>
   <definition name="exam/create/question" extends="mainTemplate">
     <put-attribute name="content" value="/templates/createQuestion.jsp" />
     <put-attribute name="title" value="pageTitle.createQuestion" />
