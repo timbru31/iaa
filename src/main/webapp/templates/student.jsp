@@ -45,22 +45,24 @@
         <th><s:text name="create.endDate" /></th>
         <th><s:text name="student.status" /></th>
       </tr>
-      <s:iterator value="student.registeredExams" status="it">
-        <tr>
-          <th><s:property value="name" /></th>
-          <td><s:property value="creditPoints.getValue()" /></td>
-          <td><s:property value="examTime" /></td>
-          <td><s:property value="minPoints" /></td>
-          <td><s:property value="%{getText(evaluationMethod.getShortText())}" /></td>
-          <td><s:property value="formatStartDate()" /></td>
-          <td><s:property value="formatEndDate()" /></td>
-          <td>
-            <s:url var="detailExam" namespace="/" action="showExam">
-              <s:param name="examId">${id}</s:param>
-            </s:url>
-            <s:a class="btn btn-primary" href="%{detailExam}"><s:text name="details"></s:text></s:a>
-          </td>
-        </tr>
+      <s:iterator value="student.registeredExams" status="it" var="exam">
+        <s:if test="%{!student.hasTakenExam(#exam)}">
+          <tr>
+            <th><s:property value="name" /></th>
+            <td><s:property value="creditPoints.getValue()" /></td>
+            <td><s:property value="examTime" /></td>
+            <td><s:property value="minPoints" /></td>
+            <td><s:property value="%{getText(evaluationMethod.getShortText())}" /></td>
+            <td><s:property value="formatStartDate()" /></td>
+            <td><s:property value="formatEndDate()" /></td>
+            <td>
+              <s:url var="detailExam" namespace="/" action="showExam">
+                <s:param name="examId">${id}</s:param>
+              </s:url>
+              <s:a class="btn btn-primary" href="%{detailExam}"><s:text name="details"></s:text></s:a>
+            </td>
+          </tr>
+        </s:if>
       </s:iterator>
     </table>
   </div>
