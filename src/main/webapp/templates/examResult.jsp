@@ -2,7 +2,7 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <div class="page-header">
   <h1>
-    <s:text name="show.title" />
+    <s:text name="examResult.title" />
   </h1>
 </div>
 <table class="table">

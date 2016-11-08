@@ -18,6 +18,7 @@
       <tr>
         <th><s:text name="create.examName" /></th>
         <th><s:text name="resultList.result" /></th>
+        <th><s:text name="student.status" /></th>
       </tr>
       <s:iterator value="student.testResults">
         <s:if test="isExpired()">
@@ -30,6 +31,12 @@
               <s:else>
                 <button class="btn btn-danger btn-result"><s:text name="resultList.failed" /></button>
               </s:else>
+            </td>
+            <td>
+              <s:url var="examResult" namespace="/" action="examResult">
+                <s:param name="examId">${exam.id}</s:param>
+              </s:url>
+              <s:a class="btn btn-primary" href="%{examResult}"><s:text name="details"></s:text></s:a>
             </td>
           </tr>
         </s:if>
