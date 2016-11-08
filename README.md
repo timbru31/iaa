@@ -1,4 +1,4 @@
-# 🎓  IAA Hausarbeit - Multiple Choice 📝
+# 🎓  IAA Hausarbeit - Multiple Choice 📝 [![Build Status](https://travis-ci.org/timbru31/iaa-multiple-choice.svg?branch=master)](https://travis-ci.org/timbru31/iaa-multiple-choice)
 ### Authors
 
 Jens Gottwald, Hannes Peterson, Yannick Rump, Tim Brust
