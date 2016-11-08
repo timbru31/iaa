@@ -44,11 +44,12 @@
   </div>
 </s:if>
 
-<s:if test="%{hasFieldErrors()}">
+<s:if test="%{hasErrors()}">
   <div class="alert alert-danger" role="alert">
     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span class="sr-only"><s:text name="validation.error" /></span>
     <strong><s:text name="validation.errorIntro" /></strong>
     <s:fielderror />
+    <s:actionerror />
   </div>
 </s:if>
 

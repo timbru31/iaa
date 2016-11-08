@@ -32,6 +32,9 @@ public class TestResult {
     private LocalDateTime startTime;
 
     @Basic
+    private LocalDateTime endTime;
+
+    @Basic
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonBackReference
     private Exam exam;
@@ -43,4 +46,8 @@ public class TestResult {
 
     // TODO: how to store the answers to a question
     // private Map<Question, Set<Answer>> answers;
+
+    public boolean isExpired() {
+        return LocalDateTime.now().isAfter(startTime.plusMinutes(exam.getExamTime().intValue())) || endTime != null;
+    }
 }

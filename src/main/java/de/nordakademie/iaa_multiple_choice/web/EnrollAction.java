@@ -1,13 +1,18 @@
 package de.nordakademie.iaa_multiple_choice.web;
 
+import java.time.LocalDateTime;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import de.nordakademie.iaa_multiple_choice.domain.Exam;
 import de.nordakademie.iaa_multiple_choice.domain.Student;
+import de.nordakademie.iaa_multiple_choice.domain.TestResult;
 import de.nordakademie.iaa_multiple_choice.domain.exceptions.StudentNotEnrolledException;
 import de.nordakademie.iaa_multiple_choice.service.ExamService;
+import de.nordakademie.iaa_multiple_choice.service.TestResultService;
+import de.nordakademie.iaa_multiple_choice.service.UserService;
 import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 import de.nordakademie.iaa_multiple_choice.web.util.StudentRequired;
 import lombok.Getter;
@@ -20,6 +25,10 @@ public class EnrollAction extends BaseSessionAction {
     private static final Logger logger = LogManager.getLogger(EnrollAction.class.getName());
     @Autowired
     private ExamService examService;
+    @Autowired
+    private TestResultService testResultService;
+    @Autowired
+    private UserService userService;
     @Getter
     @Setter
     private Long examId;
@@ -34,6 +43,16 @@ public class EnrollAction extends BaseSessionAction {
     private Student student;
 
     public String enrollStudent() {
+        final LocalDateTime now = LocalDateTime.now();
+        final TestResult testResult = new TestResult();
+        testResult.setExam(exam);
+        testResult.setStudent(student);
+        testResult.setStartTime(now);
+        testResultService.createTestResult(testResult);
+        exam.addTestResult(testResult);
+        student.addTestResult(testResult);
+        examService.updateExam(exam);
+        userService.updateUser(student);
         return SUCCESS;
     }
 

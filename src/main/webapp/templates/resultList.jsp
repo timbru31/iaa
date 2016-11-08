@@ -20,15 +20,19 @@
         <th><s:text name="resultList.result" /></th>
       </tr>
       <s:iterator value="student.testResults">
-        <tr>
-          <td><b><s:text name="exam.getName()" /></b></td>
-          <s:if test="passed">
-            <td><button class="btn btn-success btn-result"><s:text name="resultList.passed" /></button></td>
-          </s:if>
-          <s:else>
-            <td><button class="btn btn-danger btn-result"><s:text name="resultList.failed" /></button></td>
-          </s:else>
-        </tr>
+        <s:if test="isExpired()">
+          <tr>
+            <td><b><s:text name="exam.getName()" /></b></td>
+            <td>
+              <s:if test="passed">
+                <button class="btn btn-success btn-result"><s:text name="resultList.passed" /></button>
+              </s:if>
+              <s:else>
+                <button class="btn btn-danger btn-result"><s:text name="resultList.failed" /></button>
+              </s:else>
+            </td>
+          </tr>
+        </s:if>
       </s:iterator>
     </table>
   </div>

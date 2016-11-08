@@ -17,6 +17,14 @@
   </p>
 </div>
 
+<s:if test="%{hasActionErrors()}">
+  <div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span class="sr-only"><s:text name="validation.error" /></span>
+    <strong><s:text name="validation.errorIntro" /></strong>
+    <s:actionerror />
+  </div>
+</s:if>
+
 <s:if test="%{student.registeredExams.isEmpty()}">
   <div class="panel panel-default">
     <div class="panel-body">

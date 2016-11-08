@@ -1,8 +1,5 @@
 package de.nordakademie.iaa_multiple_choice.web;
 
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +17,9 @@ import lombok.Setter;
 
 @LoginRequired
 @StudentRequired
-public class TakeExamAction extends BaseSessionAction {
-    private static final long serialVersionUID = -2887663909719799155L;
-    private static final Logger logger = LogManager.getLogger(TakeExamAction.class.getName());
+public class ExamResultAction extends BaseSessionAction {
+    private static final long serialVersionUID = 5328927367795893403L;
+    private static final Logger logger = LogManager.getLogger(ExamResultAction.class.getName());
     @Autowired
     private ExamService examService;
     @Autowired
@@ -47,22 +44,21 @@ public class TakeExamAction extends BaseSessionAction {
         exam = examService.find(examId);
         student = (Student) getUser();
         if (!exam.hasParticipant(student)) {
-            logger.warn("The student {} tried to enroll to the exam {}, but he is not enlisted for this exam!",
+            logger.warn("The student {} tried to view the exam result {}, but he is not enlisted for this exam!",
                     student.getEmail(), exam.getName());
             throw new StudentNotEnrolledException();
         }
         final TestResult byExamAndStudent = testResultService.findByExamAndStudent(examId, student.getId());
         if (byExamAndStudent == null) {
-            addActionError(getText("validation.useToken"));
-            return "token";
+            addActionError(getText("validation.examNotTaken"));
+            return "redirectHome";
         } else {
             testResult = byExamAndStudent;
-            if (testResult.isExpired()) {
-                return "expired";
+            if (!testResult.isExpired()) {
+                addActionError(getText("validation.examNotFinished"));
+                return "redirectHome";
             }
         }
-        final LocalDateTime endTime = testResult.getStartTime().plusMinutes(exam.getExamTime().intValue());
-        endTimeMillis = endTime.atOffset(ZonedDateTime.now().getOffset()).toEpochSecond();
         return SUCCESS;
     }
 }

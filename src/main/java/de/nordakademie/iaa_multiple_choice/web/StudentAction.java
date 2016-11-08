@@ -15,8 +15,14 @@ public class StudentAction extends BaseSessionAction {
     private Student student;
 
     @Override
-    public String execute() throws Exception {
+    public String execute() {
         student = (Student) getUser();
         return SUCCESS;
+    }
+
+    @Override
+    public String input() {
+        student = (Student) getUser();
+        return INPUT;
     }
 }

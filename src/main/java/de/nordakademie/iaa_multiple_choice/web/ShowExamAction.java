@@ -29,12 +29,21 @@ public class ShowExamAction extends BaseSessionAction {
 
     @Override
     public String execute() {
+        findExam();
+        return SUCCESS;
+    }
+
+    private void findExam() {
         exam = examService.find(examId);
         student = (Student) getUser();
         if (!exam.hasParticipant(student)) {
             throw new StudentNotEnrolledException();
         }
-        return SUCCESS;
     }
 
+    @Override
+    public String input() {
+        findExam();
+        return INPUT;
+    }
 }
