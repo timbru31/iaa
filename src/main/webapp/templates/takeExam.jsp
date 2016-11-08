@@ -8,11 +8,6 @@
 </div>
 Exam time: <s:property value="exam.examTime"/><br>
 Start time: <s:property value="testResult.startTime"/><br>
-<div class="panel panel-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="Beautifull, insn't it?">
-  <div class="panel-body">
-
-  </div>
-</div>
 <script src="https://cdn.jsdelivr.net/jquery.countdown/2.2.0/jquery.countdown.min.js" integrity="sha256-Ikk5myJowmDQaYVCUD0Wr+vIDkN8hGI58SGWdE671A8=" crossorigin="anonymous"></script>
 <script type="text/javascript">
 function getRemainingTime() {

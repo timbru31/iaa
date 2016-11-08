@@ -10,12 +10,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
+@ToString
 public class TestResult {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,10 +33,12 @@ public class TestResult {
 
     @Basic
     @ManyToOne(fetch = FetchType.EAGER)
+    @JsonBackReference
     private Exam exam;
 
     @Basic
     @ManyToOne(fetch = FetchType.EAGER)
+    @JsonBackReference
     private Student student;
 
     // TODO: how to store the answers to a question

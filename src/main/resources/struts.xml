@@ -77,9 +77,8 @@
     </action>
 
     <action name="enroll" class="de.nordakademie.iaa_multiple_choice.web.EnrollAction" method="enrollStudent">
-      <!-- TODO start exam -->
       <result type="redirectAction">
-        <param name="actionName">showExam</param>
+        <param name="actionName">takeExam</param>
         <param name="examId">${examId}</param>
       </result>
       <result name="input" type="tiles">exam/show</result>

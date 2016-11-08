@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OrderBy;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,7 +20,7 @@ import lombok.ToString;
 @Setter
 @Entity
 @DiscriminatorValue("student")
-@ToString
+@ToString(exclude = "testResults")
 public class Student extends User {
     @Column(unique = true, nullable = false)
     private Integer studentNumber;
@@ -29,6 +31,7 @@ public class Student extends User {
 
     @Basic
     @ManyToMany(fetch = FetchType.EAGER)
+    @JsonManagedReference
     private Set<TestResult> testResults;
 
     public Student() {
@@ -70,6 +73,10 @@ public class Student extends User {
         int result = super.hashCode();
         result = 31 * result + (studentNumber == null ? 0 : studentNumber.hashCode());
         return result;
+    }
+
+    public boolean hasTakenExam(final Exam exam) {
+        return testResults.stream().anyMatch(ts -> exam.equals(ts.getExam()));
     }
 
     public void removeExam(final Exam exam) {

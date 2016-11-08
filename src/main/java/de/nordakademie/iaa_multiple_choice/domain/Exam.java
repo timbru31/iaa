@@ -23,6 +23,8 @@ import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -30,7 +32,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @Entity
-@ToString(exclude = "tokenList")
+@ToString(exclude = { "tokenList", "testResults" })
 public class Exam {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -70,6 +72,7 @@ public class Exam {
 
     @Basic
     @ManyToMany(fetch = FetchType.EAGER)
+    @JsonManagedReference
     private Set<TestResult> testResults;
 
     public void addParticipant(final Student student, final String generatedToken) {
@@ -88,6 +91,22 @@ public class Exam {
         tokenList.clear();
     }
 
+    @Override
+    public boolean equals(final Object obj) {
+        if ((obj == null) || (obj.getClass() != this.getClass())) {
+            return false;
+        }
+        final Exam exam = (Exam) obj;
+        if (!id.equals(exam.id) || !name.equals(exam.name) || examTime.intValue() != exam.examTime.intValue()
+                || minPoints.intValue() != exam.minPoints.intValue() || creditPoints != exam.creditPoints
+                || !startDate.isEqual(exam.startDate) || !endDate.isEqual(exam.endDate)
+                || evaluationMethod != exam.evaluationMethod || questions.size() != exam.questions.size()
+                || tokenList.size() != exam.tokenList.size() || testResults.size() != exam.testResults.size()) {
+            return false;
+        }
+        return true;
+    }
+
     public Date formatEndDate() {
         return Date.valueOf(endDate);
     }
@@ -98,6 +117,20 @@ public class Exam {
 
     public String getToken(final Student student) {
         return tokenList.get(student);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + (id == null ? 0 : id.hashCode());
+        result = 31 * result + (name == null ? 0 : name.hashCode());
+        result = 31 * result + (minPoints == null ? 0 : minPoints.hashCode());
+        result = 31 * result + (examTime == null ? 0 : examTime.hashCode());
+        result = 31 * result + (startDate == null ? 0 : startDate.hashCode());
+        result = 31 * result + (endDate == null ? 0 : endDate.hashCode());
+        result = 31 * result + (evaluationMethod == null ? 0 : evaluationMethod.hashCode());
+        result = 31 * result + (creditPoints == null ? 0 : creditPoints.hashCode());
+        return result;
     }
 
     public boolean hasParticipant(final Student student) {

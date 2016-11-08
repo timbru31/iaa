@@ -50,5 +50,8 @@ public class EnrollAction extends BaseSessionAction {
             addFieldError("token", getText("validation.tokenInvalid"));
             return;
         }
+        if (student.hasTakenExam(exam)) {
+            addFieldError("token", getText("validation.tokenUsed"));
+        }
     }
 }
