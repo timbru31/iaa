@@ -1,19 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
-<div class="page-header">
+
+<div class="jumbotron backoffice">
   <h1>
     <s:text name="student.title" />
-    <small><s:text name="student.body" /></small>
   </h1>
+  <p>
+    <s:text name="student.body" />
+  </p>
+  <p>
+    <s:url var="resultList" namespace="/" action="resultList" />
+    <s:a class="btn btn-default btn-lg" href="%{resultList}" role="button">
+      <span class="glyphicon glyphicon-education glyph-btn"></span>
+      <s:text name="resultList.title" />
+    </s:a>
+  </p>
 </div>
-
-<s:if test="%{hasActionErrors()}">
-  <div class="alert alert-danger" role="alert">
-    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span class="sr-only"><s:text name="validation.error" /></span>
-    <strong><s:text name="validation.errorIntro" /></strong>
-    <s:actionerror />
-  </div>
-</s:if>
 
 <s:if test="%{student.registeredExams.isEmpty()}">
   <div class="panel panel-default">
@@ -45,10 +47,10 @@
           <td><s:property value="formatStartDate()" /></td>
           <td><s:property value="formatEndDate()" /></td>
           <td>
-          <s:url var="detailExam" namespace="/" action="showExam">
-  <s:param name="examId">${id}</s:param>
-</s:url>
-              <s:a class="btn btn-primary" href="%{detailExam}"><s:text name="details"></s:text></s:a>
+            <s:url var="detailExam" namespace="/" action="showExam">
+              <s:param name="examId">${id}</s:param>
+            </s:url>
+            <s:a class="btn btn-primary" href="%{detailExam}"><s:text name="details"></s:text></s:a>
           </td>
         </tr>
       </s:iterator>

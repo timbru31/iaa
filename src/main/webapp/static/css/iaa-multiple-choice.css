@@ -124,3 +124,34 @@ footer {
   display: flex;
   justify-content: space-between;
 }
+
+.btn-result.btn-success {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+}
+
+.btn-result.btn-danger {
+  color: #fff;
+  background-color: #c9302c;
+  border-color: #ac2925;
+}
+
+
+.btn-result.btn-danger:hover, .btn-result.btn-success:hover {
+  cursor: default;
+}
+
+.btn-result.btn-danger:active {
+  color: #fff;
+  background-color: #c9302c;
+  border-color: #ac2925;
+  box-shadow: none
+}
+
+.btn-result.btn-success:active {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+  box-shadow: none
+}
