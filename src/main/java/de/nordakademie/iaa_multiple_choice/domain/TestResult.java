@@ -1,6 +1,8 @@
 package de.nordakademie.iaa_multiple_choice.domain;
 
 import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -29,6 +31,9 @@ public class TestResult {
     private boolean passed;
 
     @Basic
+    private Integer points;
+
+    @Basic
     private LocalDateTime startTime;
 
     @Basic
@@ -46,6 +51,14 @@ public class TestResult {
 
     // TODO: how to store the answers to a question
     // private Map<Question, Set<Answer>> answers;
+    @Basic
+    private Map<Question, Set<Answer>> submittedAnswers;
+
+    // TODO: finsih this method for calculation finalPoints
+    public int calculateFinalPoints(final Map<Question, Set<Answer>> submittedAnswers) {
+        final int result = 100;
+        return result;
+    }
 
     public boolean isExpired() {
         return LocalDateTime.now().isAfter(startTime.plusMinutes(exam.getExamTime().intValue())) || endTime != null;
