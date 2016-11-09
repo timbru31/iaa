@@ -149,4 +149,51 @@ public class Exam {
     public void removeParticipant(final Student student) {
         tokenList.remove(student);
     }
+
+    public boolean isFirstQuestion(final Question question) {
+        int index = 0;
+        for (Question q : questions) {
+            if (q.equals(question)) {
+                return index == 0;
+            }
+            index++;
+        }
+        return false;
+    }
+
+    public Question getNextQuestion(final Question question) {
+        boolean foundSelf = false;
+        for (Question q : questions) {
+            if (foundSelf) {
+                return q;
+            }
+            if (q.equals(question)) {
+                foundSelf = true;
+            }
+        }
+        return null;
+    }
+
+    public Question getPreviousQuestion(final Question question) {
+        Question predecessor = null;
+        for (Question q : questions) {
+            if (q.equals(question)) {
+                return predecessor;
+            }
+            predecessor = q;
+        }
+        return null;
+    }
+
+    public boolean isLastQuestion(final Question question) {
+        int index = 0;
+        int size = questions.size() - 1;
+        for (Question q : questions) {
+            if (q.equals(question)) {
+                return index == size;
+            }
+            index++;
+        }
+        return false;
+    }
 }

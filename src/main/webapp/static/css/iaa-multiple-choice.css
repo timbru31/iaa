@@ -101,6 +101,14 @@ footer {
   margin-bottom: 2px;
 }
 
+.answer {
+  margin: 5px 0;
+}
+
+.answer .form-control {
+  width: auto;
+}
+
 .bigHr {
   height: 1px;
   color: rgb(128, 128, 128);

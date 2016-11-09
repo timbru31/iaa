@@ -2,12 +2,14 @@ package de.nordakademie.iaa_multiple_choice.web;
 
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import de.nordakademie.iaa_multiple_choice.domain.Exam;
+import de.nordakademie.iaa_multiple_choice.domain.Question;
 import de.nordakademie.iaa_multiple_choice.domain.Student;
 import de.nordakademie.iaa_multiple_choice.domain.TestResult;
 import de.nordakademie.iaa_multiple_choice.domain.exceptions.StudentNotEnrolledException;
@@ -32,7 +34,13 @@ public class TakeExamAction extends BaseSessionAction {
     private Long examId;
     @Getter
     @Setter
+    private Long questionId;
+    @Getter
+    @Setter
     private Exam exam;
+    @Getter
+    @Setter
+    private Question question;
     @Getter
     @Setter
     private Student student;
@@ -51,6 +59,17 @@ public class TakeExamAction extends BaseSessionAction {
                     student.getEmail(), exam.getName());
             throw new StudentNotEnrolledException();
         }
+        if (questionId == null) {
+            // questionnotfound
+            throw new RuntimeException();
+        }
+        Optional<Question> optionalQuestion = exam.getQuestions().stream()
+                .filter(q -> questionId.longValue() == q.getId().longValue()).findFirst();
+        if (!optionalQuestion.isPresent()) {
+            // questionnotfound
+            throw new RuntimeException();
+        }
+        question = optionalQuestion.get();
         final TestResult byExamAndStudent = testResultService.findByExamAndStudent(examId, student.getId());
         if (byExamAndStudent == null) {
             addActionError(getText("validation.useToken"));

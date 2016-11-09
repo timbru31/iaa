@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import de.nordakademie.iaa_multiple_choice.domain.Answer;
 import de.nordakademie.iaa_multiple_choice.domain.Exam;
 import de.nordakademie.iaa_multiple_choice.domain.Question;
+import de.nordakademie.iaa_multiple_choice.domain.QuestionType;
 import de.nordakademie.iaa_multiple_choice.domain.exceptions.ExamNotFoundException;
 import de.nordakademie.iaa_multiple_choice.service.AnswerService;
 import de.nordakademie.iaa_multiple_choice.service.ExamService;
@@ -72,9 +73,11 @@ public class QuestionAction extends BaseAction {
     }
 
     public String saveQuestion() {
+        questionService.createQuestion(question);
         question.setAnswers(new HashSet<>());
         final Exam exam = examService.find(examId);
         if (questionType.equals("sc")) {
+            question.setType(QuestionType.SINGLE_CHOICE);
             for (int i = 0; i < rawAnswerTextsSc.length; i++) {
                 final String rawAnswerText = rawAnswerTextsSc[i];
                 final Answer answer = new Answer(rawAnswerText, i == sc);
@@ -82,6 +85,7 @@ public class QuestionAction extends BaseAction {
                 answerService.createAnswer(answer);
             }
         } else if (questionType.equals("mc")) {
+            question.setType(QuestionType.MULTIPLE_CHOICE);
             for (int i = 0; i < rawAnswerTextsMc.length; i++) {
                 final String rawAnswerText = rawAnswerTextsMc[i];
                 final Answer answer = new Answer(rawAnswerText, mc.contains(i));
@@ -89,6 +93,7 @@ public class QuestionAction extends BaseAction {
                 answerService.createAnswer(answer);
             }
         } else if (question.getType() == null) {
+            question.setType(QuestionType.FILL_IN_THE_BLANK);
             final Pattern p = Pattern.compile("\\[(.*?)\\]");
             final Matcher m = p.matcher(question.getText());
             while (m.find()) {
@@ -97,8 +102,8 @@ public class QuestionAction extends BaseAction {
                 question.addAnswer(answer);
                 answerService.createAnswer(answer);
             }
+            question.setText(question.getText().replaceAll("\\[(.*?)\\]", "[]"));
         }
-        questionService.createQuestion(question);
         exam.addQuestion(question);
         examService.updateExam(exam);
         return SUCCESS;
