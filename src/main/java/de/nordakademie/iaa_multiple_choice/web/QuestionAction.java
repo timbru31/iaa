@@ -84,8 +84,10 @@ public class QuestionAction extends BaseAction {
     }
 
     public String saveQuestion() {
-        questionService.createQuestion(question);
-        question.setAnswers(new HashSet<>());
+        if (questionId == 0) {
+            questionService.createQuestion(question);
+            question.setAnswers(new HashSet<>());
+        }
         final Exam exam = examService.find(examId);
         if (questionType.equals("sc")) {
             question.setType(QuestionType.SINGLE_CHOICE);
@@ -103,11 +105,10 @@ public class QuestionAction extends BaseAction {
                 question.addAnswer(answer);
                 answerService.createAnswer(answer);
             }
-        } else if (question.getType() == null) {
-            question.setType(QuestionType.FILL_IN_THE_BLANK);
+        } else if (questionType == null) {
             final Pattern p = Pattern.compile("\\[(.*?)\\]");
             final Matcher m = p.matcher(question.getText());
-            question.setType(QuestionType.FillInTheBlank);
+            question.setType(QuestionType.FILL_IN_THE_BLANK);
             while (m.find()) {
                 final String rawAnswerText = m.group(1);
                 final Answer answer = new Answer(rawAnswerText, true);
@@ -119,11 +120,16 @@ public class QuestionAction extends BaseAction {
             examService.updateExam(exam);
         }
         if (questionId == null) {
-            questionService.createQuestion(question);
+            exam.addQuestion(question);
+            examService.updateExam(exam);
             return SUCCESS;
         } else {
             question.setId(questionId);
+            question.setAnswers(question.getAnswers());
+            question.setType(question.getType());
             questionService.updateQuestion(question);
+            exam.addQuestion(question);
+            examService.updateExam(exam);
             return "updated";
         }
     }
