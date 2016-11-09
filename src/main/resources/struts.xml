@@ -151,18 +151,24 @@
       <result name="input" type="tiles">exam/create</result>
     </action>
 
-    <action name="createQuestion" class="de.nordakademie.iaa_multiple_choice.web.QuestionAction"
-      method="createQuestion">
+    <action name="createQuestion" class="de.nordakademie.iaa_multiple_choice.web.CreateQuestionAction" method="createQuestion">
       <interceptor-ref name="store">
         <param name="operationMode">RETRIEVE</param>
       </interceptor-ref>
       <interceptor-ref name="iaa-multiple-choice" />
       <result name="success" type="tiles">exam/create/question</result>
+      <result name="input" type="tiles">examNotFoundError</result>
+    </action>
+
+    <action name="createQuestionInput" class="de.nordakademie.iaa_multiple_choice.web.CreateQuestionAction" method="input">
+      <interceptor-ref name="store">
+        <param name="operationMode">RETRIEVE</param>
+      </interceptor-ref>
+      <interceptor-ref name="iaa-multiple-choice" />
       <result name="input" type="tiles">exam/create/question</result>
     </action>
 
-    <action name="saveQuestion" class="de.nordakademie.iaa_multiple_choice.web.QuestionAction"
-      method="saveQuestion">
+    <action name="saveQuestion" class="de.nordakademie.iaa_multiple_choice.web.CreateQuestionAction" method="saveQuestion">
       <interceptor-ref name="store">
         <param name="operationMode">STORE</param>
       </interceptor-ref>
@@ -174,11 +180,11 @@
       </result>
       <result name="input" type="redirectAction">
         <param name="examId">${examId}</param>
-        <param name="actionName">createQuestion</param>
+        <param name="actionName">createQuestionInput</param>
       </result>
     </action>
 
-    <action name="updateQuestion" class="de.nordakademie.iaa_multiple_choice.web.QuestionAction"
+    <action name="updateQuestion" class="de.nordakademie.iaa_multiple_choice.web.UpdateQuestionAction"
       method="updateQuestion">
       <interceptor-ref name="store">
         <param name="operationMode">STORE</param>
@@ -196,7 +202,7 @@
       </result>
     </action>
 
-    <action name="editQuestion" class="de.nordakademie.iaa_multiple_choice.web.QuestionAction"
+    <action name="editQuestion" class="de.nordakademie.iaa_multiple_choice.web.UpdateQuestionAction"
       method="editQuestion">
       <result name="success" type="tiles">exam/edit/question</result>
     </action>
