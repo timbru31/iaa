@@ -176,10 +176,23 @@
         <param name="examId">${examId}</param>
         <param name="actionName">createQuestion</param>
       </result>
-      <result name="updated" type="redirectAction">
+    </action>
+
+    <action name="updateQuestion" class="de.nordakademie.iaa_multiple_choice.web.QuestionAction"
+      method="updateQuestion">
+      <interceptor-ref name="store">
+        <param name="operationMode">STORE</param>
+      </interceptor-ref>
+      <interceptor-ref name="iaa-multiple-choice" />
+      <result name="success" type="redirectAction">
         <param name="examId">${examId}</param>
         <param name="questionId">${questionId}</param>
         <param name="actionName">editQuestion</param>
+      </result>
+      <result name="input" type="redirectAction">
+        <param name="examId">${examId}</param>
+        <param name="questionId">${questionId}</param>
+        <param name="actionName">updateQuestion</param>
       </result>
     </action>
 
