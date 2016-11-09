@@ -28,8 +28,7 @@
         class="btn btn-default navbar-btn"> <s:text name="create.Question3" />
       </a>
 
-      <s:submit onclick="addPage('.pagination li')"
-        class="btn btn-success navbar-btn navbar-right"
+      <s:submit class="btn btn-success navbar-btn navbar-right"
         value="%{getText('createQuestion.submit')}" />
     </div>
   </nav>

@@ -29,8 +29,7 @@
         class="btn btn-default navbar-btn"> <s:text name="create.Question3" />
       </a>
 
-      <s:submit onclick="addPage('.pagination li')"
-        class="btn btn-success navbar-btn navbar-right"
+      <s:submit class="btn btn-success navbar-btn navbar-right"
         value="%{getText('createQuestion.submit')}" />
     </div>
   </nav>
@@ -43,82 +42,52 @@
 
   <div class="tab-content" id="tabs">
 
-    <div
-      class="tab-pane ${question.type == QuestionType.SingleChoice ? 'active' : ''}"
+    <div class="tab-pane ${question.type == 'SingleChoice' ? 'active' : ''}"
       id="sc">
       <div id="addRadio">
         <s:iterator value="question.answers">
           <div class="input-group rd">
             <span class="input-group-addon"> <input type="radio"
               name="sc" value="0" ${rightAnswer == true ? 'checked' : ''}>
-            </span> <input name="rawAnswerTextsSc" type="text" class="form-control"
-              placeholder="${text}">
+            </span> <input name="rawAnswerTextsSc" value="${text}" type="text"
+              class="form-control">
           </div>
         </s:iterator>
       </div>
-      <%--
-        <div class="input-group rd">
-          <span class="input-group-addon"> <input type="radio" name="sc"
-            value="0">
-          </span> <input name="rawAnswerTextsSc" type="text" class="form-control">
-        </div>
-        <div class="input-group rd">
-          <span class="input-group-addon"> <input type="radio" name="sc"
-            value="1">
-          </span> <input name="rawAnswerTextsSc" type="text" class="form-control">
-         --%>
+
+      <button onclick="addRadio('div[id=addRadio]')" type="button"
+        class="btn btn-default">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+      <button onclick="removeRadio('div[id=removeRadio]')" type="button"
+        class="btn btn-default">
+        <span class="glyphicon glyphicon-minus"></span>
+      </button>
     </div>
 
-    <button onclick="addRadio('div[id=addRadio]')" type="button"
-      class="btn btn-default">
-      <span class="glyphicon glyphicon-plus"></span>
-    </button>
-    <button onclick="removeRadio('div[id=removeRadio]')" type="button"
-      class="btn btn-default">
-      <span class="glyphicon glyphicon-minus"></span>
-    </button>
-  </div>
-
-  <div
-    class="tab-pane ${question.type == QuestionType.MutipleChoice ? 'active' : ''}"
-    id="mc">
-    <div id="addCheckbox">
-      <s:iterator value="question.answers">
-        <div class="input-group rd">
-          <span class="input-group-addon"> <input type="checkbox" name="mc"
-            value="0" ${rightAnswer == true ? 'checked' : ''}>
-          </span> <input name="rawAnswerTextsMc" type="text" class="form-control"
-            placeholder="${text}">
-        </div>
-      </s:iterator>
-    </div>
-
-
-    <%-- <div class="input-group cb">
-        <span class="input-group-addon"> <input type="checkbox" name="mc"
-          value="0">
-        </span> <input name="rawAnswerTextsMc" type="text" class="form-control">
+    <div class="tab-pane ${question.type == 'MultipleChoice' ? 'active' : ''}" id="mc">
+      <div id="addCheckbox">
+        <s:iterator value="question.answers">
+          <div class="input-group rd">
+            <span class="input-group-addon"> <input type="checkbox"
+              name="mc" value="0" ${rightAnswer == true ? 'checked' : ''}>
+            </span> <input name="rawAnswerTextsMc" value="${text}" type="text"
+              class="form-control">
+          </div>
+        </s:iterator>
       </div>
-      <div class="input-group cb">
-        <span class="input-group-addon"> <input type="checkbox" name="mc"
-          value="1">
-        </span> <input name="rawAnswerTextsMc" type="text" class="form-control">
-      </div> --%>
 
+      <button onclick="addCheckbox('div[id=addCheckbox]')" type="button"
+        class="btn btn-default">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+      <button onclick="removeCheckbox('div[id=removeCheckbox]')" type="button"
+        class="btn btn-default">
+        <span class="glyphicon glyphicon-minus"></span>
+      </button>
+    </div>
 
-    <button onclick="addCheckbox('div[id=addCheckbox]')" type="button"
-      class="btn btn-default">
-      <span class="glyphicon glyphicon-plus"></span>
-    </button>
-    <button onclick="removeCheckbox('div[id=removeCheckbox]')" type="button"
-      class="btn btn-default">
-      <span class="glyphicon glyphicon-minus"></span>
-    </button>
-  </div>
-
-  <div
-    class="tab-pane ${question.type == QuestionType.FillInTheBlank ? 'active' : ''}"
-    id="fitbt"></div>
+    <div class="tab-pane ${question.type == 'FillInTheBlank' ? 'active' : ''}" id="fitb"></div>
 
   </div>
 
