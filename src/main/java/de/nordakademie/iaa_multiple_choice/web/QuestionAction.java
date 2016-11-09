@@ -84,10 +84,8 @@ public class QuestionAction extends BaseAction {
     }
 
     public String saveQuestion() {
-        if (questionId == 0) {
-            questionService.createQuestion(question);
-            question.setAnswers(new HashSet<>());
-        }
+        questionService.createQuestion(question);
+        question.setAnswers(new HashSet<>());
         final Exam exam = examService.find(examId);
         if (questionType.equals("sc")) {
             question.setType(QuestionType.SINGLE_CHOICE);
@@ -116,27 +114,61 @@ public class QuestionAction extends BaseAction {
                 answerService.createAnswer(answer);
             }
             question.setText(question.getText().replaceAll("\\[(.*?)\\]", "[]"));
-            exam.addQuestion(question);
-            examService.updateExam(exam);
         }
-        if (questionId == null) {
-            exam.addQuestion(question);
-            examService.updateExam(exam);
-            return SUCCESS;
-        } else {
-            question.setId(questionId);
-            question.setAnswers(question.getAnswers());
-            question.setType(question.getType());
-            questionService.updateQuestion(question);
-            exam.addQuestion(question);
-            examService.updateExam(exam);
-            return "updated";
-        }
+
+        exam.addQuestion(question);
+        examService.updateExam(exam);
+        return SUCCESS;
+
     }
 
-    public String updateAnswer() {
+    public String updateQuestion() {
+        final Exam exam = examService.find(examId);
+        question = questionService.find(questionId);
+        if (question.getType() == QuestionType.SINGLE_CHOICE) {
+            int i = 0;
+            for (Answer answer : question.getAnswers()) {
+                try {
+                    final String rawAnswerText = rawAnswerTextsSc[i];
+                    answer.setText(rawAnswerText);
+                    answer.setRightAnswer(i == sc);
+                    i++;
+                    answerService.updateAnswer(answer);
+                } catch (IndexOutOfBoundsException e) {
+                    answerService.deleteAnswer(answer.getId());
+                }
+            }
+        } else if (question.getType() == QuestionType.MULTIPLE_CHOICE) {
+            int i = 0;
+            for (Answer answer : question.getAnswers()) {
+                try {
+                    final String rawAnswerText = rawAnswerTextsMc[i];
+                    answer.setText(rawAnswerText);
+                    answer.setRightAnswer(mc.contains(i));
+                    i++;
+                    answerService.updateAnswer(answer);
+                } catch (IndexOutOfBoundsException e) {
+                    answerService.deleteAnswer(answer.getId());
+                }
+            }
+        } else if (questionType == null) {
+            // delete old answers?
+            final Pattern p = Pattern.compile("\\[(.*?)\\]");
+            final Matcher m = p.matcher(question.getText());
+            while (m.find()) {
+                final String rawAnswerText = m.group(1);
+                final Answer answer = new Answer(rawAnswerText, true);
+                question.addAnswer(answer);
+                answerService.createAnswer(answer);
+            }
+            question.setText(question.getText().replaceAll("\\[(.*?)\\]", "[]"));
+        }
+        // question.setId(questionId);
+        // question.setAnswers(question.getAnswers());
+        // question.setType(question.getType());
         questionService.updateQuestion(question);
         return SUCCESS;
+
     }
 
     public void validateSaveQuestion() {

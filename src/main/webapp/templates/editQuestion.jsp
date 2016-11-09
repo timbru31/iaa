@@ -14,7 +14,7 @@
   </h1>
 </div>
 
-<s:form action="saveQuestion">
+<s:form action="updateQuestion">
   <s:hidden name="examId" value="%{examId}" />
   <s:hidden name="questionId" value="%{questionId}" />
   <s:hidden name="questionType" id="questionType" />
@@ -42,7 +42,7 @@
 
   <div class="tab-content" id="tabs">
 
-    <div class="tab-pane ${question.type == 'SingleChoice' ? 'active' : ''}"
+    <div class="tab-pane ${question.type == 'SINGLE_CHOICE' ? 'active' : ''}"
       id="sc">
       <div id="addRadio">
         <s:iterator value="question.answers">
@@ -65,7 +65,7 @@
       </button>
     </div>
 
-    <div class="tab-pane ${question.type == 'MultipleChoice' ? 'active' : ''}" id="mc">
+    <div class="tab-pane ${question.type == 'MULTIPLE_CHOICE' ? 'active' : ''}" id="mc">
       <div id="addCheckbox">
         <s:iterator value="question.answers">
           <div class="input-group rd">
@@ -87,7 +87,7 @@
       </button>
     </div>
 
-    <div class="tab-pane ${question.type == 'FillInTheBlank' ? 'active' : ''}" id="fitb"></div>
+    <div class="tab-pane ${question.type == 'FILL_IN_THE_BLANK' ? 'active' : ''}" id="fitb"></div>
 
   </div>
 
