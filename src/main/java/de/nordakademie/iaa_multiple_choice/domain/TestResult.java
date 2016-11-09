@@ -1,8 +1,6 @@
 package de.nordakademie.iaa_multiple_choice.domain;
 
 import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -50,12 +48,10 @@ public class TestResult {
     private Student student;
 
     // TODO: how to store the answers to a question
-    // private Map<Question, Set<Answer>> answers;
-    @Basic
-    private Map<Question, Set<Answer>> submittedAnswers;
+    // private Map<Question, Set<Answer>> submittedAnswers;
 
-    // TODO: finsih this method for calculation finalPoints
-    public int calculateFinalPoints(final Map<Question, Set<Answer>> submittedAnswers) {
+    // TODO: finish this method for calculation finalPoints
+    public int calculateFinalPoints() {
         final int result = 100;
         return result;
     }

@@ -49,7 +49,7 @@ public class SubmitExamAction extends BaseSessionAction {
     @Setter
     private LocalDateTime endTime;
 
-    private String submitExam() {
+    public String submitExam() {
         exam = examService.find(examId);
         startTime = testResult.getStartTime();
         endTime = testResult.getStartTime().plusMinutes(exam.getExamTime().intValue());
@@ -62,7 +62,7 @@ public class SubmitExamAction extends BaseSessionAction {
         testResult = testResultService.findByExamAndStudent(examId, student.getId());
         testResult.setStartTime(startTime);
         testResult.setEndTime(endTime);
-        testResult.setPoints(testResult.calculateFinalPoints(submittedAnswers));
+        testResult.setPoints(testResult.calculateFinalPoints());
         testResult.setPassed(testResult.isPassed());
         testResultService.createTestResult(testResult);
         return SUCCESS;
