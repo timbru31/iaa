@@ -25,11 +25,6 @@ public class CreateQuestionAction extends BaseQuestionAction {
         return INPUT;
     }
 
-    // public String deleteQuestion() {
-    // getQuestionService().deleteQuestion(question.getId());
-    // return SUCCESS;
-    // }
-
     public String saveQuestion() {
         getQuestionService().createQuestion(getQuestion());
         getQuestion().setAnswers(new HashSet<>());
@@ -37,7 +32,7 @@ public class CreateQuestionAction extends BaseQuestionAction {
         if (getQuestion().getType() == QuestionType.SINGLE_CHOICE) {
             for (int i = 0; i < getRawAnswerTextsSc().length; i++) {
                 final String rawAnswerText = getRawAnswerTextsSc()[i];
-                final Answer answer = new Answer(rawAnswerText, i == getSc());
+                final Answer answer = new Answer(rawAnswerText, i == getSc().intValue());
                 getQuestion().addAnswer(answer);
                 getAnswerService().createAnswer(answer);
             }
@@ -58,8 +53,8 @@ public class CreateQuestionAction extends BaseQuestionAction {
             }
             getQuestion().setText(getQuestion().getText().replaceAll("\\[(.*?)\\]", "[]"));
         } else {
-            // TODO noQuestion --> fieldError?
-            throw new RuntimeException();
+            addFieldError("question.type", getText("validation.questionTypeMissing"));
+            return INPUT;
         }
         exam.addQuestion(getQuestion());
         getExamService().updateExam(exam);

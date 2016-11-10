@@ -200,4 +200,8 @@ public class Exam {
     public void removeParticipant(final Student student) {
         tokenList.remove(student);
     }
+
+    public void removeQuestion(final Question question) {
+        questions.remove(question);
+    }
 }

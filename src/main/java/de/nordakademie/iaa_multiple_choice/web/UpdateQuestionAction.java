@@ -56,7 +56,7 @@ public class UpdateQuestionAction extends BaseQuestionAction {
             }
             for (; i < getRawAnswerTextsSc().length; i++) {
                 final String rawAnswerText = getRawAnswerTextsSc()[i];
-                final Answer newAnswer = new Answer(rawAnswerText, i == getSc());
+                final Answer newAnswer = new Answer(rawAnswerText, i == getSc().intValue());
                 updatedQuestion.addAnswer(newAnswer);
                 getAnswerService().createAnswer(newAnswer);
             }

@@ -20,7 +20,7 @@
     </div>
   </s:if>
 
-<s:form action="updateQuestion">
+<s:form>
   <s:hidden name="examId" value="%{examId}" />
   <s:hidden name="questionId" value="%{questionId}" />
   <s:hidden name="question.type" value="%{question.type}" />
@@ -102,12 +102,8 @@
       type="number" inputmode="numeric" min="1" pattern="[0-9]*" required="true" />
   </div>
 
-  <s:submit class="btn btn-success" value="%{getText('updateQuestion.submit')}" />
-
-//TODO
-  <button type="button" class="btn btn-danger">
-    <s:text name="create.deleteQuestion" />
-  </button>
+  <s:submit action="updateQuestion" class="btn btn-success" value="%{getText('updateQuestion.submit')}" />
+  <s:submit action="deleteQuestion" class="btn btn-danger" value="%{getText('create.deleteQuestion')}" />
 
   <div class="center">
     <nav>
