@@ -83,11 +83,15 @@
     <put-attribute name="content" value="/templates/error/notFoundError.jsp" />
     <put-attribute name="title" value="pageTitle.notFound" />
   </definition>
+  <definition name="questionNotFoundError" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/error/questionNotFoundError.jsp" />
+    <put-attribute name="title" value="pageTitle.questionNotFound" />
+  </definition>
   <definition name="examNotFoundError" extends="mainTemplate">
     <put-attribute name="content" value="/templates/error/examNotFoundError.jsp" />
     <put-attribute name="title" value="pageTitle.examNotFound" />
   </definition>
-  <definition name="examNotEditable" extends="mainTemplate">
+  <definition name="examNotEditableError" extends="mainTemplate">
     <put-attribute name="content"
       value="/templates/error/examNotEditableError.jsp" />
     <put-attribute name="title" value="pageTitle.examNotEditable" />

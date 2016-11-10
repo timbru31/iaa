@@ -43,7 +43,8 @@
       <!-- <result name="genericError" type="tiles">genericError</result> -->
       <result name="forbidden" type="tiles">forbiddenError</result>
       <result name="examNotFound" type="tiles">examNotFoundError</result>
-      <result name="examNotEditable" type="tiles">examNotEditable</result>
+      <result name="questionNotFound" type="tiles">questionNotFoundError</result>
+      <result name="examNotEditable" type="tiles">examNotEditableError</result>
       <result name="registrationDisabled" type="tiles">registrationDisabledError</result>
     </global-results>
 
@@ -53,6 +54,9 @@
       <exception-mapping
         exception="de.nordakademie.iaa_multiple_choice.domain.exceptions.ExamNotFoundException"
         result="examNotFound" />
+      <exception-mapping
+        exception="de.nordakademie.iaa_multiple_choice.domain.exceptions.QuestionNotFoundException"
+        result="questionNotFound" />
       <exception-mapping
         exception="de.nordakademie.iaa_multiple_choice.domain.exceptions.ExamNotEditableException"
         result="examNotEditable" />
@@ -166,6 +170,7 @@
     </action>
 
     <action name="editQuestion" class="de.nordakademie.iaa_multiple_choice.web.UpdateQuestionAction" method="editQuestion">
+      <result name="input" type="tiles">notFoundError</result>
       <result name="success" type="tiles">exam/edit/question</result>
     </action>
 

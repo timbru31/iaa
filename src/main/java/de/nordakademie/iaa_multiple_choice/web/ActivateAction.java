@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class ActivateAction extends BaseSessionAction {
-    private static final long serialVersionUID = -2646095881961031216L;
+    private static final long serialVersionUID = -1644655626750378438L;
     @Getter
     @Setter
     private String token;

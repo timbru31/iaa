@@ -6,7 +6,6 @@ import java.util.regex.Matcher;
 import de.nordakademie.iaa_multiple_choice.domain.Answer;
 import de.nordakademie.iaa_multiple_choice.domain.Exam;
 import de.nordakademie.iaa_multiple_choice.domain.QuestionType;
-import de.nordakademie.iaa_multiple_choice.domain.exceptions.ExamNotEditableException;
 import de.nordakademie.iaa_multiple_choice.web.util.LecturerRequired;
 import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 
@@ -18,13 +17,6 @@ public class CreateQuestionAction extends BaseQuestionAction {
     public String createQuestion() {
         findExam();
         return SUCCESS;
-    }
-
-    private void findExam() {
-        final Exam exam = getExamService().find(getExamId());
-        if (!exam.isEditable()) {
-            throw new ExamNotEditableException();
-        }
     }
 
     @Override

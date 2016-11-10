@@ -3,9 +3,12 @@ package de.nordakademie.iaa_multiple_choice.domain;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
+
+import de.nordakademie.iaa_multiple_choice.domain.exceptions.QuestionNotFoundException;
 
 @Repository
 public class QuestionRepository {
@@ -21,9 +24,12 @@ public class QuestionRepository {
     }
 
     public Question find(final Long id) {
-        return entityManager
-                .createQuery("SELECT question FROM Question question WHERE question_id = :question_id", Question.class)
-                .setParameter("question_id", id).getSingleResult();
+        try {
+            return entityManager.createQuery("SELECT question FROM Question question WHERE question_id = :question_id",
+                    Question.class).setParameter("question_id", id).getSingleResult();
+        } catch (final NoResultException e) {
+            throw new QuestionNotFoundException();
+        }
     }
 
     public List<Question> findAll() {

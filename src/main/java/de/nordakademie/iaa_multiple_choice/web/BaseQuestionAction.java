@@ -7,7 +7,9 @@ import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import de.nordakademie.iaa_multiple_choice.domain.Exam;
 import de.nordakademie.iaa_multiple_choice.domain.Question;
+import de.nordakademie.iaa_multiple_choice.domain.exceptions.ExamNotEditableException;
 import de.nordakademie.iaa_multiple_choice.service.AnswerService;
 import de.nordakademie.iaa_multiple_choice.service.ExamService;
 import de.nordakademie.iaa_multiple_choice.service.QuestionService;
@@ -54,6 +56,14 @@ public abstract class BaseQuestionAction extends BaseAction {
     @Getter
     @Setter
     private Question question;
+
+    public Exam findExam() {
+        final Exam exam = getExamService().find(getExamId());
+        if (!exam.isEditable()) {
+            throw new ExamNotEditableException();
+        }
+        return exam;
+    }
 
     public void validateQuestion() {
         if (question == null) {

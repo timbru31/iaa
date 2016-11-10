@@ -4,8 +4,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import de.nordakademie.iaa_multiple_choice.domain.Answer;
+import de.nordakademie.iaa_multiple_choice.domain.Exam;
 import de.nordakademie.iaa_multiple_choice.domain.Question;
 import de.nordakademie.iaa_multiple_choice.domain.QuestionType;
+import de.nordakademie.iaa_multiple_choice.domain.exceptions.QuestionNotFoundException;
 import de.nordakademie.iaa_multiple_choice.web.util.LecturerRequired;
 import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 
@@ -15,14 +17,23 @@ public class UpdateQuestionAction extends BaseQuestionAction {
     private static final long serialVersionUID = -5586848162334856912L;
 
     public String editQuestion() {
-        setQuestion(getQuestionService().find(getQuestionId()));
+        findQuestion();
         return SUCCESS;
+    }
+
+    private void findQuestion() {
+        final Exam exam = findExam();
+        final Question question = getQuestionService().find(getQuestionId());
+        if (!exam.hasQuestion(question)) {
+            throw new QuestionNotFoundException();
+        }
+        setQuestion(question);
     }
 
     @Override
     public String input() {
-        setQuestion(getQuestionService().find(getQuestionId()));
-        return SUCCESS;
+        findQuestion();
+        return INPUT;
     }
 
     public String updateQuestion() {

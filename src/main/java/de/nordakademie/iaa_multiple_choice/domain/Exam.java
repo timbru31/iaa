@@ -161,6 +161,10 @@ public class Exam {
         return tokenList.containsKey(student);
     }
 
+    public boolean hasQuestion(final Question question) {
+        return questions.contains(question);
+    }
+
     public boolean isDueDated() {
         final LocalDate today = LocalDate.now();
         return !(today.isBefore(startDate) || today.isAfter(endDate));
