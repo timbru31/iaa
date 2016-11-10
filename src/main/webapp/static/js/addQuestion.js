@@ -4,33 +4,29 @@ $(document).ready(function() {
   });
 });
 
-let
-value = 2;
+// per default 2 answers are displayed
+var radioValue = 2;
 
-function addRadio(divName) {
-  let
-  newdiv = document.createElement('div');
-  newdiv.className = "input-group rd";
-  newdiv.innerHTML = "<span class='input-group-addon'><input type='radio' name='sc' value='"
-      + value
-      + "'></span><input name='rawAnswerTextsSc' type='text' class='form-control'>";
-  document.querySelector(divName).appendChild(newdiv);
-  value++;
-};
-function removeRadio(divName) {
+function addRadio() {
+  var newDiv = document.createElement('div');
+  newDiv.className = "input-group rd";
+  newDiv.innerHTML = "<span class='input-group-addon'><input type='radio' name='sc' value='" + radioValue + "'></span><input name='rawAnswerTextsSc' type='text' class='form-control'>";
+  $("#radios").append(newDiv);
+  radioValue++;
+}
+
+function removeRadio() {
   $("div.rd").last().remove();
+  radioValue--;
 };
 
-function addCheckbox(divName) {
-  let
-  newdiv = document.createElement('div');
-  newdiv.className = "input-group cb";
-  newdiv.innerHTML = "<span class='input-group-addon'><input type='checkbox' name='mc' value='"
-      + value
-      + "'></span><input name='rawAnswerTextsMc' type='text' class='form-control'>";
-  document.querySelector(divName).appendChild(newdiv);
-  value++;
-};
-function removeCheckbox(divName) {
+function addCheckbox() {
+  var newDiv = document.createElement('div');
+  newDiv.className = "input-group cb";
+  newDiv.innerHTML = "<span class='input-group-addon'><input type='checkbox' name='mc'></span><input name='rawAnswerTextsMc' type='text' class='form-control'>";
+  $("#checkboxes").append(newDiv)
+}
+
+function removeCheckbox() {
   $("div.cb").last().remove();
-};
+}

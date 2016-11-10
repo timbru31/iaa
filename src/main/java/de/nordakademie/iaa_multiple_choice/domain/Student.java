@@ -62,7 +62,8 @@ public class Student extends User {
         }
         final Student student = (Student) obj;
         if (student.studentNumber == null && studentNumber != null
-                || studentNumber.intValue() != student.studentNumber.intValue()) {
+                || student.studentNumber != null && studentNumber == null
+                || studentNumber.equals(student.studentNumber)) {
             return false;
         }
         return true;

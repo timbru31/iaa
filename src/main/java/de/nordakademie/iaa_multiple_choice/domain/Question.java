@@ -31,7 +31,7 @@ public class Question {
     private Long id;
 
     @Basic
-    private Double points;
+    private Integer points;
 
     @Enumerated(EnumType.STRING)
     private QuestionType type;

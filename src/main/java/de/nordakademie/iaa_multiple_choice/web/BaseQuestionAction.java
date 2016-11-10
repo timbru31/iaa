@@ -1,6 +1,9 @@
 package de.nordakademie.iaa_multiple_choice.web;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,6 +20,7 @@ import lombok.Setter;
 @LecturerRequired
 public abstract class BaseQuestionAction extends BaseAction {
     private static final long serialVersionUID = -8038161807389821278L;
+    public static final Pattern FILL_IN_THE_BLANK_PATTERN = Pattern.compile("\\[(.+?)\\]");
     @Autowired
     @Getter
     private QuestionService questionService;
@@ -49,17 +53,50 @@ public abstract class BaseQuestionAction extends BaseAction {
     private String fitb;
     @Getter
     @Setter
-    private String questionType;
-    @Getter
-    @Setter
     private Question question;
 
     public void validateQuestion() {
-        if (question == null || question.getText() == null || question.getText().isEmpty()) {
+        if (question == null) {
+            addFieldError("question.text", getText("validation.questionMissing"));
+            return;
+        }
+        if (question.getText() == null || question.getText().isEmpty()) {
             addFieldError("question.text", getText("validation.questionMissing"));
         }
-        if (question.getPoints() == null || question.getPoints().doubleValue() <= 0) {
+        if (question.getPoints() == null || question.getPoints().intValue() <= 0) {
             addFieldError("question.points", getText("validation.pointsMissing"));
+        }
+        if (question.getType() == null) {
+            addFieldError("question.type", getText("validation.questionTypeMissing"));
+        } else {
+            switch (question.getType()) {
+                case SINGLE_CHOICE:
+                    if (sc == null) {
+                        addFieldError("question.singleChoice", getText("validation.singleChoiceValue"));
+                    }
+                    if (rawAnswerTextsSc == null || rawAnswerTextsSc.length < 2) {
+                        addFieldError("question.singleChoice", getText("validation.singleChoiceMinTwoAnswers"));
+                    } else if (Arrays.stream(rawAnswerTextsSc).anyMatch(text -> text == null || text.isEmpty())) {
+                        addFieldError("question.singleChoice", getText("validation.answerEmpty"));
+                    }
+                    break;
+                case MULTIPLE_CHOICE:
+                    if (rawAnswerTextsMc == null || rawAnswerTextsMc.length < 2) {
+                        addFieldError("question.multipleChoice", getText("validation.multipleChoiceMinOneAnswer"));
+                    } else if (Arrays.stream(rawAnswerTextsMc).anyMatch(text -> text == null || text.isEmpty())) {
+                        addFieldError("question.multipleChoice", getText("validation.answerEmpty"));
+                    }
+                    break;
+                case FILL_IN_THE_BLANK:
+                    final Matcher matcher = FILL_IN_THE_BLANK_PATTERN.matcher(question.getText());
+                    if (!matcher.find()) {
+                        addFieldError("question.fillInTheBlank", getText("validation.noBlank"));
+                    }
+                    break;
+                default:
+                    addFieldError("question.type", getText("validation.questionTypeMissing"));
+                    break;
+            }
         }
     }
 }

@@ -6,11 +6,21 @@ import java.util.regex.Pattern;
 import de.nordakademie.iaa_multiple_choice.domain.Answer;
 import de.nordakademie.iaa_multiple_choice.domain.Question;
 import de.nordakademie.iaa_multiple_choice.domain.QuestionType;
+import de.nordakademie.iaa_multiple_choice.web.util.LecturerRequired;
+import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 
+@LoginRequired
+@LecturerRequired
 public class UpdateQuestionAction extends BaseQuestionAction {
     private static final long serialVersionUID = -5586848162334856912L;
 
     public String editQuestion() {
+        setQuestion(getQuestionService().find(getQuestionId()));
+        return SUCCESS;
+    }
+
+    @Override
+    public String input() {
         setQuestion(getQuestionService().find(getQuestionId()));
         return SUCCESS;
     }
@@ -73,5 +83,9 @@ public class UpdateQuestionAction extends BaseQuestionAction {
         }
         getQuestionService().updateQuestion(updatedQuestion);
         return SUCCESS;
+    }
+
+    public void validateUpdateQuestion() {
+        validateQuestion();
     }
 }

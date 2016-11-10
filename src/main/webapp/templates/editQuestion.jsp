@@ -1,6 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <div class="page-header">
+  <h1>
+    <s:text name="updateQuestion.title" />
+  </h1>
+</div>
+
+<div class="alert alert-info" role="alert">
+  <s:text name="create.questionHint" /><br />
+  <s:text name="create.gapExample" />
+</div>
+
   <s:if test="hasFieldErrors()">
     <div class="alert alert-danger" role="alert">
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -9,92 +19,95 @@
       <s:fielderror />
     </div>
   </s:if>
-  <h1>
-    <s:text name="edit.question" />
-  </h1>
-</div>
 
 <s:form action="updateQuestion">
   <s:hidden name="examId" value="%{examId}" />
   <s:hidden name="questionId" value="%{questionId}" />
+  <s:hidden name="question.type" value="%{question.type}" />
 
-      <s:submit class="btn btn-success navbar-btn navbar-right"
-        value="%{getText('createQuestion.submit')}" />
-  <div
-    class="question ${fieldErrors.containsKey('question.text') ? 'has-error' : ''}">
-    <s:textfield name="question.text" class="form-control"
-      placeholder="%{getText('create.enterQuestion')}" />
+  <div class="form-group ${fieldErrors.containsKey('question.text') ? 'has-error' : ''}">
+    <label class="control-label" for="questionText"><s:text name="create.enterQuestion" /></label>
+    <s:textfield name="question.text" id="questionText" class="form-control" placeholder="%{getText('create.enterQuestion')}"
+      required="true" />
   </div>
 
-  <div class="tab-content" id="tabs">
-
-    <div class="tab-pane ${question.type == 'SINGLE_CHOICE' ? 'active' : ''}"
-      id="sc">
-      <div id="addRadio">
-        <s:iterator value="question.answers">
-          <div class="input-group rd">
-            <span class="input-group-addon"> <input type="radio"
-              name="sc" value="0" ${rightAnswer == true ? 'checked' : ''}>
-            </span> <input name="rawAnswerTextsSc" value="${text}" type="text"
-              class="form-control">
-          </div>
-        </s:iterator>
+  <div class="tab-content answers">
+    <div class="tab-pane ${question.type == 'SINGLE_CHOICE' ? 'active' : ''}" id="SINGLE_CHOICE">
+      <label class="control-label"><s:text name="create.answers" /></label>
+      <div id="radios">
+        <s:if test="%{rawAnswerTextsSc != null}">
+          <s:iterator value="rawAnswerTextsSc" var="text" status="it">
+            <div class="input-group rd">
+              <span class="input-group-addon"> <input type="radio"
+                name="sc" value="${it.index}" ${rightAnswer == true ? 'checked' : ''}>
+              </span> <input name="rawAnswerTextsSc" value="${text}" type="text"
+                class="form-control">
+            </div>
+          </s:iterator>
+        </s:if>
+        <s:else>
+          <s:iterator value="question.answers" status="it">
+            <div class="input-group rd">
+              <span class="input-group-addon"> <input type="radio"
+                name="sc" value="${it.index}" ${rightAnswer == true ? 'checked' : ''}>
+              </span> <input name="rawAnswerTextsSc" value="${text}" type="text"
+                class="form-control">
+            </div>
+          </s:iterator>
+        </s:else>
       </div>
 
-      <button onclick="addRadio('div[id=addRadio]')" type="button"
-        class="btn btn-default">
+      <button onclick="addRadio()" type="button" class="btn btn-default">
         <span class="glyphicon glyphicon-plus"></span>
       </button>
-      <button onclick="removeRadio('div[id=removeRadio]')" type="button"
-        class="btn btn-default">
+      <button onclick="removeRadio()" type="button" class="btn btn-default">
         <span class="glyphicon glyphicon-minus"></span>
       </button>
     </div>
 
-    <div class="tab-pane ${question.type == 'MULTIPLE_CHOICE' ? 'active' : ''}" id="mc">
-      <div id="addCheckbox">
-        <s:iterator value="question.answers">
-          <div class="input-group cb">
-            <span class="input-group-addon"> <input type="checkbox"
-              name="mc" value="0" ${rightAnswer == true ? 'checked' : ''}>
-            </span> <input name="rawAnswerTextsMc" value="${text}" type="text"
-              class="form-control">
-          </div>
-        </s:iterator>
+    <div class="tab-pane ${question.type == 'MULTIPLE_CHOICE' ? 'active' : ''}" id="MULTIPLE_CHOICE">
+      <label class="control-label"><s:text name="create.answers" /></label>
+      <div id="checkboxes">
+        <s:if test="%{rawAnswerTextsMc != null}">
+          <s:iterator value="rawAnswerTextsMc" var="text" status="it">
+            <div class="input-group cb">
+              <span class="input-group-addon"> <input type="checkbox" name="mc" value="${it.index}" ${rightAnswer == true ? 'checked' : ''}>
+              </span> <input name="rawAnswerTextsMc" value="${text}" type="text" class="form-control">
+            </div>
+          </s:iterator>
+        </s:if>
+        <s:else>
+          <s:iterator value="question.answers" status="it">
+            <div class="input-group cb">
+              <span class="input-group-addon"> <input type="checkbox" name="mc" value="${it.index}" ${rightAnswer == true ? 'checked' : ''}>
+              </span> <input name="rawAnswerTextsMc" value="${text}" type="text" class="form-control">
+            </div>
+          </s:iterator>
+       </s:else>
       </div>
 
-      <button onclick="addCheckbox('div[id=addCheckbox]')" type="button"
-        class="btn btn-default">
+      <button onclick="addCheckbox()" type="button" class="btn btn-default">
         <span class="glyphicon glyphicon-plus"></span>
       </button>
-      <button onclick="removeCheckbox('div[id=removeCheckbox]')" type="button"
-        class="btn btn-default">
+      <button onclick="removeCheckbox()" type="button" class="btn btn-default">
         <span class="glyphicon glyphicon-minus"></span>
       </button>
     </div>
-
-    <div class="tab-pane ${question.type == 'FILL_IN_THE_BLANK' ? 'active' : ''}" id="fitb"></div>
-
+    <div class="tab-pane ${question.type == 'FILL_IN_THE_BLANK' ? 'active' : ''}" id="FILL_IN_THE_BLANK"></div>
   </div>
 
-  <div class="row question">
-    <div class="col-md-2">
-      <button type="button" class="btn btn-default">
-        <s:text name="create.deleteQuestion" />
-      </button>
-    </div>
-    <div
-      class="col-md-10 ${fieldErrors.containsKey('question.points') ? 'has-error' : ''}">
-      <s:textfield name="question.points" id="points" class="form-control"
-        placeholder="Anzahl Punkte" />
-    </div>
+  <div class="form-group ${fieldErrors.containsKey('question.points') ? 'has-error' : ''}">
+    <label class="control-label" for="questionPoints"><s:text name="create.enterPoints" /></label>
+    <s:textfield name="question.points" id="questionPoints" class="form-control" placeholder="%{getText('create.enterPoints')}"
+      type="number" inputmode="numeric" min="1" pattern="[0-9]*" required="true" />
   </div>
 
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <s:text name="create.rightanswer" />
-    </div>
-  </div>
+  <s:submit class="btn btn-success" value="%{getText('updateQuestion.submit')}" />
+
+//TODO
+  <button type="button" class="btn btn-danger">
+    <s:text name="create.deleteQuestion" />
+  </button>
 
   <div class="center">
     <nav>
