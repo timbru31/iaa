@@ -10,7 +10,21 @@
     </s:else>
   </h1>
 </div>
-
+<s:if test="exam != null">
+  <div class="form-group">
+    <s:url var="createQuestionURL" namespace="/" action="createQuestion">
+      <s:param name="examId">${exam.id}</s:param>
+    </s:url>
+    <s:a class="btn btn-primary" href="%{createQuestionURL}"><s:text name="create.question" /></s:a>
+    <s:if test="exam.hasQuestions()">
+      <s:url var="editQuestionURL" namespace="/" action="editQuestion">
+        <s:param name="examId">${exam.id}</s:param>
+        <s:param name="questionId">${exam.getFirstQuestion().getId()}</s:param>
+      </s:url>
+      <s:a class="btn btn-primary" href="%{editQuestionURL}"><s:text name="updateQuestion.update" /></s:a>
+    </s:if>
+  </div>
+</s:if>
 <s:form action="saveExam">
   <s:if test="hasFieldErrors()">
     <div class="alert alert-danger" role="alert">

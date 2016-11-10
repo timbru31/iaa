@@ -64,6 +64,13 @@ public class Question {
         return answers.stream().filter(Answer::isRightAnswer).collect(Collectors.toSet());
     }
 
+    public String getFormattedQuestionText() {
+        if (type == QuestionType.FILL_IN_THE_BLANK) {
+            return text.replaceAll("\\[(.+?)\\]", "[]");
+        }
+        return text;
+    }
+
     @Override
     public int hashCode() {
         int result = 17;

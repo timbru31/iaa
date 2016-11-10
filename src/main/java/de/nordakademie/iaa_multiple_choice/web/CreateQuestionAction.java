@@ -25,6 +25,7 @@ public class CreateQuestionAction extends BaseQuestionAction {
     }
 
     public String saveQuestion() {
+        findExam();
         getQuestionService().createQuestion(getQuestion());
         getQuestion().setAnswers(new HashSet<>());
         if (getQuestion().getType() == QuestionType.SINGLE_CHOICE) {
@@ -49,7 +50,6 @@ public class CreateQuestionAction extends BaseQuestionAction {
                 getQuestion().addAnswer(answer);
                 getAnswerService().createAnswer(answer);
             }
-            getQuestion().setText(getQuestion().getText().replaceAll("\\[(.*?)\\]", "[]"));
         } else {
             addFieldError("question.type", getText("validation.questionTypeMissing"));
             return INPUT;

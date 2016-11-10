@@ -32,7 +32,7 @@
   </s:elseif>
   <s:elseif test="%{question.type == @de.nordakademie.iaa_multiple_choice.domain.QuestionType@FILL_IN_THE_BLANK}">
     <h4><s:text name="fillInTheBlank"/></h4>
-    <s:iterator value='question.text.split("\\\[\\\]")'>
+    <s:iterator value='question.getFormattedQuestionText().split("\\\[\\\]")'>
       <s:property /><input type="text">
     </s:iterator>
   </s:elseif>

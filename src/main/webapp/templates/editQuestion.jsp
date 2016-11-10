@@ -102,46 +102,18 @@
       type="number" inputmode="numeric" min="1" pattern="[0-9]*" required="true" />
   </div>
 
+  <s:url var="back" namespace="/" action="editExam">
+    <s:param name="examId">${exam.id}</s:param>
+  </s:url>
+  <s:a href="%{back}" class="btn btn-primary navbar-btn">
+    <s:text name="create.back" />
+  </s:a>
   <s:submit action="updateQuestion" class="btn btn-success" value="%{getText('updateQuestion.submit')}" />
   <s:submit action="deleteQuestion" class="btn btn-danger" value="%{getText('create.deleteQuestion')}" />
-
-  <div class="center">
-    <nav>
-      <ul class="pagination">
-        <s:if test="%{exam.isFirstQuestion(question)}">
-          <li class="disabled"><span>&laquo;</span></li>
-        </s:if>
-        <s:else>
-          <s:url var="prevQuestionURL" namespace="/" action="editQuestion">
-            <s:param name="examId">${exam.id}</s:param>
-            <s:param name="questionId">${exam.getPreviousQuestion(question).getId()}</s:param>
-          </s:url>
-          <li class="prev"><s:a href="%{prevQuestionURL}"><span>&laquo;</span></s:a></li>
-        </s:else>
-        <s:iterator value="exam.questions" status="it">
-          <s:url var="questionURL" namespace="/" action="editQuestion">
-            <s:param name="examId">${exam.id}</s:param>
-            <s:param name="questionId">${id}</s:param>
-          </s:url>
-          <s:if test="question.id == id">
-            <li class="active"><span><s:property value="%{#it.count}" /></span></li>
-          </s:if>
-          <s:else>
-            <li><s:a href="%{questionURL}"><s:property value="%{#it.count}" /></s:a></li>
-          </s:else>
-        </s:iterator>
-        <s:if test="%{exam.isLastQuestion(question)}">
-          <li class="disabled"><span>&raquo;</span></li>
-        </s:if>
-        <s:else>
-          <s:url var="nextQuestionURL" namespace="/" action="editQuestion">
-            <s:param name="examId">${exam.id}</s:param>
-            <s:param name="questionId">${exam.getNextQuestion(question).getId()}</s:param>
-          </s:url>
-          <li class="next"><s:a href="%{nextQuestionURL}"><span>&raquo;</span></s:a></li>
-        </s:else>
-      </ul>
-    </nav>
-  </div>
+  <s:url var="createQuestionURL" namespace="/" action="createQuestion">
+    <s:param name="examId">${exam.id}</s:param>
+  </s:url>
+  <s:a class="btn btn-primary navbar-right" href="%{createQuestionURL}"><s:text name="create.question" /></s:a>
+  <%@ include file="fragments/questionPagination.jspf" %>
 </s:form>
-<script type="text/javascript" src="/iaa-multiple-choice/static/js/addQuestion.js"></script>
+<script type="text/javascript" src="/iaa-multiple-choice/static/js/question.js"></script>

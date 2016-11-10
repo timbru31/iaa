@@ -46,7 +46,7 @@
         <th><s:text name="student.status" /></th>
       </tr>
       <s:iterator value="student.registeredExams" status="it" var="exam">
-        <s:if test="%{!student.hasTakenExam(#exam)}">
+        <s:if test="%{!student.hasTakenExam(#exam) || !student.hasFinishedExam(#exam)}">
           <tr>
             <th><s:property value="name" /></th>
             <td><s:property value="creditPoints.getValue()" /></td>

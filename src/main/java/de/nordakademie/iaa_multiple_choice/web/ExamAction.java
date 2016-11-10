@@ -62,8 +62,9 @@ public class ExamAction extends BaseSessionAction {
             userService.updateUser(lecturer);
             return "created";
         }
-        exam.setTokenList(examService.find(examId).getTokenList());
-        exam.setQuestions(exam.getQuestions());
+        final Exam originalExam = examService.find(examId);
+        exam.setTokenList(originalExam.getTokenList());
+        exam.setQuestions(originalExam.getQuestions());
         exam.setId(examId);
         examService.updateExam(exam);
         return "updated";

@@ -3,6 +3,7 @@ package de.nordakademie.iaa_multiple_choice.domain;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 import javax.persistence.Basic;
@@ -66,7 +67,7 @@ public class Exam {
     @Enumerated(EnumType.STRING)
     private WrongAnswerEvaluationMethod evaluationMethod;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @OrderBy("id ASC")
     private Set<Question> questions;
 
@@ -113,6 +114,14 @@ public class Exam {
 
     public Date formatStartDate() {
         return Date.valueOf(startDate);
+    }
+
+    public Question getFirstQuestion() {
+        try {
+            return questions.iterator().next();
+        } catch (final NoSuchElementException e) {
+            return null;
+        }
     }
 
     public Question getNextQuestion(final Question question) {
@@ -163,6 +172,10 @@ public class Exam {
 
     public boolean hasQuestion(final Question question) {
         return questions.contains(question);
+    }
+
+    public boolean hasQuestions() {
+        return !questions.isEmpty();
     }
 
     public boolean isDueDated() {

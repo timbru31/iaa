@@ -12,6 +12,7 @@ import de.nordakademie.iaa_multiple_choice.domain.Exam;
 import de.nordakademie.iaa_multiple_choice.domain.Question;
 import de.nordakademie.iaa_multiple_choice.domain.Student;
 import de.nordakademie.iaa_multiple_choice.domain.TestResult;
+import de.nordakademie.iaa_multiple_choice.domain.exceptions.QuestionNotFoundException;
 import de.nordakademie.iaa_multiple_choice.domain.exceptions.StudentNotEnrolledException;
 import de.nordakademie.iaa_multiple_choice.service.ExamService;
 import de.nordakademie.iaa_multiple_choice.service.TestResultService;
@@ -59,17 +60,16 @@ public class TakeExamAction extends BaseSessionAction {
                     student.getEmail(), exam.getName());
             throw new StudentNotEnrolledException();
         }
-        if (questionId == null) {
-            // questionnotfound
-            throw new RuntimeException();
+        if (questionId != null) {
+            final Optional<Question> optionalQuestion = exam.getQuestions().stream()
+                    .filter(q -> questionId.longValue() == q.getId().longValue()).findFirst();
+            if (!optionalQuestion.isPresent()) {
+                throw new QuestionNotFoundException();
+            }
+            question = optionalQuestion.get();
+        } else {
+            question = exam.getFirstQuestion();
         }
-        Optional<Question> optionalQuestion = exam.getQuestions().stream()
-                .filter(q -> questionId.longValue() == q.getId().longValue()).findFirst();
-        if (!optionalQuestion.isPresent()) {
-            // questionnotfound
-            throw new RuntimeException();
-        }
-        question = optionalQuestion.get();
         final TestResult byExamAndStudent = testResultService.findByExamAndStudent(examId, student.getId());
         if (byExamAndStudent == null) {
             addActionError(getText("validation.useToken"));

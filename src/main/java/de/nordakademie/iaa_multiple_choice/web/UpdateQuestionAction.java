@@ -1,7 +1,6 @@
 package de.nordakademie.iaa_multiple_choice.web;
 
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import de.nordakademie.iaa_multiple_choice.domain.Answer;
 import de.nordakademie.iaa_multiple_choice.domain.Exam;
@@ -82,15 +81,13 @@ public class UpdateQuestionAction extends BaseQuestionAction {
         } else if (updatedQuestion.getType() == QuestionType.FILL_IN_THE_BLANK) {
             // It's easier to delete old answers first
             updatedQuestion.getAnswers().clear();
-            final Pattern p = Pattern.compile("\\[(.*?)\\]");
-            final Matcher m = p.matcher(updatedQuestion.getText());
-            while (m.find()) {
-                final String rawAnswerText = m.group(1);
+            final Matcher matcher = FILL_IN_THE_BLANK_PATTERN.matcher(updatedQuestion.getText());
+            while (matcher.find()) {
+                final String rawAnswerText = matcher.group(1);
                 final Answer answer = new Answer(rawAnswerText, true);
                 updatedQuestion.addAnswer(answer);
                 getAnswerService().createAnswer(answer);
             }
-            updatedQuestion.setText(updatedQuestion.getText().replaceAll("\\[(.*?)\\]", "[]"));
         }
         getQuestionService().updateQuestion(updatedQuestion);
         return SUCCESS;

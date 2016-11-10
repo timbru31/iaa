@@ -63,10 +63,14 @@ public class Student extends User {
         final Student student = (Student) obj;
         if (student.studentNumber == null && studentNumber != null
                 || student.studentNumber != null && studentNumber == null
-                || studentNumber.equals(student.studentNumber)) {
+                || !studentNumber.equals(student.studentNumber)) {
             return false;
         }
         return true;
+    }
+
+    public boolean hasFinishedExam(final Exam exam) {
+        return testResults.stream().anyMatch(ts -> exam.equals(ts.getExam()) && ts.isExpired());
     }
 
     @Override

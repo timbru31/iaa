@@ -161,6 +161,9 @@
     </action>
 
     <action name="saveQuestion" class="de.nordakademie.iaa_multiple_choice.web.CreateQuestionAction" method="saveQuestion">
+      <interceptor-ref name="store">
+        <param name="operationMode">STORE</param>
+      </interceptor-ref>
       <interceptor-ref name="iaa-multiple-choice" />
       <result name="success" type="redirectAction">
         <param name="examId">${examId}</param>
@@ -187,7 +190,6 @@
     </action>
 
     <action name="updateQuestion" class="de.nordakademie.iaa_multiple_choice.web.UpdateQuestionAction" method="updateQuestion">
-      <interceptor-ref name="iaa-multiple-choice" />
       <result name="success" type="redirectAction">
         <param name="examId">${examId}</param>
         <param name="questionId">${questionId}</param>

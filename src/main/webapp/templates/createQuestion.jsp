@@ -120,6 +120,16 @@
       type="number" inputmode="numeric" min="1" pattern="[0-9]*" required="true" />
   </div>
 
+  <s:url var="back" namespace="/" action="editExam">
+    <s:param name="examId">${exam.id}</s:param>
+  </s:url>
+  <s:a href="%{back}" class="btn btn-primary navbar-btn">
+    <s:text name="create.back" />
+  </s:a>
   <s:submit class="btn btn-success" value="%{getText('createQuestion.submit')}" />
+
+  <s:if test="%{exam != null}">
+    <%@ include file="fragments/questionPagination.jspf" %>
+  </s:if>
 </s:form>
-<script type="text/javascript" src="/iaa-multiple-choice/static/js/addQuestion.js"></script>
+<script type="text/javascript" src="/iaa-multiple-choice/static/js/question.js"></script>
