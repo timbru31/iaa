@@ -175,7 +175,15 @@
     </action>
 
     <action name="deleteQuestion" class="de.nordakademie.iaa_multiple_choice.web.DeleteQuestionAction" method="deleteQuestion">
-      <result name="success" type="redirectAction">lecturer</result>
+      <result name="createQuestion" type="redirectAction">
+        <param name="actionName">createQuestion</param>
+        <param name="examId">${examId}</param>
+      </result>
+      <result name="editQuestion" type="redirectAction">
+        <param name="actionName">editQuestion</param>
+        <param name="examId">${examId}</param>
+        <param name="questionId">${newQuestionId}</param>
+      </result>
     </action>
 
     <action name="updateQuestion" class="de.nordakademie.iaa_multiple_choice.web.UpdateQuestionAction" method="updateQuestion">

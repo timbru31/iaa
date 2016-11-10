@@ -108,9 +108,38 @@
   <div class="center">
     <nav>
       <ul class="pagination">
-        <li class="prev"><a href="#"><span>&laquo;</span></a></li>
-        <li class="active"><a href="#">1</a></li>
-        <li class="next"><a href="#"><span>&raquo;</span></a></li>
+        <s:if test="%{exam.isFirstQuestion(question)}">
+          <li class="disabled"><span>&laquo;</span></li>
+        </s:if>
+        <s:else>
+          <s:url var="prevQuestionURL" namespace="/" action="editQuestion">
+            <s:param name="examId">${exam.id}</s:param>
+            <s:param name="questionId">${exam.getPreviousQuestion(question).getId()}</s:param>
+          </s:url>
+          <li class="prev"><s:a href="%{prevQuestionURL}"><span>&laquo;</span></s:a></li>
+        </s:else>
+        <s:iterator value="exam.questions" status="it">
+          <s:url var="questionURL" namespace="/" action="editQuestion">
+            <s:param name="examId">${exam.id}</s:param>
+            <s:param name="questionId">${id}</s:param>
+          </s:url>
+          <s:if test="question.id == id">
+            <li class="active"><span><s:property value="%{#it.count}" /></span></li>
+          </s:if>
+          <s:else>
+            <li><s:a href="%{questionURL}"><s:property value="%{#it.count}" /></s:a></li>
+          </s:else>
+        </s:iterator>
+        <s:if test="%{exam.isLastQuestion(question)}">
+          <li class="disabled"><span>&raquo;</span></li>
+        </s:if>
+        <s:else>
+          <s:url var="nextQuestionURL" namespace="/" action="editQuestion">
+            <s:param name="examId">${exam.id}</s:param>
+            <s:param name="questionId">${exam.getNextQuestion(question).getId()}</s:param>
+          </s:url>
+          <li class="next"><s:a href="%{nextQuestionURL}"><span>&raquo;</span></s:a></li>
+        </s:else>
       </ul>
     </nav>
   </div>

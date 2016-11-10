@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.regex.Matcher;
 
 import de.nordakademie.iaa_multiple_choice.domain.Answer;
-import de.nordakademie.iaa_multiple_choice.domain.Exam;
 import de.nordakademie.iaa_multiple_choice.domain.QuestionType;
 import de.nordakademie.iaa_multiple_choice.web.util.LecturerRequired;
 import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
@@ -28,7 +27,6 @@ public class CreateQuestionAction extends BaseQuestionAction {
     public String saveQuestion() {
         getQuestionService().createQuestion(getQuestion());
         getQuestion().setAnswers(new HashSet<>());
-        final Exam exam = getExamService().find(getExamId());
         if (getQuestion().getType() == QuestionType.SINGLE_CHOICE) {
             for (int i = 0; i < getRawAnswerTextsSc().length; i++) {
                 final String rawAnswerText = getRawAnswerTextsSc()[i];
@@ -56,8 +54,8 @@ public class CreateQuestionAction extends BaseQuestionAction {
             addFieldError("question.type", getText("validation.questionTypeMissing"));
             return INPUT;
         }
-        exam.addQuestion(getQuestion());
-        getExamService().updateExam(exam);
+        getExam().addQuestion(getQuestion());
+        getExamService().updateExam(getExam());
         return SUCCESS;
     }
 

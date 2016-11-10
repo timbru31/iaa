@@ -56,9 +56,12 @@ public abstract class BaseQuestionAction extends BaseAction {
     @Getter
     @Setter
     private Question question;
+    @Getter
+    @Setter
+    private Exam exam;
 
     public Exam findExam() {
-        final Exam exam = getExamService().find(getExamId());
+        exam = getExamService().find(getExamId());
         if (!exam.isEditable()) {
             throw new ExamNotEditableException();
         }
