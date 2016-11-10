@@ -59,7 +59,7 @@ public class CreateQuestionAction extends BaseQuestionAction {
                 getQuestion().addAnswer(answer);
                 getAnswerService().createAnswer(answer);
             }
-        } else if (getQuestionType() == null) {
+        } else if (getQuestionType().equals("fitbt")) {
             final Pattern p = Pattern.compile("\\[(.*?)\\]");
             final Matcher m = p.matcher(getQuestion().getText());
             getQuestion().setType(QuestionType.FILL_IN_THE_BLANK);

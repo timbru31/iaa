@@ -2,6 +2,8 @@ package de.nordakademie.iaa_multiple_choice.service;
 
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,8 +22,17 @@ public class AnswerService {
     }
 
     @Transactional
-    public void deleteAnswer(final Long id) {
-        answerRepository.deleteAnswer(id);
+    public void deleteAnswer(final Long answerId) {
+        final Answer answer = find(answerId);
+        if (answer == null) {
+            throw new EntityNotFoundException();
+        }
+        answerRepository.deleteAnswer(answer);
+    }
+
+    @Transactional
+    public Answer find(final Long answerId) {
+        return answerRepository.find(answerId);
     }
 
     @Transactional(readOnly = true)

@@ -122,4 +122,4 @@
     </nav>
   </div>
 </s:form>
-<script src="/iaa-multiple-choice/static/js/addQuestion.js"></script>
+<script type="text/javascript" src="/iaa-multiple-choice/static/js/addQuestion.js"></script>

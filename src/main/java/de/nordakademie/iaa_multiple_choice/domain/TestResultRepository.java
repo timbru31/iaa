@@ -13,13 +13,12 @@ public class TestResultRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void createTestResult(final TestResult question) {
-        entityManager.persist(question);
+    public void createTestResult(final TestResult testResult) {
+        entityManager.persist(testResult);
     }
 
-    public void deleteTestResult(final Long id) {
-        entityManager.createQuery("DELETE testResult FROM TestResult testResult WHERE id = :id", TestResult.class)
-                .setParameter("id", id).executeUpdate();
+    public void deleteTestResult(final TestResult testResult) {
+        entityManager.remove(testResult);
     }
 
     public TestResult find(final Long id) {

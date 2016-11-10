@@ -16,10 +16,8 @@ public class QuestionRepository {
         entityManager.persist(question);
     }
 
-    public void deleteQuestion(final Long id) {
-        entityManager
-                .createQuery("DELETE question FROM Question question WHERE question_id = :question_id", Question.class)
-                .setParameter("question_id", id).executeUpdate();
+    public void deleteQuestion(final Question question) {
+        entityManager.refresh(question);
     }
 
     public Question find(final Long id) {

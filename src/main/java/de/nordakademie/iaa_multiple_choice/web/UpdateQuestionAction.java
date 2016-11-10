@@ -30,8 +30,14 @@ public class UpdateQuestionAction extends BaseQuestionAction {
                     i++;
                     getAnswerService().updateAnswer(answer);
                 } catch (final IndexOutOfBoundsException e) {
-                    getAnswerService().deleteAnswer(answer.getId());
+                    updatedQuestion.removeAnswer(answer);
                 }
+            }
+            for (; i < getRawAnswerTextsSc().length; i++) {
+                final String rawAnswerText = getRawAnswerTextsSc()[i];
+                final Answer newAnswer = new Answer(rawAnswerText, i == getSc());
+                updatedQuestion.addAnswer(newAnswer);
+                getAnswerService().createAnswer(newAnswer);
             }
         } else if (updatedQuestion.getType() == QuestionType.MULTIPLE_CHOICE) {
             int i = 0;
@@ -43,12 +49,17 @@ public class UpdateQuestionAction extends BaseQuestionAction {
                     i++;
                     getAnswerService().updateAnswer(answer);
                 } catch (final IndexOutOfBoundsException e) {
-                    getAnswerService().deleteAnswer(answer.getId());
+                    updatedQuestion.removeAnswer(answer);
                 }
+            }
+            for (; i < getRawAnswerTextsMc().length; i++) {
+                final String rawAnswerText = getRawAnswerTextsMc()[i];
+                final Answer newAnswer = new Answer(rawAnswerText, getMc().contains(i));
+                updatedQuestion.addAnswer(newAnswer);
+                getAnswerService().createAnswer(newAnswer);
             }
         } else if (updatedQuestion.getType() == QuestionType.FILL_IN_THE_BLANK) {
             // It's easier to delete old answers first
-            updatedQuestion.getAnswers().stream().forEach(a -> getAnswerService().deleteAnswer(a.getId()));
             updatedQuestion.getAnswers().clear();
             final Pattern p = Pattern.compile("\\[(.*?)\\]");
             final Matcher m = p.matcher(updatedQuestion.getText());
@@ -62,6 +73,5 @@ public class UpdateQuestionAction extends BaseQuestionAction {
         }
         getQuestionService().updateQuestion(updatedQuestion);
         return SUCCESS;
-
     }
 }

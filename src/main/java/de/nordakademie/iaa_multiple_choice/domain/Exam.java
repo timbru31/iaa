@@ -66,7 +66,7 @@ public class Exam {
     @Enumerated(EnumType.STRING)
     private WrongAnswerEvaluationMethod evaluationMethod;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("id ASC")
     private Set<Question> questions;
 
@@ -115,6 +115,30 @@ public class Exam {
         return Date.valueOf(startDate);
     }
 
+    public Question getNextQuestion(final Question question) {
+        boolean foundSelf = false;
+        for (final Question q : questions) {
+            if (foundSelf) {
+                return q;
+            }
+            if (q.equals(question)) {
+                foundSelf = true;
+            }
+        }
+        return null;
+    }
+
+    public Question getPreviousQuestion(final Question question) {
+        Question predecessor = null;
+        for (final Question q : questions) {
+            if (q.equals(question)) {
+                return predecessor;
+            }
+            predecessor = q;
+        }
+        return null;
+    }
+
     public String getToken(final Student student) {
         return tokenList.get(student);
     }
@@ -146,13 +170,9 @@ public class Exam {
         return startDate.isAfter(LocalDate.now());
     }
 
-    public void removeParticipant(final Student student) {
-        tokenList.remove(student);
-    }
-
     public boolean isFirstQuestion(final Question question) {
         int index = 0;
-        for (Question q : questions) {
+        for (final Question q : questions) {
             if (q.equals(question)) {
                 return index == 0;
             }
@@ -161,39 +181,19 @@ public class Exam {
         return false;
     }
 
-    public Question getNextQuestion(final Question question) {
-        boolean foundSelf = false;
-        for (Question q : questions) {
-            if (foundSelf) {
-                return q;
-            }
-            if (q.equals(question)) {
-                foundSelf = true;
-            }
-        }
-        return null;
-    }
-
-    public Question getPreviousQuestion(final Question question) {
-        Question predecessor = null;
-        for (Question q : questions) {
-            if (q.equals(question)) {
-                return predecessor;
-            }
-            predecessor = q;
-        }
-        return null;
-    }
-
     public boolean isLastQuestion(final Question question) {
         int index = 0;
-        int size = questions.size() - 1;
-        for (Question q : questions) {
+        final int size = questions.size() - 1;
+        for (final Question q : questions) {
             if (q.equals(question)) {
                 return index == size;
             }
             index++;
         }
         return false;
+    }
+
+    public void removeParticipant(final Student student) {
+        tokenList.remove(student);
     }
 }

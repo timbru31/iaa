@@ -10,30 +10,16 @@
     </div>
   </s:if>
   <h1>
-    <s:text name="create.question" />
+    <s:text name="edit.question" />
   </h1>
 </div>
 
 <s:form action="updateQuestion">
   <s:hidden name="examId" value="%{examId}" />
   <s:hidden name="questionId" value="%{questionId}" />
-  <s:hidden name="questionType" id="questionType" />
-
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <a href="#sc" data-toggle="tab" type="button"
-        class="btn btn-default navbar-btn"> <s:text name="create.Question1" />
-      </a> <a href="#mc" data-toggle="tab" type="button"
-        class="btn btn-default navbar-btn"> <s:text name="create.Question2" />
-      </a> <a href="#fitbt" data-toggle="tab" type="button"
-        class="btn btn-default navbar-btn"> <s:text name="create.Question3" />
-      </a>
 
       <s:submit class="btn btn-success navbar-btn navbar-right"
         value="%{getText('createQuestion.submit')}" />
-    </div>
-  </nav>
-
   <div
     class="question ${fieldErrors.containsKey('question.text') ? 'has-error' : ''}">
     <s:textfield name="question.text" class="form-control"
@@ -68,7 +54,7 @@
     <div class="tab-pane ${question.type == 'MULTIPLE_CHOICE' ? 'active' : ''}" id="mc">
       <div id="addCheckbox">
         <s:iterator value="question.answers">
-          <div class="input-group rd">
+          <div class="input-group cb">
             <span class="input-group-addon"> <input type="checkbox"
               name="mc" value="0" ${rightAnswer == true ? 'checked' : ''}>
             </span> <input name="rawAnswerTextsMc" value="${text}" type="text"
@@ -120,3 +106,4 @@
     </nav>
   </div>
 </s:form>
+<script type="text/javascript" src="/iaa-multiple-choice/static/js/addQuestion.js"></script>

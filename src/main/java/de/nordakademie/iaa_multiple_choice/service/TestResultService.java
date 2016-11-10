@@ -19,11 +19,6 @@ public class TestResultService {
         testResultRepository.createTestResult(testResult);
     }
 
-    @Transactional
-    public void deleteTestResult(final Long id) {
-        testResultRepository.deleteTestResult(id);
-    }
-
     @Transactional(readOnly = true)
     public TestResult findByExamAndStudent(final Long examId, final Long studentId) {
         return testResultRepository.find(examId, studentId);
