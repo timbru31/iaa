@@ -130,5 +130,7 @@
 
   $('#clock').countdown(getRemainingTime(), function(event) {
     $(this).html(event.strftime('%H:%M:%S'));
+  }).on('finish.countdown', function() {
+    document.submitExam.submit();
   });
 </script>

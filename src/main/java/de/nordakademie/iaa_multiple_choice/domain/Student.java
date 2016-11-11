@@ -20,7 +20,7 @@ import lombok.ToString;
 @Setter
 @Entity
 @DiscriminatorValue("student")
-@ToString(exclude = "testResults")
+@ToString(exclude = "testResults", callSuper = true)
 public class Student extends User {
     @Column(unique = true, nullable = false)
     private Integer studentNumber;

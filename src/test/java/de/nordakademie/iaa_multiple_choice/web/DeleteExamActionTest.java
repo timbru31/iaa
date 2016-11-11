@@ -33,7 +33,6 @@ import de.nordakademie.iaa_multiple_choice.service.UserService;
  * @author Tim Brust
  *
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring-test.xml" })
 public class DeleteExamActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {

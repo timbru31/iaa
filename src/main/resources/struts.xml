@@ -131,10 +131,26 @@
         <param name="examId">${examId}</param>
         <param name="questionId">${question.id}</param>
       </result>
+      <result name="token" type="redirectAction">
+        <param name="actionName">showExamInput</param>
+        <param name="examId">${examId}</param>
+      </result>
+      <result name="expired" type="redirectAction">
+        <param name="actionName">examResult</param>
+        <param name="examId">${examId}</param>
+      </result>
     </action>
 
     <action name="submitExam" class="de.nordakademie.iaa_multiple_choice.web.StudentSubmitExamAction" method="submitExam">
       <result name="success" type="redirectAction">
+        <param name="actionName">examResult</param>
+        <param name="examId">${examId}</param>
+      </result>
+      <result name="token" type="redirectAction">
+        <param name="actionName">showExamInput</param>
+        <param name="examId">${examId}</param>
+      </result>
+      <result name="expired" type="redirectAction">
         <param name="actionName">examResult</param>
         <param name="examId">${examId}</param>
       </result>

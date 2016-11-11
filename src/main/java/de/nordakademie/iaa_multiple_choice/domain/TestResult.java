@@ -37,7 +37,7 @@ public class TestResult {
     private boolean passed;
 
     @Basic
-    private Integer points;
+    private int points;
 
     @Basic
     private LocalDateTime startTime;
@@ -110,6 +110,7 @@ public class TestResult {
     }
 
     public boolean isExpired() {
-        return LocalDateTime.now().isAfter(startTime.plusMinutes(exam.getExamTime())) || endTime != null;
+        final LocalDateTime now = LocalDateTime.now().minusSeconds(10L);
+        return now.isAfter(startTime.plusMinutes(exam.getExamTime())) || endTime != null;
     }
 }
