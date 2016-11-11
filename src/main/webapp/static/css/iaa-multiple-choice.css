@@ -126,7 +126,7 @@ footer {
   padding: 6px;
 }
 
-.countdown-header h1 {
+.countdown-header h1, .answer-header h4 {
   display: flex;
   justify-content: space-between;
 }
@@ -142,7 +142,6 @@ footer {
   background-color: #c9302c;
   border-color: #ac2925;
 }
-
 
 .btn-result.btn-danger:hover, .btn-result.btn-success:hover {
   cursor: default;
@@ -160,4 +159,8 @@ footer {
   background-color: #449d44;
   border-color: #398439;
   box-shadow: none
+}
+
+.inline-form {
+  display: initial;
 }

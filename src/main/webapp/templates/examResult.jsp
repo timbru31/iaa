@@ -35,6 +35,10 @@
     <td><s:property value="testResult.exam.formatEndDate()" /></td>
   </tr>
   <tr>
+    <td><b><s:text name="points" /></b></td>
+    <td><s:property value="testResult.points" />/<s:property value="testResult.exam.getMaxPoints()" /></td>
+  </tr>
+  <tr>
     <td><b><s:text name="resultList.result" /></b></td>
     <td>
       <s:if test="testResult.passed">

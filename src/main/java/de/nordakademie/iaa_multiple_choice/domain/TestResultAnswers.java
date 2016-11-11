@@ -1,35 +1,28 @@
 package de.nordakademie.iaa_multiple_choice.domain;
 
-import javax.persistence.Basic;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
-@ToString
-public class Answer {
+public class TestResultAnswers {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
-    private boolean rightAnswer;
-
-    @Basic
-    private String text;
-
-    public Answer() {
-    }
-
-    public Answer(final String text, final boolean rightAnswer) {
-        this.text = text;
-        this.rightAnswer = rightAnswer;
-    }
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("id ASC")
+    private Set<Answer> answers;
 }

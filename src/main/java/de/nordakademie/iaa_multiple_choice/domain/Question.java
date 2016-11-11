@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -27,7 +26,6 @@ import lombok.ToString;
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "question_id")
     private Long id;
 
     @Basic

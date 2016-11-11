@@ -25,7 +25,7 @@
   </div>
 </s:if>
 
-<s:if test="%{student.registeredExams.isEmpty()}">
+<s:if test="%{!student.canTakeExams()}">
   <div class="panel panel-default">
     <div class="panel-body">
       <s:text name="student.noExams" />

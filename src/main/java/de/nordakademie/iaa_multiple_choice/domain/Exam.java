@@ -37,7 +37,6 @@ import lombok.ToString;
 public class Exam {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "exam_id")
     private Long id;
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -124,6 +123,10 @@ public class Exam {
         }
     }
 
+    public int getMaxPoints() {
+        return questions.stream().mapToInt(Question::getPoints).sum();
+    }
+
     public Question getNextQuestion(final Question question) {
         boolean foundSelf = false;
         for (final Question q : questions) {
@@ -175,7 +178,7 @@ public class Exam {
     }
 
     public boolean hasQuestions() {
-        return !questions.isEmpty();
+        return questions != null && !questions.isEmpty();
     }
 
     public boolean isDueDated() {

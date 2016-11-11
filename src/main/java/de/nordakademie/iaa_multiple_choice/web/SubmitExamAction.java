@@ -50,21 +50,21 @@ public class SubmitExamAction extends BaseSessionAction {
     private LocalDateTime endTime;
 
     public String submitExam() {
-        exam = examService.find(examId);
-        startTime = testResult.getStartTime();
-        endTime = testResult.getStartTime().plusMinutes(exam.getExamTime().intValue());
-        for (final Map.Entry<Question, Set<Answer>> answer : submittedAnswers.entrySet()) {
-            final Question key = answer.getKey();
-            for (final Answer value : answer.getValue()) {
-                // TODO: catching the right answers
-            }
-        }
-        testResult = testResultService.findByExamAndStudent(examId, student.getId());
-        testResult.setStartTime(startTime);
-        testResult.setEndTime(endTime);
-        testResult.setPoints(testResult.calculateFinalPoints());
-        testResult.setPassed(testResult.isPassed());
-        testResultService.createTestResult(testResult);
+        // exam = examService.find(examId);
+        // startTime = testResult.getStartTime();
+        // endTime = testResult.getStartTime().plusMinutes(exam.getExamTime().intValue());
+        // for (final Map.Entry<Question, Set<Answer>> answer : submittedAnswers.entrySet()) {
+        // final Question key = answer.getKey();
+        // for (final Answer value : answer.getValue()) {
+        // // TODO: catching the right answers
+        // }
+        // }
+        // testResult = testResultService.findByExamAndStudent(examId, student.getId());
+        // testResult.setStartTime(startTime);
+        // testResult.setEndTime(endTime);
+        // testResult.setPoints(testResult.calculateFinalPoints());
+        // testResult.setPassed(testResult.isPassed());
+        // testResultService.createTestResult(testResult);
         return SUCCESS;
     }
 

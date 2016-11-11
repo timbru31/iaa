@@ -69,7 +69,7 @@
   </div>
   <div class="center">
     <s:if test="examId == null">
-      <s:submit class="btn btn-success" value="%{getText('create.submit')}" />
+      <s:submit action="saveExam" class="btn btn-success" value="%{getText('create.submit')}" />
     </s:if>
     <s:else>
       <s:submit action="saveExam" class="btn btn-success" value="%{getText('edit.submit')}" />
@@ -82,19 +82,21 @@
 <s:a href="%{back}" class="btn btn-primary navbar-btn">
   <s:text name="create.back" />
 </s:a>
-<div class="navbar-right">
-  <s:url var="createQuestionURL" namespace="/" action="createQuestion">
-    <s:param name="examId">${exam.id}</s:param>
-  </s:url>
-  <s:a class="btn btn-primary navbar-btn" href="%{createQuestionURL}"><s:text name="create.question" /></s:a>
-  <s:if test="exam.hasQuestions()">
-    <s:url var="editQuestionURL" namespace="/" action="editQuestion">
+<s:if test="examId != null">
+  <div class="navbar-right">
+    <s:url var="createQuestionURL" namespace="/" action="createQuestion">
       <s:param name="examId">${exam.id}</s:param>
-      <s:param name="questionId">${exam.getFirstQuestion().getId()}</s:param>
     </s:url>
-    <s:a class="btn btn-primary navbar-btn" href="%{editQuestionURL}"><s:text name="updateQuestion.update" /></s:a>
-  </s:if>
-</div>
+    <s:a class="btn btn-primary navbar-btn" href="%{createQuestionURL}"><s:text name="create.question" /></s:a>
+    <s:if test="exam.hasQuestions()">
+      <s:url var="editQuestionURL" namespace="/" action="editQuestion">
+        <s:param name="examId">${exam.id}</s:param>
+        <s:param name="questionId">${exam.getFirstQuestion().getId()}</s:param>
+      </s:url>
+      <s:a class="btn btn-primary navbar-btn" href="%{editQuestionURL}"><s:text name="updateQuestion.update" /></s:a>
+    </s:if>
+  </div>
+</s:if>
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"
   integrity="sha256-urCxMaTtyuE8UK5XeVYuQbm/MhnXflqZ/B9AOkyTguo="

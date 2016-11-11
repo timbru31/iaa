@@ -25,8 +25,8 @@ public class ExamRepository {
 
     public Exam find(final Long examId) {
         try {
-            return entityManager.createQuery("SELECT exam FROM Exam exam WHERE exam_id = :exam_id", Exam.class)
-                    .setParameter("exam_id", examId).getSingleResult();
+            return entityManager.createQuery("SELECT exam FROM Exam exam WHERE id = :id", Exam.class)
+                    .setParameter("id", examId).getSingleResult();
         } catch (final NoResultException e) {
             throw new ExamNotFoundException();
         }

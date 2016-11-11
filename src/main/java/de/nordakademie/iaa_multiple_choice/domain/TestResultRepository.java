@@ -31,7 +31,7 @@ public class TestResultRepository {
         try {
             return entityManager
                     .createQuery(
-                            "SELECT testResult FROM TestResult testResult WHERE exam_exam_id = :examId AND student_id = :studentId",
+                            "SELECT testResult FROM TestResult testResult WHERE exam_id = :examId AND student_id = :studentId",
                             TestResult.class)
                     .setParameter("examId", examId).setParameter("studentId", studentId).getSingleResult();
         } catch (final NoResultException e) {

@@ -55,6 +55,10 @@ public class Student extends User {
         testResults.add(testResult);
     }
 
+    public boolean canTakeExams() {
+        return !registeredExams.isEmpty() && registeredExams.stream().anyMatch(e -> !hasTakenExam(e));
+    }
+
     @Override
     public boolean equals(final Object obj) {
         if (!super.equals(obj)) {

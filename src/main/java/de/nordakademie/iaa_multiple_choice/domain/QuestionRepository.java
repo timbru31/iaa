@@ -25,8 +25,8 @@ public class QuestionRepository {
 
     public Question find(final Long id) {
         try {
-            return entityManager.createQuery("SELECT question FROM Question question WHERE question_id = :question_id",
-                    Question.class).setParameter("question_id", id).getSingleResult();
+            return entityManager.createQuery("SELECT question FROM Question question WHERE id = :id", Question.class)
+                    .setParameter("id", id).getSingleResult();
         } catch (final NoResultException e) {
             throw new QuestionNotFoundException();
         }

@@ -3,38 +3,79 @@
 <div class="page-header countdown-header">
   <h1>
     <span><s:text name="show.title" /></span>
-    <small class="countdown" id="clock"></small>
+    <span>
+      <small class="countdown" id="clock"></small>
+      <s:form action="submitExam" class="inline-form">
+        <s:hidden name="examId" value="%{exam.id}" />
+        <s:submit class="btn btn-success" value="%{getText('submit.exam')}" />
+      </s:form>
+    </span>
   </h1>
 </div>
 <div>
 <div class="progress">
-  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-    40%
+  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${progress}%; min-width: 2em;">
+    <s:property value="progress"/>%
   </div>
 </div>
   <s:if test="%{question.type == @de.nordakademie.iaa_multiple_choice.domain.QuestionType@SINGLE_CHOICE}">
-    <h4><s:property value="question.text"/></h4>
-    <s:iterator value="question.answers">
-      <div class="answer input-group">
-        <span class="input-group-addon"><input type="radio" name="sc"></span>
-        <span class="form-control"><s:property value="text"/></span>
+    <div class="answer-header">
+      <h4>
+        <s:text name="fillInTheBlank"/>
+        <strong><s:property value="question.text"/> <s:text name="points" /></strong>
+      </h4>
+    </div>
+    <s:form action="submitAnswer">
+      <s:iterator value="question.answers">
+        <div class="answer input-group">
+          <span class="input-group-addon"><input type="radio" name="sc"></span>
+          <span class="form-control"><s:property value="text"/></span>
+        </div>
+      </s:iterator>
+      <div class="center">
+        <s:submit class="btn btn-success" value="%{getText('submit.answer')}" />
       </div>
-    </s:iterator>
+    </s:form>
   </s:if>
   <s:elseif test="%{question.type == @de.nordakademie.iaa_multiple_choice.domain.QuestionType@MULTIPLE_CHOICE}">
-    <h4><s:property value="question.text"/></h4>
-    <s:iterator value="question.answers">
-      <div class="answer input-group">
-        <span class="input-group-addon"><input type="checkbox" name="mc"></span>
-        <span class="form-control"><s:property value="text"/></span>
+    <div class="answer-header">
+      <h4>
+        <s:text name="fillInTheBlank"/>
+        <strong><s:property value="question.text"/> <s:text name="points" /></strong>
+      </h4>
+    </div>
+    <s:form action="submitAnswer">
+      <s:iterator value="question.answers">
+        <div class="answer input-group">
+          <span class="input-group-addon"><input type="checkbox" name="mc"></span>
+          <span class="form-control"><s:property value="text"/></span>
+        </div>
+      </s:iterator>
+      <div class="center">
+        <s:submit class="btn btn-success" value="%{getText('submit.answer')}" />
       </div>
-    </s:iterator>
+    </s:form>
   </s:elseif>
   <s:elseif test="%{question.type == @de.nordakademie.iaa_multiple_choice.domain.QuestionType@FILL_IN_THE_BLANK}">
-    <h4><s:text name="fillInTheBlank"/></h4>
-    <s:iterator value='question.getFormattedQuestionText().split("\\\[\\\]")'>
-      <s:property /><input type="text">
-    </s:iterator>
+    <div class="answer-header">
+      <h4>
+        <s:text name="fillInTheBlank"/>
+        <strong><s:property value="question.points"/> <s:text name="points" /></strong>
+      </h4>
+    </div>
+    <s:form action="submitAnswer">
+      <s:hidden name="examId" value="%{exam.id}" />
+      <s:hidden name="questionId" value="%{question.id}" />
+      <s:iterator value='question.getFormattedQuestionText().split("\\\[\\\]")' status="it">
+        <s:property />
+        <s:if test="#it.last == false || question.getFormattedQuestionText().endsWith('[]')">
+          <s:textfield class="form-group" name="fillInTheBlankAnswers" type="text" required="true" value="%{testResult.getSubmittedAnswers().get(question).getAnswers().toArray()[#it.index].getText()}" />
+        </s:if>
+      </s:iterator>
+      <div class="center">
+        <s:submit class="btn btn-success" value="%{getText('submit.answer')}" />
+      </div>
+    </s:form>
   </s:elseif>
 </div>
 
