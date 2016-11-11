@@ -44,3 +44,7 @@
     </table>
   </div>
 </s:else>
+<s:url var="back" namespace="/" action="student" />
+<s:a href="%{back}" class="btn btn-primary navbar-btn">
+  <s:text name="create.back" />
+</s:a>

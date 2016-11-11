@@ -50,3 +50,7 @@
     </td>
   </tr>
 </table>
+<s:url var="back" namespace="/" action="resultList" />
+<s:a href="%{back}" class="btn btn-primary navbar-btn">
+  <s:text name="create.back" />
+</s:a>

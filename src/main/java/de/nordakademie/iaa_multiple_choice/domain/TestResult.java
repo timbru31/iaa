@@ -67,21 +67,31 @@ public class TestResult {
         for (final Entry<Question, TestResultAnswers> entry : submittedAnswers.entrySet()) {
             final Question question = entry.getKey();
             double partialPoint = 0;
-            final double pointStep = (double) question.getPoints().intValue() / question.getCorrectAnswers().size();
+            final double pointStep = (double) question.getPoints().intValue() / question.getAnswers().size();
             final Iterator<Answer> correctAnswers = question.getAnswers().iterator();
             final Iterator<Answer> studentAnswers = entry.getValue().getAnswers().iterator();
             while (correctAnswers.hasNext() && studentAnswers.hasNext()) {
                 final Answer studentAnswer = studentAnswers.next();
                 final Answer correctAnswer = correctAnswers.next();
                 if (question.getType() == QuestionType.FILL_IN_THE_BLANK) {
-                    if (studentAnswer.getText().trim().equals(correctAnswer.getText().trim())) {
+                    if (studentAnswer.getText().trim().equalsIgnoreCase(correctAnswer.getText().trim())) {
                         partialPoint += pointStep;
                     } else {
                         if (exam.getEvaluationMethod() == WrongAnswerEvaluationMethod.SUBTRACTION) {
                             partialPoint -= pointStep;
                         }
                     }
-                } else {
+                } else if (question.getType() == QuestionType.SINGLE_CHOICE) {
+                    // A single choice brings only points if the ONE correct one is chosen, otherwise always zero points
+                    if (studentAnswer.isRightAnswer() == correctAnswer.isRightAnswer()
+                            && correctAnswer.isRightAnswer()) {
+                        partialPoint += question.getPoints().intValue();
+                        break;
+                    } else if (correctAnswer.isRightAnswer()) {
+                        partialPoint = 0;
+                        break;
+                    }
+                } else if (question.getType() == QuestionType.MULTIPLE_CHOICE) {
                     if (studentAnswer.isRightAnswer() == correctAnswer.isRightAnswer()) {
                         partialPoint += pointStep;
                     } else {

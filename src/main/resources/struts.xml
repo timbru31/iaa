@@ -125,7 +125,7 @@
       </result>
     </action>
 
-    <action name="submitAnswer" class="de.nordakademie.iaa_multiple_choice.web.TakeExamAction" method="saveAnswer">
+    <action name="submitAnswer" class="de.nordakademie.iaa_multiple_choice.web.StudentSubmitAnswerAction" method="saveAnswer">
       <result name="success" type="redirectAction">
         <param name="actionName">takeExam</param>
         <param name="examId">${examId}</param>
@@ -133,7 +133,7 @@
       </result>
     </action>
 
-    <action name="submitExam" class="de.nordakademie.iaa_multiple_choice.web.TakeExamAction" method="submitExam">
+    <action name="submitExam" class="de.nordakademie.iaa_multiple_choice.web.StudentSubmitExamAction" method="submitExam">
       <result name="success" type="redirectAction">
         <param name="actionName">examResult</param>
         <param name="examId">${examId}</param>

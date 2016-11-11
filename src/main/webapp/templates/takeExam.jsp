@@ -21,14 +21,16 @@
   <s:if test="%{question.type == @de.nordakademie.iaa_multiple_choice.domain.QuestionType@SINGLE_CHOICE}">
     <div class="answer-header">
       <h4>
-        <s:text name="fillInTheBlank"/>
-        <strong><s:property value="question.text"/> <s:text name="points" /></strong>
+        <s:property value="question.text"/>
+        <strong><s:property value="question.points"/> <s:text name="points" /></strong>
       </h4>
     </div>
     <s:form action="submitAnswer">
-      <s:iterator value="question.answers">
+      <s:hidden name="examId" value="%{exam.id}" />
+      <s:hidden name="questionId" value="%{question.id}" />
+      <s:iterator value="question.answers" status="it">
         <div class="answer input-group">
-          <span class="input-group-addon"><input type="radio" name="sc"></span>
+          <span class="input-group-addon"><input required type="radio" name="sc" value="${it.index}" ${testResult.getSubmittedAnswers().get(question) != null && testResult.getSubmittedAnswers().get(question).getAnswers().toArray()[it.index].rightAnswer ? 'checked' : ''}></span>
           <span class="form-control"><s:property value="text"/></span>
         </div>
       </s:iterator>
@@ -40,14 +42,16 @@
   <s:elseif test="%{question.type == @de.nordakademie.iaa_multiple_choice.domain.QuestionType@MULTIPLE_CHOICE}">
     <div class="answer-header">
       <h4>
-        <s:text name="fillInTheBlank"/>
-        <strong><s:property value="question.text"/> <s:text name="points" /></strong>
+        <s:property value="question.text"/>
+        <strong><s:property value="question.points"/> <s:text name="points" /></strong>
       </h4>
     </div>
     <s:form action="submitAnswer">
-      <s:iterator value="question.answers">
+      <s:hidden name="examId" value="%{exam.id}" />
+      <s:hidden name="questionId" value="%{question.id}" />
+      <s:iterator value="question.answers" status="it">
         <div class="answer input-group">
-          <span class="input-group-addon"><input type="checkbox" name="mc"></span>
+          <span class="input-group-addon"><input type="checkbox" name="mc" value="${it.index}" ${testResult.getSubmittedAnswers().get(question) != null && testResult.getSubmittedAnswers().get(question).getAnswers().toArray()[it.index].rightAnswer ? 'checked' : ''}></span>
           <span class="form-control"><s:property value="text"/></span>
         </div>
       </s:iterator>
@@ -69,7 +73,7 @@
       <s:iterator value='question.getFormattedQuestionText().split("\\\[\\\]")' status="it">
         <s:property />
         <s:if test="#it.last == false || question.getFormattedQuestionText().endsWith('[]')">
-          <s:textfield class="form-group" name="fillInTheBlankAnswers" type="text" required="true" value="%{testResult.getSubmittedAnswers().get(question).getAnswers().toArray()[#it.index].getText()}" />
+          <s:textfield class="form-group" name="fillInTheBlankAnswers" type="text" required="true" value="%{testResult.getSubmittedAnswers().get(question) == null ? '' : testResult.getSubmittedAnswers().get(question).getAnswers().toArray()[#it.index].getText()}" />
         </s:if>
       </s:iterator>
       <div class="center">
