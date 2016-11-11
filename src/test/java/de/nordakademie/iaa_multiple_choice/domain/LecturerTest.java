@@ -6,8 +6,17 @@ import java.util.HashSet;
 
 import org.junit.Test;
 
+/**
+ * Test for lecturer.
+ *
+ * @author Tim Brust
+ *
+ */
 public class LecturerTest {
 
+    /**
+     * Test that no duplicate exams can be registered.
+     */
     @Test
     public void testDuplicateExams() {
         final Exam exam = new Exam();

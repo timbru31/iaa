@@ -56,7 +56,7 @@ public class Student extends User {
     }
 
     public boolean canTakeExams() {
-        return !registeredExams.isEmpty() && registeredExams.stream().anyMatch(e -> !hasTakenExam(e));
+        return registeredExams != null && registeredExams.stream().anyMatch(e -> !hasTakenExam(e));
     }
 
     @Override
@@ -74,7 +74,7 @@ public class Student extends User {
     }
 
     public boolean hasFinishedExam(final Exam exam) {
-        return testResults.stream().anyMatch(ts -> exam.equals(ts.getExam()) && ts.isExpired());
+        return testResults != null && testResults.stream().anyMatch(ts -> exam.equals(ts.getExam()) && ts.isExpired());
     }
 
     @Override
@@ -85,7 +85,7 @@ public class Student extends User {
     }
 
     public boolean hasTakenExam(final Exam exam) {
-        return testResults.stream().anyMatch(ts -> exam.equals(ts.getExam()));
+        return testResults != null && testResults.stream().anyMatch(ts -> exam.equals(ts.getExam()));
     }
 
     public void removeExam(final Exam exam) {

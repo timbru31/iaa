@@ -7,6 +7,12 @@ import java.util.HashSet;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Test for questions utility methods.
+ *
+ * @author Tim Brust
+ *
+ */
 public class QuestionTest {
     private Question question;
 
@@ -25,11 +31,17 @@ public class QuestionTest {
         question.addAnswer(correct);
     }
 
+    /**
+     * Test that correctAnswers are correctly calculated.
+     */
     @Test
     public void testCorrectAnswers() {
         assertEquals("Expected to have two correct answers", 2, question.getCorrectAnswers().size());
     }
 
+    /**
+     * Test that no duplicate answers can be added.
+     */
     @Test
     public void testDuplicateAnswers() {
         final Answer answer = new Answer();

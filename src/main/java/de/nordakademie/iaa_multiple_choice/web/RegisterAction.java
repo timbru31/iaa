@@ -22,7 +22,6 @@ import lombok.Setter;
 public class RegisterAction extends BaseSessionAction {
     private static final long serialVersionUID = -5785967910896850512L;
     // RegExp from http://stackoverflow.com/a/3802238/1902598
-    @SuppressWarnings("unused")
     private static final String PASSWORD_REGEXP = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
     @Getter
     @Setter

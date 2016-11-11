@@ -5,13 +5,28 @@ import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 
+import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Test for different exam utility methods.
+ *
+ * @author Tim Brust
+ *
+ */
 public class ExamTest {
+    private Exam exam;
 
+    @Before
+    public void setUp() {
+        exam = new Exam();
+    }
+
+    /**
+     * Test if exam is due dated (testing both start and end dates).
+     */
     @Test
     public void testDueDated() {
-        final Exam exam = new Exam();
         final LocalDate today = LocalDate.now();
         final LocalDate tomorrow = today.plusDays(1);
         final LocalDate yesterday = today.minusDays(1);
@@ -36,9 +51,11 @@ public class ExamTest {
         assertTrue("Expected that exam is due dated (ends today)", exam.isDueDated());
     }
 
+    /**
+     * Test if an example is editable.
+     */
     @Test
     public void testEditable() {
-        final Exam exam = new Exam();
         final LocalDate today = LocalDate.now();
         exam.setStartDate(today);
         assertFalse("Expected that exams that start today are not editable", exam.isEditable());

@@ -22,6 +22,12 @@ import de.nordakademie.iaa_multiple_choice.domain.Lecturer;
 import de.nordakademie.iaa_multiple_choice.service.PasswordAuthenticationService;
 import de.nordakademie.iaa_multiple_choice.service.UserService;
 
+/**
+ * LoginAction test for invalid and valid logins.
+ *
+ * @author Tim Brust
+ *
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring-test.xml" })
 public class LoginActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {
@@ -45,6 +51,9 @@ public class LoginActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {
         setUpIsDone = true;
     }
 
+    /**
+     * Tests login with an invalid email.
+     */
     @Test
     public void testInvalidEmail() {
         request.setParameter("email", "john.doe.invalid@nordakademie.de");
@@ -67,6 +76,9 @@ public class LoginActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {
         assertEquals("Expected to have result name INPUT", Action.INPUT, result);
     }
 
+    /**
+     * Test for a wrong password login attempt.
+     */
     @Test
     public void testInvalidPassword() {
         request.setParameter("email", "john.doe@nordakademie.de");
@@ -89,6 +101,9 @@ public class LoginActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {
         assertEquals("Expected to have result name INPUT", Action.INPUT, result);
     }
 
+    /**
+     * Test for successful login.
+     */
     @Test
     public void testValidLogin() {
         request.setParameter("email", "john.doe@nordakademie.de");
