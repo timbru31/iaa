@@ -59,7 +59,7 @@ public class StudentSubmitAnswerAction extends BaseStudentExamAction {
             throw new QuestionNotFoundException();
         } else {
             final Optional<Question> optionalQuestion = getExam().getQuestions().stream()
-                    .filter(q -> getQuestionId().longValue() == q.getId().longValue()).findFirst();
+                    .filter(q -> getQuestionId() == q.getId()).findFirst();
             if (!optionalQuestion.isPresent()) {
                 throw new QuestionNotFoundException();
             }

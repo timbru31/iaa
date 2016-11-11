@@ -67,8 +67,7 @@ public class RegisterAction extends BaseSessionAction {
         if (email == null || email.isEmpty() || !email.endsWith("@nordakademie.de")) {
             addFieldError("email", getText("validation.email"));
         }
-        // TODO enable password regex
-        if (password == null || password.isEmpty() /* || !password.matches(PASSWORD_REGEXP) */) {
+        if (password == null || password.isEmpty() || !password.matches(PASSWORD_REGEXP)) {
             addFieldError("password", getText("validation.password"));
         }
         if (password == null || passwordRepeat == null || !password.equals(passwordRepeat)) {
@@ -147,7 +146,7 @@ public class RegisterAction extends BaseSessionAction {
 
     public void validateRegisterStudent() {
         baseValidator();
-        if (studentNumber == null || studentNumber.intValue() <= 0 || studentNumber.intValue() > 10000) {
+        if (studentNumber == null || studentNumber <= 0 || studentNumber > 10000) {
             addFieldError("studentNumber", getText("validation.studentNumber"));
         }
         if (userService.findByStudentNumber(studentNumber) != null) {

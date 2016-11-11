@@ -97,11 +97,11 @@ public class Exam {
             return false;
         }
         final Exam exam = (Exam) obj;
-        if (!id.equals(exam.id) || !name.equals(exam.name) || examTime.intValue() != exam.examTime.intValue()
-                || minPoints.intValue() != exam.minPoints.intValue() || creditPoints != exam.creditPoints
-                || !startDate.isEqual(exam.startDate) || !endDate.isEqual(exam.endDate)
-                || evaluationMethod != exam.evaluationMethod || questions.size() != exam.questions.size()
-                || tokenList.size() != exam.tokenList.size() || testResults.size() != exam.testResults.size()) {
+        if (id != exam.id || !name.equals(exam.name) || examTime != exam.examTime || minPoints != exam.minPoints
+                || creditPoints != exam.creditPoints || !startDate.isEqual(exam.startDate)
+                || !endDate.isEqual(exam.endDate) || evaluationMethod != exam.evaluationMethod
+                || questions.size() != exam.questions.size() || tokenList.size() != exam.tokenList.size()
+                || testResults.size() != exam.testResults.size()) {
             return false;
         }
         return true;

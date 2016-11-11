@@ -46,7 +46,7 @@ public class UpdateQuestionAction extends BaseQuestionAction {
                 try {
                     final String rawAnswerText = getRawAnswerTextsSc()[i];
                     answer.setText(rawAnswerText);
-                    answer.setRightAnswer(i == getSc().intValue());
+                    answer.setRightAnswer(i == getSc());
                     i++;
                     getAnswerService().updateAnswer(answer);
                 } catch (final IndexOutOfBoundsException e) {
@@ -55,7 +55,7 @@ public class UpdateQuestionAction extends BaseQuestionAction {
             }
             for (; i < getRawAnswerTextsSc().length; i++) {
                 final String rawAnswerText = getRawAnswerTextsSc()[i];
-                final Answer newAnswer = new Answer(rawAnswerText, i == getSc().intValue());
+                final Answer newAnswer = new Answer(rawAnswerText, i == getSc());
                 updatedQuestion.addAnswer(newAnswer);
                 getAnswerService().createAnswer(newAnswer);
             }

@@ -81,8 +81,7 @@ public class ExamAction extends BaseSessionAction {
         if (exam.getExamTime() == null) {
             addFieldError("exam.examTime", getText("validation.examTime"));
         }
-        if (exam.getMinPoints() == null || exam.getMinPoints().intValue() <= 0
-                || exam.getMinPoints().intValue() > 100) {
+        if (exam.getMinPoints() == null || exam.getMinPoints() <= 0 || exam.getMinPoints() > 100) {
             addFieldError("exam.minPoints", getText("validation.minPoints"));
         }
         if (exam.getCreditPoints() == null) {

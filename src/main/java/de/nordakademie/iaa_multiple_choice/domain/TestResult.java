@@ -61,13 +61,12 @@ public class TestResult {
     @CollectionTable(name = "testresult_submitted_answers", joinColumns = @JoinColumn(name = "id"))
     private Map<Question, TestResultAnswers> submittedAnswers;
 
-    // TODO: finish this method for calculation finalPoints
     public void calculateFinalPoints() {
         int finalPoints = 0;
         for (final Entry<Question, TestResultAnswers> entry : submittedAnswers.entrySet()) {
             final Question question = entry.getKey();
             double partialPoint = 0;
-            final double pointStep = (double) question.getPoints().intValue() / question.getAnswers().size();
+            final double pointStep = (double) question.getPoints() / question.getAnswers().size();
             final Iterator<Answer> correctAnswers = question.getAnswers().iterator();
             final Iterator<Answer> studentAnswers = entry.getValue().getAnswers().iterator();
             while (correctAnswers.hasNext() && studentAnswers.hasNext()) {
@@ -85,7 +84,7 @@ public class TestResult {
                     // A single choice brings only points if the ONE correct one is chosen, otherwise always zero points
                     if (studentAnswer.isRightAnswer() == correctAnswer.isRightAnswer()
                             && correctAnswer.isRightAnswer()) {
-                        partialPoint += question.getPoints().intValue();
+                        partialPoint += question.getPoints();
                         break;
                     } else if (correctAnswer.isRightAnswer()) {
                         partialPoint = 0;
@@ -111,6 +110,6 @@ public class TestResult {
     }
 
     public boolean isExpired() {
-        return LocalDateTime.now().isAfter(startTime.plusMinutes(exam.getExamTime().intValue())) || endTime != null;
+        return LocalDateTime.now().isAfter(startTime.plusMinutes(exam.getExamTime())) || endTime != null;
     }
 }

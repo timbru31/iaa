@@ -24,7 +24,7 @@ public class TakeExamAction extends BaseStudentExamAction {
             return result;
         }
         checkQuestion();
-        final LocalDateTime endTime = getTestResult().getStartTime().plusMinutes(getExam().getExamTime().intValue());
+        final LocalDateTime endTime = getTestResult().getStartTime().plusMinutes(getExam().getExamTime());
         endTimeMillis = endTime.atOffset(ZonedDateTime.now().getOffset()).toEpochSecond();
         progress = (int) ((getTestResult().getSubmittedAnswers().size() * 100.0f) / getExam().getQuestions().size());
         return SUCCESS;

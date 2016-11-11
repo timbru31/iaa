@@ -76,7 +76,7 @@ public abstract class BaseQuestionAction extends BaseAction {
         if (question.getText() == null || question.getText().isEmpty()) {
             addFieldError("question.text", getText("validation.questionMissing"));
         }
-        if (question.getPoints() == null || question.getPoints().intValue() <= 0) {
+        if (question.getPoints() == null || question.getPoints() <= 0) {
             addFieldError("question.points", getText("validation.pointsMissing"));
         }
         if (question.getType() == null) {

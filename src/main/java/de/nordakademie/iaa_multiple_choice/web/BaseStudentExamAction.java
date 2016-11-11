@@ -72,7 +72,7 @@ public abstract class BaseStudentExamAction extends BaseSessionAction {
     public void checkQuestion() {
         if (questionId != null) {
             final Optional<Question> optionalQuestion = exam.getQuestions().stream()
-                    .filter(q -> questionId.longValue() == q.getId().longValue()).findFirst();
+                    .filter(q -> questionId == q.getId()).findFirst();
             if (!optionalQuestion.isPresent()) {
                 throw new QuestionNotFoundException();
             }

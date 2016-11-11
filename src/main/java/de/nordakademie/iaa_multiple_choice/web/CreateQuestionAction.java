@@ -31,7 +31,7 @@ public class CreateQuestionAction extends BaseQuestionAction {
         if (getQuestion().getType() == QuestionType.SINGLE_CHOICE) {
             for (int i = 0; i < getRawAnswerTextsSc().length; i++) {
                 final String rawAnswerText = getRawAnswerTextsSc()[i];
-                final Answer answer = new Answer(rawAnswerText, i == getSc().intValue());
+                final Answer answer = new Answer(rawAnswerText, i == getSc());
                 getQuestion().addAnswer(answer);
                 getAnswerService().createAnswer(answer);
             }
