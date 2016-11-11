@@ -19,6 +19,12 @@ public class ExamService {
         examRepository.createExam(exam);
     }
 
+    @Transactional
+    public void deleteExam(final Long examId) {
+        final Exam exam = find(examId);
+        examRepository.deleteExam(exam);
+    }
+
     @Transactional(readOnly = true)
     public Exam find(final Long examId) {
         return examRepository.find(examId);

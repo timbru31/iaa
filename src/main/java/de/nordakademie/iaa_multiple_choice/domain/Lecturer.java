@@ -37,4 +37,8 @@ public class Lecturer extends User {
     public void addExam(final Exam exam) {
         exams.add(exam);
     }
+
+    public void removeExam(final Exam exam) {
+        exams.remove(exam);
+    }
 }

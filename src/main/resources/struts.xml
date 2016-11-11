@@ -155,6 +155,10 @@
       <result name="input" type="tiles">exam/create</result>
     </action>
 
+    <action name="deleteExam" class="de.nordakademie.iaa_multiple_choice.web.DeleteExamAction" method="deleteExam">
+      <result name="success" type="redirectAction">lecturer</result>
+    </action>
+
     <action name="createQuestion" class="de.nordakademie.iaa_multiple_choice.web.CreateQuestionAction" method="createQuestion">
       <result name="success" type="tiles">exam/create/question</result>
       <result name="input" type="tiles">examNotFoundError</result>

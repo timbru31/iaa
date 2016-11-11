@@ -19,6 +19,10 @@ public class ExamRepository {
         entityManager.persist(exam);
     }
 
+    public void deleteExam(final Exam exam) {
+        entityManager.remove(exam);
+    }
+
     public Exam find(final Long examId) {
         try {
             return entityManager.createQuery("SELECT exam FROM Exam exam WHERE exam_id = :exam_id", Exam.class)

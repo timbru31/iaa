@@ -102,18 +102,20 @@
       type="number" inputmode="numeric" min="1" pattern="[0-9]*" required="true" />
   </div>
 
-  <s:url var="back" namespace="/" action="editExam">
-    <s:param name="examId">${exam.id}</s:param>
-  </s:url>
-  <s:a href="%{back}" class="btn btn-primary navbar-btn">
-    <s:text name="create.back" />
-  </s:a>
+  <div class="center">
   <s:submit action="updateQuestion" class="btn btn-success" value="%{getText('updateQuestion.submit')}" />
   <s:submit action="deleteQuestion" class="btn btn-danger" value="%{getText('create.deleteQuestion')}" />
   <s:url var="createQuestionURL" namespace="/" action="createQuestion">
     <s:param name="examId">${exam.id}</s:param>
   </s:url>
-  <s:a class="btn btn-primary navbar-right" href="%{createQuestionURL}"><s:text name="create.question" /></s:a>
-  <%@ include file="fragments/questionPagination.jspf" %>
+  </div>
 </s:form>
+<s:url var="back" namespace="/" action="editExam">
+  <s:param name="examId">${exam.id}</s:param>
+</s:url>
+<s:a href="%{back}" class="btn btn-primary navbar-btn">
+  <s:text name="create.back" />
+</s:a>
+<s:a class="btn btn-primary navbar-btn navbar-right" href="%{createQuestionURL}"><s:text name="create.question" /></s:a>
+<%@ include file="fragments/questionPagination.jspf" %>
 <script type="text/javascript" src="/iaa-multiple-choice/static/js/question.js"></script>
