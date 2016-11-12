@@ -25,8 +25,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * TestResult entity.
- * 
+ * ExamResult entity.
+ *
  * @author Tim Brust
  */
 @Getter
@@ -118,7 +118,7 @@ public class ExamResult {
     }
 
     /**
-     * Checks if the testResult is expired. There is a goodwill of 10 seconds to balance e.g. latency.
+     * Checks if the examResult is expired. There is a goodwill of 10 seconds to balance e.g. latency.
      *
      * @return true if the exam time expired, false otherwise
      */
