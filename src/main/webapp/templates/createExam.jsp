@@ -112,7 +112,7 @@ creating exam page -->
 $("#datepicker").datepicker({
   todayHighlight: true,
   calendarWeeks: true,
-  startDate: "tomorrow",
+  startDate: "today",
   maxViewMode: 1,
   clearBtn: true,
   <s:if test="#request.locale.language == 'de'">

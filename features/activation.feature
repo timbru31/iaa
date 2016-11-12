@@ -24,6 +24,6 @@ Feature: Activating a user account
       And the user is redirected to the home page
 
   Scenario: Activation with an activated user
-    Given the user is activated and loggedn in
+    Given the user is activated and logged in
       And the user visits the activation page
     Then the user is redirected to the home page
