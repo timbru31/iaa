@@ -18,7 +18,12 @@ Feature: Activating a user account
     Given the user visits the activation page with an invalid token
     Then the activation error page is displayed
 
-  Scenario: Activation wit the correct token
+  Scenario: Activation with the correct token
     Given the user visits the activation page with the correct token
     Then the user gets activated
       And the user is redirected to the home page
+
+  Scenario: Activation with an activated user
+    Given the user is activated and loggedn in
+      And the user visits the activation page
+    Then the user is redirected to the home page
