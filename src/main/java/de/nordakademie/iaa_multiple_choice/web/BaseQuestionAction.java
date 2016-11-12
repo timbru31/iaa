@@ -83,32 +83,32 @@ public abstract class BaseQuestionAction extends BaseAction {
             addFieldError("question.type", getText("validation.questionTypeMissing"));
         } else {
             switch (question.getType()) {
-                case SINGLE_CHOICE:
-                    if (sc == null) {
-                        addFieldError("question.singleChoice", getText("validation.singleChoiceValue"));
-                    }
-                    if (rawAnswerTextsSc == null || rawAnswerTextsSc.length < 2) {
-                        addFieldError("question.singleChoice", getText("validation.singleChoiceMinTwoAnswers"));
-                    } else if (Arrays.stream(rawAnswerTextsSc).anyMatch(text -> text == null || text.isEmpty())) {
-                        addFieldError("question.singleChoice", getText("validation.answerEmpty"));
-                    }
-                    break;
-                case MULTIPLE_CHOICE:
-                    if (rawAnswerTextsMc == null || rawAnswerTextsMc.length < 2) {
-                        addFieldError("question.multipleChoice", getText("validation.multipleChoiceMinOneAnswer"));
-                    } else if (Arrays.stream(rawAnswerTextsMc).anyMatch(text -> text == null || text.isEmpty())) {
-                        addFieldError("question.multipleChoice", getText("validation.answerEmpty"));
-                    }
-                    break;
-                case FILL_IN_THE_BLANK:
-                    final Matcher matcher = FILL_IN_THE_BLANK_PATTERN.matcher(question.getText());
-                    if (!matcher.find()) {
-                        addFieldError("question.fillInTheBlank", getText("validation.noBlank"));
-                    }
-                    break;
-                default:
-                    addFieldError("question.type", getText("validation.questionTypeMissing"));
-                    break;
+            case SINGLE_CHOICE:
+                if (sc == null) {
+                    addFieldError("question.singleChoice", getText("validation.singleChoiceValue"));
+                }
+                if (rawAnswerTextsSc == null || rawAnswerTextsSc.length < 2) {
+                    addFieldError("question.singleChoice", getText("validation.singleChoiceMinTwoAnswers"));
+                } else if (Arrays.stream(rawAnswerTextsSc).anyMatch(text -> text == null || text.isEmpty())) {
+                    addFieldError("question.singleChoice", getText("validation.answerEmpty"));
+                }
+                break;
+            case MULTIPLE_CHOICE:
+                if (rawAnswerTextsMc == null || rawAnswerTextsMc.length < 1) {
+                    addFieldError("question.multipleChoice", getText("validation.multipleChoiceMinOneAnswer"));
+                } else if (Arrays.stream(rawAnswerTextsMc).anyMatch(text -> text == null || text.isEmpty())) {
+                    addFieldError("question.multipleChoice", getText("validation.answerEmpty"));
+                }
+                break;
+            case FILL_IN_THE_BLANK:
+                final Matcher matcher = FILL_IN_THE_BLANK_PATTERN.matcher(question.getText());
+                if (!matcher.find()) {
+                    addFieldError("question.fillInTheBlank", getText("validation.noBlank"));
+                }
+                break;
+            default:
+                addFieldError("question.type", getText("validation.questionTypeMissing"));
+                break;
             }
         }
     }

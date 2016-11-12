@@ -101,7 +101,6 @@ public class ExamMappingAction extends BaseSessionAction {
             userService.updateUser(student);
             if (!isMailerDisabled()) {
                 sendRevokeEmail(student, exam);
-
             }
         }
         exam.clearParticipants();

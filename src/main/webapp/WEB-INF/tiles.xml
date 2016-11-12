@@ -24,7 +24,7 @@
     <put-attribute name="title" value="pageTitle.activationPending" />
   </definition>
   <definition name="activationError" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/activationError.jsp" />
+    <put-attribute name="content" value="/templates/error/activationError.jsp" />
     <put-attribute name="title" value="pageTitle.activationError" />
   </definition>
   <definition name="activationSuccess" extends="mainTemplate">

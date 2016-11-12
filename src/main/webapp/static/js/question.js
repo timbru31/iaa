@@ -16,7 +16,7 @@ var checkboxValue = 2;
 function addRadio() {
   var newDiv = document.createElement('div');
   newDiv.className = "input-group rd";
-  newDiv.innerHTML = "<span class='input-group-addon'><input type='radio' required name='sc' value='" + radioValue + "'></span><input name='rawAnswerTextsSc' type='text' class='form-control'>";
+  newDiv.innerHTML = "<span class='input-group-addon'><input type='radio' name='sc' value='" + radioValue + "'></span><input name='rawAnswerTextsSc' type='text' class='form-control'>";
   $("#radios").append(newDiv);
   radioValue++;
 }

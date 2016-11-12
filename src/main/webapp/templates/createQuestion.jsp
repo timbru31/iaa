@@ -56,7 +56,7 @@
             <div class="input-group rd">
               <span class="input-group-addon"> <input type="radio"
                 name="sc" value="${it.index}" ${rightAnswer == true ? 'checked' : ''}>
-              </span> <input required name="rawAnswerTextsSc" value="${text}" type="text"
+              </span> <input name="rawAnswerTextsSc" value="${text}" type="text"
                 class="form-control">
             </div>
           </s:iterator>
@@ -64,11 +64,11 @@
         <s:else>
           <div class="input-group rd">
             <span class="input-group-addon"> <input type="radio" name="sc" value="0">
-            </span> <input required name="rawAnswerTextsSc" type="text" class="form-control">
+            </span> <input name="rawAnswerTextsSc" type="text" class="form-control">
           </div>
           <div class="input-group rd">
             <span class="input-group-addon"> <input type="radio" name="sc" value="1">
-            </span> <input required name="rawAnswerTextsSc" type="text" class="form-control">
+            </span> <input name="rawAnswerTextsSc" type="text" class="form-control">
           </div>
         </s:else>
       </div>

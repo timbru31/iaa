@@ -1,5 +1,6 @@
 package de.nordakademie.iaa_multiple_choice.web;
 
+import java.util.Iterator;
 import java.util.regex.Matcher;
 
 import de.nordakademie.iaa_multiple_choice.domain.Answer;
@@ -42,7 +43,8 @@ public class UpdateQuestionAction extends BaseQuestionAction {
         updatedQuestion.setPoints(getQuestion().getPoints());
         if (updatedQuestion.getType() == QuestionType.SINGLE_CHOICE) {
             int i = 0;
-            for (final Answer answer : updatedQuestion.getAnswers()) {
+            for (Iterator<Answer> iterator = updatedQuestion.getAnswers().iterator(); iterator.hasNext();) {
+                Answer answer = iterator.next();
                 try {
                     final String rawAnswerText = getRawAnswerTextsSc()[i];
                     answer.setText(rawAnswerText);
@@ -50,6 +52,7 @@ public class UpdateQuestionAction extends BaseQuestionAction {
                     i++;
                     getAnswerService().updateAnswer(answer);
                 } catch (final IndexOutOfBoundsException e) {
+                    iterator.remove();
                     updatedQuestion.removeAnswer(answer);
                 }
             }
@@ -61,7 +64,8 @@ public class UpdateQuestionAction extends BaseQuestionAction {
             }
         } else if (updatedQuestion.getType() == QuestionType.MULTIPLE_CHOICE) {
             int i = 0;
-            for (final Answer answer : updatedQuestion.getAnswers()) {
+            for (Iterator<Answer> iterator = updatedQuestion.getAnswers().iterator(); iterator.hasNext();) {
+                Answer answer = iterator.next();
                 try {
                     final String rawAnswerText = getRawAnswerTextsMc()[i];
                     answer.setText(rawAnswerText);
@@ -69,6 +73,7 @@ public class UpdateQuestionAction extends BaseQuestionAction {
                     i++;
                     getAnswerService().updateAnswer(answer);
                 } catch (final IndexOutOfBoundsException e) {
+                    iterator.remove();
                     updatedQuestion.removeAnswer(answer);
                 }
             }

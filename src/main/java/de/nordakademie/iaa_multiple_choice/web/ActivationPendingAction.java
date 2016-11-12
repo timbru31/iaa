@@ -14,7 +14,8 @@ public class ActivationPendingAction extends BaseAction {
         final HttpServletRequest request = (HttpServletRequest) ActionContext.getContext()
                 .get(StrutsStatics.HTTP_REQUEST);
         final String referer = request.getHeader("referer");
-        if (referer == null || referer.isEmpty() || !referer.contains("registration") || isMailerDisabled()) {
+        if (referer == null || referer.isEmpty() || !(referer.contains("registration") || referer.contains("register"))
+                || isMailerDisabled()) {
             return "redirectHome";
         }
         return SUCCESS;
