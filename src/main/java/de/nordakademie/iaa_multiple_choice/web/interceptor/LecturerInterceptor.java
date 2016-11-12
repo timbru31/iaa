@@ -14,13 +14,18 @@ import de.nordakademie.iaa_multiple_choice.service.UserService;
 import de.nordakademie.iaa_multiple_choice.web.util.LecturerRequired;
 
 /**
- * @author Tim Brust interceptor for lecturer
+ * Interceptor for lecturer.
+ *
+ * @author Tim Brust
  */
 public class LecturerInterceptor extends AbstractInterceptor {
     private static final long serialVersionUID = 7111977843211607474L;
     @Autowired
     private UserService userService;
 
+    /**
+     * Checks that the given user is logged in and a lecturer.
+     */
     @Override
     public String intercept(final ActionInvocation invocation) throws Exception {
         final Object action = invocation.getAction();

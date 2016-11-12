@@ -26,7 +26,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Tim Brust action for mapping exams and students
+ * Action for mapping exams and students.
+ *
+ * @author Tim Brust
  */
 @LoginRequired
 @LecturerRequired
@@ -67,6 +69,9 @@ public class ExamMappingAction extends BaseSessionAction {
         return INPUT;
     }
 
+    /**
+     * Checks if given "raw" input is a valid user and a student.
+     */
     public void manualValidateMapStudents() {
         if (studentEmails == null) {
             deleteAll = true;
@@ -97,6 +102,11 @@ public class ExamMappingAction extends BaseSessionAction {
         return hasErrors() ? INPUT : SUCCESS;
     }
 
+    /**
+     * Removes all students from an exam and sends a revocation e-mail.
+     *
+     * @param exam the exam
+     */
     private void removeAllStudents(final Exam exam) {
         final Map<Student, String> tokenList = exam.getTokenList();
         for (final Student student : tokenList.keySet()) {
@@ -113,6 +123,13 @@ public class ExamMappingAction extends BaseSessionAction {
         }
     }
 
+    /**
+     * Send invitation email to the student.
+     *
+     * @param student the student to send the mail to
+     * @param exam the exam he was enrolled to
+     * @param generatedToken his generated token
+     */
     private void sendInvitationMail(final Student student, final Exam exam, final String generatedToken) {
         final String[] args = { student.getFullName(), exam.getName(), generatedToken };
         final String messageMailArgs[] = { student.getEmail() };
@@ -128,6 +145,12 @@ public class ExamMappingAction extends BaseSessionAction {
         }
     }
 
+    /**
+     * Sends a revocation e-mail to the student
+     *
+     * @param student the student to send the mail to
+     * @param exam the exam that was revoked
+     */
     private void sendRevokeEmail(final Student student, final Exam exam) {
         final String[] args = { student.getFullName(), exam.getName() };
         try {
@@ -143,6 +166,12 @@ public class ExamMappingAction extends BaseSessionAction {
         }
     }
 
+    /**
+     * Send an invitation to all new students and a revocation mail to all removed students. If mailing is disabled it
+     * shows the token as an actionMessage.
+     * 
+     * @param exam the exam
+     */
     private void updateStudentMapping(final Exam exam) {
         // Important: make a copy of the Map
         final Map<Student, String> enrolledStudents = new HashMap<>(exam.getTokenList());

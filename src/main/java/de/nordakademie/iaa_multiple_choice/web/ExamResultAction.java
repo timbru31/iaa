@@ -16,7 +16,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Tim Brust action for creating exam result
+ * Action for viewing an exam result.
+ *
+ * @author Tim Brust
  */
 @LoginRequired
 @StudentRequired
@@ -36,9 +38,6 @@ public class ExamResultAction extends BaseSessionAction {
     @Getter
     @Setter
     private Student student;
-    @Getter
-    @Setter
-    private long endTimeMillis;
     @Getter
     @Setter
     private TestResult testResult;

@@ -16,7 +16,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Yannick Rump action for login
+ * Action for login.
+ *
+ * @author Yannick Rump
  */
 public class LoginAction extends BaseSessionAction {
     private static final long serialVersionUID = 2712837519650991068L;
@@ -64,6 +66,9 @@ public class LoginAction extends BaseSessionAction {
         return SUCCESS;
     }
 
+    /**
+     * Validates the e-mail and password. Checks that the user is activated.
+     */
     public void validateLogin() {
         if (email == null || email.isEmpty() || !email.endsWith("@nordakademie.de") || password == null
                 || password.isEmpty() || password.length() < 8) {

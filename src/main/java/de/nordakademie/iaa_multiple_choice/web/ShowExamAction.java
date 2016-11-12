@@ -12,7 +12,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Yannick Rump action for showing exam
+ * Action for showing an exam with it's details.
+ *
+ * @author Yannick Rump
  */
 @LoginRequired
 @StudentRequired
@@ -36,6 +38,9 @@ public class ShowExamAction extends BaseSessionAction {
         return SUCCESS;
     }
 
+    /**
+     * Finds an exam and makes sure the student is enrolled to it.
+     */
     private void findExam() {
         exam = examService.find(examId);
         student = (Student) getUser();

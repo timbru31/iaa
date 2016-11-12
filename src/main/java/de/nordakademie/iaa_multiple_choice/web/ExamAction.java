@@ -16,7 +16,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Hannes Peterson action for creating exam
+ * Action for creating and updating an exam.
+ *
+ * @author Hannes Peterson
  */
 @LoginRequired
 @LecturerRequired
@@ -73,6 +75,10 @@ public class ExamAction extends BaseSessionAction {
         return "updated";
     }
 
+    /**
+     * Validates that an exam has a name, minPoints a creditPoints enum value, an evaluation method and valid start and
+     * end dates.
+     */
     public void validateSaveExam() {
         if (exam == null) {
             addFieldError("exam", getText("validation.exam"));

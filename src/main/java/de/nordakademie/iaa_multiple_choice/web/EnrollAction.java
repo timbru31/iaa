@@ -19,7 +19,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Tim Brust action for enrolling to exam
+ * Action for enrolling to an exam.
+ * 
+ * @author Tim Brust
  */
 @LoginRequired
 @StudentRequired

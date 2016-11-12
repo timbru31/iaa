@@ -7,7 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Hannes Peterson action for student home
+ * Action for student homepage.
+ *
+ * @author Hannes Peterson
  */
 @LoginRequired
 @StudentRequired

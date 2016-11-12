@@ -7,7 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Yannick Rump action for lecturer home
+ * Action for lecturer homepage.
+ * 
+ * @author Yannick Rump
  */
 @LoginRequired
 @LecturerRequired

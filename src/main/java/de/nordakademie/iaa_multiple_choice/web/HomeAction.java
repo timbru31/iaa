@@ -8,7 +8,9 @@ import de.nordakademie.iaa_multiple_choice.domain.User;
 import de.nordakademie.iaa_multiple_choice.service.UserService;
 
 /**
- * @author Tim Brust action for home site
+ * Action for homepage.
+ * 
+ * @author Tim Brust
  */
 public class HomeAction extends BaseSessionAction {
     private static final long serialVersionUID = -7773097018962821833L;

@@ -9,11 +9,16 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 
 /**
- * @author Jens Gottwald interceptor for login
+ * Interceptor for login.
+ * 
+ * @author Jens Gottwald
  */
 public class LoginInterceptor extends AbstractInterceptor {
     private static final long serialVersionUID = 4518828269270091937L;
 
+    /**
+     * Checks that the user is logged in.
+     */
     @Override
     public String intercept(final ActionInvocation invocation) throws Exception {
         final Map<String, Object> session = ActionContext.getContext().getSession();

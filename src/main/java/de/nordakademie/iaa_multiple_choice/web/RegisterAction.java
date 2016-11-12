@@ -20,7 +20,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Tim Brust action for registration
+ * Action for registration.
+ * 
+ * @author Tim Brust
  */
 public class RegisterAction extends BaseSessionAction {
     private static final long serialVersionUID = -5785967910896850512L;
@@ -56,6 +58,9 @@ public class RegisterAction extends BaseSessionAction {
     @Autowired
     private TokenGeneratorService tokenGeneratorService;
 
+    /**
+     * Validates the basic user information.
+     */
     public void baseValidator() {
         if (!isRegistrationEnabled()) {
             throw new RegistrationDisabledException();
@@ -87,6 +92,11 @@ public class RegisterAction extends BaseSessionAction {
         return SUCCESS;
     }
 
+    /**
+     * Generates a hashedPassword
+     * 
+     * @return the hashedPassword
+     */
     private String hashPassword() {
         return passwordAuthenticationService.hash(password.toCharArray());
     }
@@ -127,6 +137,11 @@ public class RegisterAction extends BaseSessionAction {
         return "activationPending";
     }
 
+    /**
+     * Sends a registration mail with activation token to the user.
+     * 
+     * @param user the user to send the mail to
+     */
     private void sendRegistrationMail(final User user) {
         final HttpServletRequest request = ServletActionContext.getRequest();
         try {
@@ -147,6 +162,9 @@ public class RegisterAction extends BaseSessionAction {
         baseValidator();
     }
 
+    /**
+     * Validates the basic user information and the student number.
+     */
     public void validateRegisterStudent() {
         baseValidator();
         if (studentNumber == null || studentNumber <= 0 || studentNumber > 10000) {

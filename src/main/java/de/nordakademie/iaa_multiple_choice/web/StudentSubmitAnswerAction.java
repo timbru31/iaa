@@ -21,7 +21,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Tim Brust action for submitting answer
+ * Action for submitting an answer as a student.
+ *
+ * @author Yannick Rump
  */
 @LoginRequired
 @StudentRequired
@@ -41,7 +43,14 @@ public class StudentSubmitAnswerAction extends BaseStudentExamAction {
     @Setter
     private ArrayList<Integer> mc = new ArrayList<>();
 
-    public Answer getAnwserByIndex(final Set<? extends Answer> set, final int index) {
+    /**
+     * Helper method to get an entry by it's index from a Set.
+     * 
+     * @param set the set to search in
+     * @param index the wanted index
+     * @return the element at this position or null if not found
+     */
+    private Answer getAnwserByIndex(final Set<? extends Answer> set, final int index) {
         int result = 0;
         for (final Answer answer : set) {
             if (result == index) {
@@ -69,19 +78,7 @@ public class StudentSubmitAnswerAction extends BaseStudentExamAction {
         setQuestion(optionalQuestion.get());
         final LinkedHashSet<Answer> answerSet = new LinkedHashSet<>();
         if (getQuestion().getType() == QuestionType.FILL_IN_THE_BLANK) {
-            for (int i = 0; i < fillInTheBlankAnswers.length; i++) {
-                final String blankAnwser = fillInTheBlankAnswers[i];
-                if (getTestResult().getSubmittedAnswers().containsKey(getQuestion())) {
-                    final TestResultAnswers testResultAnswers = getTestResult().getSubmittedAnswers()
-                            .get(getQuestion());
-                    final Answer answer = getAnwserByIndex(testResultAnswers.getAnswers(), i);
-                    answer.setText(blankAnwser);
-                    answerService.updateAnswer(answer);
-                } else {
-                    final Answer answer = new Answer(blankAnwser, true);
-                    answerSet.add(answer);
-                }
-            }
+            extracted(answerSet);
         } else if (getQuestion().getType() == QuestionType.SINGLE_CHOICE) {
             for (int i = 0; i < getQuestion().getAnswers().size(); i++) {
                 final Answer correctAnswer = getAnwserByIndex(getQuestion().getAnswers(), i);
@@ -124,6 +121,22 @@ public class StudentSubmitAnswerAction extends BaseStudentExamAction {
             getTestResultService().updateTestResult(getTestResult());
         }
         return SUCCESS;
+    }
+
+    private void extracted(final LinkedHashSet<Answer> answerSet) {
+        for (int i = 0; i < fillInTheBlankAnswers.length; i++) {
+            final String blankAnwser = fillInTheBlankAnswers[i];
+            if (getTestResult().getSubmittedAnswers().containsKey(getQuestion())) {
+                final TestResultAnswers testResultAnswers = getTestResult().getSubmittedAnswers()
+                        .get(getQuestion());
+                final Answer answer = getAnwserByIndex(testResultAnswers.getAnswers(), i);
+                answer.setText(blankAnwser);
+                answerService.updateAnswer(answer);
+            } else {
+                final Answer answer = new Answer(blankAnwser, true);
+                answerSet.add(answer);
+            }
+        }
     }
 
 }

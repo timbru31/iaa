@@ -8,7 +8,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Tim Brust action for token activation
+ * Action for token activation.
+ * 
+ * @author Tim Brust
  */
 public class ActivateAction extends BaseSessionAction {
     private static final long serialVersionUID = -1644655626750378438L;

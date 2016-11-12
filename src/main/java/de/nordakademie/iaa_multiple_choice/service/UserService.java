@@ -11,7 +11,9 @@ import de.nordakademie.iaa_multiple_choice.domain.User;
 import de.nordakademie.iaa_multiple_choice.domain.UserRepository;
 
 /**
- * @author Hannes Peterson service for user
+ * Service for user.
+ * 
+ * @author Hannes Peterson
  */
 @Service
 public class UserService {

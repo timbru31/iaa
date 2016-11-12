@@ -10,7 +10,9 @@ import de.nordakademie.iaa_multiple_choice.domain.TestResult;
 import de.nordakademie.iaa_multiple_choice.domain.TestResultRepository;
 
 /**
- * @author Yannick Rump service for test result
+ * Service for test result.
+ * 
+ * @author Yannick Rump
  */
 @Service
 public class TestResultService {

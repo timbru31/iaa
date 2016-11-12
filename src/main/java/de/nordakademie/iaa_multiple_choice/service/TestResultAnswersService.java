@@ -8,7 +8,9 @@ import de.nordakademie.iaa_multiple_choice.domain.TestResultAnswers;
 import de.nordakademie.iaa_multiple_choice.domain.TestResultAnswersRepository;
 
 /**
- * @author Jens Gottwald service for answers of test
+ * Service for answers of test.
+ * 
+ * @author Jens Gottwald
  */
 @Service
 public class TestResultAnswersService {

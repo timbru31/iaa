@@ -20,7 +20,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Tim Brust action for student exam connection
+ * Action for student exam connection.
+ *
+ * @author Tim Brust
  */
 @LoginRequired
 @StudentRequired
@@ -52,6 +54,11 @@ public abstract class BaseStudentExamAction extends BaseSessionAction {
     @Setter
     private TestResult testResult;
 
+    /**
+     * Checks that the student is allowed to take the exam.
+     * 
+     * @return the result
+     */
     public String checkPermissions() {
         exam = getExamService().find(examId);
         student = (Student) getUser();
@@ -71,6 +78,9 @@ public abstract class BaseStudentExamAction extends BaseSessionAction {
         return SUCCESS;
     }
 
+    /**
+     * Checks that a question belongs to the exam or sets it to the first question.
+     */
     public void checkQuestion() {
         if (questionId != null) {
             final Optional<Question> optionalQuestion = exam.getQuestions().stream()

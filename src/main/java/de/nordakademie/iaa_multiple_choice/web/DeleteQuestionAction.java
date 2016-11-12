@@ -9,7 +9,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Hannes Peterson action for deleting question
+ * Action for deleting a question.
+ * 
+ * @author Hannes Peterson
  */
 @LoginRequired
 @LecturerRequired

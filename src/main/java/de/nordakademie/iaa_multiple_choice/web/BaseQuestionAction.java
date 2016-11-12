@@ -19,7 +19,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Tim Brust action for question validation
+ * Action for question validation.
+ *
+ * @author Tim Brust
  */
 @LoginRequired
 @LecturerRequired
@@ -63,6 +65,11 @@ public abstract class BaseQuestionAction extends BaseAction {
     @Setter
     private Exam exam;
 
+    /**
+     * Checks for a valid and editable exam.
+     *
+     * @return the exam
+     */
     public Exam findExam() {
         exam = getExamService().find(getExamId());
         if (!exam.isEditable()) {
@@ -71,6 +78,9 @@ public abstract class BaseQuestionAction extends BaseAction {
         return exam;
     }
 
+    /**
+     * Validates a question.
+     */
     public void validateQuestion() {
         if (question == null) {
             addFieldError("question.text", getText("validation.questionMissing"));
@@ -87,32 +97,53 @@ public abstract class BaseQuestionAction extends BaseAction {
         } else {
             switch (question.getType()) {
             case SINGLE_CHOICE:
-                if (sc == null) {
-                    addFieldError("question.singleChoice", getText("validation.singleChoiceValue"));
-                }
-                if (rawAnswerTextsSc == null || rawAnswerTextsSc.length < 2) {
-                    addFieldError("question.singleChoice", getText("validation.singleChoiceMinTwoAnswers"));
-                } else if (Arrays.stream(rawAnswerTextsSc).anyMatch(text -> text == null || text.isEmpty())) {
-                    addFieldError("question.singleChoice", getText("validation.answerEmpty"));
-                }
+                checkSIngleChoiceQuestion();
                 break;
             case MULTIPLE_CHOICE:
-                if (rawAnswerTextsMc == null || rawAnswerTextsMc.length < 1) {
-                    addFieldError("question.multipleChoice", getText("validation.multipleChoiceMinOneAnswer"));
-                } else if (Arrays.stream(rawAnswerTextsMc).anyMatch(text -> text == null || text.isEmpty())) {
-                    addFieldError("question.multipleChoice", getText("validation.answerEmpty"));
-                }
+                checkMultipleChoiceQuestion();
                 break;
             case FILL_IN_THE_BLANK:
-                final Matcher matcher = FILL_IN_THE_BLANK_PATTERN.matcher(question.getText());
-                if (!matcher.find()) {
-                    addFieldError("question.fillInTheBlank", getText("validation.noBlank"));
-                }
+                checkFillInTheBlankQuestion();
                 break;
             default:
                 addFieldError("question.type", getText("validation.questionTypeMissing"));
                 break;
             }
+        }
+    }
+
+    /**
+     * Checks that a least one blank is present.
+     */
+    private void checkFillInTheBlankQuestion() {
+        final Matcher matcher = FILL_IN_THE_BLANK_PATTERN.matcher(question.getText());
+        if (!matcher.find()) {
+            addFieldError("question.fillInTheBlank", getText("validation.noBlank"));
+        }
+    }
+
+    /**
+     * Checks that there is at least one question and that each text is not empty.
+     */
+    private void checkMultipleChoiceQuestion() {
+        if (rawAnswerTextsMc == null || rawAnswerTextsMc.length < 1) {
+            addFieldError("question.multipleChoice", getText("validation.multipleChoiceMinOneAnswer"));
+        } else if (Arrays.stream(rawAnswerTextsMc).anyMatch(text -> text == null || text.isEmpty())) {
+            addFieldError("question.multipleChoice", getText("validation.answerEmpty"));
+        }
+    }
+
+    /**
+     * Checks that there is at least one question, one choice and that each text is not empty.
+     */
+    private void checkSIngleChoiceQuestion() {
+        if (sc == null) {
+            addFieldError("question.singleChoice", getText("validation.singleChoiceValue"));
+        }
+        if (rawAnswerTextsSc == null || rawAnswerTextsSc.length < 2) {
+            addFieldError("question.singleChoice", getText("validation.singleChoiceMinTwoAnswers"));
+        } else if (Arrays.stream(rawAnswerTextsSc).anyMatch(text -> text == null || text.isEmpty())) {
+            addFieldError("question.singleChoice", getText("validation.answerEmpty"));
         }
     }
 }

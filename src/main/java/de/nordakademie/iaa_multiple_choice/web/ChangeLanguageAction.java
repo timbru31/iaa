@@ -13,7 +13,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Tim Brust action for changing language
+ * Action for changing language.
+ *
+ * @author Tim Brust
  */
 public class ChangeLanguageAction extends BaseSessionAction {
     private static final long serialVersionUID = 6866964825181632874L;
@@ -24,6 +26,12 @@ public class ChangeLanguageAction extends BaseSessionAction {
     @Setter
     private String prevUrl;
 
+    /**
+     * Gets the language from URL parameter and sets the DEFAULT_SESSION_ATTRIBUTE. Then redirects to the back referrer
+     * location.
+     *
+     * @return the action result
+     */
     public String changeLanguage() {
         final HttpServletRequest request = (HttpServletRequest) ActionContext.getContext()
                 .get(StrutsStatics.HTTP_REQUEST);

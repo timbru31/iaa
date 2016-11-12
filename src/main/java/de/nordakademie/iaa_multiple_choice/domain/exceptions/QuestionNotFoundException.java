@@ -1,7 +1,9 @@
 package de.nordakademie.iaa_multiple_choice.domain.exceptions;
 
 /**
- * @author Tim Brust exception if question not found
+ * Exception if a question not found.
+ *
+ * @author Tim Brust
  */
 public class QuestionNotFoundException extends RuntimeException {
     private static final long serialVersionUID = -1269355257834626559L;

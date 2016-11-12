@@ -10,7 +10,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Tim Brust action for token list
+ * Action for listing all tokens for an exam. Redirects home if mailing is enabled.
+ * 
+ * @author Tim Brust
  */
 @LoginRequired
 @LecturerRequired

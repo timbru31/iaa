@@ -11,7 +11,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Tim Brust action for session
+ * Action for session support.
+ *
+ * @author Tim Brust
  */
 public class BaseSessionAction extends BaseAction implements SessionAware {
     private static final long serialVersionUID = -6535887821833885360L;
@@ -21,6 +23,11 @@ public class BaseSessionAction extends BaseAction implements SessionAware {
     @Autowired
     private UserService userService;
 
+    /**
+     * Gets the user if he is logged in.
+     *
+     * @return the user or null if session or user is not found
+     */
     public User getUser() {
         if (session == null) {
             return null;
@@ -29,7 +36,6 @@ public class BaseSessionAction extends BaseAction implements SessionAware {
         if (email == null) {
             return null;
         }
-
         return userService.findByMail(email);
     }
 }

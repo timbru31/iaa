@@ -12,7 +12,12 @@ import de.nordakademie.iaa_multiple_choice.web.util.LecturerRequired;
 import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 
 /**
- * @author whole team action updatin question
+ * Action for updating a question.
+ *
+ * @author Yannick Rump
+ * @author Tim Brust
+ * @author Jens Gottwald
+ * @author Hannes Peterson
  */
 @LoginRequired
 @LecturerRequired
@@ -24,6 +29,9 @@ public class UpdateQuestionAction extends BaseQuestionAction {
         return SUCCESS;
     }
 
+    /**
+     * Find exam and question and make sure that question belongs to the exam.
+     */
     private void findQuestion() {
         final Exam exam = findExam();
         final Question question = getQuestionService().find(getQuestionId());
@@ -45,60 +53,80 @@ public class UpdateQuestionAction extends BaseQuestionAction {
         updatedQuestion.setText(getQuestion().getText());
         updatedQuestion.setPoints(getQuestion().getPoints());
         if (updatedQuestion.getType() == QuestionType.SINGLE_CHOICE) {
-            int i = 0;
-            for (final Iterator<Answer> iterator = updatedQuestion.getAnswers().iterator(); iterator.hasNext();) {
-                final Answer answer = iterator.next();
-                try {
-                    final String rawAnswerText = getRawAnswerTextsSc()[i];
-                    answer.setText(rawAnswerText);
-                    answer.setRightAnswer(i == getSc());
-                    i++;
-                    getAnswerService().updateAnswer(answer);
-                } catch (final IndexOutOfBoundsException e) {
-                    iterator.remove();
-                    updatedQuestion.removeAnswer(answer);
-                }
-            }
-            for (; i < getRawAnswerTextsSc().length; i++) {
-                final String rawAnswerText = getRawAnswerTextsSc()[i];
-                final Answer newAnswer = new Answer(rawAnswerText, i == getSc());
-                updatedQuestion.addAnswer(newAnswer);
-                getAnswerService().createAnswer(newAnswer);
-            }
+            updateSingleChoiceQuestion(updatedQuestion);
         } else if (updatedQuestion.getType() == QuestionType.MULTIPLE_CHOICE) {
-            int i = 0;
-            for (final Iterator<Answer> iterator = updatedQuestion.getAnswers().iterator(); iterator.hasNext();) {
-                final Answer answer = iterator.next();
-                try {
-                    final String rawAnswerText = getRawAnswerTextsMc()[i];
-                    answer.setText(rawAnswerText);
-                    answer.setRightAnswer(getMc().contains(i));
-                    i++;
-                    getAnswerService().updateAnswer(answer);
-                } catch (final IndexOutOfBoundsException e) {
-                    iterator.remove();
-                    updatedQuestion.removeAnswer(answer);
-                }
-            }
-            for (; i < getRawAnswerTextsMc().length; i++) {
-                final String rawAnswerText = getRawAnswerTextsMc()[i];
-                final Answer newAnswer = new Answer(rawAnswerText, getMc().contains(i));
-                updatedQuestion.addAnswer(newAnswer);
-                getAnswerService().createAnswer(newAnswer);
-            }
+            updateMultipleChoiceQuestion(updatedQuestion);
         } else if (updatedQuestion.getType() == QuestionType.FILL_IN_THE_BLANK) {
-            // It's easier to delete old answers first
-            updatedQuestion.getAnswers().clear();
-            final Matcher matcher = FILL_IN_THE_BLANK_PATTERN.matcher(updatedQuestion.getText());
-            while (matcher.find()) {
-                final String rawAnswerText = matcher.group(1);
-                final Answer answer = new Answer(rawAnswerText, true);
-                updatedQuestion.addAnswer(answer);
-                getAnswerService().createAnswer(answer);
-            }
+            updateFillInTheBlankQuestion(updatedQuestion);
         }
         getQuestionService().updateQuestion(updatedQuestion);
         return SUCCESS;
+    }
+
+    private void updateFillInTheBlankQuestion(final Question updatedQuestion) {
+        // It's easier to delete old answers first
+        updatedQuestion.getAnswers().clear();
+        final Matcher matcher = FILL_IN_THE_BLANK_PATTERN.matcher(updatedQuestion.getText());
+        while (matcher.find()) {
+            final String rawAnswerText = matcher.group(1);
+            final Answer answer = new Answer(rawAnswerText, true);
+            updatedQuestion.addAnswer(answer);
+            getAnswerService().createAnswer(answer);
+        }
+    }
+
+    private void updateMultipleChoiceQuestion(final Question updatedQuestion) {
+        int i = 0;
+        // Iterate through all answers
+        for (final Iterator<Answer> iterator = updatedQuestion.getAnswers().iterator(); iterator.hasNext();) {
+            final Answer answer = iterator.next();
+            try {
+                // Update question text and if it's correct
+                final String rawAnswerText = getRawAnswerTextsMc()[i];
+                answer.setText(rawAnswerText);
+                answer.setRightAnswer(getMc().contains(i));
+                i++;
+                getAnswerService().updateAnswer(answer);
+            } catch (final IndexOutOfBoundsException e) {
+                // Remove the question if it can't be found anymore
+                iterator.remove();
+                updatedQuestion.removeAnswer(answer);
+            }
+        }
+        // Add new questions
+        for (; i < getRawAnswerTextsMc().length; i++) {
+            final String rawAnswerText = getRawAnswerTextsMc()[i];
+            final Answer newAnswer = new Answer(rawAnswerText, getMc().contains(i));
+            updatedQuestion.addAnswer(newAnswer);
+            getAnswerService().createAnswer(newAnswer);
+        }
+    }
+
+    private void updateSingleChoiceQuestion(final Question updatedQuestion) {
+        int i = 0;
+        // Iterate through all answers
+        for (final Iterator<Answer> iterator = updatedQuestion.getAnswers().iterator(); iterator.hasNext();) {
+            final Answer answer = iterator.next();
+            try {
+                // Update question text and if it's correct
+                final String rawAnswerText = getRawAnswerTextsSc()[i];
+                answer.setText(rawAnswerText);
+                answer.setRightAnswer(i == getSc());
+                i++;
+                getAnswerService().updateAnswer(answer);
+            } catch (final IndexOutOfBoundsException e) {
+                // Remove the question if it can't be found anymore
+                iterator.remove();
+                updatedQuestion.removeAnswer(answer);
+            }
+        }
+        // Add new questions
+        for (; i < getRawAnswerTextsSc().length; i++) {
+            final String rawAnswerText = getRawAnswerTextsSc()[i];
+            final Answer newAnswer = new Answer(rawAnswerText, i == getSc());
+            updatedQuestion.addAnswer(newAnswer);
+            getAnswerService().createAnswer(newAnswer);
+        }
     }
 
     public void validateUpdateQuestion() {

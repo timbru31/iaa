@@ -14,22 +14,39 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 /**
- * @author Tim Brust service for mail sender
+ * Service for mail sending.
+ *
+ * @author Tim Brust
  */
 @Service("mailService")
 public class MailSenderService {
     private static final Logger logger = LogManager.getLogger(MailSenderService.class.getName());
 
+    /**
+     * Gets value from Spring properties file
+     */
     @Value("${mail.disabled}")
     private boolean disabled;
 
     @Autowired
     private JavaMailSender mailSender;
 
+    /**
+     * Gets value from Spring properties file. The default is null.
+     */
     @Value("${mail.overrideRecipient:}")
     private String recipientOverride;
 
-    public void sendMail(String to, String subject, String body)
+    /**
+     * Sends a mail to the given recipient.
+     *
+     * @param to the recipient
+     * @param subject the subject line
+     * @param body the body
+     * @throws MessagingException
+     * @throws UnsupportedEncodingException
+     */
+    public void sendMail(final String to, final String subject, final String body)
             throws MessagingException, UnsupportedEncodingException {
         if (disabled) {
             logger.info("Mail sending is disabled via configuration");

@@ -19,7 +19,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Hannes Peterson action for deleting exam
+ * Action for deleting an exam.
+ *
+ * @author Hannes Peterson
  */
 @LoginRequired
 @LecturerRequired
@@ -55,6 +57,12 @@ public class DeleteExamAction extends BaseSessionAction {
         return SUCCESS;
     }
 
+    /**
+     * Sends a revocation email to the student
+     * 
+     * @param student the student to send the mail to
+     * @param exam the exam that was deleted
+     */
     private void sendRevokeEmail(final Student student, final Exam exam) {
         final String[] args = { student.getFullName(), exam.getName() };
         try {

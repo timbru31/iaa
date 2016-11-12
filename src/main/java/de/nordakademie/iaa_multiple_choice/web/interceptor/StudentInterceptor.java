@@ -14,13 +14,18 @@ import de.nordakademie.iaa_multiple_choice.service.UserService;
 import de.nordakademie.iaa_multiple_choice.web.util.StudentRequired;
 
 /**
- * @author Jens Gottwald interceptor for student
+ * Interceptor for student.
+ *
+ * @author Jens Gottwald
  */
 public class StudentInterceptor extends AbstractInterceptor {
     private static final long serialVersionUID = 6756324184319715740L;
     @Autowired
     private UserService userService;
 
+    /**
+     * Checks that the given user is logged in and a student.
+     */
     @Override
     public String intercept(final ActionInvocation invocation) throws Exception {
         final Object action = invocation.getAction();

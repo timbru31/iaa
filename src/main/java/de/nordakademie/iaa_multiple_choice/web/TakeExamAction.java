@@ -9,7 +9,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Yannick Rump action for starting exam
+ * Action for starting an exam.
+ *
+ * @author Yannick Rump
  */
 @LoginRequired
 @StudentRequired

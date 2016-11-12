@@ -7,7 +7,9 @@ import com.opensymphony.xwork2.ActionSupport;
 import lombok.Getter;
 
 /**
- * @author Tim Brust action for ActionSupport
+ * BaseAction to have access to mailer and registration enabled flags.
+ * 
+ * @author Tim Brust
  */
 public class BaseAction extends ActionSupport {
     private static final long serialVersionUID = -5741251881623919553L;

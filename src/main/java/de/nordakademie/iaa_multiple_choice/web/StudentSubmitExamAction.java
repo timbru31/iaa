@@ -6,7 +6,9 @@ import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 import de.nordakademie.iaa_multiple_choice.web.util.StudentRequired;
 
 /**
- * @author Hannes Peterson action for submitting exam
+ * Action for submitting an exam as a student.
+ * 
+ * @author Hannes Peterson
  */
 @LoginRequired
 @StudentRequired

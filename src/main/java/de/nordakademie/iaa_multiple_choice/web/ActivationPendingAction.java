@@ -7,7 +7,9 @@ import org.apache.struts2.StrutsStatics;
 import com.opensymphony.xwork2.ActionContext;
 
 /**
- * @author Tim Brust action for token activation
+ * Action for activation pending.
+ * 
+ * @author Tim Brust
  */
 public class ActivationPendingAction extends BaseAction {
     private static final long serialVersionUID = -2646095881961031216L;

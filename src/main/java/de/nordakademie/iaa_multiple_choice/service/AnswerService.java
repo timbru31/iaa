@@ -12,7 +12,9 @@ import de.nordakademie.iaa_multiple_choice.domain.Answer;
 import de.nordakademie.iaa_multiple_choice.domain.AnswerRepository;
 
 /**
- * @author Hannes Peterson service for answer repository
+ * Service for answer repository.
+ * 
+ * @author Hannes Peterson
  */
 @Service
 public class AnswerService {

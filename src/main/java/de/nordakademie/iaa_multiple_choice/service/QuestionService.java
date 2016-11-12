@@ -11,7 +11,9 @@ import de.nordakademie.iaa_multiple_choice.domain.QuestionRepository;
 import de.nordakademie.iaa_multiple_choice.domain.exceptions.QuestionNotFoundException;
 
 /**
- * @author Jens Gottwald service for question repository
+ * Service for question repository.
+ * 
+ * @author Jens Gottwald
  */
 @Service
 public class QuestionService {
