@@ -65,9 +65,12 @@ public class EnrollAction extends BaseSessionAction {
                     student.getEmail(), exam.getName());
             throw new StudentNotEnrolledException();
         }
+        if (!exam.hasQuestions()) {
+            addFieldError("examInvalid", getText("validation.examHasNoQuestions"));
+            return;
+        }
         if (token == null || token.isEmpty() || !exam.getToken(student).equals(token)) {
             addFieldError("token", getText("validation.tokenInvalid"));
-            return;
         }
         if (student.hasTakenExam(exam)) {
             addFieldError("token", getText("validation.tokenUsed"));

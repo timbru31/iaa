@@ -73,7 +73,7 @@
       <s:iterator value='question.getFormattedQuestionText().split("\\\[\\\]")' status="it">
         <s:property />
         <s:if test="#it.last == false || question.getFormattedQuestionText().endsWith('[]')">
-          <s:textfield class="form-group" name="fillInTheBlankAnswers" type="text" required="true" value="%{testResult.getSubmittedAnswers().get(question) == null ? '' : testResult.getSubmittedAnswers().get(question).getAnswers().toArray()[#it.index].getText()}" />
+          <s:textfield class="form-group blank" name="fillInTheBlankAnswers" type="text" required="true" value="%{testResult.getSubmittedAnswers().get(question) == null ? '' : testResult.getSubmittedAnswers().get(question).getAnswers().toArray()[#it.index].getText()}" />
         </s:if>
       </s:iterator>
       <div class="center">
@@ -123,6 +123,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/jquery.countdown/2.2.0/jquery.countdown.min.js" integrity="sha256-Ikk5myJowmDQaYVCUD0Wr+vIDkN8hGI58SGWdE671A8=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/iaa-multiple-choice/static/js/jquery.auto-grow-input.min.js"></script>
 <script type="text/javascript">
   function getRemainingTime() {
     return new Date(<s:property value="endTimeMillis" /> * 1000);
@@ -133,4 +134,6 @@
   }).on('finish.countdown', function() {
     document.submitExam.submit();
   });
+  
+  $('.blank').autoGrowInput({ minWidth: 165, maxWidth: 600, comfortZone: 20 });
 </script>

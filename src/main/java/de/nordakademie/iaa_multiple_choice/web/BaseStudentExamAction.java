@@ -61,10 +61,9 @@ public abstract class BaseStudentExamAction extends BaseSessionAction {
         if (testResult == null) {
             addActionError(getText("validation.useToken"));
             return "token";
-        } else {
-            if (testResult.isExpired()) {
-                return "expired";
-            }
+        }
+        if (testResult.isExpired()) {
+            return "expired";
         }
         return SUCCESS;
     }

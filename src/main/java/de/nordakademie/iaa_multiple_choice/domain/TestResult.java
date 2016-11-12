@@ -106,7 +106,7 @@ public class TestResult {
             finalPoints += (int) Math.round(partialPoint);
         }
         points = finalPoints;
-        passed = (exam.getMinPoints() * exam.getMaxPoints()) / 100 <= finalPoints;
+        passed = (finalPoints / exam.getMaxPoints()) * 100 >= exam.getMinPoints();
     }
 
     public boolean isExpired() {

@@ -52,12 +52,11 @@ public class ExamResultAction extends BaseSessionAction {
         if (byExamAndStudent == null) {
             addActionError(getText("validation.examNotTaken"));
             return "redirectHome";
-        } else {
-            testResult = byExamAndStudent;
-            if (!testResult.isExpired()) {
-                addActionError(getText("validation.examNotFinished"));
-                return "redirectHome";
-            }
+        }
+        testResult = byExamAndStudent;
+        if (!testResult.isExpired()) {
+            addActionError(getText("validation.examNotFinished"));
+            return "redirectHome";
         }
         return SUCCESS;
     }

@@ -60,9 +60,7 @@ public class DeleteExamAction extends BaseSessionAction {
             final String messageArgs[] = { student.getEmail() };
             addActionMessage(getText("mapping.mailSent", messageArgs));
         } catch (UnsupportedEncodingException | MessagingException e) {
-            final String messageArgs[] = { student.getEmail() };
-            addActionError(getText("mapping.mailFailed", messageArgs));
-            addActionMessage(getText("mapping.manual"));
+            e.printStackTrace();
         }
     }
 }

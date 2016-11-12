@@ -42,6 +42,10 @@ footer {
   width: 100%;
 }
 
+.mapping-table .bootstrap-tagsinput input {
+  min-width: 165px;
+}
+
 .bootstrap-tagsinput .tag {
   display: inline-block;
   font-size: 100%;

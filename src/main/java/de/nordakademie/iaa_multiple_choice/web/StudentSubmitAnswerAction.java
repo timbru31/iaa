@@ -57,14 +57,13 @@ public class StudentSubmitAnswerAction extends BaseStudentExamAction {
         // question check needs to be different!
         if (getQuestionId() == null) {
             throw new QuestionNotFoundException();
-        } else {
-            final Optional<Question> optionalQuestion = getExam().getQuestions().stream()
-                    .filter(q -> getQuestionId() == q.getId()).findFirst();
-            if (!optionalQuestion.isPresent()) {
-                throw new QuestionNotFoundException();
-            }
-            setQuestion(optionalQuestion.get());
         }
+        final Optional<Question> optionalQuestion = getExam().getQuestions().stream()
+                .filter(q -> getQuestionId() == q.getId()).findFirst();
+        if (!optionalQuestion.isPresent()) {
+            throw new QuestionNotFoundException();
+        }
+        setQuestion(optionalQuestion.get());
         final LinkedHashSet<Answer> answerSet = new LinkedHashSet<>();
         if (getQuestion().getType() == QuestionType.FILL_IN_THE_BLANK) {
             for (int i = 0; i < fillInTheBlankAnswers.length; i++) {

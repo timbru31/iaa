@@ -121,6 +121,7 @@ public class ExamMappingAction extends BaseSessionAction {
             final String messageTokenArgs[] = { student.getFullName(), generatedToken };
             addActionError(getText("mapping.mailFailed", messageMailArgs));
             addActionMessage(getText("mapping.token", messageTokenArgs));
+            e.printStackTrace();
         }
     }
 
@@ -135,6 +136,7 @@ public class ExamMappingAction extends BaseSessionAction {
             final String messageArgs[] = { student.getEmail() };
             addActionError(getText("mapping.mailFailed", messageArgs));
             addActionMessage(getText("mapping.manual"));
+            e.printStackTrace();
         }
     }
 

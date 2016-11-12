@@ -136,6 +136,7 @@ public class RegisterAction extends BaseSessionAction {
                     getText("registration.mailText", args));
         } catch (UnsupportedEncodingException | MessagingException e) {
             addActionError("registration.mailFailed");
+            e.printStackTrace();
         }
     }
 
