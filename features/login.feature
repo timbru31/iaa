@@ -1,5 +1,5 @@
 Feature: Login to the application
-  As a user I want to be able to login to the application
+  As a user I want to be able to login to the application.
 
   Background:
     Given a valid user exists
