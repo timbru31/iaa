@@ -35,6 +35,9 @@ public class ShowExamAction extends BaseSessionAction {
     @Override
     public String execute() {
         findExam();
+        if (student.hasFinishedExam(exam)) {
+            return "expired";
+        }
         return SUCCESS;
     }
 
@@ -52,6 +55,9 @@ public class ShowExamAction extends BaseSessionAction {
     @Override
     public String input() {
         findExam();
+        if (student.hasFinishedExam(exam)) {
+            return "expired";
+        }
         return INPUT;
     }
 }

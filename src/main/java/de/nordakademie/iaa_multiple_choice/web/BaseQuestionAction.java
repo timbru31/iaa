@@ -120,6 +120,9 @@ public abstract class BaseQuestionAction extends BaseAction {
         if (!matcher.find()) {
             addFieldError("question.fillInTheBlank", getText("validation.noBlank"));
         }
+        if (question.getFormattedQuestionText().equals("[]")) {
+            addFieldError("question.fillInTheBlank", getText("validation.noText"));
+        }
     }
 
     /**

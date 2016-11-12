@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 
 import javax.persistence.Basic;
 import javax.persistence.CollectionTable;
@@ -125,5 +126,36 @@ public class ExamResult {
     public boolean isExpired() {
         final LocalDateTime now = LocalDateTime.now().minusSeconds(10L);
         return now.isAfter(startTime.plusMinutes(exam.getExamTime())) || endTime != null;
+    }
+
+    /**
+     * Finds a question in the submitted answers by it's id.
+     * 
+     * @param questionId the question id to search for
+     * @return the question if found, otherwise null
+     */
+    public Question findQuestionById(final Long questionId) {
+        Optional<Question> findFirst = getSubmittedAnswers().keySet().stream().filter(q -> q.getId() == questionId)
+                .findFirst();
+        if (findFirst.isPresent()) {
+            return findFirst.get();
+        }
+        return null;
+    }
+
+    /**
+     * Finds submitted answers by a question id.
+     * 
+     * @param questionId the question id to search fo
+     * @return the submtted answers if found, otherwise null
+     */
+    public ExamResultAnswers findSubmittedAnswersByQuestionId(final Long questionId) {
+        for (Entry<Question, ExamResultAnswers> entry : submittedAnswers.entrySet()) {
+            Question question = entry.getKey();
+            if (question.getId() == questionId) {
+                return entry.getValue();
+            }
+        }
+        return null;
     }
 }

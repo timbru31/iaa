@@ -238,12 +238,20 @@
         <param name="operationMode">RETRIEVE</param>
       </interceptor-ref>
       <interceptor-ref name="iaa-multiple-choice" />
-      <result name="input"  type="tiles">exam/show</result>
+      <result name="input" type="tiles">exam/show</result>
+      <result name="expired" type="redirectAction">
+        <param name="actionName">examResult</param>
+        <param name="examId">${examId}</param>
+      </result>
     </action>
 
     <action name="showExam" class="de.nordakademie.iaa_multiple_choice.web.ShowExamAction">
       <result type="tiles">exam/show</result>
       <result name="input" type="tiles">examNotFoundError</result>
+      <result name="expired" type="redirectAction">
+        <param name="actionName">examResult</param>
+        <param name="examId">${examId}</param>
+      </result>
     </action>
 
     <action name="show">
@@ -289,15 +297,6 @@
       <result name="input" type="tiles">examNotFoundError</result>
       <result name="redirectHome" type="redirectAction">home</result>
       <result type="tiles">lecturer/tokenList</result>
-    </action>
-
-    <!-- FOR TESTING / REMOVE LATER -->
-    <action name="question">
-      <result type="tiles">exam/create/question</result>
-    </action>
-
-    <action name="create">
-      <result type="tiles">exam/create</result>
     </action>
 
     <action name="registration" class="de.nordakademie.iaa_multiple_choice.web.RegisterAction" method="display">
