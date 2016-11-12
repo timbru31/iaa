@@ -20,7 +20,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * @author Tim Brust defines question
+ * Question entity.
+ *
+ * @author Tim Brust
  */
 @Getter
 @Setter
@@ -44,6 +46,11 @@ public class Question {
     @OrderBy("id ASC")
     private Set<Answer> answers;
 
+    /**
+     * Adds an answer.
+     * 
+     * @param answer the answer to add
+     */
     public void addAnswer(final Answer answer) {
         answers.add(answer);
     }
@@ -61,10 +68,20 @@ public class Question {
         return true;
     }
 
+    /**
+     * Calculates a Set of correct answers.
+     *
+     * @return the Set of correct answers
+     */
     public Set<Answer> getCorrectAnswers() {
         return answers.stream().filter(Answer::isRightAnswer).collect(Collectors.toSet());
     }
 
+    /**
+     * Formats a question text correctly, replacing [gap text] with [].
+     *
+     * @return the formatted question text
+     */
     public String getFormattedQuestionText() {
         if (type == QuestionType.FILL_IN_THE_BLANK) {
             return text.replaceAll("\\[(.+?)\\]", "[]");
@@ -82,6 +99,11 @@ public class Question {
         return result;
     }
 
+    /**
+     * Removes an answer from the list
+     *
+     * @param answer the answer to remove
+     */
     public void removeAnswer(final Answer answer) {
         answers.remove(answer);
     }

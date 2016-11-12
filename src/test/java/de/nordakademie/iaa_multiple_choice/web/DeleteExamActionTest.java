@@ -35,7 +35,7 @@ import de.nordakademie.iaa_multiple_choice.service.UserService;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring-test.xml" })
-public class DeleteExamActionTest extends StrutsSpringJUnit4TestCase<LoginAction> {
+public class DeleteExamActionTest extends StrutsSpringJUnit4TestCase<DeleteExamAction> {
     private static boolean setUpIsDone = false;
     @Autowired
     private UserService userService;

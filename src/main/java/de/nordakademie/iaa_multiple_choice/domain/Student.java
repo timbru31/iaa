@@ -17,7 +17,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * @author Tim Brust defines students
+ * Student entity.
+ *
+ * @author Tim Brust
  */
 @Getter
 @Setter
@@ -50,14 +52,29 @@ public class Student extends User {
         setStudentNumber(studentNumber);
     }
 
+    /**
+     * Adds an exam.
+     * 
+     * @param exam the exam to add
+     */
     public void addExam(final Exam exam) {
         registeredExams.add(exam);
     }
 
+    /**
+     * Adds a testResult.
+     *
+     * @param testResult the testResult to add
+     */
     public void addTestResult(final TestResult testResult) {
         testResults.add(testResult);
     }
 
+    /**
+     * Checks if the student can take any exams.
+     *
+     * @return true if there are registered but not taken exams, otherwise false
+     */
     public boolean canTakeExams() {
         return registeredExams != null && registeredExams.stream().anyMatch(e -> !hasTakenExam(e));
     }
@@ -76,6 +93,12 @@ public class Student extends User {
         return true;
     }
 
+    /**
+     * Checks if the student has finished the exam.
+     *
+     * @param exam the exam to check
+     * @return true if he finished the exam, false otherwise
+     */
     public boolean hasFinishedExam(final Exam exam) {
         return testResults != null && testResults.stream().anyMatch(ts -> exam.equals(ts.getExam()) && ts.isExpired());
     }
@@ -87,10 +110,21 @@ public class Student extends User {
         return result;
     }
 
+    /**
+     * Checks if the student has taken the exam.
+     *
+     * @param exam the exam to check
+     * @return true if he has taken the exam, false otherwise
+     */
     public boolean hasTakenExam(final Exam exam) {
         return testResults != null && testResults.stream().anyMatch(ts -> exam.equals(ts.getExam()));
     }
 
+    /**
+     * Removes an exam.
+     *
+     * @param exam the exam to remove
+     */
     public void removeExam(final Exam exam) {
         registeredExams.remove(exam);
     }

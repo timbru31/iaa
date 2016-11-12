@@ -13,7 +13,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * @author Tim Brust defines lecturer
+ * Lecturer entity.
+ * 
+ * @author Tim Brust
  */
 @Getter
 @Setter
@@ -37,10 +39,20 @@ public class Lecturer extends User {
         setActivationToken(activationToken);
     }
 
+    /**
+     * Adds an exam to the list of exams.
+     * 
+     * @param exam the exam to add
+     */
     public void addExam(final Exam exam) {
         exams.add(exam);
     }
 
+    /**
+     * Removes an exam from the list.
+     * 
+     * @param exam the exam to remove
+     */
     public void removeExam(final Exam exam) {
         exams.remove(exam);
     }

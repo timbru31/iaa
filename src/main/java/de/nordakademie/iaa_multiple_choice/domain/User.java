@@ -16,7 +16,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * @author Tim Brust defines user
+ * User entity.
+ *
+ * @author Tim Brust
  */
 @Getter
 @Setter
@@ -25,7 +27,6 @@ import lombok.ToString;
 @DiscriminatorColumn(name = "role")
 @ToString
 public abstract class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -62,6 +63,11 @@ public abstract class User {
         return true;
     }
 
+    /**
+     * Returns a concatenated name of fist and last name
+     * 
+     * @return the full name
+     */
     public String getFullName() {
         return this.firstName + " " + this.lastName;
     }

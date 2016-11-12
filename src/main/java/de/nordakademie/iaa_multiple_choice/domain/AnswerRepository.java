@@ -8,7 +8,9 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author Jens Gottwald repository for answers
+ * Repository for answers.
+ * 
+ * @author Jens Gottwald
  */
 @Repository
 public class AnswerRepository {

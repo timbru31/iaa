@@ -9,7 +9,9 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author Jens Gottwald repository for user
+ * Repository for user.
+ * 
+ * @author Jens Gottwald
  */
 @Repository
 public class UserRepository {

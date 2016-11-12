@@ -25,7 +25,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * @author Tim Brust defines test result
+ * TestResult entity.
+ * 
+ * @author Tim Brust
  */
 @Getter
 @Setter
@@ -64,6 +66,9 @@ public class TestResult {
     @CollectionTable(name = "testresult_submitted_answers", joinColumns = @JoinColumn(name = "id"))
     private Map<Question, TestResultAnswers> submittedAnswers;
 
+    /**
+     * Calculates the final points, based on all answers. Note: not side effect free.
+     */
     public void calculateFinalPoints() {
         int finalPoints = 0;
         for (final Entry<Question, TestResultAnswers> entry : submittedAnswers.entrySet()) {
@@ -112,6 +117,11 @@ public class TestResult {
         passed = (finalPoints / exam.getMaxPoints()) * 100 >= exam.getMinPoints();
     }
 
+    /**
+     * Checks if the testResult is expired. There is a goodwill of 10 seconds to balance e.g. latency.
+     *
+     * @return true if the exam time expired, false otherwise
+     */
     public boolean isExpired() {
         final LocalDateTime now = LocalDateTime.now().minusSeconds(10L);
         return now.isAfter(startTime.plusMinutes(exam.getExamTime())) || endTime != null;

@@ -3,7 +3,9 @@ package de.nordakademie.iaa_multiple_choice.domain;
 import lombok.Getter;
 
 /**
- * @author Yannick Rump defines wrong answers
+ * Enum for wrong answer evaluation.
+ * 
+ * @author Yannick Rump
  */
 public enum WrongAnswerEvaluationMethod {
     SUBTRACTION("evaluation.subtraction", "evaluation.subtractionShort"), NO_SUBTRACTION("evaluation.noSubtraction",

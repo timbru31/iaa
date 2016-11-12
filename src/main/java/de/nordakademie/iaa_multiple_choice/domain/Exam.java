@@ -31,7 +31,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * @author Tim Brust defines exam
+ * Exam entity.
+ *
+ * @author Tim Brust
  */
 @Getter
 @Setter
@@ -78,18 +80,37 @@ public class Exam {
     @JsonManagedReference
     private Set<TestResult> testResults;
 
+    /**
+     * Adds a student and a generated token to the tokenList Map.
+     *
+     * @param student the student to add
+     * @param generatedToken the generated token
+     */
     public void addParticipant(final Student student, final String generatedToken) {
         tokenList.put(student, generatedToken);
     }
 
+    /**
+     * Adds a question to the Set of questions.
+     *
+     * @param question the question to add.
+     */
     public void addQuestion(final Question question) {
         questions.add(question);
     }
 
+    /**
+     * Adds a testResult to the testResult Set.
+     *
+     * @param testResult testResult to add
+     */
     public void addTestResult(final TestResult testResult) {
         testResults.add(testResult);
     }
 
+    /**
+     * Clears the participant list.
+     */
     public void clearParticipants() {
         tokenList.clear();
     }
@@ -110,14 +131,29 @@ public class Exam {
         return true;
     }
 
+    /**
+     * Formats the LocalDate endDate to a java.sql.Date.
+     *
+     * @return the formatted sql date
+     */
     public Date formatEndDate() {
         return Date.valueOf(endDate);
     }
 
+    /**
+     * Formats the LocalDate startDate to a java.sql.Date.
+     *
+     * @return the formatted sql date
+     */
     public Date formatStartDate() {
         return Date.valueOf(startDate);
     }
 
+    /**
+     * Returns the first question.
+     *
+     * @return the question or null if not found
+     */
     public Question getFirstQuestion() {
         try {
             return questions.iterator().next();
@@ -126,10 +162,21 @@ public class Exam {
         }
     }
 
+    /**
+     * Calculates the maximum points for the exam.
+     *
+     * @return the maximal points
+     */
     public int getMaxPoints() {
         return questions.stream().mapToInt(Question::getPoints).sum();
     }
 
+    /**
+     * Searches the next question based on a given question.
+     *
+     * @param question the question to find the next one after
+     * @return the next question or null if they question was the last
+     */
     public Question getNextQuestion(final Question question) {
         boolean foundSelf = false;
         for (final Question q : questions) {
@@ -143,6 +190,12 @@ public class Exam {
         return null;
     }
 
+    /**
+     * Searches the previous question based on a given question.
+     *
+     * @param question the question to find the previous one
+     * @return the previous question or null if they question was the first
+     */
     public Question getPreviousQuestion(final Question question) {
         Question predecessor = null;
         for (final Question q : questions) {
@@ -154,6 +207,12 @@ public class Exam {
         return null;
     }
 
+    /**
+     * Returns the token for a student.
+     *
+     * @param student the student to retrieve the token for
+     * @return the token
+     */
     public String getToken(final Student student) {
         return tokenList.get(student);
     }
@@ -172,27 +231,60 @@ public class Exam {
         return result;
     }
 
+    /**
+     * Checks if the student is a participant of the exam.
+     *
+     * @param student the student to check
+     * @return true if he is a participant, otherwise false
+     */
     public boolean hasParticipant(final Student student) {
         return tokenList.containsKey(student);
     }
 
+    /**
+     * Checks if the exam has this question
+     *
+     * @param question the question to check
+     * @return true if exam has this question, otherwise false
+     */
     public boolean hasQuestion(final Question question) {
         return questions.contains(question);
     }
 
+    /**
+     * Checks if the exam has questions at all.
+     *
+     * @return true if the exam has questions, otherwise false
+     */
     public boolean hasQuestions() {
         return questions != null && !questions.isEmpty();
     }
 
+    /**
+     * Tests if the exam can be taken. The startDate must have been reached, but not the end date.
+     *
+     * @return true if the exam is takeable, otherwise false
+     */
     public boolean isDueDated() {
         final LocalDate today = LocalDate.now();
         return !(today.isBefore(startDate) || today.isAfter(endDate));
     }
 
+    /**
+     * Checks if the exam is editable.
+     *
+     * @return true if it's editable, otherwise false
+     */
     public boolean isEditable() {
         return startDate.isAfter(LocalDate.now());
     }
 
+    /**
+     * Checks if the given question is the first question in the Set.
+     *
+     * @param question the question to check
+     * @return true if it's the first question, false otherwise
+     */
     public boolean isFirstQuestion(final Question question) {
         int index = 0;
         for (final Question q : questions) {
@@ -204,6 +296,12 @@ public class Exam {
         return false;
     }
 
+    /**
+     * Checks if the given question is the last question in the Set.
+     *
+     * @param question the question to check
+     * @return true if it's the last question, false otherwise
+     */
     public boolean isLastQuestion(final Question question) {
         int index = 0;
         final int size = questions.size() - 1;
@@ -216,10 +314,20 @@ public class Exam {
         return false;
     }
 
+    /**
+     * Removes a participant from the exam.
+     *
+     * @param student the student to remove
+     */
     public void removeParticipant(final Student student) {
         tokenList.remove(student);
     }
 
+    /**
+     * Removes a question from the exam.
+     *
+     * @param question the question to remove
+     */
     public void removeQuestion(final Question question) {
         questions.remove(question);
     }

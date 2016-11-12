@@ -11,7 +11,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * @author Jens Gottwald defines answers
+ * Answer entity.
+ * 
+ * @author Jens Gottwald
  */
 @Getter
 @Setter

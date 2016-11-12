@@ -15,7 +15,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Yannick Rump answer set of student
+ * TestResultAnswers entity. Answer set of student.
+ * 
+ * @author Yannick Rump
  */
 @Getter
 @Setter
