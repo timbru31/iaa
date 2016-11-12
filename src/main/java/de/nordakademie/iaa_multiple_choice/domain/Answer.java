@@ -10,6 +10,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @author Jens Gottwald defines answers
+ */
 @Getter
 @Setter
 @Entity

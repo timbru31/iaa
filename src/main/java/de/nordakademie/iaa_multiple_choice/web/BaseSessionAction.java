@@ -10,6 +10,9 @@ import de.nordakademie.iaa_multiple_choice.service.UserService;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Tim Brust action for session
+ */
 public class BaseSessionAction extends BaseAction implements SessionAware {
     private static final long serialVersionUID = -6535887821833885360L;
     @Getter

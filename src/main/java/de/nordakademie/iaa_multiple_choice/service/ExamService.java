@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import de.nordakademie.iaa_multiple_choice.domain.Exam;
 import de.nordakademie.iaa_multiple_choice.domain.ExamRepository;
 
+/**
+ * @author Hannes Peterson service for exam repository
+ */
 @Service
 public class ExamService {
     @Autowired

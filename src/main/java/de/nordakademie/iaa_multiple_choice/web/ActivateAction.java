@@ -7,6 +7,9 @@ import de.nordakademie.iaa_multiple_choice.service.UserService;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Tim Brust action for token activation
+ */
 public class ActivateAction extends BaseSessionAction {
     private static final long serialVersionUID = -1644655626750378438L;
     @Getter

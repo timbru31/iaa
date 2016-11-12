@@ -25,6 +25,9 @@ import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Tim Brust action for mapping exams and students
+ */
 @LoginRequired
 @LecturerRequired
 public class ExamMappingAction extends BaseSessionAction {

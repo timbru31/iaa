@@ -10,6 +10,9 @@ import de.nordakademie.iaa_multiple_choice.domain.Student;
 import de.nordakademie.iaa_multiple_choice.domain.User;
 import de.nordakademie.iaa_multiple_choice.domain.UserRepository;
 
+/**
+ * @author Hannes Peterson service for user
+ */
 @Service
 public class UserService {
     @Autowired
@@ -26,13 +29,13 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public User findByToken(final String token) {
-        return userRepository.findByToken(token);
+    public Student findByStudentNumber(final Integer studentNumber) {
+        return userRepository.findByStudentNumber(studentNumber);
     }
 
     @Transactional(readOnly = true)
-    public Student findByStudentNumber(final Integer studentNumber) {
-        return userRepository.findByStudentNumber(studentNumber);
+    public User findByToken(final String token) {
+        return userRepository.findByToken(token);
     }
 
     @Transactional(readOnly = true)

@@ -18,6 +18,9 @@ import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Tim Brust action for question validation
+ */
 @LoginRequired
 @LecturerRequired
 public abstract class BaseQuestionAction extends BaseAction {

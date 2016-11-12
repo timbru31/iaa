@@ -7,6 +7,9 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
+/**
+ * @author Yannick Rump repository for testResultAnswers
+ */
 @Repository
 public class TestResultAnswersRepository {
     @PersistenceContext

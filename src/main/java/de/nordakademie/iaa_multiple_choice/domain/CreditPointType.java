@@ -2,6 +2,9 @@ package de.nordakademie.iaa_multiple_choice.domain;
 
 import lombok.Getter;
 
+/**
+ * @author Tim Brust defines CP
+ */
 public enum CreditPointType {
     HALF(0.5), THREEQUARTER(0.75), ONE(1);
     @Getter

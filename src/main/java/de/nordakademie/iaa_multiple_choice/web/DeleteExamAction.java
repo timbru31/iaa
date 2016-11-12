@@ -18,6 +18,9 @@ import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Hannes Peterson action for deleting exam
+ */
 @LoginRequired
 @LecturerRequired
 public class DeleteExamAction extends BaseSessionAction {

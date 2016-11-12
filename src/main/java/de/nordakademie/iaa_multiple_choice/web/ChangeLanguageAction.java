@@ -12,6 +12,9 @@ import com.opensymphony.xwork2.ActionContext;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Tim Brust action for changing language
+ */
 public class ChangeLanguageAction extends BaseSessionAction {
     private static final long serialVersionUID = 6866964825181632874L;
     @Getter

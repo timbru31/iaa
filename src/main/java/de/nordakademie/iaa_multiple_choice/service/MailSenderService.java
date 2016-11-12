@@ -13,6 +13,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author Tim Brust service for mail sender
+ */
 @Service("mailService")
 public class MailSenderService {
     private static final Logger logger = LogManager.getLogger(MailSenderService.class.getName());

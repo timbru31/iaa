@@ -19,6 +19,9 @@ import de.nordakademie.iaa_multiple_choice.web.util.StudentRequired;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Tim Brust action for student exam connection
+ */
 @LoginRequired
 @StudentRequired
 public abstract class BaseStudentExamAction extends BaseSessionAction {

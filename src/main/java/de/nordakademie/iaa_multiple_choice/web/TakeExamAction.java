@@ -8,6 +8,9 @@ import de.nordakademie.iaa_multiple_choice.web.util.StudentRequired;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Yannick Rump action for starting exam
+ */
 @LoginRequired
 @StudentRequired
 public class TakeExamAction extends BaseStudentExamAction {

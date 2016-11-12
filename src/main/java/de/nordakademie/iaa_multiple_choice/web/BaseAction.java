@@ -6,6 +6,9 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import lombok.Getter;
 
+/**
+ * @author Tim Brust action for ActionSupport
+ */
 public class BaseAction extends ActionSupport {
     private static final long serialVersionUID = -5741251881623919553L;
 

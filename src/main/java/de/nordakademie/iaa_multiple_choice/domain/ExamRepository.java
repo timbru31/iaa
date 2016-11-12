@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import de.nordakademie.iaa_multiple_choice.domain.exceptions.ExamNotFoundException;
 
+/**
+ * @author Tim Brust repository for exams
+ */
 @Repository
 public class ExamRepository {
     @PersistenceContext

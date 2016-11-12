@@ -13,6 +13,9 @@ import de.nordakademie.iaa_multiple_choice.domain.User;
 import de.nordakademie.iaa_multiple_choice.service.UserService;
 import de.nordakademie.iaa_multiple_choice.web.util.LecturerRequired;
 
+/**
+ * @author Tim Brust interceptor for lecturer
+ */
 public class LecturerInterceptor extends AbstractInterceptor {
     private static final long serialVersionUID = 7111977843211607474L;
     @Autowired
@@ -27,7 +30,7 @@ public class LecturerInterceptor extends AbstractInterceptor {
 
         final Map<String, Object> session = ActionContext.getContext().getSession();
         final String email = (String) session.get("userEmail");
-        User user = userService.findByMail(email);
+        final User user = userService.findByMail(email);
         if (user == null) {
             return "loginRedirect";
         }

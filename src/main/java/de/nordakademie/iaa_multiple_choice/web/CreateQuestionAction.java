@@ -8,6 +8,9 @@ import de.nordakademie.iaa_multiple_choice.domain.QuestionType;
 import de.nordakademie.iaa_multiple_choice.web.util.LecturerRequired;
 import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 
+/**
+ * @author Hannes Peterson & Yannick Rump action for creating questions
+ */
 @LoginRequired
 @LecturerRequired
 public class CreateQuestionAction extends BaseQuestionAction {

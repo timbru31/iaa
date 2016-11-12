@@ -15,6 +15,9 @@ import de.nordakademie.iaa_multiple_choice.service.UserService;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Yannick Rump action for login
+ */
 public class LoginAction extends BaseSessionAction {
     private static final long serialVersionUID = 2712837519650991068L;
     @Autowired

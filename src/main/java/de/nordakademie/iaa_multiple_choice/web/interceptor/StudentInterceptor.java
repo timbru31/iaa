@@ -13,6 +13,9 @@ import de.nordakademie.iaa_multiple_choice.domain.User;
 import de.nordakademie.iaa_multiple_choice.service.UserService;
 import de.nordakademie.iaa_multiple_choice.web.util.StudentRequired;
 
+/**
+ * @author Jens Gottwald interceptor for student
+ */
 public class StudentInterceptor extends AbstractInterceptor {
     private static final long serialVersionUID = 6756324184319715740L;
     @Autowired
@@ -27,7 +30,7 @@ public class StudentInterceptor extends AbstractInterceptor {
 
         final Map<String, Object> session = ActionContext.getContext().getSession();
         final String email = (String) session.get("userEmail");
-        User user = userService.findByMail(email);
+        final User user = userService.findByMail(email);
         if (user == null) {
             return "loginRedirect";
         }

@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import de.nordakademie.iaa_multiple_choice.domain.TestResult;
 import de.nordakademie.iaa_multiple_choice.domain.TestResultRepository;
 
+/**
+ * @author Yannick Rump service for test result
+ */
 @Service
 public class TestResultService {
     @Autowired

@@ -8,6 +8,9 @@ import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Hannes Peterson action for deleting question
+ */
 @LoginRequired
 @LecturerRequired
 public class DeleteQuestionAction extends BaseQuestionAction {

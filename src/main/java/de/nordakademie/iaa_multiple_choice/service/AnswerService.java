@@ -11,6 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import de.nordakademie.iaa_multiple_choice.domain.Answer;
 import de.nordakademie.iaa_multiple_choice.domain.AnswerRepository;
 
+/**
+ * @author Hannes Peterson service for answer repository
+ */
 @Service
 public class AnswerService {
     @Autowired

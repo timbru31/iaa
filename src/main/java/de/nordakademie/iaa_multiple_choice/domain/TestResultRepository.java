@@ -8,6 +8,9 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
+/**
+ * @author Hannes Peterson repository for test results
+ */
 @Repository
 public class TestResultRepository {
     @PersistenceContext

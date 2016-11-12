@@ -24,6 +24,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @author Tim Brust defines test result
+ */
 @Getter
 @Setter
 @Entity

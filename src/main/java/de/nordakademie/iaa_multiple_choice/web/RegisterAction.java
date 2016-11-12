@@ -19,6 +19,9 @@ import de.nordakademie.iaa_multiple_choice.web.exception.RegistrationDisabledExc
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Tim Brust action for registration
+ */
 public class RegisterAction extends BaseSessionAction {
     private static final long serialVersionUID = -5785967910896850512L;
     // RegExp from http://stackoverflow.com/a/3802238/1902598

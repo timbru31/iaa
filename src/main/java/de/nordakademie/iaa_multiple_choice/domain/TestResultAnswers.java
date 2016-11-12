@@ -14,6 +14,9 @@ import javax.persistence.OrderBy;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Yannick Rump answer set of student
+ */
 @Getter
 @Setter
 @Entity

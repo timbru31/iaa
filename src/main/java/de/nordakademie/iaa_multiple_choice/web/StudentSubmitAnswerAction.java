@@ -20,6 +20,9 @@ import de.nordakademie.iaa_multiple_choice.web.util.StudentRequired;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Tim Brust action for submitting answer
+ */
 @LoginRequired
 @StudentRequired
 public class StudentSubmitAnswerAction extends BaseStudentExamAction {

@@ -8,6 +8,9 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
 import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 
+/**
+ * @author Jens Gottwald interceptor for login
+ */
 public class LoginInterceptor extends AbstractInterceptor {
     private static final long serialVersionUID = 4518828269270091937L;
 

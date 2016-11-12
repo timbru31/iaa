@@ -6,6 +6,9 @@ import de.nordakademie.iaa_multiple_choice.web.util.StudentRequired;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Hannes Peterson action for student home
+ */
 @LoginRequired
 @StudentRequired
 public class StudentAction extends BaseSessionAction {

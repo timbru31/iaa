@@ -15,6 +15,9 @@ import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Hannes Peterson action for creating exam
+ */
 @LoginRequired
 @LecturerRequired
 public class ExamAction extends BaseSessionAction {

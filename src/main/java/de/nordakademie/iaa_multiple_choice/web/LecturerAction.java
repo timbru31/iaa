@@ -6,6 +6,9 @@ import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Yannick Rump action for lecturer home
+ */
 @LoginRequired
 @LecturerRequired
 public class LecturerAction extends BaseSessionAction {

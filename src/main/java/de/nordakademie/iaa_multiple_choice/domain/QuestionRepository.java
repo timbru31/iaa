@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import de.nordakademie.iaa_multiple_choice.domain.exceptions.QuestionNotFoundException;
 
+/**
+ * @author Hannes Peterson repository for questions
+ */
 @Repository
 public class QuestionRepository {
     @PersistenceContext

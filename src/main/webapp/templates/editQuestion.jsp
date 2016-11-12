@@ -1,3 +1,5 @@
+<!-- author: Yannick Rump, Hannes Peterson and Tim Brust
+editing question page -->
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <div class="page-header">

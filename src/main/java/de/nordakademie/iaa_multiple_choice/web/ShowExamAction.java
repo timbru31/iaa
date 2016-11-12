@@ -11,6 +11,9 @@ import de.nordakademie.iaa_multiple_choice.web.util.StudentRequired;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Yannick Rump action for showing exam
+ */
 @LoginRequired
 @StudentRequired
 public class ShowExamAction extends BaseSessionAction {

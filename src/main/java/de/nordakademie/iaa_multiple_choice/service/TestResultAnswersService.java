@@ -7,6 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 import de.nordakademie.iaa_multiple_choice.domain.TestResultAnswers;
 import de.nordakademie.iaa_multiple_choice.domain.TestResultAnswersRepository;
 
+/**
+ * @author Jens Gottwald service for answers of test
+ */
 @Service
 public class TestResultAnswersService {
     @Autowired

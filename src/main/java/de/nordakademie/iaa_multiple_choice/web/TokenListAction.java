@@ -9,6 +9,9 @@ import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Tim Brust action for token list
+ */
 @LoginRequired
 @LecturerRequired
 public class TokenListAction extends BaseAction {

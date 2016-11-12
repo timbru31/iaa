@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 import de.nordakademie.iaa_multiple_choice.web.util.StudentRequired;
 
+/**
+ * @author Hannes Peterson action for submitting exam
+ */
 @LoginRequired
 @StudentRequired
 public class StudentSubmitExamAction extends BaseStudentExamAction {

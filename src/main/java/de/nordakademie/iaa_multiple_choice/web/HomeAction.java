@@ -7,6 +7,9 @@ import de.nordakademie.iaa_multiple_choice.domain.Student;
 import de.nordakademie.iaa_multiple_choice.domain.User;
 import de.nordakademie.iaa_multiple_choice.service.UserService;
 
+/**
+ * @author Tim Brust action for home site
+ */
 public class HomeAction extends BaseSessionAction {
     private static final long serialVersionUID = -7773097018962821833L;
     @Autowired
@@ -15,7 +18,7 @@ public class HomeAction extends BaseSessionAction {
     @Override
     public String execute() {
         if (getSession().containsKey("userEmail")) {
-            User user = userService.findByMail((String) getSession().get("userEmail"));
+            final User user = userService.findByMail((String) getSession().get("userEmail"));
             if (user == null) {
                 return "welcome";
             }

@@ -11,6 +11,9 @@ import de.nordakademie.iaa_multiple_choice.domain.exceptions.QuestionNotFoundExc
 import de.nordakademie.iaa_multiple_choice.web.util.LecturerRequired;
 import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 
+/**
+ * @author whole team action updatin question
+ */
 @LoginRequired
 @LecturerRequired
 public class UpdateQuestionAction extends BaseQuestionAction {
@@ -43,8 +46,8 @@ public class UpdateQuestionAction extends BaseQuestionAction {
         updatedQuestion.setPoints(getQuestion().getPoints());
         if (updatedQuestion.getType() == QuestionType.SINGLE_CHOICE) {
             int i = 0;
-            for (Iterator<Answer> iterator = updatedQuestion.getAnswers().iterator(); iterator.hasNext();) {
-                Answer answer = iterator.next();
+            for (final Iterator<Answer> iterator = updatedQuestion.getAnswers().iterator(); iterator.hasNext();) {
+                final Answer answer = iterator.next();
                 try {
                     final String rawAnswerText = getRawAnswerTextsSc()[i];
                     answer.setText(rawAnswerText);
@@ -64,8 +67,8 @@ public class UpdateQuestionAction extends BaseQuestionAction {
             }
         } else if (updatedQuestion.getType() == QuestionType.MULTIPLE_CHOICE) {
             int i = 0;
-            for (Iterator<Answer> iterator = updatedQuestion.getAnswers().iterator(); iterator.hasNext();) {
-                Answer answer = iterator.next();
+            for (final Iterator<Answer> iterator = updatedQuestion.getAnswers().iterator(); iterator.hasNext();) {
+                final Answer answer = iterator.next();
                 try {
                     final String rawAnswerText = getRawAnswerTextsMc()[i];
                     answer.setText(rawAnswerText);

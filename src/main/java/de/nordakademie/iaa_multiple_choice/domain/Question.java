@@ -19,6 +19,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @author Tim Brust defines question
+ */
 @Getter
 @Setter
 @Entity
