@@ -6,7 +6,8 @@ Background:
 	And a valid exam exists 
 	And the student is mapped with the exam 
 	And a the start date of the exam is reached 
-	And the student is successfully registered to the exam 
+	And the end date of the exam is not exceeded 
+	And the student is successfully signed up for the exam 
 	
 Scenario: Finishing the exam 
 	Given the student wants to submit his answers on the test 
