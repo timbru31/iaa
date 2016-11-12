@@ -22,7 +22,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class TestResultAnswers {
+public class ExamResultAnswers {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

@@ -7,7 +7,7 @@ exam result list for student page -->
     <s:text name="resultList.title" />
   </h1>
 </div>
-<s:if test="%{student.testResults.isEmpty()}">
+<s:if test="%{student.examResults.isEmpty()}">
   <div class="panel panel-default">
     <div class="panel-body">
       <s:text name="resultList.noExamsTaken" />
@@ -22,7 +22,7 @@ exam result list for student page -->
         <th><s:text name="resultList.result" /></th>
         <th><s:text name="student.status" /></th>
       </tr>
-      <s:iterator value="student.testResults">
+      <s:iterator value="student.examResults">
         <s:if test="isExpired()">
           <tr>
             <td><b><s:text name="exam.getName()" /></b></td>

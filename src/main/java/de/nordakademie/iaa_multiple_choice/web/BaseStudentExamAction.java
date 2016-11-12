@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import de.nordakademie.iaa_multiple_choice.domain.Exam;
 import de.nordakademie.iaa_multiple_choice.domain.Question;
 import de.nordakademie.iaa_multiple_choice.domain.Student;
-import de.nordakademie.iaa_multiple_choice.domain.TestResult;
+import de.nordakademie.iaa_multiple_choice.domain.ExamResult;
 import de.nordakademie.iaa_multiple_choice.domain.exceptions.QuestionNotFoundException;
 import de.nordakademie.iaa_multiple_choice.domain.exceptions.StudentNotEnrolledException;
 import de.nordakademie.iaa_multiple_choice.service.ExamService;
-import de.nordakademie.iaa_multiple_choice.service.TestResultService;
+import de.nordakademie.iaa_multiple_choice.service.ExamResultService;
 import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 import de.nordakademie.iaa_multiple_choice.web.util.StudentRequired;
 import lombok.Getter;
@@ -34,7 +34,7 @@ public abstract class BaseStudentExamAction extends BaseSessionAction {
     private ExamService examService;
     @Autowired
     @Getter
-    private TestResultService testResultService;
+    private ExamResultService examResultService;
     @Getter
     @Setter
     private Long examId;
@@ -52,7 +52,7 @@ public abstract class BaseStudentExamAction extends BaseSessionAction {
     private Student student;
     @Getter
     @Setter
-    private TestResult testResult;
+    private ExamResult examResult;
 
     /**
      * Checks that the student is allowed to take the exam.
@@ -67,12 +67,12 @@ public abstract class BaseStudentExamAction extends BaseSessionAction {
                     student.getEmail(), exam.getName());
             throw new StudentNotEnrolledException();
         }
-        testResult = testResultService.findByExamAndStudent(examId, student.getId());
-        if (testResult == null) {
+        examResult = examResultService.findByExamAndStudent(examId, student.getId());
+        if (examResult == null) {
             addActionError(getText("validation.useToken"));
             return "token";
         }
-        if (testResult.isExpired()) {
+        if (examResult.isExpired()) {
             return "expired";
         }
         return SUCCESS;

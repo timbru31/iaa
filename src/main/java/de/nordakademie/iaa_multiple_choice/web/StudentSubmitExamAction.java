@@ -21,9 +21,9 @@ public class StudentSubmitExamAction extends BaseStudentExamAction {
             return result;
         }
         final LocalDateTime endTime = LocalDateTime.now();
-        getTestResult().setEndTime(endTime);
-        getTestResult().calculateFinalPoints();
-        getTestResultService().updateTestResult(getTestResult());
+        getExamResult().setEndTime(endTime);
+        getExamResult().calculateFinalPoints();
+        getExamResultService().updateExamResult(getExamResult());
         return SUCCESS;
     }
 }

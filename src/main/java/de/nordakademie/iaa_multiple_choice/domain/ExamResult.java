@@ -33,7 +33,7 @@ import lombok.ToString;
 @Setter
 @Entity
 @ToString
-public class TestResult {
+public class ExamResult {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -63,15 +63,15 @@ public class TestResult {
     @ElementCollection(fetch = FetchType.EAGER)
     @MapKeyColumn(name = "question")
     @Column(name = "answers")
-    @CollectionTable(name = "testresult_submitted_answers", joinColumns = @JoinColumn(name = "id"))
-    private Map<Question, TestResultAnswers> submittedAnswers;
+    @CollectionTable(name = "examresult_submitted_answers", joinColumns = @JoinColumn(name = "id"))
+    private Map<Question, ExamResultAnswers> submittedAnswers;
 
     /**
      * Calculates the final points, based on all answers. Note: not side effect free.
      */
     public void calculateFinalPoints() {
         int finalPoints = 0;
-        for (final Entry<Question, TestResultAnswers> entry : submittedAnswers.entrySet()) {
+        for (final Entry<Question, ExamResultAnswers> entry : submittedAnswers.entrySet()) {
             final Question question = entry.getKey();
             double partialPoint = 0;
             final double pointStep = (double) question.getPoints() / question.getAnswers().size();

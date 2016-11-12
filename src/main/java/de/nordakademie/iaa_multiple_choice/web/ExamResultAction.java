@@ -5,11 +5,11 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import de.nordakademie.iaa_multiple_choice.domain.Exam;
+import de.nordakademie.iaa_multiple_choice.domain.ExamResult;
 import de.nordakademie.iaa_multiple_choice.domain.Student;
-import de.nordakademie.iaa_multiple_choice.domain.TestResult;
 import de.nordakademie.iaa_multiple_choice.domain.exceptions.StudentNotEnrolledException;
+import de.nordakademie.iaa_multiple_choice.service.ExamResultService;
 import de.nordakademie.iaa_multiple_choice.service.ExamService;
-import de.nordakademie.iaa_multiple_choice.service.TestResultService;
 import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 import de.nordakademie.iaa_multiple_choice.web.util.StudentRequired;
 import lombok.Getter;
@@ -28,7 +28,7 @@ public class ExamResultAction extends BaseSessionAction {
     @Autowired
     private ExamService examService;
     @Autowired
-    private TestResultService testResultService;
+    private ExamResultService examResultService;
     @Getter
     @Setter
     private Long examId;
@@ -40,7 +40,10 @@ public class ExamResultAction extends BaseSessionAction {
     private Student student;
     @Getter
     @Setter
-    private TestResult testResult;
+    private long endTimeMillis;
+    @Getter
+    @Setter
+    private ExamResult examResult;
 
     public String display() {
         exam = examService.find(examId);
@@ -50,13 +53,13 @@ public class ExamResultAction extends BaseSessionAction {
                     student.getEmail(), exam.getName());
             throw new StudentNotEnrolledException();
         }
-        final TestResult byExamAndStudent = testResultService.findByExamAndStudent(examId, student.getId());
+        final ExamResult byExamAndStudent = examResultService.findByExamAndStudent(examId, student.getId());
         if (byExamAndStudent == null) {
             addActionError(getText("validation.examNotTaken"));
             return "redirectHome";
         }
-        testResult = byExamAndStudent;
-        if (!testResult.isExpired()) {
+        examResult = byExamAndStudent;
+        if (!examResult.isExpired()) {
             addActionError(getText("validation.examNotFinished"));
             return "redirectHome";
         }

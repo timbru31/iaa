@@ -60,7 +60,7 @@ public class DeleteExamActionTest extends StrutsSpringJUnit4TestCase<DeleteExamA
         exam.setEvaluationMethod(WrongAnswerEvaluationMethod.NO_SUBTRACTION);
         exam.setMinPoints(50);
         exam.setQuestions(new HashSet<>());
-        exam.setTestResults(new HashSet<>());
+        exam.setExamResults(new HashSet<>());
         exam.setExamTime(60);
         exam.setEndDate(LocalDate.now().plusDays(20L));
         exam.setStartDate(LocalDate.now());

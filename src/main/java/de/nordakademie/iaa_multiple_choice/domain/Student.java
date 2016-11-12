@@ -25,7 +25,7 @@ import lombok.ToString;
 @Setter
 @Entity
 @DiscriminatorValue("student")
-@ToString(exclude = "testResults", callSuper = true)
+@ToString(exclude = "examResults", callSuper = true)
 public class Student extends User {
     @Column(unique = true, nullable = false)
     private Integer studentNumber;
@@ -37,7 +37,7 @@ public class Student extends User {
     @Basic
     @ManyToMany(fetch = FetchType.EAGER)
     @JsonManagedReference
-    private Set<TestResult> testResults;
+    private Set<ExamResult> examResults;
 
     public Student() {
     }
@@ -54,20 +54,16 @@ public class Student extends User {
 
     /**
      * Adds an exam.
-     * 
-     * @param exam the exam to add
+     *
+     * @param exam
+     *            the exam to add
      */
     public void addExam(final Exam exam) {
         registeredExams.add(exam);
     }
 
-    /**
-     * Adds a testResult.
-     *
-     * @param testResult the testResult to add
-     */
-    public void addTestResult(final TestResult testResult) {
-        testResults.add(testResult);
+    public void addExamResult(final ExamResult examResult) {
+        examResults.add(examResult);
     }
 
     /**
@@ -96,11 +92,12 @@ public class Student extends User {
     /**
      * Checks if the student has finished the exam.
      *
-     * @param exam the exam to check
+     * @param exam
+     *            the exam to check
      * @return true if he finished the exam, false otherwise
      */
     public boolean hasFinishedExam(final Exam exam) {
-        return testResults != null && testResults.stream().anyMatch(ts -> exam.equals(ts.getExam()) && ts.isExpired());
+        return examResults != null && examResults.stream().anyMatch(ts -> exam.equals(ts.getExam()) && ts.isExpired());
     }
 
     @Override
@@ -113,17 +110,19 @@ public class Student extends User {
     /**
      * Checks if the student has taken the exam.
      *
-     * @param exam the exam to check
+     * @param exam
+     *            the exam to check
      * @return true if he has taken the exam, false otherwise
      */
     public boolean hasTakenExam(final Exam exam) {
-        return testResults != null && testResults.stream().anyMatch(ts -> exam.equals(ts.getExam()));
+        return examResults != null && examResults.stream().anyMatch(ts -> exam.equals(ts.getExam()));
     }
 
     /**
      * Removes an exam.
      *
-     * @param exam the exam to remove
+     * @param exam
+     *            the exam to remove
      */
     public void removeExam(final Exam exam) {
         registeredExams.remove(exam);

@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import de.nordakademie.iaa_multiple_choice.domain.Exam;
 import de.nordakademie.iaa_multiple_choice.domain.Student;
-import de.nordakademie.iaa_multiple_choice.domain.TestResult;
+import de.nordakademie.iaa_multiple_choice.domain.ExamResult;
 import de.nordakademie.iaa_multiple_choice.domain.exceptions.StudentNotEnrolledException;
 import de.nordakademie.iaa_multiple_choice.service.ExamService;
-import de.nordakademie.iaa_multiple_choice.service.TestResultService;
+import de.nordakademie.iaa_multiple_choice.service.ExamResultService;
 import de.nordakademie.iaa_multiple_choice.service.UserService;
 import de.nordakademie.iaa_multiple_choice.web.util.LoginRequired;
 import de.nordakademie.iaa_multiple_choice.web.util.StudentRequired;
@@ -31,7 +31,7 @@ public class EnrollAction extends BaseSessionAction {
     @Autowired
     private ExamService examService;
     @Autowired
-    private TestResultService testResultService;
+    private ExamResultService examResultService;
     @Autowired
     private UserService userService;
     @Getter
@@ -49,13 +49,13 @@ public class EnrollAction extends BaseSessionAction {
 
     public String enrollStudent() {
         final LocalDateTime now = LocalDateTime.now();
-        final TestResult testResult = new TestResult();
-        testResult.setExam(exam);
-        testResult.setStudent(student);
-        testResult.setStartTime(now);
-        testResultService.createTestResult(testResult);
-        exam.addTestResult(testResult);
-        student.addTestResult(testResult);
+        final ExamResult examResult = new ExamResult();
+        examResult.setExam(exam);
+        examResult.setStudent(student);
+        examResult.setStartTime(now);
+        examResultService.createExamResult(examResult);
+        exam.addExamResult(examResult);
+        student.addExamResult(examResult);
         examService.updateExam(exam);
         userService.updateUser(student);
         return SUCCESS;

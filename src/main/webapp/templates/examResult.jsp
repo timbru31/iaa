@@ -10,40 +10,40 @@ exam result page -->
 <table class="table">
   <tr>
     <td><b><s:text name="create.examName" /></b></td>
-    <td><s:property value="testResult.exam.name" /></td>
+    <td><s:property value="examResult.exam.name" /></td>
   </tr>
   <tr>
     <td><b><s:text name="create.examTime" /></b></td>
-    <td><s:property value="testResult.exam.examTime" /></td>
+    <td><s:property value="examResult.exam.examTime" /></td>
   </tr>
   <tr>
     <td><b><s:text name="create.minPoints" /></b></td>
-    <td><s:property value="testResult.exam.minPoints" /></td>
+    <td><s:property value="examResult.exam.minPoints" /></td>
   </tr>
   <tr>
     <td><b><s:text name="create.examCP" /></b></td>
-    <td><s:property value="testResult.exam.creditPoints.getValue()" /></td>
+    <td><s:property value="examResult.exam.creditPoints.getValue()" /></td>
   </tr>
   <tr>
     <td><b><s:text name="create.evaluationMethod" /></b></td>
-    <td><s:property value="%{getText(testResult.exam.evaluationMethod.getText())}" /></td>
+    <td><s:property value="%{getText(examResult.exam.evaluationMethod.getText())}" /></td>
   </tr>
   <tr>
     <td><b><s:text name="create.startDate" /></b></td>
-    <td><s:property value="testResult.exam.formatStartDate()" /></td>
+    <td><s:property value="examResult.exam.formatStartDate()" /></td>
   </tr>
   <tr>
     <td><b><s:text name="create.endDate" /></b></td>
-    <td><s:property value="testResult.exam.formatEndDate()" /></td>
+    <td><s:property value="examResult.exam.formatEndDate()" /></td>
   </tr>
   <tr>
     <td><b><s:text name="points" /></b></td>
-    <td><s:property value="testResult.points" />/<s:property value="testResult.exam.getMaxPoints()" /></td>
+    <td><s:property value="examResult.points" />/<s:property value="examResult.exam.getMaxPoints()" /></td>
   </tr>
   <tr>
     <td><b><s:text name="resultList.result" /></b></td>
     <td>
-      <s:if test="testResult.passed">
+      <s:if test="examResult.passed">
         <button class="btn btn-success btn-result"><s:text name="resultList.passed" /></button>
       </s:if>
       <s:else>

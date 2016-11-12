@@ -32,14 +32,14 @@ public class StudentTest {
         exam.setEvaluationMethod(WrongAnswerEvaluationMethod.NO_SUBTRACTION);
         exam.setMinPoints(50);
         exam.setQuestions(new HashSet<>());
-        exam.setTestResults(new HashSet<>());
+        exam.setExamResults(new HashSet<>());
         exam.setExamTime(60);
         exam.setEndDate(LocalDate.now().plusDays(20L));
         exam.setStartDate(LocalDate.now());
         student.setRegisteredExams(new HashSet<Exam>());
         exam.setTokenList(new HashMap<>());
         student.addExam(exam);
-        student.setTestResults(new HashSet<>());
+        student.setExamResults(new HashSet<>());
     }
 
     /**
@@ -52,12 +52,12 @@ public class StudentTest {
         student.addExam(exam);
         assertTrue("Expected that student can take exams", student.canTakeExams());
 
-        final TestResult testResult = new TestResult();
-        testResult.setStartTime(LocalDateTime.now());
-        testResult.setExam(exam);
-        student.addTestResult(testResult);
-        exam.addTestResult(testResult);
-        testResult.setEndTime(LocalDateTime.now());
+        final ExamResult examResult = new ExamResult();
+        examResult.setStartTime(LocalDateTime.now());
+        examResult.setExam(exam);
+        student.addExamResult(examResult);
+        exam.addExamResult(examResult);
+        examResult.setEndTime(LocalDateTime.now());
         assertFalse("Expected that student can not take exams", student.canTakeExams());
     }
 
@@ -75,13 +75,13 @@ public class StudentTest {
      */
     @Test
     public void testHasFinishedExam() {
-        final TestResult testResult = new TestResult();
-        testResult.setStartTime(LocalDateTime.now());
-        testResult.setExam(exam);
-        student.addTestResult(testResult);
-        exam.addTestResult(testResult);
+        final ExamResult examResult = new ExamResult();
+        examResult.setStartTime(LocalDateTime.now());
+        examResult.setExam(exam);
+        student.addExamResult(examResult);
+        exam.addExamResult(examResult);
         assertFalse("Expected that student has not finished exam", student.hasFinishedExam(exam));
-        testResult.setEndTime(LocalDateTime.now());
+        examResult.setEndTime(LocalDateTime.now());
         assertTrue("Expected that student has finished exam", student.hasFinishedExam(exam));
     }
 
@@ -90,15 +90,15 @@ public class StudentTest {
      */
     @Test
     public void testHasTakenExam() {
-        student.setTestResults(new HashSet<>());
-        final TestResult testResult = new TestResult();
-        testResult.setStartTime(LocalDateTime.now());
+        student.setExamResults(new HashSet<>());
+        final ExamResult examResult = new ExamResult();
+        examResult.setStartTime(LocalDateTime.now());
         assertFalse("Expected that student has not taken exam", student.hasTakenExam(exam));
-        testResult.setExam(exam);
-        student.addTestResult(testResult);
-        exam.addTestResult(testResult);
+        examResult.setExam(exam);
+        student.addExamResult(examResult);
+        exam.addExamResult(examResult);
         student.addExam(exam);
-        testResult.setEndTime(LocalDateTime.now());
+        examResult.setEndTime(LocalDateTime.now());
         assertTrue("Expected that student has finished exam", student.hasTakenExam(exam));
     }
 }
