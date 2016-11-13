@@ -21,13 +21,14 @@ import lombok.Setter;
 
 /**
  * Action for registration.
- * 
+ *
  * @author Tim Brust
  */
 public class RegisterAction extends BaseSessionAction {
     private static final long serialVersionUID = -5785967910896850512L;
-    // RegExp from http://stackoverflow.com/a/3802238/1902598
-    private static final String PASSWORD_REGEXP = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+    // RegExp based on, but adjusted (allowing more special characters), from:
+    // http://stackoverflow.com/a/3802238/1902598
+    private static final String PASSWORD_REGEXP = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[/,§@#$%&+=~\\-\\^:\\*!\\.\"'_<>\\{\\}\\[\\]\\(\\)\\?\\|\\\\])(?=\\S+$).{8,}$";
     @Getter
     @Setter
     private String firstName;
@@ -94,7 +95,7 @@ public class RegisterAction extends BaseSessionAction {
 
     /**
      * Generates a hashedPassword
-     * 
+     *
      * @return the hashedPassword
      */
     private String hashPassword() {
@@ -139,8 +140,9 @@ public class RegisterAction extends BaseSessionAction {
 
     /**
      * Sends a registration mail with activation token to the user.
-     * 
-     * @param user the user to send the mail to
+     *
+     * @param user
+     *            the user to send the mail to
      */
     private void sendRegistrationMail(final User user) {
         final HttpServletRequest request = ServletActionContext.getRequest();
