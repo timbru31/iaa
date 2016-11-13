@@ -8,16 +8,16 @@ Feature: Create question
       And a valid exam exists
 
   Scenario: Valid creation
-    Given The lecturer wants to create the question
+    Given the lecturer wants to create the question
     When he enters valid data
       And clicks on save question and create next one
     Then the question is added to the exam and he is redirected to the create question page
 
   Scenario: Invalid data input
-    Given The lecturer wants to create a question
+    Given the lecturer wants to create a question
     When the question type is not selected
-    When the question text is empty
-    When the answer text is empty on single choice/ multiple choice questions
-    When the points for the correct answer is empty
+      And the question text is empty
+      And the answer text is empty on single choice/ multiple choice questions
+      And the points for the correct answer is empty
       And clicks on save question and create next one
     Then a specific error message is displayed

@@ -10,12 +10,12 @@ Feature: Mapping
       And a the start date of the exam is not reached
 
   Scenario: Valid mapping
-    Given The lecturer wants to map student/ exam
+    Given the lecturer wants to map student/ exam
     When he enters valid data
       And clicks on assign
     Then the student will be mapped with the exam and an unique token will be send to the student (via e-mail)
 
   Scenario: Invalid data input
-    Given The lecturer wants to assign a student
-    When the student is non-existant
+    Given the lecturer wants to assign a student
+    When the student is non-existent
     Then an error message is displayed
