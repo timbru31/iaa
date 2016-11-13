@@ -24,7 +24,7 @@ Technologies used are Hibernate, Spring and Struts2, jQuery (with plugins) and B
 1. Clone the project
 2. Create a `user.properties` in `src/main/resources/`
   1. add a correct `database.url` for the H2 database
-    1. you might want to use the pre-configured databse in `docs/iaa-multiple-choice.h2.db` (credentials are listed below). **Make sure to set `database.mode` to `update`**
+    1. See below for the default database installation instructions
 3. Run the project. Visit [http://localhost:8080/iaa-multiple-choice](http://localhost:8080/iaa-multiple-choice)
 
 ## Configuration
@@ -37,6 +37,12 @@ Besides that you can force to override the recipient by adding `mail.overrideRec
 
 ### Registration
 Per default registration of new users is enabled. To disable this set `registration.enabled=false` in your `user.properties`.
+
+## Default database
+You might want to use the pre-configured databse in `docs/db/iaa-multiple-choice.h2.db` (credentials are listed below). **Make sure to set `database.mode` to `update`**  
+If this does not work, there is an import script located in `docs/db/import.sql`. Copy it to `src/main/resources`.  
+To use it while Hibernate starts, add the following property to the `spring.xml` (bean id *entityManagerFactory*):  
+`<prop key="hibernate.hbm2ddl.import_files">import.sql</prop>`
 
 ## Default credentials
 
