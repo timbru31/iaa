@@ -1,0 +1,15 @@
+Dienstag, 18.10.: Themenbesprechung 1 Stunde
+Donnerstag, 20.10.: Konzepterstellung (MVC Sicht, Systemablauf, Dozenten-/ Studentensicht) 3 Stunden
+Donnerstag, 20.10.: UML Klassendiagramm, Dialogdiagramm, Erstellung Testfälle 3 Stunden
+Samstag, 22.10.: Domain/ Service/ Web Klassen angelegt 5 Stunden
+Montag, 24.10.: Überarbeitung Maskenlayout, Routingkonzept, Erstellung createExam.jsp und showExam.jsp 5 Stunden
+Dienstag, 25.10: Weiter Arbeiten an createExam.jsp 5 Stunden
+Mittwoch,26.10: refactoren createExam.jsp und Erstellung createQuestions, Einbindung von Actions, Erstellung CreateAnswer/Question Action classses 6 Stunden'
+Donnerstag,27.10: arbeiten an createExam, createQuestion und lecturer.jsp @ManyToOne Beziehung zwischen Lecturer und Exam+ Einbauen der Logik 9 Stunden
+Samstag, 29.10: validation für createExam, 2 Stunden
+Montag, 31.10.: weiter mit validation createExam, 1 Stunde
+Dienstag, 1.11.: createExam.jsp, editExam.jsp + Struts Änderungen, ExamAction (saveQuestion), Fertigstellung validation für createExam, 7 Stunden
+Samstag, 5.11.: editExam.jsp und ExamAction (saveQuestion), 3 Stunden
+Mittwoch, 9.11.: editExam.jsp, SubmitExamAction, 6 Stunden
+Freitag, 11.11.:adding comments, 1 Stunde
+Samstag, 12.11: Tests schreiben, Konzept überarbeiten, 2 Stunden

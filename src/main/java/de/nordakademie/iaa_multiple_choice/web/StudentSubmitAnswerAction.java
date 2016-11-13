@@ -43,12 +43,14 @@ public class StudentSubmitAnswerAction extends BaseStudentExamAction {
     @Setter
     private ArrayList<Integer> mc = new ArrayList<>();
 
-    private void extracted(final LinkedHashSet<Answer> answerSet) {
+    private void saveFillInTheBlankAnswer(final LinkedHashSet<Answer> answerSet) {
         for (int i = 0; i < fillInTheBlankAnswers.length; i++) {
             final String blankAnwser = fillInTheBlankAnswers[i];
-            if (getExamResult().getSubmittedAnswers().containsKey(getQuestion())) {
-                final ExamResultAnswers examResultAnswers = getExamResult().getSubmittedAnswers().get(getQuestion());
-                final Answer answer = getAnwserByIndex(examResultAnswers.getAnswers(), i);
+            Question question = getExamResult().findQuestionById(getQuestionId());
+            if (question != null) {
+                final ExamResultAnswers examResultAnswers = getExamResult()
+                        .findSubmittedAnswersByQuestionId(getQuestionId());
+                final Answer answer = getAnswerByIndex(examResultAnswers.getAnswers(), i);
                 answer.setText(blankAnwser);
                 answerService.updateAnswer(answer);
             } else {
@@ -61,13 +63,11 @@ public class StudentSubmitAnswerAction extends BaseStudentExamAction {
     /**
      * Helper method to get an entry by it's index from a Set.
      *
-     * @param set
-     *            the set to search in
-     * @param index
-     *            the wanted index
+     * @param set the set to search in
+     * @param index the wanted index
      * @return the element at this position or null if not found
      */
-    private Answer getAnwserByIndex(final Set<? extends Answer> set, final int index) {
+    private Answer getAnswerByIndex(final Set<? extends Answer> set, final int index) {
         int result = 0;
         for (final Answer answer : set) {
             if (result == index) {
@@ -95,35 +95,11 @@ public class StudentSubmitAnswerAction extends BaseStudentExamAction {
         setQuestion(optionalQuestion.get());
         final LinkedHashSet<Answer> answerSet = new LinkedHashSet<>();
         if (getQuestion().getType() == QuestionType.FILL_IN_THE_BLANK) {
-            extracted(answerSet);
+            saveFillInTheBlankAnswer(answerSet);
         } else if (getQuestion().getType() == QuestionType.SINGLE_CHOICE) {
-            for (int i = 0; i < getQuestion().getAnswers().size(); i++) {
-                final Answer correctAnswer = getAnwserByIndex(getQuestion().getAnswers(), i);
-                if (getExamResult().getSubmittedAnswers().containsKey(getQuestion())) {
-                    final ExamResultAnswers examResultAnswers = getExamResult().getSubmittedAnswers()
-                            .get(getQuestion());
-                    final Answer answer = getAnwserByIndex(examResultAnswers.getAnswers(), i);
-                    answer.setRightAnswer(i == sc);
-                    answerService.updateAnswer(answer);
-                } else {
-                    final Answer answer = new Answer(correctAnswer.getText(), i == sc);
-                    answerSet.add(answer);
-                }
-            }
+            saveSingleChoiceAnswer(answerSet);
         } else if (getQuestion().getType() == QuestionType.MULTIPLE_CHOICE) {
-            for (int i = 0; i < getQuestion().getAnswers().size(); i++) {
-                final Answer correctAnswer = getAnwserByIndex(getQuestion().getAnswers(), i);
-                if (getExamResult().getSubmittedAnswers().containsKey(getQuestion())) {
-                    final ExamResultAnswers examResultAnswers = getExamResult().getSubmittedAnswers()
-                            .get(getQuestion());
-                    final Answer answer = getAnwserByIndex(examResultAnswers.getAnswers(), i);
-                    answer.setRightAnswer(mc.contains(i));
-                    answerService.updateAnswer(answer);
-                } else {
-                    final Answer answer = new Answer(correctAnswer.getText(), mc.contains(i));
-                    answerSet.add(answer);
-                }
-            }
+            saveMultipleChoiceAnswer(answerSet);
         }
         if (!getExamResult().getSubmittedAnswers().containsKey(getQuestion())) {
             // save answers
@@ -138,6 +114,40 @@ public class StudentSubmitAnswerAction extends BaseStudentExamAction {
             getExamResultService().updateExamResult(getExamResult());
         }
         return SUCCESS;
+    }
+
+    private void saveSingleChoiceAnswer(final LinkedHashSet<Answer> answerSet) {
+        for (int i = 0; i < getQuestion().getAnswers().size(); i++) {
+            final Answer correctAnswer = getAnswerByIndex(getQuestion().getAnswers(), i);
+            Question question = getExamResult().findQuestionById(getQuestionId());
+            if (question != null) {
+                final ExamResultAnswers examResultAnswers = getExamResult()
+                        .findSubmittedAnswersByQuestionId(getQuestionId());
+                final Answer answer = getAnswerByIndex(examResultAnswers.getAnswers(), i);
+                answer.setRightAnswer(i == sc);
+                answerService.updateAnswer(answer);
+            } else {
+                final Answer answer = new Answer(correctAnswer.getText(), i == sc);
+                answerSet.add(answer);
+            }
+        }
+    }
+
+    private void saveMultipleChoiceAnswer(final LinkedHashSet<Answer> answerSet) {
+        for (int i = 0; i < getQuestion().getAnswers().size(); i++) {
+            final Answer correctAnswer = getAnswerByIndex(getQuestion().getAnswers(), i);
+            Question question = getExamResult().findQuestionById(getQuestionId());
+            if (question != null) {
+                final ExamResultAnswers examResultAnswers = getExamResult()
+                        .findSubmittedAnswersByQuestionId(getQuestionId());
+                final Answer answer = getAnswerByIndex(examResultAnswers.getAnswers(), i);
+                answer.setRightAnswer(mc.contains(i));
+                answerService.updateAnswer(answer);
+            } else {
+                final Answer answer = new Answer(correctAnswer.getText(), mc.contains(i));
+                answerSet.add(answer);
+            }
+        }
     }
 
 }

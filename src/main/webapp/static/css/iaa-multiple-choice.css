@@ -71,15 +71,32 @@ footer {
 }
 
 .nak {
-  float: left;
+  width: 30%;
+  margin: 2%;
 }
 
-.nakgs {
-  float: right;
+.nak-btn-img {
+  margin-right: 2%;
+  width: 80px;
 }
 
-.center {
-  text-align: center;
+.nak-btn {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: 2px solid white;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  padding: 1%;
+  color: inherit;
+  margin-bottom: 5%;
+}
+
+.nak-btn:hover {
+  text-decoration: none;
+  background-color: white;
+  border: 2px solid white;
+  color: RGB(68, 104, 161);
 }
 
 .glyph-btn {
@@ -94,6 +111,14 @@ footer {
 .backoffice {
   background-color: #f8f8f8;
   border: 1px solid #e7e7e7;
+}
+
+.welcome {
+  color: white;
+  text-align: center;
+  background-image: url(/iaa-multiple-choice/static/img/dockland.jpg);
+  border: 1px solid #e7e7e7;
+  padding-bottom: 8%;
 }
 
 .rd {
@@ -112,17 +137,6 @@ footer {
 
 .answer .form-control {
   width: auto;
-}
-
-.bigHr {
-  height: 1px;
-  color: rgb(128, 128, 128);
-  background-color: rgb(128, 128, 128);
-}
-
-.home-header {
-  padding-bottom: 9px;
-  margin: 40px 0 20px;
 }
 
 .countdown {
