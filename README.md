@@ -40,4 +40,4 @@ Per default registration of new users is enabled. To disable this set `registrat
 
 ## Default credentials
 
-... are TODO :)
+can be found under [docs/EXAMPLE_CREDENTIALS.md](docs/EXAMPLE_CREDENTIALS.md)

@@ -95,7 +95,7 @@ public class ExamResult {
                             && correctAnswer.isRightAnswer()) {
                         partialPoint += question.getPoints();
                         break;
-                    } else if (correctAnswer.isRightAnswer()) {
+                    } else if (studentAnswer.isRightAnswer() && !correctAnswer.isRightAnswer()) {
                         partialPoint = 0;
                         break;
                     }
@@ -115,7 +115,39 @@ public class ExamResult {
             finalPoints += (int) Math.round(partialPoint);
         }
         points = finalPoints;
-        passed = (finalPoints / exam.getMaxPoints()) * 100 >= exam.getMinPoints();
+        final int maxPoints = exam.getMaxPoints();
+        passed = (finalPoints / (double) maxPoints) * 100 >= exam.getMinPoints();
+    }
+
+    /**
+     * Finds a question in the submitted answers by it's id.
+     *
+     * @param questionId the question id to search for
+     * @return the question if found, otherwise null
+     */
+    public Question findQuestionById(final Long questionId) {
+        final Optional<Question> findFirst = getSubmittedAnswers().keySet().stream()
+                .filter(q -> q.getId() == questionId).findFirst();
+        if (findFirst.isPresent()) {
+            return findFirst.get();
+        }
+        return null;
+    }
+
+    /**
+     * Finds submitted answers by a question id.
+     *
+     * @param questionId the question id to search fo
+     * @return the submtted answers if found, otherwise null
+     */
+    public ExamResultAnswers findSubmittedAnswersByQuestionId(final Long questionId) {
+        for (final Entry<Question, ExamResultAnswers> entry : submittedAnswers.entrySet()) {
+            final Question question = entry.getKey();
+            if (question.getId() == questionId) {
+                return entry.getValue();
+            }
+        }
+        return null;
     }
 
     /**
@@ -126,36 +158,5 @@ public class ExamResult {
     public boolean isExpired() {
         final LocalDateTime now = LocalDateTime.now().minusSeconds(10L);
         return now.isAfter(startTime.plusMinutes(exam.getExamTime())) || endTime != null;
-    }
-
-    /**
-     * Finds a question in the submitted answers by it's id.
-     * 
-     * @param questionId the question id to search for
-     * @return the question if found, otherwise null
-     */
-    public Question findQuestionById(final Long questionId) {
-        Optional<Question> findFirst = getSubmittedAnswers().keySet().stream().filter(q -> q.getId() == questionId)
-                .findFirst();
-        if (findFirst.isPresent()) {
-            return findFirst.get();
-        }
-        return null;
-    }
-
-    /**
-     * Finds submitted answers by a question id.
-     * 
-     * @param questionId the question id to search fo
-     * @return the submtted answers if found, otherwise null
-     */
-    public ExamResultAnswers findSubmittedAnswersByQuestionId(final Long questionId) {
-        for (Entry<Question, ExamResultAnswers> entry : submittedAnswers.entrySet()) {
-            Question question = entry.getKey();
-            if (question.getId() == questionId) {
-                return entry.getValue();
-            }
-        }
-        return null;
     }
 }

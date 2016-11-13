@@ -43,23 +43,6 @@ public class StudentSubmitAnswerAction extends BaseStudentExamAction {
     @Setter
     private ArrayList<Integer> mc = new ArrayList<>();
 
-    private void saveFillInTheBlankAnswer(final LinkedHashSet<Answer> answerSet) {
-        for (int i = 0; i < fillInTheBlankAnswers.length; i++) {
-            final String blankAnwser = fillInTheBlankAnswers[i];
-            Question question = getExamResult().findQuestionById(getQuestionId());
-            if (question != null) {
-                final ExamResultAnswers examResultAnswers = getExamResult()
-                        .findSubmittedAnswersByQuestionId(getQuestionId());
-                final Answer answer = getAnswerByIndex(examResultAnswers.getAnswers(), i);
-                answer.setText(blankAnwser);
-                answerService.updateAnswer(answer);
-            } else {
-                final Answer answer = new Answer(blankAnwser, true);
-                answerSet.add(answer);
-            }
-        }
-    }
-
     /**
      * Helper method to get an entry by it's index from a Set.
      *
@@ -68,6 +51,9 @@ public class StudentSubmitAnswerAction extends BaseStudentExamAction {
      * @return the element at this position or null if not found
      */
     private Answer getAnswerByIndex(final Set<? extends Answer> set, final int index) {
+        if (set == null) {
+            return null;
+        }
         int result = 0;
         for (final Answer answer : set) {
             if (result == index) {
@@ -101,7 +87,7 @@ public class StudentSubmitAnswerAction extends BaseStudentExamAction {
         } else if (getQuestion().getType() == QuestionType.MULTIPLE_CHOICE) {
             saveMultipleChoiceAnswer(answerSet);
         }
-        if (!getExamResult().getSubmittedAnswers().containsKey(getQuestion())) {
+        if (getExamResult().findQuestionById(getQuestionId()) == null) {
             // save answers
             final ExamResultAnswers examResultAnswers = new ExamResultAnswers();
             examResultAnswers.setAnswers(answerSet);
@@ -116,19 +102,20 @@ public class StudentSubmitAnswerAction extends BaseStudentExamAction {
         return SUCCESS;
     }
 
-    private void saveSingleChoiceAnswer(final LinkedHashSet<Answer> answerSet) {
-        for (int i = 0; i < getQuestion().getAnswers().size(); i++) {
-            final Answer correctAnswer = getAnswerByIndex(getQuestion().getAnswers(), i);
-            Question question = getExamResult().findQuestionById(getQuestionId());
-            if (question != null) {
-                final ExamResultAnswers examResultAnswers = getExamResult()
-                        .findSubmittedAnswersByQuestionId(getQuestionId());
-                final Answer answer = getAnswerByIndex(examResultAnswers.getAnswers(), i);
-                answer.setRightAnswer(i == sc);
+    private void saveFillInTheBlankAnswer(final LinkedHashSet<Answer> answerSet) {
+        for (int i = 0; i < fillInTheBlankAnswers.length; i++) {
+            final String blankAnwser = fillInTheBlankAnswers[i];
+            final Question question = getExamResult().findQuestionById(getQuestionId());
+            final ExamResultAnswers examResultAnswers = getExamResult()
+                    .findSubmittedAnswersByQuestionId(getQuestionId());
+            final Answer answer = examResultAnswers == null ? null
+                    : getAnswerByIndex(examResultAnswers.getAnswers(), i);
+            if (question != null && answer != null) {
+                answer.setText(blankAnwser);
                 answerService.updateAnswer(answer);
             } else {
-                final Answer answer = new Answer(correctAnswer.getText(), i == sc);
-                answerSet.add(answer);
+                final Answer newAnswer = new Answer(blankAnwser, true);
+                answerSet.add(newAnswer);
             }
         }
     }
@@ -136,7 +123,7 @@ public class StudentSubmitAnswerAction extends BaseStudentExamAction {
     private void saveMultipleChoiceAnswer(final LinkedHashSet<Answer> answerSet) {
         for (int i = 0; i < getQuestion().getAnswers().size(); i++) {
             final Answer correctAnswer = getAnswerByIndex(getQuestion().getAnswers(), i);
-            Question question = getExamResult().findQuestionById(getQuestionId());
+            final Question question = getExamResult().findQuestionById(getQuestionId());
             if (question != null) {
                 final ExamResultAnswers examResultAnswers = getExamResult()
                         .findSubmittedAnswersByQuestionId(getQuestionId());
@@ -145,6 +132,23 @@ public class StudentSubmitAnswerAction extends BaseStudentExamAction {
                 answerService.updateAnswer(answer);
             } else {
                 final Answer answer = new Answer(correctAnswer.getText(), mc.contains(i));
+                answerSet.add(answer);
+            }
+        }
+    }
+
+    private void saveSingleChoiceAnswer(final LinkedHashSet<Answer> answerSet) {
+        for (int i = 0; i < getQuestion().getAnswers().size(); i++) {
+            final Answer correctAnswer = getAnswerByIndex(getQuestion().getAnswers(), i);
+            final Question question = getExamResult().findQuestionById(getQuestionId());
+            if (question != null) {
+                final ExamResultAnswers examResultAnswers = getExamResult()
+                        .findSubmittedAnswersByQuestionId(getQuestionId());
+                final Answer answer = getAnswerByIndex(examResultAnswers.getAnswers(), i);
+                answer.setRightAnswer(i == sc);
+                answerService.updateAnswer(answer);
+            } else {
+                final Answer answer = new Answer(correctAnswer.getText(), i == sc);
                 answerSet.add(answer);
             }
         }
