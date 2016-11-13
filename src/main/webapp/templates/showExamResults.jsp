@@ -1,27 +1,11 @@
-<!-- author: Hannes Peterson
-lecturer page -->
+<!-- author: Tim Brust
+exam result page -->
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
-
-<div class="jumbotron backoffice">
+<div class="page-header">
   <h1>
-    <s:text name="lecturer.title" />
+    <s:text name="examResults.title" />
   </h1>
-  <p>
-    <s:text name="lecturer.subtitle" />
-  </p>
-  <p>
-    <s:url var="createExam" namespace="/" action="createExam" />
-    <s:url var="mapping" namespace="/" action="mapping" />
-    <s:a class="btn btn-default btn-lg" href="%{createExam}" role="button">
-      <span class="glyphicon glyphicon-education glyph-btn"></span>
-      <s:text name="lecturer.newExam" />
-    </s:a>
-    <s:a class="btn btn-default btn-lg" href="%{mapping}" role="button">
-      <span class="glyphicon glyphicon-list-alt glyph-btn"></span>
-      <s:text name="lecturer.mapStudent" />
-    </s:a>
-  </p>
 </div>
 
 <s:if test="%{lecturer.exams.isEmpty()}">

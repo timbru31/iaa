@@ -24,3 +24,6 @@ target/
 
 # User properties
 src/main/resources/user.properties
+
+#For test cases (final db)
+docs/iaa-multiple-choice-db.h2.db

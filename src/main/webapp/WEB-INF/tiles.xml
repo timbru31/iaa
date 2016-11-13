@@ -51,6 +51,10 @@
     <put-attribute name="content" value="/templates/showExam.jsp" />
     <put-attribute name="title" value="pageTitle.showExam" />
   </definition>
+  <definition name="results/show" extends="mainTemplate">
+    <put-attribute name="content" value="/templates/showExamResults.jsp" />
+    <put-attribute name="title" value="pageTitle.examResults" />
+  </definition>
   <definition name="exam/take" extends="mainTemplate">
     <put-attribute name="content" value="/templates/takeExam.jsp" />
     <put-attribute name="title" value="pageTitle.takeExam" />
@@ -84,7 +88,8 @@
     <put-attribute name="title" value="pageTitle.notFound" />
   </definition>
   <definition name="questionNotFoundError" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/error/questionNotFoundError.jsp" />
+    <put-attribute name="content"
+      value="/templates/error/questionNotFoundError.jsp" />
     <put-attribute name="title" value="pageTitle.questionNotFound" />
   </definition>
   <definition name="examNotFoundError" extends="mainTemplate">
@@ -105,7 +110,8 @@
     <put-attribute name="title" value="pageTitle.forbidden" />
   </definition>
   <definition name="registrationDisabledError" extends="mainTemplate">
-    <put-attribute name="content" value="/templates/error/registrationDisabledError.jsp" />
+    <put-attribute name="content"
+      value="/templates/error/registrationDisabledError.jsp" />
     <put-attribute name="title" value="pageTitle.registrationDisabled" />
   </definition>
 </tiles-definitions>

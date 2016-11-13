@@ -45,7 +45,8 @@
       <result name="examNotFound" type="tiles">examNotFoundError</result>
       <result name="questionNotFound" type="tiles">questionNotFoundError</result>
       <result name="examNotEditable" type="tiles">examNotEditableError</result>
-      <result name="registrationDisabled" type="tiles">registrationDisabledError</result>
+      <result name="registrationDisabled" type="tiles">registrationDisabledError
+      </result>
     </global-results>
 
     <global-exception-mappings>
@@ -62,7 +63,8 @@
       <exception-mapping
         exception="de.nordakademie.iaa_multiple_choice.domain.exceptions.StudentNotEnrolledException"
         result="forbidden" />
-      <exception-mapping exception="de.nordakademie.iaa_multiple_choice.web.exception.RegistrationDisabledException"
+      <exception-mapping
+        exception="de.nordakademie.iaa_multiple_choice.web.exception.RegistrationDisabledException"
         result="registrationDisabled" />
     </global-exception-mappings>
 
@@ -87,7 +89,8 @@
       <result type="tiles">student</result>
     </action>
 
-    <action name="studentInput" class="de.nordakademie.iaa_multiple_choice.web.StudentAction" method="input">
+    <action name="studentInput" class="de.nordakademie.iaa_multiple_choice.web.StudentAction"
+      method="input">
       <interceptor-ref name="store">
         <param name="operationMode">RETRIEVE</param>
       </interceptor-ref>
@@ -99,7 +102,8 @@
       <result type="tiles">exam/resultList</result>
     </action>
 
-    <action name="enroll" class="de.nordakademie.iaa_multiple_choice.web.EnrollAction" method="enrollStudent">
+    <action name="enroll" class="de.nordakademie.iaa_multiple_choice.web.EnrollAction"
+      method="enrollStudent">
       <result type="redirectAction">
         <param name="actionName">takeExam</param>
         <param name="examId">${examId}</param>
@@ -107,7 +111,8 @@
       <result name="input" type="tiles">exam/show</result>
     </action>
 
-    <action name="takeExam" class="de.nordakademie.iaa_multiple_choice.web.TakeExamAction" method="display">
+    <action name="takeExam" class="de.nordakademie.iaa_multiple_choice.web.TakeExamAction"
+      method="display">
       <interceptor-ref name="store">
         <param name="operationMode">STORE</param>
       </interceptor-ref>
@@ -124,7 +129,9 @@
       </result>
     </action>
 
-    <action name="submitAnswer" class="de.nordakademie.iaa_multiple_choice.web.StudentSubmitAnswerAction" method="saveAnswer">
+    <action name="submitAnswer"
+      class="de.nordakademie.iaa_multiple_choice.web.StudentSubmitAnswerAction"
+      method="saveAnswer">
       <result name="success" type="redirectAction">
         <param name="actionName">takeExam</param>
         <param name="examId">${examId}</param>
@@ -140,7 +147,9 @@
       </result>
     </action>
 
-    <action name="submitExam" class="de.nordakademie.iaa_multiple_choice.web.StudentSubmitExamAction" method="submitExam">
+    <action name="submitExam"
+      class="de.nordakademie.iaa_multiple_choice.web.StudentSubmitExamAction"
+      method="submitExam">
       <result name="success" type="redirectAction">
         <param name="actionName">examResult</param>
         <param name="examId">${examId}</param>
@@ -155,7 +164,8 @@
       </result>
     </action>
 
-    <action name="examResult" class="de.nordakademie.iaa_multiple_choice.web.ExamResultAction" method="display">
+    <action name="examResult"
+      class="de.nordakademie.iaa_multiple_choice.web.ExamResultAction" method="display">
       <interceptor-ref name="store">
         <param name="operationMode">STORE</param>
       </interceptor-ref>
@@ -185,16 +195,21 @@
       <result name="input" type="tiles">exam/create</result>
     </action>
 
-    <action name="deleteExam" class="de.nordakademie.iaa_multiple_choice.web.DeleteExamAction" method="deleteExam">
+    <action name="deleteExam"
+      class="de.nordakademie.iaa_multiple_choice.web.DeleteExamAction" method="deleteExam">
       <result name="success" type="redirectAction">lecturer</result>
     </action>
 
-    <action name="createQuestion" class="de.nordakademie.iaa_multiple_choice.web.CreateQuestionAction" method="createQuestion">
+    <action name="createQuestion"
+      class="de.nordakademie.iaa_multiple_choice.web.CreateQuestionAction"
+      method="createQuestion">
       <result name="success" type="tiles">exam/create/question</result>
       <result name="input" type="tiles">examNotFoundError</result>
     </action>
 
-    <action name="saveQuestion" class="de.nordakademie.iaa_multiple_choice.web.CreateQuestionAction" method="saveQuestion">
+    <action name="saveQuestion"
+      class="de.nordakademie.iaa_multiple_choice.web.CreateQuestionAction"
+      method="saveQuestion">
       <interceptor-ref name="store">
         <param name="operationMode">STORE</param>
       </interceptor-ref>
@@ -206,12 +221,16 @@
       <result name="input" type="tiles">exam/create/question</result>
     </action>
 
-    <action name="editQuestion" class="de.nordakademie.iaa_multiple_choice.web.UpdateQuestionAction" method="editQuestion">
+    <action name="editQuestion"
+      class="de.nordakademie.iaa_multiple_choice.web.UpdateQuestionAction"
+      method="editQuestion">
       <result name="input" type="tiles">notFoundError</result>
       <result name="success" type="tiles">exam/edit/question</result>
     </action>
 
-    <action name="deleteQuestion" class="de.nordakademie.iaa_multiple_choice.web.DeleteQuestionAction" method="deleteQuestion">
+    <action name="deleteQuestion"
+      class="de.nordakademie.iaa_multiple_choice.web.DeleteQuestionAction"
+      method="deleteQuestion">
       <result name="createQuestion" type="redirectAction">
         <param name="actionName">createQuestion</param>
         <param name="examId">${examId}</param>
@@ -223,7 +242,9 @@
       </result>
     </action>
 
-    <action name="updateQuestion" class="de.nordakademie.iaa_multiple_choice.web.UpdateQuestionAction" method="updateQuestion">
+    <action name="updateQuestion"
+      class="de.nordakademie.iaa_multiple_choice.web.UpdateQuestionAction"
+      method="updateQuestion">
       <result name="success" type="redirectAction">
         <param name="examId">${examId}</param>
         <param name="questionId">${questionId}</param>
@@ -232,7 +253,8 @@
       <result name="input" type="tiles">exam/edit/question</result>
     </action>
 
-    <action name="showExamInput" class="de.nordakademie.iaa_multiple_choice.web.ShowExamAction" method="input">
+    <action name="showExamInput" class="de.nordakademie.iaa_multiple_choice.web.ShowExamAction"
+      method="input">
       <interceptor-ref name="store">
         <param name="operationMode">RETRIEVE</param>
       </interceptor-ref>
@@ -251,6 +273,10 @@
         <param name="actionName">examResult</param>
         <param name="examId">${examId}</param>
       </result>
+    </action>
+
+    <action name="showExamResults" class="de.nordakademie.iaa_multiple_choice.web.ShowExamResultsAction">
+      <result type="tiles">results/show</result>
     </action>
 
     <action name="show">
@@ -292,13 +318,15 @@
       </result>
     </action>
 
-    <action name="tokenList" class="de.nordakademie.iaa_multiple_choice.web.TokenListAction">
+    <action name="tokenList"
+      class="de.nordakademie.iaa_multiple_choice.web.TokenListAction">
       <result name="input" type="tiles">examNotFoundError</result>
       <result name="redirectHome" type="redirectAction">home</result>
       <result type="tiles">lecturer/tokenList</result>
     </action>
 
-    <action name="registration" class="de.nordakademie.iaa_multiple_choice.web.RegisterAction" method="display">
+    <action name="registration" class="de.nordakademie.iaa_multiple_choice.web.RegisterAction"
+      method="display">
       <result name="input" type="tiles">registration</result>
       <result name="success" type="tiles">registration</result>
       <result name="successLecturer" type="tiles">lecturer</result>
