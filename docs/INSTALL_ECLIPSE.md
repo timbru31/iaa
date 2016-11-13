@@ -3,7 +3,6 @@
 2. Install [Lombok](https://projectlombok.org/download.html) for eclipse
 3. Install [Tomcat](https://tomcat.apache.org/download-80.cgi) (e.g. via Homebrew, apt-get or Windows Installer)
   1. Please choose Tomcat `v8` or `v8.5`
-  2. If you are running Windows, it's recommended to use the .zip instead of the setup
 4. Import the project in eclipse via `Import --> Import... --> Maven --> Check out Maven Projects from SCM`
   1. If the SCM URL dropdown is empty, click the link to the `m2e Marketplace` and install the `m2e-egit` handler
 5. Configure the project
@@ -13,6 +12,7 @@
   4. Content directory has to be modified to `/src/main/webapp`
   5. Close all dialogs
   6. Open `Properties --> Deployment Assembly --> Add --> Java Build Path Entries --> Next --> Maven dependencies --> Finish`
+  7. Configure database URL, see `src/main/resources/application.properties` for more information
 6. Start the project via `Run As --> Run on Server`
   1. Optionally add a Tomcat v8.0 or v8.5 Server and specify the installation location
 

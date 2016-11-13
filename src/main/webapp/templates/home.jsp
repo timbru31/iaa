@@ -1,5 +1,5 @@
-<!-- author: Tim Brust
-start page -->
+<!-- author: Tim Brust -->
+<!-- Homepage for logged out users -->
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 

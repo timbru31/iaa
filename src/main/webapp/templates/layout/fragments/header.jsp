@@ -8,6 +8,7 @@
 <s:url var="localeDE" namespace="/" action="locale">
   <s:param name="lang">de</s:param>
 </s:url>
+<s:url var="home" namespace="/" action="home" />
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -17,30 +18,13 @@
         <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
           class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/iaa-multiple-choice/"> <span class="glyphicon glyphicon-home"
+      <s:a class="navbar-brand" href="%{home}"> <span class="glyphicon glyphicon-home"
         aria-hidden="true"></span> <s:text name="header.title" />
-      </a>
+      </s:a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse">
-      <s:if test="%{#session.userEmail != null}">
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-              aria-expanded="false">Exams <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="#">Show</a>
-              </li>
-              <li role="separator" class="divider"></li>
-              <li>
-                <a href="/iaa-multiple-choice/createExam">Create (Lecturer Only)</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </s:if>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
