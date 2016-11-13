@@ -2,10 +2,10 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
   "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-  <constant name="struts.action.excludePattern" value="/api/.*, /static/.*" />
+  <constant name="struts.action.excludePattern" value="/static/.*, /iaa-multiple-choice/static/.*" />
   <constant name="struts.action.extension" value="" />
   <constant name="struts.ognl.allowStaticMethodAccess" value="true" />
-  <constant name="struts.devMode" value="true"></constant>
+  <constant name="struts.devMode" value="false"></constant>
 
   <!-- catch 404 errors -->
   <package name="serveAll" namespace="" extends="struts-default">
@@ -40,7 +40,7 @@
     <default-interceptor-ref name="iaa-multiple-choice" />
     <global-results>
       <result name="loginRedirect" type="tiles">login</result>
-      <!-- <result name="genericError" type="tiles">genericError</result> -->
+      <result name="genericError" type="tiles">genericError</result>
       <result name="forbidden" type="tiles">forbiddenError</result>
       <result name="examNotFound" type="tiles">examNotFoundError</result>
       <result name="questionNotFound" type="tiles">questionNotFoundError</result>
@@ -49,8 +49,7 @@
     </global-results>
 
     <global-exception-mappings>
-      <!-- <exception-mapping exception="java.lang.Exception" result="genericError" 
-        /> -->
+      <exception-mapping exception="java.lang.Exception" result="genericError" />
       <exception-mapping
         exception="de.nordakademie.iaa_multiple_choice.domain.exceptions.ExamNotFoundException"
         result="examNotFound" />

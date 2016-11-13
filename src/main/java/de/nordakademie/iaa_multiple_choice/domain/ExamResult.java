@@ -19,8 +19,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyColumn;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -53,12 +51,10 @@ public class ExamResult {
 
     @Basic
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonBackReference
     private Exam exam;
 
     @Basic
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonBackReference
     private Student student;
 
     @ElementCollection(fetch = FetchType.EAGER)

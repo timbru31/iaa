@@ -10,8 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OrderBy;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -36,7 +34,6 @@ public class Student extends User {
 
     @Basic
     @ManyToMany(fetch = FetchType.EAGER)
-    @JsonManagedReference
     private Set<ExamResult> examResults;
 
     public Student() {
@@ -55,8 +52,7 @@ public class Student extends User {
     /**
      * Adds an exam.
      *
-     * @param exam
-     *            the exam to add
+     * @param exam the exam to add
      */
     public void addExam(final Exam exam) {
         registeredExams.add(exam);
@@ -92,8 +88,7 @@ public class Student extends User {
     /**
      * Checks if the student has finished the exam.
      *
-     * @param exam
-     *            the exam to check
+     * @param exam the exam to check
      * @return true if he finished the exam, false otherwise
      */
     public boolean hasFinishedExam(final Exam exam) {
@@ -110,8 +105,7 @@ public class Student extends User {
     /**
      * Checks if the student has taken the exam.
      *
-     * @param exam
-     *            the exam to check
+     * @param exam the exam to check
      * @return true if he has taken the exam, false otherwise
      */
     public boolean hasTakenExam(final Exam exam) {
@@ -121,8 +115,7 @@ public class Student extends User {
     /**
      * Removes an exam.
      *
-     * @param exam
-     *            the exam to remove
+     * @param exam the exam to remove
      */
     public void removeExam(final Exam exam) {
         registeredExams.remove(exam);

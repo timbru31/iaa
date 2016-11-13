@@ -24,8 +24,6 @@ import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -77,7 +75,6 @@ public class Exam {
 
     @Basic
     @ManyToMany(fetch = FetchType.EAGER)
-    @JsonManagedReference
     private Set<ExamResult> examResults;
 
     public void addExamResult(final ExamResult examResult) {
@@ -87,10 +84,8 @@ public class Exam {
     /**
      * Adds a student and a generated token to the tokenList Map.
      *
-     * @param student
-     *            the student to add
-     * @param generatedToken
-     *            the generated token
+     * @param student the student to add
+     * @param generatedToken the generated token
      */
     public void addParticipant(final Student student, final String generatedToken) {
         tokenList.put(student, generatedToken);
@@ -99,8 +94,7 @@ public class Exam {
     /**
      * Adds a question to the Set of questions.
      *
-     * @param question
-     *            the question to add.
+     * @param question the question to add.
      */
     public void addQuestion(final Question question) {
         questions.add(question);
@@ -172,8 +166,7 @@ public class Exam {
     /**
      * Searches the next question based on a given question.
      *
-     * @param question
-     *            the question to find the next one after
+     * @param question the question to find the next one after
      * @return the next question or null if they question was the last
      */
     public Question getNextQuestion(final Question question) {
@@ -192,8 +185,7 @@ public class Exam {
     /**
      * Searches the previous question based on a given question.
      *
-     * @param question
-     *            the question to find the previous one
+     * @param question the question to find the previous one
      * @return the previous question or null if they question was the first
      */
     public Question getPreviousQuestion(final Question question) {
@@ -210,8 +202,7 @@ public class Exam {
     /**
      * Returns the token for a student.
      *
-     * @param student
-     *            the student to retrieve the token for
+     * @param student the student to retrieve the token for
      * @return the token
      */
     public String getToken(final Student student) {
@@ -235,8 +226,7 @@ public class Exam {
     /**
      * Checks if the student is a participant of the exam.
      *
-     * @param student
-     *            the student to check
+     * @param student the student to check
      * @return true if he is a participant, otherwise false
      */
     public boolean hasParticipant(final Student student) {
@@ -246,8 +236,7 @@ public class Exam {
     /**
      * Checks if the exam has this question
      *
-     * @param question
-     *            the question to check
+     * @param question the question to check
      * @return true if exam has this question, otherwise false
      */
     public boolean hasQuestion(final Question question) {
@@ -285,8 +274,7 @@ public class Exam {
     /**
      * Checks if the given question is the first question in the Set.
      *
-     * @param question
-     *            the question to check
+     * @param question the question to check
      * @return true if it's the first question, false otherwise
      */
     public boolean isFirstQuestion(final Question question) {
@@ -303,8 +291,7 @@ public class Exam {
     /**
      * Checks if the given question is the last question in the Set.
      *
-     * @param question
-     *            the question to check
+     * @param question the question to check
      * @return true if it's the last question, false otherwise
      */
     public boolean isLastQuestion(final Question question) {
@@ -322,8 +309,7 @@ public class Exam {
     /**
      * Removes a participant from the exam.
      *
-     * @param student
-     *            the student to remove
+     * @param student the student to remove
      */
     public void removeParticipant(final Student student) {
         tokenList.remove(student);
@@ -332,8 +318,7 @@ public class Exam {
     /**
      * Removes a question from the exam.
      *
-     * @param question
-     *            the question to remove
+     * @param question the question to remove
      */
     public void removeQuestion(final Question question) {
         questions.remove(question);
