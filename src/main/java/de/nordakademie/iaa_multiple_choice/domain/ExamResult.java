@@ -133,8 +133,8 @@ public class ExamResult {
     /**
      * Finds submitted answers by a question id.
      *
-     * @param questionId the question id to search fo
-     * @return the submtted answers if found, otherwise null
+     * @param questionId the question id to search for
+     * @return the submitted answers if found, otherwise null
      */
     public ExamResultAnswers findSubmittedAnswersByQuestionId(final Long questionId) {
         for (final Entry<Question, ExamResultAnswers> entry : submittedAnswers.entrySet()) {
@@ -154,5 +154,12 @@ public class ExamResult {
     public boolean isExpired() {
         final LocalDateTime now = LocalDateTime.now().minusSeconds(10L);
         return now.isAfter(startTime.plusMinutes(exam.getExamTime())) || endTime != null;
+    }
+
+    /**
+     * @see isExpired()
+     */
+    public boolean isFinished() {
+        return isExpired();
     }
 }
