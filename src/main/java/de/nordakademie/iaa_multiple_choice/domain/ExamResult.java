@@ -139,7 +139,7 @@ public class ExamResult {
     public ExamResultAnswers findSubmittedAnswersByQuestionId(final Long questionId) {
         for (final Entry<Question, ExamResultAnswers> entry : submittedAnswers.entrySet()) {
             final Question question = entry.getKey();
-            if (question.getId() == questionId) {
+            if (question.getId().equals(questionId)) {
                 return entry.getValue();
             }
         }

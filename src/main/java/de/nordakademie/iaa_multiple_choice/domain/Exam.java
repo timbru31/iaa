@@ -113,7 +113,7 @@ public class Exam {
             return false;
         }
         final Exam exam = (Exam) obj;
-        if (id != exam.id || !name.equals(exam.name) || examTime != exam.examTime || minPoints != exam.minPoints
+        if (!id.equals(exam.id) || !name.equals(exam.name) || !examTime.equals(exam.examTime) || !minPoints.equals(exam.minPoints)
                 || creditPoints != exam.creditPoints || !startDate.isEqual(exam.startDate)
                 || !endDate.isEqual(exam.endDate) || evaluationMethod != exam.evaluationMethod
                 || questions.size() != exam.questions.size() || tokenList.size() != exam.tokenList.size()
