@@ -16,7 +16,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.16.10</version>
+      <version>1.16.14</version>
       <scope>provided</scope>
     </dependency>
 
@@ -38,71 +38,71 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-      <version>4.3.4.RELEASE</version>
+      <version>4.3.7.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
-      <version>4.3.4.RELEASE</version>
+      <version>4.3.7.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context-support</artifactId>
-      <version>4.3.4.RELEASE</version>
+      <version>4.3.7.RELEASE</version>
     </dependency>
 
     <!-- Struts 2 -->
     <dependency>
       <groupId>org.apache.struts</groupId>
       <artifactId>struts2-core</artifactId>
-      <version>2.5.5</version>
+      <version>2.5.10.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.struts</groupId>
       <artifactId>struts2-tiles-plugin</artifactId>
-      <version>2.5.5</version>
+      <version>2.5.10.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.struts</groupId>
       <artifactId>struts2-spring-plugin</artifactId>
-      <version>2.5.5</version>
+      <version>2.5.10.1</version>
     </dependency>
 
     <!-- Logging -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
-      <version>2.7</version>
+      <version>2.8.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-web</artifactId>
-      <version>2.7</version>
+      <version>2.8.1</version>
       <scope>runtime</scope>
     </dependency>
   <dependency>
        <groupId>org.slf4j</groupId>
        <artifactId>slf4j-api</artifactId>
-       <version>1.7.21</version>
+       <version>1.7.25</version>
    </dependency>
    <dependency>
        <groupId>org.slf4j</groupId>
        <artifactId>slf4j-simple</artifactId>
-       <version>1.7.21</version>
+       <version>1.7.25</version>
    </dependency>
 
     <!-- Hibernate -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
-      <version>5.2.4.Final</version>
+      <version>5.2.9.Final</version>
     </dependency>
 
     <!-- H2 -->
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
-      <version>1.4.193</version>
+      <version>1.4.194</version>
     </dependency>
 
     <!-- Tests -->
@@ -114,12 +114,12 @@
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>2.2.15</version>
+      <version>2.7.18</version>
     </dependency>
     <dependency>
       <groupId>org.apache.struts</groupId>
       <artifactId>struts2-junit-plugin</artifactId>
-      <version>2.5.5</version>
+      <version>2.5.10.1</version>
     </dependency>
 
     <!-- Mails -->
@@ -139,7 +139,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.5.1</version>
+        <version>3.6.1</version>
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
