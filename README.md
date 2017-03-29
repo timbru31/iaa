@@ -1,6 +1,7 @@
 # 🎓  IAA Hausarbeit - Multiple Choice 📝
 [![Build Status](https://travis-ci.org/timbru31/iaa-multiple-choice.svg?branch=master)](https://travis-ci.org/timbru31/iaa-multiple-choice)
 [![Dependency Status](https://www.versioneye.com/user/projects/58d27e83cef500003d136244/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58d27e83cef500003d136244)
+[![Known Vulnerabilities](https://snyk.io/test/github/timbru31/iaa-multiple-choice/badge.svg)](https://snyk.io/test/github/timbru31/iaa-multiple-choice)
 ### Authors
 
 Jens Gottwald, Hannes Peterson, Yannick Rump, Tim Brust
