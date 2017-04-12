@@ -1,5 +1,5 @@
-<!-- author: Yannick Rump -->
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%-- author: Yannick Rump --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 
 <s:url var="localeEN" namespace="/" action="locale">
@@ -23,7 +23,7 @@
       </s:a>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
+    <%-- Collect the nav links, forms, and other content for toggling --%>
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">

@@ -1,6 +1,5 @@
-<!-- author: Hannes Peterson
-lecturer page -->
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%-- author: Hannes Peterson --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 
 <div class="jumbotron backoffice">
@@ -59,11 +58,6 @@ lecturer page -->
           <td><s:property value="formatStartDate()" /></td>
           <td><s:property value="formatEndDate()" /></td>
 
-
-
-
-
-
           <td><s:if test="examResults.isEmpty()">
               <button class="btn btn-default" disabled="disabled">
                 <span class="glyphicon glyphicon-eye-close"></span>
@@ -76,11 +70,6 @@ lecturer page -->
                 <span class="glyphicon glyphicon-eye-open"></span>
               </s:a>
             </s:else></td>
-
-
-
-
-
 
           <td><s:if test="isEditable()">
               <s:url var="editExam" namespace="/" action="editExam">

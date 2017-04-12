@@ -1,6 +1,5 @@
-<!-- author: Tim Brust
-working on exam page -->
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%-- author: Tim Brust --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <div class="page-header countdown-header">
   <h1>
@@ -136,6 +135,6 @@ working on exam page -->
   }).on('finish.countdown', function() {
     document.submitExam.submit();
   });
-  
+
   $('.blank').autoGrowInput({ minWidth: 165, maxWidth: 600, comfortZone: 20 });
 </script>

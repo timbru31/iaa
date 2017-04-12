@@ -1,6 +1,5 @@
-<!-- author: Tim Brust
-mapping exams with students page -->
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%-- author: Tim Brust --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <div class="page-header">
   <h1>
@@ -77,7 +76,7 @@ mapping exams with students page -->
   <div class="panel panel-default">
     <div class="panel-body">
       <s:text name="mapping.hint" />
-      
+
     </div>
   </div>
 </s:else>
