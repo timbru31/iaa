@@ -8,39 +8,39 @@
 </div>
 <table class="table">
   <tr>
-    <td><b><s:text name="create.examName" /></b></td>
+    <td class="bold"><s:text name="create.examName" /><</td>
     <td><s:property value="examResult.exam.name" /></td>
   </tr>
   <tr>
-    <td><b><s:text name="create.examTime" /></b></td>
+    <td class="bold"><s:text name="create.examTime" /><</td>
     <td><s:property value="examResult.exam.examTime" /></td>
   </tr>
   <tr>
-    <td><b><s:text name="create.minPoints" /></b></td>
+    <td class="bold"><s:text name="create.minPoints" /><</td>
     <td><s:property value="examResult.exam.minPoints" /></td>
   </tr>
   <tr>
-    <td><b><s:text name="create.examCP" /></b></td>
+    <td class="bold"><s:text name="create.examCP" /><</td>
     <td><s:property value="examResult.exam.creditPoints.getValue()" /></td>
   </tr>
   <tr>
-    <td><b><s:text name="create.evaluationMethod" /></b></td>
+    <td class="bold"><s:text name="create.evaluationMethod" /><</td>
     <td><s:property value="%{getText(examResult.exam.evaluationMethod.getText())}" /></td>
   </tr>
   <tr>
-    <td><b><s:text name="create.startDate" /></b></td>
+    <td class="bold"><s:text name="create.startDate" /><</td>
     <td><s:property value="examResult.exam.formatStartDate()" /></td>
   </tr>
   <tr>
-    <td><b><s:text name="create.endDate" /></b></td>
+    <td class="bold"><s:text name="create.endDate" /><</td>
     <td><s:property value="examResult.exam.formatEndDate()" /></td>
   </tr>
   <tr>
-    <td><b><s:text name="points" /></b></td>
+    <td class="bold"><s:text name="points" /><</td>
     <td><s:property value="examResult.points" />/<s:property value="examResult.exam.getMaxPoints()" /></td>
   </tr>
   <tr>
-    <td><b><s:text name="resultList.result" /></b></td>
+    <td class="bold"><s:text name="resultList.result" /><</td>
     <td>
       <s:if test="examResult.passed">
         <button class="btn btn-success btn-result"><s:text name="resultList.passed" /></button>

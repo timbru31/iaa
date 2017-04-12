@@ -1,6 +1,7 @@
 <%-- author: Yannick Rump --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <div class="page-header">
   <h1>
     <s:text name="login.title" />
@@ -14,7 +15,7 @@
       <s:fielderror />
     </div>
   </s:if>
-  <div class="form-group ${fieldErrors.containsKey('loginFailed') ? 'has-error' : ''}">
+  <div class="form-group ${fn:escapeXml(fieldErrors.containsKey('loginFailed')) ? 'has-error' : ''}">
     <label class="control-label" for="user.email"><s:text name="user.email" /> <span
       class="label label-warning"><s:text name="user.emailHint" /></span></label>
     <div class="input-group">

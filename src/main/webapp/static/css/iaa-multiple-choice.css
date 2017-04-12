@@ -53,7 +53,7 @@ footer {
   margin: 2px 2px 2px 0;
 }
 
-.disabled .bootstrap-tagsinput .tag [data-role="remove"] { 
+.disabled .bootstrap-tagsinput .tag [data-role="remove"] {
   display: none;
 }
 
@@ -188,4 +188,8 @@ footer {
 
 .center {
  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
 }

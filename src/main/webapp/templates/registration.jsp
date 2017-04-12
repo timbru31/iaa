@@ -1,6 +1,8 @@
 <%-- author: Tim Brust --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <div class="page-header">
   <h1>
     <s:text name="registration.title" />
@@ -15,27 +17,27 @@
       <s:actionerror />
     </div>
   </s:if>
-  <div class="form-group ${fieldErrors.containsKey('firstName') ? 'has-error' : ''}">
+  <div class="form-group ${fn:escapeXml(fieldErrors.containsKey('firstName')) ? 'has-error' : ''}">
     <label class="control-label" for="firstName"><s:text name="user.firstName" /></label>
     <s:textfield name="firstName" id="firstName" required="true" requiredLabel="true" class="form-control"
       placeholder="Max" />
   </div>
-  <div class="form-group ${fieldErrors.containsKey('lastName') ? 'has-error' : ''}">
+  <div class="form-group ${fn:escapeXml(fieldErrors.containsKey('lastName')) ? 'has-error' : ''}">
     <label class="control-label" for="lastName"><s:text name="user.lastName" /></label>
     <s:textfield name="lastName" id="lastName" required="true" requiredLabel="true" class="form-control"
       placeholder="Mustermann" />
   </div>
-  <div class="form-group ${fieldErrors.containsKey('email') ? 'has-error' : ''}">
+  <div class="form-group ${fn:escapeXml(fieldErrors.containsKey('email')) ? 'has-error' : ''}">
     <label class="control-label" for="email"><s:text name="user.email" /> <span class="label label-warning"><s:text
           name="user.emailHint" /></span></label>
     <s:textfield name="email" id="email" required="true" requiredLabel="true" class="form-control"
       pattern="[a-z0-9._%+-]+@nordakademie.de$" placeholder="user@nordakademie.de" />
   </div>
-  <div class="form-group ${fieldErrors.containsKey('password') ? 'has-error' : ''}">
+  <div class="form-group ${fn:escapeXml(fieldErrors.containsKey('password')) ? 'has-error' : ''}">
     <label class="control-label" for="password"><s:text name="user.password" /></label>
     <s:textfield name="password" id="password" required="true" requiredLabel="true" type="password" class="form-control" />
   </div>
-  <div class="form-group ${fieldErrors.containsKey('password') ? 'has-error' : ''}">
+  <div class="form-group ${fn:escapeXml(fieldErrors.containsKey('password')) ? 'has-error' : ''}">
     <label class="control-label" for="passwordRepeat"><s:text name="user.passwordRepeat" /></label>
     <s:textfield name="passwordRepeat" id="passwordRepeat" required="true" requiredLabel="true" type="password"
       class="form-control" />
@@ -47,7 +49,7 @@
     <s:select class="form-control" name="role" id="role" list="#{'Lecturer': #roleLecturer, 'Student': #roleStudent}" />
   </div>
   <div
-    class="form-group ${fieldErrors.containsKey('studentNumber') ? 'has-error' : ''} collapse ${role == 'Student' ? 'in' : ''}"
+    class="form-group ${fn:escapeXml(fieldErrors.containsKey('studentNumber')) ? 'has-error' : ''} collapse ${fn:escapeXml(role) == 'Student' ? 'in' : ''}"
     id="studentNumberForm">
     <label class="control-label" for="studentNumber"><s:text name="user.studentNumber" /></label>
     <s:textfield name="studentNumber" id="studentNumber" type="number" inputmode="numeric" requiredLabel="true"

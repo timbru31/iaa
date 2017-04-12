@@ -8,31 +8,31 @@
 </div>
 <table class="table">
   <tr>
-    <td><b><s:text name="create.examName" /></b></td>
+    <td class="bold"><s:text name="create.examName" /></td>
     <td><s:property value="exam.name" /></td>
   </tr>
   <tr>
-    <td><b><s:text name="create.examTime" /></b></td>
+    <td class="bold"><s:text name="create.examTime" /></td>
     <td><s:property value="exam.examTime" /></td>
   </tr>
   <tr>
-    <td><b><s:text name="create.minPoints" /></b></td>
+    <td class="bold"><s:text name="create.minPoints" /></td>
     <td><s:property value="exam.minPoints" /></td>
   </tr>
   <tr>
-    <td><b><s:text name="create.examCP" /></b></td>
+    <td class="bold"><s:text name="create.examCP" /></td>
     <td><s:property value="exam.creditPoints.getValue()" /></td>
   </tr>
   <tr>
-    <td><b><s:text name="create.evaluationMethod" /></b></td>
+    <td class="bold"><s:text name="create.evaluationMethod" /></td>
     <td><s:property value="%{getText(exam.evaluationMethod.getText())}" /></td>
   </tr>
   <tr>
-    <td><b><s:text name="create.startDate" /></b></td>
+    <td class="bold"><s:text name="create.startDate" /></td>
     <td><s:property value="exam.formatStartDate()" /></td>
   </tr>
   <tr>
-    <td><b><s:text name="create.endDate" /></b></td>
+    <td class="bold"><s:text name="create.endDate" /></td>
     <td><s:property value="exam.formatEndDate()" /></td>
   </tr>
 </table>

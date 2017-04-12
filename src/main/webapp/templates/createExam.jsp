@@ -1,6 +1,8 @@
 <%-- authors: Yannick Rump, Hannes Peterson and Tim Brust --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <div class="page-header">
   <h1>
     <s:if test="examId == null">
@@ -26,21 +28,21 @@
   </s:if>
   <s:hidden name="examId" value="%{#attr.examId}" />
   <div
-    class="form-group ${fieldErrors.containsKey('exam.name') ? 'has-error' : ''}">
+    class="form-group ${fn:escapeXml(fieldErrors.containsKey('exam.name')) ? 'has-error' : ''}">
     <label for="create.examName"><s:text name="create.examName" /></label>
     <s:textfield name="exam.name" id="create.examName" type="text"
       class="form-control" required="true"
       placeholder="%{getText('create.examName')}" />
   </div>
   <div
-    class="form-group ${fieldErrors.containsKey('exam.examTime') ? 'has-error' : ''}">
+    class="form-group ${fn:escapeXml(fieldErrors.containsKey('exam.examTime')) ? 'has-error' : ''}">
     <label for="create.examTime"><s:text name="create.examTime" /></label>
     <s:textfield name="exam.examTime" id="create.examTime" type="number"
       inputmode="numeric" min="1" pattern="[0-9]*" class="form-control"
       required="true" placeholder="%{getText('create.examTime')}" />
   </div>
   <div
-    class="form-group ${fieldErrors.containsKey('exam.minPoints') ? 'has-error' : ''}">
+    class="form-group ${fn:escapeXml(fieldErrors.containsKey('exam.minPoints')) ? 'has-error' : ''}">
     <label for="create.minPoints"><s:text
         name="create.minPoints" /></label>
     <s:textfield name="exam.minPoints" id="create.minPoints"
@@ -49,16 +51,16 @@
       placeholder="%{getText('create.minPoints')}" />
   </div>
   <div
-    class="form-group ${fieldErrors.containsKey('exam.creditPoints') ? 'has-error' : ''}">
+    class="form-group ${fn:escapeXml(fieldErrors.containsKey('exam.creditPoints')) ? 'has-error' : ''}">
     <label for="create.examCP"><s:text name="create.examCP" /></label>
     <s:select required="true" class="form-control" id="create.examCP" headerKey='' headerValue="" listValue="value" name="exam.creditPoints" list="@de.nordakademie.iaa_multiple_choice.domain.CreditPointType@values()" />
   </div>
   <div
-    class="form-group ${fieldErrors.containsKey('exam.evaluationMethod') ? 'has-error' : ''}">
+    class="form-group ${fn:escapeXml(fieldErrors.containsKey('exam.evaluationMethod')) ? 'has-error' : ''}">
     <label for="create.evaluationMethod"><s:text name="create.evaluationMethod" /></label>
     <s:select required="true" class="form-control" id="create.evaluationMethod" headerKey='' headerValue="" listValue="%{getText(text)}" name="exam.evaluationMethod" list="@de.nordakademie.iaa_multiple_choice.domain.WrongAnswerEvaluationMethod@values()" />
   </div>
-  <div class="form-group ${fieldErrors.containsKey('exam.endDate') ? 'has-error' : ''}">
+  <div class="form-group ${fn:escapeXml(fieldErrors.containsKey('exam.endDate')) ? 'has-error' : ''}">
     <label for="examStart"><s:text name="create.examPeriod" /></label>
     <div class="input-daterange input-group" id="datepicker">
       <s:textfield type="text" class="input-sm form-control"

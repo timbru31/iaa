@@ -24,7 +24,7 @@
       <s:iterator value="student.examResults">
         <s:if test="isExpired()">
           <tr>
-            <td><b><s:text name="exam.getName()" /></b></td>
+            <td class="bold"><s:text name="exam.getName()" /></td>
             <td>
               <s:if test="passed">
                 <button class="btn btn-success btn-result"><s:text name="resultList.passed" /></button>

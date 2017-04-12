@@ -19,10 +19,10 @@
 </div>
 
 <hr />
-<center>
+<div class="center">
   <div class="panel panel-default">
     <div class="panel-body">
       <s:text name="welcome.subtitle" />
     </div>
   </div>
-</center>
+</div>
