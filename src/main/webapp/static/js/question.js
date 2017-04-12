@@ -4,8 +4,8 @@
  */
 
 $(document).ready(function() {
-  $('.navbar-btn').on('show.bs.tab', function(event) {
-    $('#questionType').val(event.target.hash.substr(1));
+  $(".navbar-btn").on("show.bs.tab", function(event) {
+    $("#questionType").val(event.target.hash.substr(1));
   });
 });
 
@@ -14,7 +14,7 @@ var radioValue = 2;
 var checkboxValue = 2;
 
 function addRadio() {
-  var newDiv = document.createElement('div');
+  var newDiv = document.createElement("div");
   newDiv.className = "input-group rd";
   newDiv.innerHTML = "<span class='input-group-addon'><input type='radio' name='sc' value='" + radioValue + "'></span><input name='rawAnswerTextsSc' type='text' class='form-control'>";
   $("#radios").append(newDiv);
@@ -27,10 +27,10 @@ function removeRadio() {
 };
 
 function addCheckbox() {
-  var newDiv = document.createElement('div');
+  var newDiv = document.createElement("div");
   newDiv.className = "input-group cb";
   newDiv.innerHTML = "<span class='input-group-addon'><input type='checkbox' name='mc' value='" + checkboxValue + "'></span><input name='rawAnswerTextsMc' type='text' class='form-control'>";
-  $("#checkboxes").append(newDiv)
+  $("#checkboxes").append(newDiv);
   checkboxValue++;
 }
 
