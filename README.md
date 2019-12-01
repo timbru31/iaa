@@ -1,9 +1,10 @@
-# 🎓  IAA Hausarbeit - Multiple Choice 📝
+# 🎓 IAA Hausarbeit - Multiple Choice 📝
+
 [![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 [![Build Status](https://travis-ci.org/timbru31/iaa-multiple-choice.svg?branch=master)](https://travis-ci.org/timbru31/iaa-multiple-choice)
-[![Dependency Status](https://www.versioneye.com/user/projects/58d27e83cef500003d136244/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58d27e83cef500003d136244)
 [![Known Vulnerabilities](https://snyk.io/test/github/timbru31/iaa-multiple-choice/badge.svg)](https://snyk.io/test/github/timbru31/iaa-multiple-choice)
+
 ### Authors
 
 Jens Gottwald, Hannes Peterson, Yannick Rump, Tim Brust
@@ -18,35 +19,38 @@ Technologies used are Hibernate, Spring and Struts2, jQuery (with plugins) and B
 ## Prerequisites
 
 1. Install the following components
-  1. JDK 8
-  2. IDE (e.g. IntelliJ or eclipse)
-  3. Lombok
-  4. Maven 3
-  5. Tomcat v8 or v8.5 (or similiar webserver)
+1. JDK 11
+1. IDE (e.g. IntelliJ or eclipse)
+1. Lombok
+1. Maven 3
+1. Tomcat v9 (or similar webserver)
 
 ## Installation
 
 1. Clone the project
 2. Create a `user.properties` in `src/main/resources/`
-  1. add a correct `database.url` for the H2 database
-    1. See below for the default database installation instructions
-3. Run the project. Visit [http://localhost:8080/iaa-multiple-choice](http://localhost:8080/iaa-multiple-choice)
+3. add a correct `database.url` for the H2 database
+   1. See below for the default database installation instructions
+4. Run the project. Visit [http://localhost:8080/iaa-multiple-choice](http://localhost:8080/iaa-multiple-choice)
 
 ## Configuration
 
 ### Mail sending
+
 You can enable mail sending by adding the flag `mail.disabled=false` to your `user.properties`.  
 You need to configure both `mail.username` and `mail.password` with valid Gmail credentials or use your own mail server.  
 **This will enable the need to activate the user accounts and mailing of tokens for exams!**  
 Besides that you can force to override the recipient by adding `mail.overrideRecipient=your@email` to your `user.properties`.
 
 ### Registration
+
 Per default registration of new users is enabled. To disable this set `registration.enabled=false` in your `user.properties`.
 
 ## Default database
-You might want to use the pre-configured databse in `docs/db/iaa-multiple-choice.h2.db` (credentials are listed below). **Make sure to set `database.mode` to `update`**  
+
+You might want to use the pre-configured database in `docs/db/iaa-multiple-choice.h2.db` (credentials are listed below). **Make sure to set `database.mode` to `update`**  
 If this does not work, there is an import script located in `docs/db/import.sql`. Copy it to `src/main/resources`.  
-To use it while Hibernate starts, add the following property to the `spring.xml` (bean id *entityManagerFactory*):  
+To use it while Hibernate starts, add the following property to the `spring.xml` (bean id _entityManagerFactory_):  
 `<prop key="hibernate.hbm2ddl.import_files">import.sql</prop>`
 
 ## Default credentials

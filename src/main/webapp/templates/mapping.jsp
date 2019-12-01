@@ -87,9 +87,8 @@
 </div>
 
 <script
-  src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"
-  integrity="sha256-tQ3x4V2JW+L0ew/P3v2xzL46XDjEWUExFkCDY0Rflqc="
-  crossorigin="anonymous"></script>
+  type="text/javascript"
+  src="/iaa-multiple-choice/static/js/bootstrap-tagsinput.min.js"></script>
 
 <script type="text/javascript" src="/iaa-multiple-choice/static/js/jquery.auto-grow-input.min.js"></script>
 <script type="text/javascript">

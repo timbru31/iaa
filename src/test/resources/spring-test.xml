@@ -26,8 +26,7 @@
 
   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <property name="driverClassName" value="org.h2.Driver" />
-    <property name="url"
-      value="jdbc:h2:${database.url}-test;MV_STORE=FALSE;MVCC=FALSE" />
+    <property name="url" value="jdbc:h2:${database.url}-test;MV_STORE=FALSE" />
     <property name="username" value="${database.username}" />
     <property name="password" value="${database.password}" />
   </bean>
@@ -44,7 +43,7 @@
         <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
         <prop key="hibernate.show_sql">false</prop>
         <prop key="hibernate.format_sql">true</prop>
-        <prop key="hibernate.hbm2ddl.auto">create</prop>
+        <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
       </props>
     </property>
   </bean>

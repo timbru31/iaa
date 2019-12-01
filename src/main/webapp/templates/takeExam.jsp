@@ -123,7 +123,7 @@
   </nav>
 </div>
 
-<script src="https://cdn.jsdelivr.net/jquery.countdown/2.2.0/jquery.countdown.min.js" integrity="sha256-Ikk5myJowmDQaYVCUD0Wr+vIDkN8hGI58SGWdE671A8=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/iaa-multiple-choice/static/js/jquery.countdown.min.js"></script>
 <script type="text/javascript" src="/iaa-multiple-choice/static/js/jquery.auto-grow-input.min.js"></script>
 <script type="text/javascript">
   function getRemainingTime() {

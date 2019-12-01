@@ -24,7 +24,7 @@
       </tr>
       <s:iterator value="exam.tokenList">
         <tr>
-          <td class="bold"><s:text name="key.getFullName()" /></td>
+          <td class="bold"><s:text name="%{key.getFullName()}" /></td>
           <td><s:property value="value" /></td>
         </tr>
       </s:iterator>
